@@ -1,0 +1,77 @@
+<div class="cui-profile cui-profile--mobile" class-toggle toggled-class="cui-profile--active" ng-click="toggleClass()" off-click="toggleOff()" ng-if="base.user.name.given">
+  <div class="cui-profile__row">
+
+    <!-- Menu Header User Name -->
+    <span class="cui-profile__user-name">{{base.user.name.given}} {{base.user.name.surname}}</span>
+
+    <!-- Avatar -->
+    <div class="cui-media__image-container">
+      <div class="cui-media__image" cui-avatar cui-avatar-email="base.user.email" cui-avatar-names="[base.user.name.given, base.user.name.surname]" cui-avatar-color-class-prefix="cui-avatar__color" cui-avatar-color-count="5"></div>
+    </div>
+
+    <div>
+      <cui-icon cui-svg-icon="fa:arrow459" svg-class="cui-profile__chevron" use-class="svg" viewbox="0 0 216 146" preserveAspectRatio="xMidYMid meet" ></cui-icon>
+    </div>
+  </div>
+
+  <div class="cui-profile__row">
+    <div id="cui-profile__popup" class="cui-profile__user-menu" style="display:block; opacity:1; position:relative;">
+
+      <!-- My Profile -->
+      <div class="cui-profile__menu-item" ui-sref="user.profile">
+        <a href="" class="cui-profile__link">{{'cui-my-profile' | translate}}</a>
+        <div>
+          <cui-icon cui-svg-icon="cui:profile" svg-class="cui-profile__link-icon" use-class="svg" viewbox="-2 -2 52 52" preserveAspectRatio="xMidYMid meet" ></cui-icon>
+        </div>
+      </div>
+
+      <!-- Logout -->
+      <div class="cui-profile__menu-item" ng-click="base.logout()">
+        <a href="" class="cui-profile__link">{{'log-out' | translate}}</a>
+        <div>
+          <cui-icon cui-svg-icon="cui:log-out" svg-class="cui-profile__link-icon" use-class="svg" viewbox="-2 -2 52 52" preserveAspectRatio="xMidYMid meet" ></cui-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Welcome -->
+<span class="snap-menu--option" snap-close ui-sref="welcome" ng-if="!base.user.id">
+  <span class="snap-menu__option-name">{{'welcome' | translate}}</span>
+  <div>
+    <cui-icon cui-svg-icon="fa:four29" svg-class="snap-menu__icon" viewbox="0 0 216 146" preserveAspectRatio="xMidYMid meet" ></cui-icon>
+  </div>
+</span>
+
+<!-- Applications -->
+<span class="snap-menu--option" snap-close ui-sref="applications.myApplications" ng-if="base.user.id">
+  <span class="snap-menu__option-name">{{'my-applications' | translate}}</span>
+  <div>
+    <cui-icon cui-svg-icon="cui:applications_v2" svg-class="snap-menu__icon" viewbox="0 0 49 49" preserveAspectRatio="xMidYMid meet" ></cui-icon>
+  </div>
+</span>
+
+<!-- Organization Profile -->
+<span class="snap-menu--option" snap-close ui-sref="organization.profile({orgId:base.user.organization.id})" ng-if="base.user.id">
+  <span class="snap-menu__option-name">{{'my-organization' | translate}}</span>
+  <div>
+    <cui-icon cui-svg-icon="cui:organization" svg-class="snap-menu__icon" viewbox="0 0 48 48" preserveAspectRatio="xMidYMid meet" ></cui-icon>
+  </div>
+</span>
+
+<!-- Pending Requests -->
+<span class="snap-menu--option" snap-close ui-sref="pendingAppRequests" ng-if="base.user.id">
+  <span class="snap-menu__option-name">{{'cui-my-app-requests' | translate}}</span>
+  <div>
+    <cui-icon cui-svg-icon="cui:status-pending" svg-class="snap-menu__icon" viewbox="0 0 48 48" preserveAspectRatio="xMidYMid meet" ></cui-icon>
+  </div>
+</span>
+
+<!-- Invite -->
+<!-- <span class="snap-menu--option" snap-close ui-sref="invitation" ng-if="base.accessByAnyAdmin()">
+  <span class="snap-menu__option-name">{{'invite' | translate}}</span>
+  <div>
+    <cui-icon cui-svg-icon="cui:mail-open" svg-class="snap-menu__icon" viewbox="0 0 216 146" preserveAspectRatio="xMidYMid meet" ></cui-icon>
+  </div>
+</span> -->

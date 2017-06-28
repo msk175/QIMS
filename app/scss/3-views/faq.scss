@@ -1,0 +1,36 @@
+/*.cui-faq__title {
+    text-align: center;
+    font-size: 25px;
+    color: #4a4949;
+    padding: 10px 0px;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+}*/
+
+.cui-faq__section {
+    margin: 25px 20px;
+    line-height: 25px;
+}
+
+.cui-faq__question {
+    font-weight: bold;
+    color: #232323;
+}
+
+.cui-faq__answer {
+    color: #737272;
+}
+
+.cui-faq__main-container {
+  padding: 0 em(15) em(13);
+  position: relative;
+  min-height: 400px;
+
+  @media screen and (min-width: 701px) {
+    padding: em(15) em(55) 0 em(65);
+  }
+
+  .cui-media__image-container {
+    margin-right: 15px;
+  }
+}

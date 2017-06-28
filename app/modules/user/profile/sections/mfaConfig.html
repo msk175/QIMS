@@ -1,0 +1,33 @@
+<ng-form name="mfaConfig">
+<!--<div class="cui-action">-->
+<div class="cui-field-val__field">
+  Multi Factor Authentication Configuration
+</div>
+<!--</div>-->
+<div class="cui-users__address-container">
+<!--
+- {{userProfile.mfaConfg.mfaConfg}} -123
+124 - {{userProfile.mfaConfg}}
+-->
+	<em>Select the MFA Method</em>
+    <div class="cui-radio" ng-show="mfaSet">
+        <label class="cui-radio__label"><input type="radio" class="cui-radio__input" name="mfa" ng-model="userProfile.mfa.confg" value="ga" ng-checked="userProfile.mfaConfg == 'ga'"/>Google Authenticator</label>
+        <label class="cui-radio__label"><input type="radio" class="cui-radio__input" name="mfa" ng-model="userProfile.mfa.confg" value="sms" ng-checked="userProfile.mfaConfg == 'sms'"/>sms</label>
+        <label class="cui-radio__label"><input type="radio" class="cui-radio__input" name="mfa" ng-model="userProfile.mfa.confg" value="gridcard" ng-checked="userProfile.mfaConfg == 'gridcard'"/>IDCipher</label>
+        <label class="cui-radio__label"><input type="radio" class="cui-radio__input" name="mfa" ng-model="userProfile.mfa.confg" value="phone" ng-checked="userProfile.mfaConfg == 'phone'"/>Phone</label>
+        <label class="cui-radio__label"><input type="radio" class="cui-radio__input" name="mfa" ng-model="userProfile.mfa.confg" value="push" ng-checked="userProfile.mfaConfg == 'push'"/>Mobile Push</label>
+        <label class="cui-radio__label"><input type="radio" class="cui-radio__input" name="mfa" ng-model="userProfile.mfa.confg" value="email" ng-checked="userProfile.mfaConfg == 'email'"/>email</label>
+        <input type="submit" value="SaveMFA" class="cui-button" ng-click="userProfile.updatePersonMFAConfig('mfaConfig', toggleOff)"/>
+    </div>
+</div>
+</ng-form>
+
+ <style>
+	 label.cui-radio__label {
+		 display: block;
+		 margin: 10px 0 10px 15px;
+	}
+	label.cui-radio__label input[type="radio"] {
+		margin-right: 5px;
+	}
+  </style>

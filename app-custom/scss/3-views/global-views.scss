@@ -1,0 +1,404 @@
+/*
+Global layout styles
+*/
+
+html {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+}
+
+.cui-field-val {
+    letter-spacing: normal;
+}
+
+.cui-media__content {
+    letter-spacing: normal;
+}
+
+.cui-media__title {
+    letter-spacing: normal;
+}
+
+.cui-wrapper {
+    background: #fff;
+    @media screen and (min-width: 1000px) {
+        min-height: 100%;
+    }
+}
+
+.cui-media__title {
+    color: $gray;
+}
+
+.cui-action__icon use,
+.cui-action__icon--lg use {
+    color: $dark-purple;
+    fill: white;
+}
+
+.cui-form--mobile-steps .cui-form__body,
+.cui-tile__body {
+    border: 0px;
+}
+
+.cui-footer {
+    position: absolute;
+    bottom: 0px;
+    height: 50px;
+    padding: 0.9375em 0.8125em;
+    max-width: 1500px;
+    @media screen and (min-width: 1000px) {
+        width: calc(100% - 180px);
+    }
+    @media screen and (min-width: 701px) {
+        padding: 0.9375em 3.4375em 0.9375em 4.0625em;
+    }
+    @media screen and (max-width: 700px) {
+        height: 150px;
+        position: relative;
+        .cui-applications__main-container--full {
+            padding: 0.9375em 0;
+        }
+    }
+}
+
+// Layout helpers
+%flex-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+%flex-row-vert,
+%flex-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+%flex-row--right-align {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cui-padding--h-5,
+%cui-padding--h-5 {
+  padding: 0 em(5);
+}
+
+.cui-exapandable__app-name {
+  align-items: center;
+  display: flex;
+  flex: 1;
+}
+
+.cui-tos-container {
+    float: right;
+    padding-bottom: 30px;
+}
+
+.cui-wizard__controls--clear {
+    clear: both;
+}
+
+.cui-previous-link {
+    padding-right: 30px;
+}
+
+.cui-popover-container--relative {
+    @extend .cui-card;
+    .cui-styeguide__popover-container {
+        position: absolute;
+        left: 300px;
+        @media screen and (max-width: 700px) {
+            width: 270px;
+            left: -20px;
+            top: 20px;
+        }
+    }
+}
+
+.v2 .step-indicator.active {
+    .icon {
+        border: 0.125em solid #1A4782;
+    }
+    .icon-svg {
+        fill: #1A4782;
+    }
+}
+
+.v2 .steps-bar-fill {
+    background-color: $dark-purple;
+}
+
+.v2 .step-indicator.visited {
+    .icon {
+        border: 0.125em solid $dark-purple;
+    }
+    .icon-svg {
+        fill: $dark-purple;
+    }
+}
+
+.v2 .cui-status {
+    color: $dark-purple;
+}
+
+.v2 .cui-link {
+    color: $dark-purple;
+}
+
+.v2 .cui-link:hover {
+    color: scale-color($dark-purple, $lightness: 35%);
+}
+
+.cui-loading {
+    border: 0.625em solid $dark-purple;
+    border-top-color: scale-color($dark-purple, $lightness: 35%);
+    ;
+}
+
+.v2 .cui-desktop-menu__option:hover,
+.v2 .snap-menu--option:hover {
+    background-color: scale-color($cui-primary-colors--medium-light, $lightness: 35%);
+    color: $off-white;
+}
+
+.v2 .cui-desktop-menu__option:hover .cui-desktop-menu__icon,
+.v2 .cui-desktop-menu__option:hover .snap-menu__icon,
+.v2 .snap-menu--option:hover .cui-desktop-menu__icon,
+.v2 .snap-menu--option:hover .snap-menu__icon {
+    fill: $cui-white;
+}
+
+.v2 .cui-desktop-menu__option.active,
+.v2 .snap-menu--option.active {
+    background: white;
+    color: $dark-purple;
+}
+
+.v2 .cui-desktop-menu__option.active .cui-desktop-menu__icon,
+.v2 .cui-desktop-menu__option.active .snap-menu__icon,
+.v2 .snap-menu--option.active .cui-desktop-menu__icon,
+.v2 .snap-menu--option.active .snap-menu__icon {
+    fill: $dark-purple;
+}
+
+.cui-error__password {
+    display: inline-block;
+}
+
+.js-main-content {
+    transform: translate3d(0, 0, 0);
+    transition: transform .15s linear;
+    padding-bottom: 150px;
+}
+
+.js-main-content--search-open {
+    transform: translate3d(0, 60px, 0);
+    transition: transform .15s linear;
+    padding-bottom: 150px;
+}
+
+.v2 .cui-desktop-menu--collapse .cui-header__svg-logo,
+.v2 .cui-header__svg-logo {
+    margin: 16px auto;
+}
+
+.v2 .cui-desktop-menu--collapse .cui-header__svg-logo_displaced,
+.v2 .cui-header__svg-logo_displaced {
+    margin: $cui-header__svg-logo__margin;
+    top: 0px;
+    @media screen and (max-width: 999px) {
+        left: calc(50% - 125px);
+    }
+    @media screen and (min-width: 1000px) {
+        position: absolute;
+        right: 475px;
+    }
+    @media screen and (min-width: 1300px) {
+        left: calc(50% - 125px);
+    }
+}
+
+.cui-header__svg-logo {
+    width: $cui-header__svg-logo__width;
+    height: $cui-header__svg-logo__height;
+    display: block;
+    background: url(/assets/images/logo.png) no-repeat left top;
+    background-size: 242px;
+    /*  background:url(../images/logo2.png) 0 0 no-repeat; height:52px; width:242px; margin: 16px 16px 16px 16px; */
+}
+
+.v2 .cui-header {
+    background: linear-gradient($header-primary-background-color, $header-secondary-background-color);
+    // background: $header-background-color;
+    border-bottom: $cui-header__border-bottom__width solid $cui-primary-colors--medium-light;
+    border-image: $cui-horizontal-gradient 30 stretch;
+    margin: -$cui-header__border-bottom__width 0px 0px 0px;
+    padding: 0px 30px 0px 30px;
+}
+
+.v2 .cui-card {
+    max-height: 290px;
+    max-width: 250px;
+    min-height: 290px;
+    min-width: 250px;
+    margin-left: 395px;
+    margin-right: 395px;
+    border: 2px solid $dark-purple;
+}
+
+.v2 .cui-footer__link {
+    color: $dark-purple;
+}
+
+.v2 .cui-footer {
+    color: $dark-purple;
+}
+
+.Quintiles__content {
+    max-height: 60px;
+    max-width: 200px;
+    min-height: 60px;
+    min-width: 200px;
+}
+
+.v2 .cui-card__image-container {
+    height: 75px;
+}
+
+.v2 .cui-card__content-header {
+    min-height: 10px;
+}
+
+.cui-card__button:hover {
+    color: scale-color($dark-purple, $lightness: 35%);
+    color: $dark-purple;
+}
+
+.cui-card__button {}
+
+.v2 .cui-desktop-menu {
+    background: $menu-background-color;
+    height: 100%;
+    /* This removes the 80px-tall solid area the "X" button is in. */
+    margin-top: 0px;
+    /* This removes the 80px-tall solid area the "X" button is in. */
+    padding-top: 80px;
+    /* This removes the 80px-tall solid area the "X" button is in. */
+}
+
+
+/* This removes the 80px-tall solid area the "X" button is in. */
+
+.cui-input-button__button {
+    color: $dark-purple;
+}
+
+.v2 .cui-menu__toggle-button--desktop {
+    background: none;
+}
+
+.menu-toggle--button {
+    background: $mag-header_items-color;
+}
+
+.menu-toggle--button::before {
+    background: $mag-header_items-color;
+}
+
+.menu-toggle--button::after {
+    background: $mag-header_items-color;
+}
+
+.cui-profile::before,
+.cui-header__user::before {
+    background-color: scale-color($dark-purple, $lightness: 35%);
+}
+
+.cui-profile--active .cui-profile__user-name,
+.cui-profile--active .cui-header__user-name {
+    color: $cui-greyscale--x-light;
+}
+
+.cui-avatar__user-menu,
+.cui-profile__user-menu,
+.cui-header__user-menu,
+{
+    background: $cui-primary-colors--medium-light;
+}
+
+.cui-avatar__color1,
+.cui-avatar__color2,
+.cui-avatar__color3,
+.cui-avatar__color4,
+.cui-avatar__color5 {
+    background-color: $dark-purple;
+}
+
+.cui-link,
+.cui-expandable__review-button,
+.cui-expandable__body--alt-bg .cui-expandable__link,
+.cui-expandable__body--alt-bg .cui-expandable__close,
+.cui-search__dropdown a,
+.cui-expandable__link,
+.cui-pagination__link a,
+.cui-pagination__display-amount,
+.cui-media__link,
+.cui-footer__link,
+.cui-header__user,
+.cui-flex-table__tr--b .cui-flex-table__review {
+    color: $dark-purple;
+}
+
+.cui-profile .cui-profile__link {
+    color: $off-white;
+}
+
+.cui-profile .cui-profile__link:hover {
+    color: $light-gray;
+}
+
+.cui-profile .cui-profile__link-icon {
+    color: $off-white;
+}
+
+.cui-profile__user-name,
+.cui-profile__link {
+    color: $off-white;
+}
+
+.cui-profile .cui-profile__chevron,
+.cui-action__icon {
+    fill: $off-white;
+    color: $off-white;
+}
+
+.cui-action__icon--new use {
+    fill: white;
+    color: $dark-purple;
+}
+
+.cui-action__title {
+    color: $cui-primary-colors--medium-light;
+    letter-spacing: normal;
+}
+
+.cui-wizard label.cui-checkbox__label {
+    text-transform: none;
+    display: inline;
+    vertical-align: top;
+    font-size: 20px;
+    a {
+        vertical-align: top;
+    }
+}
+
+.cui-footer__link {
+    color: $cui-primary-colors--medium-light;
+}

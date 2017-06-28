@@ -1,0 +1,75 @@
+// Org Directory
+
+.cui-organization-dir {
+  .cui-status--active,
+  .cui-status--pending,
+  .cui-status--suspended,
+  .cui-status--locked,
+  .cui-status--inactive,
+  .cui-status--unactivated {
+    @media screen and (max-width: 700px) {
+      font-size: em(11);
+      letter-spacing: 1.5px;
+    }
+  }
+
+  .cui-breadcrumb {
+    @media screen and (max-width: 700px) {
+      display: none;
+    }
+  }
+
+  .cui-action {
+    &__action-label {
+      @media screen and (max-width: 700px) {
+        display: none;
+      }
+    }
+
+    &__icon {
+      @media screen and (max-width: 700px) {
+        height: em(24);
+      }
+    }
+
+    &__icon--invite {
+      @media screen and (max-width: 700px) {
+        height: em(40);
+      }
+    }
+  }
+
+  .cui-flex-table__mobile-stack {
+    @media screen and (max-width: 700px) {
+      line-height: 1.4;
+    }
+  }
+
+  .cui-action {
+    @media screen and (max-width: 700px) {
+      flex-wrap: wrap;
+    }
+  }
+
+  .cui-input-button {
+    @media screen and (max-width: 700px) {
+      flex: 0 100%;
+      margin-top: em(25);
+      order: 3;
+    }
+  }
+
+  .cui-action {
+    .cui-action__title {
+      @media screen and (min-width: 701px) {
+        flex: 0.25;
+      }
+    }
+
+    .cui-input-button {
+      @media screen and (min-width: 701px) {
+        flex: 0.3;
+      }
+    }
+  }
+}

@@ -1,0 +1,280 @@
+/*================================== ID-Authenticator Styles ======================================*/
+
+/* ID-Authenticator logo */
+
+header hgroup h1 { background: url(../images/logo.png) 0 0 no-repeat; width:483px; height: 104px;}
+
+/* header hgroup h2 { 
+	color: #000;
+	text-shadow: 0 0 3px #fff;
+	margin-top: 13px;
+	margin-bottom: 50px;
+	content: 'Power to Ontario. On Demand.';
+}
+*/
+/*Body*/
+/*.signon-app {
+		background-size: cover;
+		background-image: url(/images/hero-bkg-2.png);
+		background-position: right center;
+		background-repeat: no-repeat;
+	@media screen and (max-width: 799px) {
+		background-size: cover;
+		background-image: url(/images/hero-bkg-2.png);
+		background-position: right center;
+		background-repeat: no-repeat;
+	}
+}
+*/
+/*background: url(/images/evening-at-mackinac-bridge.jpg) right center no-repeat;*/
+
+/*The login box*/
+.container {
+	background: rgba(255, 255, 255, .9);
+}
+
+/*set the INACTIVE color for text field labels*/
+
+label { color:#999; }
+
+
+
+/* set the ACTIVE color for text field labels */
+
+input:focus ~ label,
+
+input:valid ~ label { color:#298CC4; }
+
+
+
+/* IE9 requires its own css declaration. This should be set to the ACTIVE color value */
+
+.ie9 .dynamicOlabel { color:#298CC4; }
+
+
+
+/* set color values for hyperlinks */
+
+a,
+
+a.visited { color:#003366; }
+
+
+
+/* set color values for active hyperlinks */
+
+a:hover,
+
+a:focus { color:##1F57A3; }
+
+
+
+/* set color values for static text */
+
+body { color:#999999; background:#fff;}
+
+
+
+/* set button background color and border */
+
+section .row .column form button { background-color: #003366; border-bottom-color: #04729E; }
+section .row .column form button:hover, 
+section .row .column form button:focus { background-color: #1F57A3; border-bottom-color: #04729E; }
+
+
+
+/*Footer */
+
+/* set color values for footer hyperlinks */
+
+footer small span a,
+
+footer small span a.visited { color:#fff; text-shadow: 0 0 3px #000; }
+
+/* set color values for active footer hyperlinks */
+
+footer small span a:hover,
+
+footer small span a:focus { color:#D8F0FF; text-shadow: 0 0 3px #000; }
+
+/* set color values for static text */
+
+footer small span { color:#999999; }
+
+
+
+/* Footer */
+
+footer  {}
+span.pull-right.right-span {
+	display: none;
+}
+
+section .row .column form button { background-color: #003366; border-bottom-color: #04729E; }
+section .row .column form button:hover, 
+section .row .column form button:focus { background-color: #1F57A3; border-bottom-color: #04729E; }
+
+
+
+/*================================== ID-Provisioner Styles ======================================*/
+
+/* ID-Provisioner logo */
+/*
+.CovTab { background: url(https://portal.auth-slb.com/documents/guest/css/login/Schlum_logo_white-NextGen.png) 0 0 no-repeat; width:251px; height: 47px; }
+*/
+
+.CovTab {
+	background: url(../images/logo2.png) 0 0 no-repeat;
+	width: 242px;
+	height: 52px;
+	position: relative;
+	top: 16px;
+	left: -2px;
+}
+/* updated css for new header.jsp */
+.primary-header .row .logo { background:url(../images/logo2.png) 0 0 no-repeat; height:52px; width:242px; margin: 16px 16px 16px 16px;}
+
+/* Header */
+.container-fluid {
+	background: #fff;
+}
+.primary-header .row .right-col .welcome-txt {
+	color: #0144af;
+}
+A.CovTopLinks {
+	color: #0144af;
+}
+A.CovTopLinks:hover, 
+A.CovTopLinks:focus { color: #0144af; }
+
+/* Navbar (toolbar) color */
+.appTabsBg, .header_cell, .appTabsBg td , .x-toolbar-default, .toolbarbg, .x-toolbar, .x-toolbar-default {
+	background: linear-gradient(to bottom, #2B6FC0, #1F57A3) !important;
+	border-top-style: groove;
+    border-bottom-style: ridge;
+	border-color: #003366 #002A8E;
+	border-width: 2px;
+	border-top: 2px groove #003366;
+	border-bottom: 2px ridge #003366;
+}
+
+/* Navbar hover */
+.x-toolbar-item:hover, .x-btn-default-toolbar-small-menu-active, .x-btn-center:hover  {
+	background-image: linear-gradient(#1f57a4, #2b6fc0) !important;
+}
+
+/* Page title font */
+.pageTitle {
+	color: #000;
+}
+
+/* Random element in the content. This is here to override the actions of the container class from the login page. */
+/*The login box*/
+.content {
+	background: #fff;
+	height: 0px;
+}
+
+/* CCA Content */
+.sectionHeader, html .sectionHeader {
+	/*background: #e0edfc url(/images/sectionheader_bg.png) 0 0 repeat-x;*/
+	background: linear-gradient(to bottom, #CEEDFF, #E0EFFF, #EDF5FF);
+    border: none;
+    border-radius: 5px 5px 0px 0px;
+	text-transform: capitalize;
+}
+.columnHeader {
+	color: #002A8E;
+}
+.tableDataUnderscore, .tableDataUnderscoreAlt {
+	border: none;
+}
+
+/* CCA Buttons */
+/*INPUT.button, INPUT.buttonOn {
+	background: url("/images/richButtonBg_125.png") repeat right top;
+}
+INPUT.button:hover, INPUT.buttonOn:hover, INPUT.button:focus, INPUT.buttonOn:focus {
+	background: url("/images/richButtonBg-Hover_125.png") repeat right top;
+}
+INPUT.buttonWide, INPUT.buttonWideOn {
+	background: url("/images/richButtonBg.png") repeat right top;
+}
+INPUT.buttonWide:hover, INPUT.buttonWideOn:hover, INPUT.buttonWide:focus, INPUT.buttonWideOn:focus {
+	background: url("/images/richButtonBg-Hover.png") repeat right top;
+}
+INPUT.buttonWidest, INPUT.buttonWidestOn {
+	background: url("/images/richButtonBg_225.png") repeat right top;
+}
+INPUT.buttonWidest:hover, INPUT.buttonWidestOn:hover, INPUT.buttonWidest:focus, INPUT.buttonWidestOn:focus {
+	background: url("/images/richButtonBg-Hover_225.png") repeat right top;
+}
+
+/* set the background color of the header */
+/* updated css for new header.jsp */
+/*.CovTabBar,
+header { background:#003366; }
+.signon-app header { background: #fff; }*/
+
+
+
+/* set the background color of the menu */
+
+.x-toolbar-default { background: #00FF00; /* Old browsers */
+
+										/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+
+										background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzQzYWFjYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyYTc0YTEiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+
+										background: -moz-linear-gradient(top, #43aaca 0%, #2a74a1 100%); /* FF3.6+ */
+
+										background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#43aaca), color-stop(100%,#2a74a1)); /* Chrome,Safari4+ */
+
+										background: -webkit-linear-gradient(top, #43aaca 0%,#2a74a1 100%); /* Chrome10+,Safari5.1+ */
+
+										background: -o-linear-gradient(top, #43aaca 0%,#2a74a1 100%); /* Opera 11.10+ */
+
+										background: -ms-linear-gradient(top, #43aaca 0%,#2a74a1 100%); /* IE10+ */
+
+										background: linear-gradient(to bottom, #43aaca 0%,#2a74a1 100%); /* W3C */
+
+										filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#43aaca', endColorstr='#2a74a1',GradientType=0 ); /* IE6-8 */
+										background: linear-gradient(to bottom, #003366, #1F57A3);
+
+}
+
+
+
+/* There are a bunch of good css gradient generators on the web. The above was generated from http://www.colorzilla.com/gradient-editor/ */
+
+
+
+
+
+
+
+
+
+/*================================== Fonts ======================================*/
+
+/* Fonts
+
+   Font styling can be changed globally as noted in the example below
+
+   Options include: serif, sans-serif;
+
+   You may also specify standard fonts such as: helvetica, arial, verdana, times new roman, etc;
+
+
+
+   More specific fonts may be specified as long as they are Web Fonts. For more information, see:
+
+   http://www.w3schools.com/cssref/css_websafe_fonts.asp
+
+   https://www.google.com/fonts
+
+   http://www.fontspring.com/support/installing_webfonts/how-do-i-use-the-webfonts
+
+*/
+
+body { font-family:sans-serif;}

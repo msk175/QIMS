@@ -1,0 +1,36 @@
+<div class="cui-organization__main-container">
+	<!-- Body Header -->
+	<h3 class="cui-organization__approval-summary">{{'approval-summary' | translate}}</h3>
+
+	<!-- Approved Items -->
+	<h4 class="cui-organization__approved">{{'approved-items' | translate}}</h4>
+	<div class="cui-organization__approved-row">
+		<p ng-if="pendingRequestsReview.approvedCount===0">{{'no-items-approved' | translate}}.</p>
+		<ul>
+			<li ng-if="pendingRequestsReview.approvedCount>0" ng-repeat="package in pendingRequestsReview.pendingRequests track by package.id">
+				<span ng-if="package.approval==='approved'">{{package.details.name | cuiI18n}}</span>
+				<br ng-if="package.approval==='approved'" />
+			</li>
+		</ul>
+	</div>
+
+	<!-- Rejected Items -->
+	<h4 class="cui-organization__denied">{{'rejected-items' | translate}}</h4>
+	<div>
+		<p ng-if="pendingRequestsReview.deniedCount===0">{{'no-items-rejected' | translate}}.</p>
+		<div class="cui-organization__rejected-row" ng-if="pendingRequestsReview.deniedCount>0" ng-repeat="package in pendingRequestsReview.pendingRequests track by package.id">
+			<span ng-if="package.approval==='denied'">{{package.details.name | cuiI18n}}</span><br/>
+			<textarea class="cui-text-area" ng-if="package.approval==='denied'" ng-model="package.rejectReason" placeholder="rejection reason (optional)"></textarea>
+		</div>
+	</div>
+	
+	<!-- Review Controls -->
+	<div class="cui-organization__submit-row" disable-animate>
+		<span ui-sref="organization.directory.pendingRequests({userId:pendingRequests.user.id, orgId:pendingRequests.user.organization.id})" style="margin:5px">{{'cui-cancel' | translate}}</span>
+		<button class="cui-button" ng-if="!pendingRequestsReview.submitting" ng-click="pendingRequestsReview.submit()" style="margin:5px">{{'submit-approvals' | translate}}</button>
+		<button class="cui-button" ng-if="pendingRequestsReview.submitting">
+        <div ng-include="'app/common-templates/partials/loader-updating.html'" ></div>
+      	</button>
+      	<button  class="cui-button" ng-if="!pendingRequestsReview.submitting && pendingRequestsReview.error" ng-click="pendingRequestsReview.submit()">{{'cui-error-try-again' | translate}}</button>
+	</div>
+</div>

@@ -1,0 +1,68 @@
+<!-- 
+    Note!
+
+    The "Top-Level-Organization" and "New Division" tiles are currently "hidden" using ng-if="false".
+    There is some work already done on these registrations in the "b2x-snapshot" branch. We hid these tiles
+    and moved this work to that branch as these types of registrations were not supported by the API and due to
+    developers thinking these registrations were in a finished state in downstream projects.
+ -->
+
+<div class="welcome-wrapper">
+
+    <!-- Title -->
+    <div class="welcome-title">
+        <h1>{{ 'welcome-title' | translate }}:</h1>
+    </div>
+
+    <div class="cui-card__container">
+        <!-- Tile: New Top-level Organization -->
+        <div class="cui-card" ng-if="false">
+            <div class="cui-card__image-container">
+                <div>
+                    <cui-icon cui-svg-icon="cui:skyscraper" svg-class="cui-card__icon" use-class="cui-icon__ref" viewbox="0 0 48 48" preserveAspectRatio="xMidYMid meet" ></cui-icon>
+                </div>
+            </div>
+            <div class="cui-card__content">
+                <p class="cui-card__content-header">{{ 'cui-new-TLO' | translate }}</p>
+                <p>{{ 'cui-new-TLO-description' | translate }}</p>
+            </div>
+            <button class="cui-card__button" ui-sref="registration.tlo">{{ 'cui-sign-up' | translate }}</button>
+        </div>
+
+        <!-- Tile: New Division -->
+        <div class="cui-card" ng-if="false">
+            <div class="cui-card__image-container">
+                <div>
+                    <cui-icon cui-svg-icon="cui:division" svg-class="cui-action__icon" use-class="cui-icon__ref" viewbox="0 0 48 48" preserveAspectRatio="xMidYMid meet" ></cui-icon>
+                </div>
+            </div>
+            <div class="cui-card__content">
+                <p class="cui-card__content-header" id="newDivision-header">{{ 'cui-new-division' | translate }}</p>
+                <p>{{ 'cui-new-division-description-start' | translate }} <a href="" class="cui-link" ng-click="welcome.divisionPopover = true">{{ 'cui-security-administrator' | translate }}</a>* {{ 'cui-new-division-description-end' | translate }}</p>
+            </div>
+            <button class="cui-card__button" ui-sref="registration.division">{{ 'cui-sign-up' | translate }}</button>
+        </div>
+
+        <!-- New Division Popover -->
+        <div class="cui-styeguide__popover-container" ng-if="welcome.divisionPopover" off-click="welcome.divisionPopover=false" tether target="#newDivision-header" attachment="top middle" target-attachment="bottom middle" offset="15px 145px">
+            <div class="cui-popover cui-popover--dark cui-popover--top cui-popover__new-division">
+                <p class="">{{ 'cui-welcome-popover' | translate }}</p>
+                <p class="cui-popover_link"><a href="" ng-click="welcome.divisionPopover = false">{{'cool-got-it'| translate}}!</a></p>
+            </div>
+        </div>
+
+        <!-- Tile: New User -->
+        <div class="cui-card">
+            <div class="cui-card__image-container">
+                <div>
+                    <cui-icon cui-svg-icon="cui:user" svg-class="cui-action__icon" use-class="cui-card__icon" viewbox="0 0 48 48" preserveAspectRatio="xMidYMid meet" ></cui-icon>
+                </div>
+            </div>
+            <div class="cui-card__content">
+                <p class="cui-card__content-header">{{ 'cui-new-user' | translate }}</p>
+                <p>{{ 'cui-new-user-description' | translate }}</p>
+            </div>
+            <button class="cui-card__button" ui-sref="registration.walkup">{{ 'cui-sign-up' | translate }}</button>
+        </div>
+    </div>
+</div>

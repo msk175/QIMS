@@ -1,0 +1,386 @@
+/***** Use these variables to overwrite the default appearance settings. *****/
+
+/* Variables */
+
+// Quintiles Custom Color Palette
+$gray: #5f6062;
+$light-gray: #b6b8ba;
+$off-white: #e8f0f3;
+$dark-orange: #b2700e;
+$light-orange: #d59f0f;
+$dark-olive: #677719;
+$light-olive: #afbd22;
+$dark-teal: #006a71;
+$light-teal: #23bcb9;
+$dark-blue: #005295;
+$light-blue: #0096d7;
+$dark-purple: #7f268a;
+$light-purple: #9397cb;
+
+// App Defaults
+$cui-v2-colors-secondary: #E8F0F3;
+$cui-primary-colors--light: scale-color($cui-primary-colors--medium-light, $lightness: -35%);
+$cui-primary-colors--medium-light: $dark-purple;
+$cui-primary-colors--grad-light: $light-purple;
+$cui-primary-colors--medium: $dark-purple;
+$cui-primary-colors--medium-dark: $dark-purple;
+//Text Header Colors
+$cui-primary-colors--dark: $gray;
+
+$cui-secondary-colors--light: #3CB371;    
+$cui-secondary-colors--medium-light: #FFD700;
+$cui-secondary-colors--medium: #7f268a;
+$cui-secondary-colors--dark: #ff4400;
+
+$button-color: $cui-primary-colors--medium-light;
+$button-color--active: scale-color($cui-primary-colors--medium-light, $lightness: -35%);
+$button-color--error: #dbdbdb;
+$button-color--visited: #D4E2E6;
+$button-text-color--visited: $cui-v2-colors-secondary;
+
+
+
+/* This comes in the default M2X. I'm not sure what it does. */
+$cui-switch-height: 35px;
+$cui-font-color2:#4a4a4a;
+$quaternary-background:#fdfdfd;
+
+/* This is the gradient on the navbar and in the default M2X it's also on the header. */
+$cui-background-gradient: linear-gradient(to right, $cui-primary-colors--medium-light, $light-blue);
+/* Set the nav menu background to the background gradient. */
+$menu-background-color: $cui-background-gradient;
+/* Set the mobile nav menu to the background gradient. */
+$snap-menu-background: $cui-primary-colors--medium-light;
+
+/* This is the gradient on the header bottom border in the default Magnolia. */
+$cui-horizontal-gradient: $cui-primary-colors--medium-light;
+/* This overwrites the header gradient in M2X. */
+$header-primary-background-color: scale-color($dark-purple, $lightness: 35%);
+$header-secondary-background-color: $dark-purple;
+/* This sets the color of the generated header buttons. You'll want to use a shade that is roughly opposite of $header-background-color. */
+$mag-header_items-color: black;
+/* The logo properties. */
+$cui-header__svg-logo__width: 242px;
+$cui-header__svg-logo__height: 52px;
+$cui-header__svg-logo__top: 0px;
+$cui-header__svg-logo__margin: 16px 16px 16px 16px;
+/* Border bottom border thickness. A thicker border will reduce the space for the title. */
+$cui-header__border-bottom__width: 2px;
+
+
+
+/* Below is the contents of \node_modules\@covisint\cui-styleguide\source\scss\base\_vars.scss.
+   To overwrite a variable, copy it above. */
+// Animations
+$animation-long: .5s;
+$animation-medium: .3s;
+$animation-short: .15s;
+
+// Colors
+
+// $cui-v2-colors-secondary: #E8F0F3;
+// $cui-primary-colors--light: #003366;    
+// $cui-primary-colors--medium-light: #85a6ad;
+// $cui-primary-colors--medium: #1A4782;
+// $cui-primary-colors--medium-dark: #1d6572;
+// $cui-primary-colors--dark: #343534;
+
+//Sidebar Background Gradient
+$cui-background-gradient: linear-gradient(to bottom, $cui-primary-colors--medium-dark, $light-blue);
+
+$cui-secondary-colors--light: #3CB371;    
+$cui-secondary-colors--medium-light: #FFD700;
+$cui-secondary-colors--medium: #002E62;
+$cui-secondary-colors--dark: #ff4400;
+
+$cui-greyscale--x-light: #ECEAEA;
+$cui-greyscale--light: #c3c3c3;
+$cui-greyscale--medium-light: #343534;
+$cui-greyscale--medium: #828483;
+$cui-greyscale--medium-dark: #444544;
+$cui-greyscale--dark: #343534;
+
+$cui-white: #fff;
+
+// Fonts
+$base-font-size: 16px;
+$base-font-family: 'lato-normal', sans-serif;
+$base-font-weight: 400;
+$base-font-color: $light-gray;
+
+$secondary-font-color: #4A4A4A;
+
+$font-size-h1: 2.5em;
+$font-size-h2: 2em;
+$font-size-h3: 1.75em;
+$font-size-h4: 1.5em;
+$font-size-h5: 1.25em;
+$font-size-h6: 1em;
+$font-header-weight: 700;
+
+// $letter-spacing-xxl: 2.1px; 
+// $letter-spacing-xl: 1.8px;
+// $letter-spacing-lg: 1.6px;
+// $letter-spacing-md: 1.5px;
+// $letter-spacing-sm: 1.2px;
+// $letter-spacing-xs: 1.1px;
+
+$link-color: #003366;
+$link-color--hover: #1A4782;
+$link-alt-color: $cui-primary-colors--medium;
+$link-alt-color--hover: $cui-primary-colors--medium;
+
+// Backgrounds
+$primary-background: #fff;
+$secondary-background: #fff;
+$tertiary-background: #f9f9f9;
+
+// Buttons
+$button-border-radius: em(3);
+$button-color: $cui-primary-colors--medium-light; 
+$button-color--active:  $cui-primary-colors--medium-dark; 
+$button-color--error: #dbdbdb;
+$button-color--visited: #D4E2E6;
+$button-text-color--visited: scale-color($dark-purple, $lightness: 35%);;
+$button-color--hover: scale-color($dark-purple, $lightness: 35%);
+$button-color--error-hover: $cui-greyscale--medium-light; 
+$button-font-size: 15px;
+$button-height: em(42,$button-font-size);
+$button-width: em(160,$button-font-size);
+
+// Badge
+$badge-background-color: red;
+$badge-font-size: em(12);
+
+// Inputs
+$cui-input-border: #DEE9EE;
+$cui-input-border--focus: #828483;
+$cui-input-border--invalid: #FF4400;
+$cui-input-border--valid: #47CBB4;
+$input-padding: 8px 12px;
+$input-error-padding: 5px 0 5px;
+
+// Input with Button
+$cui-buttonput-btn-bg-color: rgba(232, 240, 243, 0.30);
+$cui-buttonput-btn-alt-bg-color: $primary-background;
+$cui-buttonput-btn-font-color: $cui-primary-colors--medium;
+$cui-buttonput-input-bg-color: rgba(232, 240, 243, 0.30);
+$cui-buttonput-input-font-color: $cui-greyscale--medium-dark;
+
+// Checkbox
+$cui-checkbox-check-color: #545454;
+
+// Radio
+$cui-radio-button-background-color: #f9f9f9;
+$cui-radio-button-checked-color:    #006c77;
+$cui-radio-button-approve-color:    #0D6C76;
+$cui-radio-button-deny-color:       #FC5729;
+
+// Switch
+$cui-switch--checked: $cui-primary-colors--medium;
+$cui-switch--unchecked: $cui-greyscale--dark;
+$cui-switch-height: 50px;
+$cui-switch-width: 209px;
+
+// Action Bar
+$action-bar-icon-height: em(20);
+$action-bar-icon-width: calc(#{$action-bar-icon-height} + 1px);
+$action-bar-background: $secondary-background;
+$action-bar-alt-background: $tertiary-background;
+
+// Breadcrumb
+$breadcrumb-link-color: $cui-primary-colors--medium;
+$breadcrumb-link-color--active: $cui-primary-colors--medium-dark;
+$breadcrumb-seperator: 2px solid $cui-primary-colors--medium;
+
+// Card
+$card-background-color: #fff;
+$card-border-radius: 6px;
+$card-button-height: em(28, 12);
+$card-button-border-radius: em(3);
+$card-header-color: $cui-greyscale--medium-dark;
+$card-header-font-size: $font-size-h4;
+$card-header-font-weight: 900;
+$card-header-margin: em(5) 0;
+$card-icon-color: $cui-primary-colors--medium-dark;
+$card-content-color: $cui-greyscale--medium-dark;
+$card-padding: em(28);
+
+// Header
+$header-background-color: $cui-background-gradient;
+$header-bottom-divider: 0;
+$header-svg-logo-height: 45px;
+$header-svg-logo-width: 200px;
+$header-svg-logo-margin-left: 20px;
+$header-padding: 0 30px;
+$header-top-padding: 0 0;
+$header-bottom-padding: 0 0;
+
+// Loading
+$loader-circle-color: $cui-primary-colors--medium-light;
+$loader-spinner-color: $cui-primary-colors--light;
+$loader-button-center-horizontal: calc(#{$button-width} / 2 - 10px);
+$loader-button-center-vertical: 8px; 
+$loader-large-border-width: em(10);
+$loader-large-height-and-width: em(80);
+$loader-medium-border-width: em(5);
+$loader-medium-height-and-width: em(60);
+
+// Tile
+$container-title-bg-color: #fff;
+$container-title-bg-color--light: $secondary-background;
+$container-title-radius: 0;
+$container-title-radius--mobile: 0;
+$container-title-text-align: left;
+$container-body-border-size: 1px;
+$container-body-border-color: $cui-primary-colors--light;
+$container-body-radius: 0;
+$container-body-radius--mobile: 0;
+$container-radius: 6px;
+$container-padding: em(12) em(15) em(10) em(15);
+$container-padding--mobile: em(12) em(15) em(10) em(15);
+$container-padding-small: 20px;
+$container-title-background: #53abd0;
+$container-title-padding: 0 0 0 10px;
+$container-body-max-width: 100%;
+
+// Off-canvas Menu Navigation
+$menu-toggle-color: $cui-white;
+$menu-toggle-color--active: $cui-primary-colors--medium-light;
+$menu-background-color: $cui-background-gradient;
+$menu-section-background-color: transparent;
+$menu-section-font-color--hover: $cui-secondary-colors--medium;
+$menu-sub-section-background-color: transparent;
+$menu-sub-section-font-color--hover: $cui-primary-colors--light;
+$menu-sub-section-animation: $animation-medium;
+$menu-sub-section-animation-offset: $menu-sub-section-animation - .05s;
+$snap-menu-breaking-point: 1000px;
+$snap-menu-breaking-point-1: 999px;
+$snap-menu-background: $cui-background-gradient;
+$desktop-menu-width: 300px;
+$snap-menu:true;
+
+@if $snap-menu==false{
+    $snap-menu-breaking-point: 0px;
+    $snap-menu-breaking-point-1: 0px;
+}
+
+// Tabs
+$tabs-background-color: $secondary-background;
+$tabs-background-color--active: #fff;
+$tabs-border-bottom: 1px solid #eee;
+$tabs-font-color: $cui-primary-colors--medium;
+$tabs-font-color--active: $cui-primary-colors--medium-dark;
+$tabs-divider: 1px solid #fff;
+$tabs-padding: em(10);
+$tabs-content-padding: em(50) em(20);
+
+// Expandable
+$expandable-title-color: #333;
+$expandable-review-item-color: #666;
+$expandable-review-item-font-size: em(14);
+$expandable-review-item-margin: 1em 0;
+$expandable-transition: all .3s linear;
+
+// Step Indicator
+$step-indicator-border-bottom: 1px solid #ddd;
+$step-indicator-margin-bottom: em(40);
+$step-indicator-middle-bar-color: #D0D0D0;
+$step-indicator-middle-bar-color--visited: #545454;
+$step-indicator-middle-bar-size: 1px;
+$step-indicator-title-color: #bbb;
+$step-indicator-title-color--active: #ff0000;
+$step-indicator-title-color--visited: #FF0000;
+$step-indicator-title-color--small-active: #FF0000;
+$step-indicator-title-color--small-visited: #FF0000;
+$step-indicator-icon-color: #FF0000;
+$step-indicator-icon-height: em(24);
+$step-indicator-icon-width: em(24);
+$step-indicator-icon-border--active: em(2) solid #FF0000;
+$step-indicator-icon-underline--active: 6px solid $cui-primary-colors--medium-light;
+$step-indicator-icon-color--active: $cui-primary-colors--medium;
+$step-indicator-icon-border--visited: em(2) solid #666;
+
+// Mobile Step Indicator
+$mobile-step-icon--expanded: $cui-primary-colors--medium;
+$mobile-step-title--expanded: $cui-primary-colors--medium;
+
+
+// Media Object
+$media-object-border: 0; 
+$media-object-border-radius: 50%;
+$media-object-content-padding: em(5) 0;
+
+// Status
+$status--active: $cui-primary-colors--medium;
+$status--pending: $cui-secondary-colors--medium;
+$status--suspended: $cui-secondary-colors--dark;
+$status--locked:    #ff4400;
+
+// normalize overrides
+fieldset {
+  border: 0;
+  margin: 0;
+}
+
+*[ui-sref] {
+  cursor: pointer;
+}
+
+// helpers
+%cui-sr-only,
+.cui-sr-only {
+  left: -999em;
+  position: absolute;
+}
+
+%cui-mobile-only,
+.cui-mobile-only {
+  @media screen and (min-width: 701px) {
+    display: none !important;
+  }
+}
+
+%cui-desktop-only,
+.cui-desktop-only {
+  @media screen and (max-width: 700px) {
+    display: none !important;
+  }
+}
+
+.hide, 
+%hide {
+  display: none !important;
+}
+
+.hide--opacity,
+%hide--opacity {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+// angular styles
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+.tether-element {
+  position: absolute;
+  z-index:9999; 
+}
+
+// Layout helpers
+%flex-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+%flex-row-vert {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+%flex-row--right-align {
+  display: flex;
+  justify-content: flex-end;
+}

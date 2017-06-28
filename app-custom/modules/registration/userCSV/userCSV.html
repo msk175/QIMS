@@ -1,0 +1,26 @@
+<div class="cui-form--mobile-steps">
+  <div class="cui-form__title">Create Users - CSV Tool</div>
+  <div class="cui-form__body">
+	<ng-form name="csvForm" enctype="multipart/form-data" method="post">
+	  <div class="cui-wizard__field-row">
+		<!-- CSV File -->
+		<div class="cui-wizard__field-container cui-wizard__field-container--half">
+		  <label for="user-name-given">Upload CSV File</label>
+		  <input type="file" name="csvfile" class="cui-input" file-model = "csvFile" />
+		  <input type="hidden" name="organization" ng-value="organization" />
+		  <input type="hidden" name="security" ng-value="security"/>
+		  <div class="cui-wizard__field-row">
+			<div class="cui-wizard__controls">
+			  <div class="cui-error" ng-if="userCSV.submitError"><label>{{userCSV.errorMessage | translate}}</label></div>
+			  <button class="cui-wizard__next" ng-click="userCSV.submit()">
+				<div class="cui-loading--medium-ctr" ng-if="userCSV.submitting"></div>
+				<span ng-if="!userCSV.submitting && !userCSV.submitError">{{'cui-submit' | translate}}</span>
+				<span ng-if="!userCSV.submitting && userCSV.submitError" name="review.btnError">Error! Try again?</span>
+			  </button>
+			</div>
+		</div>
+		</div>
+
+	</ng-form>
+  </div>
+</div>

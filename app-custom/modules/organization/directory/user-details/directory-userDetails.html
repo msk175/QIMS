@@ -1,0 +1,64 @@
+<!-- processHTML:remove -->
+<div class="code-info">The markup and javascript used to build this page can be found <a class="cui-link" href="https://github.com/thirdwavellc/cui-idm-b2x/tree/master/app/modules/organization/directory" target="blank">here</a>.</div>
+<!-- /processHTML -->
+
+<div class="cui-organization cui-organization__user-details">
+  <!-- Page Header -->
+  <ng-include src="'app/modules/organization/directory/user-details/sections/headers/userDetails-header.html'" onload="orgId=userDetails.prevState.params.orgId ; label='user-details'"></ng-include>
+
+  <div class="cui-organization__details-container">
+    <!-- Left Content -->
+    <div class="cui-organization__details-col">
+
+      <!-- Left Header -->
+      <div ng-include="'app/modules/organization/directory/user-details/sections/headers/userDetails-header-left.html'"></div>
+
+      <!-- Profile Desktop -->
+      <cui-resize-handler desktop show-if="userDetails.profileDesktop" ng-if="userDetails.profileRolesSwitch==='profile'">
+        <div ui-view="profile"></div>
+      </cui-resize-handler>
+
+      <!-- Profile Mobile -->
+      <cui-resize-handler mobile show-if="userDetails.profileMobile" ng-if="userDetails.mobileHandler==='profile'">
+        <div ui-view="profile"></div>
+      </cui-resize-handler>
+
+      <!-- Roles Desktop -->
+      <cui-resize-handler desktop show-if="userDetails.rolesDesktop" ng-if="userDetails.profileRolesSwitch==='roles'">
+        <div ui-view="roles"></div>
+      </cui-resize-handler>
+
+      <!-- Roles Mobile -->
+      <cui-resize-handler mobile show-if="userDetails.rolesMobile" ng-if="userDetails.mobileHandler==='roles'">
+        <div ui-view="roles"></div>
+      </cui-resize-handler>
+
+      <!-- Applications Mobile -->
+      <cui-resize-handler mobile show-if="userDetails.applicationsMobile" ng-if="userDetails.mobileHandler==='apps'">
+        <div ui-view="applications"></div>
+      </cui-resize-handler>
+
+      <!-- History Mobile -->
+      <cui-resize-handler mobile show-if="userDetails.historyMobile" ng-if="userDetails.mobileHandler==='history'">
+        <div ui-view="history"></div>
+      </cui-resize-handler>
+    </div>
+
+    <!-- Right Content -->
+    <div class="cui-organization__details-col">
+
+      <!-- Right Header -->
+      <div ng-include="'app/modules/organization/directory/user-details/sections/headers/userDetails-header-right.html'"></div>
+
+      <!-- Applications Desktop -->
+      <cui-resize-handler desktop show-if="userDetails.applicationsDesktop" ng-if="userDetails.appsHistorySwitch==='apps'">
+        <div ui-view="applications"></div>
+      </cui-resize-handler>
+
+      <!-- History Desktop -->
+      <cui-resize-handler desktop show-if="userDetails.historyDesktop" ng-if="userDetails.appsHistorySwitch==='history'">
+        <div ui-view="history"></div>
+      </cui-resize-handler>
+    </div>
+  </div>
+</div>

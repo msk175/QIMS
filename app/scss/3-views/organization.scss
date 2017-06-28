@@ -1,0 +1,308 @@
+.cui-organization {
+  position: relative;
+}
+
+.cui-organization__main-container {
+  min-height: 400px;
+  padding: em(15) em(13);
+  position: relative;
+
+  @media screen and (min-width: 701px) {
+    padding: em(15) em(55) 0 em(65);
+  }
+}
+
+.cui-organization__info-block {
+  margin-bottom: em(21);
+
+  .cui-organization__admin-block-wrapper {
+    display: flex;
+    flex-flow: column wrap;
+    
+    .cui-organization__admin-block {
+      margin-bottom: em(21);
+      margin-right: em(51);
+    }
+  } 
+}
+
+.cui-organization__page-title {
+  @extend %h5;
+  @extend %bold;
+  margin-bottom: em(21);
+}
+
+// Org Directory
+
+.cui-organization-dir { 
+
+  .cui-status--active, 
+  .cui-status--pending, 
+  .cui-status--suspended, 
+  .cui-status--locked, 
+  .cui-status--inactive, 
+  .cui-status--unactivated {
+    @media screen and (max-width: 700px) {
+      font-size: em(11);
+      letter-spacing: 1.5px;
+    }
+  }
+
+  .cui-breadcrumb {
+    @media screen and (max-width: 700px) {
+      display: none;
+    }
+  }
+
+  .cui-action {
+
+    &__action-label {
+      @media screen and (max-width: 700px) {
+        display: none;
+      }
+    }
+
+    &__icon {
+      @media screen and (max-width: 700px) {
+        height: em(24);
+      }
+    }
+
+    &__icon--invite {
+      @media screen and (max-width: 700px) {
+        height: em(40);
+      }
+    }
+  }
+
+  .cui-flex-table__mobile-stack {
+    @media screen and (max-width: 700px) {
+      line-height: 1.4;
+    }
+  }
+}
+
+// OrgDirectory userDetails
+
+.cui-loading__container--user-details {
+  background: none;
+
+  .cui-loading--center {
+    position: relative;
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+}
+
+.cui-organization__profile--left {
+  width: 50%;
+  margin-right: 5%;
+}
+
+// Org Pending Requests
+
+.cui-organization--pending-requests {
+
+  .cui-action:nth-of-type(2) {
+    @media screen and (max-width: 700px) {
+      display: none;
+    }
+  }
+
+  .cui-breadcrumb {
+    @media screen and (max-width: 700px) {
+      display: none;
+    }
+  }
+
+  .cui-media--centered {
+    margin-top: em(18);
+    margin-bottom: em(84);
+
+    @media screen and (max-width: 700px) {
+      margin-bottom: em(25);
+    }
+  }
+
+  .cui-organization__submit-row {
+    @extend %flex-row--right-align;
+    align-items: center;
+    margin: em(48) 0 em(40);
+  }
+}
+
+.cui-media--centered {
+  width: auto;
+
+  .cui-media__body {
+    line-height: 1.8;
+    margin: 0 auto;
+    max-width: 400px;
+
+    @media screen and (max-width: 700px) {
+      max-width: none;
+    }
+
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      max-width: inherit;
+    }
+  }
+
+  .cui-media__content {
+    font-size: em(14);
+  }
+}
+
+// Person Request
+
+.cui-organization__requests-person-header {
+
+  .cui-media--centered {
+    margin-top: em(18);
+    margin-bottom: 0;
+
+    @media screen and (max-width: 700px) {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  .cui-media__content--dark {
+    padding-right: 5px;
+  }
+
+  .cui-expandable {
+    border-bottom: 0;
+  }
+
+  .cui-expandable:last-of-type {
+    @media screen and (max-width: 700px) {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  .cui-expandable__title {
+    padding: 0 0 em(10);
+  }
+
+  .cui-expandable__details-status {
+    display: flex;
+    font-size: em(14);
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 210px;
+
+    @media screen and (max-width: 700px) {
+      margin: em(28, 14) em(13, 14) 0;
+      width: auto;
+    }
+    
+    .cui-expandable__details,
+    .cui-expandable__status {
+      font-size: 1em;
+      letter-spacing: $letter-spacing-lg;
+    }
+
+    .cui-expandable__details {
+      @media screen and (min-width: 701px) {
+        margin-left: -20px;
+      }
+    }
+  }
+
+  .cui-expandable__body:before {
+    left: 39.739027283511%;
+
+    @media screen and (max-width: 700px) {
+      font-size: .75em;
+      left: 60px;
+    }
+  }
+}
+
+.cui-organization__registration-decision {
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    margin: 15px 0 40px;
+    padding: 15px 0;
+}
+
+// Pending Request Review
+
+.cui-organization__request-review-header {
+  .cui-media--centered {
+    margin-top: em(18);
+    margin-bottom: 0;
+
+    @media screen and (max-width: 700px) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.cui-organization__rejected-row {
+  @extend %flex-row-vert;
+  padding: em(5) 0 em(15);
+}
+
+.cui-organization__rejected-row,
+.cui-organization__approved-row {
+  line-height: 1.8;
+}
+
+.cui-organization__approved,
+.cui-organization__denied {
+  @extend %h5;
+  @extend %bold;
+  margin-bottom: 10px;
+}
+
+.cui-organization__approval-summary {
+  @extend %h4;
+  @extend %bold;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 375px){
+  .cui-action{
+    display: none;
+  }
+}
+
+/* The organization's administrator table. */
+#admins-desktop {
+  margin-bottom: 30px;
+  @media screen and (max-width: 700px) {
+    display: none;
+  }
+  @media screen and (min-width: 701px) {
+    display: block;
+  }
+}
+#admins-mobile {
+  @media screen and (max-width: 700px) {
+    display: block;
+  }
+  @media screen and (min-width: 701px) {
+    display: none;
+  }
+}
+.admins-desktop-row {
+  display: table-row;
+}
+.admins-desktop-col {
+  display: table-column;
+}
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+/*tr:nth-child(even) {
+  color: $secondary-font-color;
+}*/
+th {
+  color: $cui-primary-colors--dark;
+  background: #ddd;
+}
