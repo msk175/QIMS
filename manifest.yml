@@ -1,0 +1,6 @@
+applications:
+- name: bcbsm-idm-dev
+  memory: 64MB
+  instances: 1
+  host: bcbsm-idm-dev
+  path: ./build/

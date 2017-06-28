@@ -1,0 +1,38 @@
+{
+    "originUri": "q-qims-demo.idm.qa.covapp.io",
+    "serviceUrl": "https://q-qims-demo.idm.qa.covapp.io/p/apiProxy",
+    "solutionInstancesUrl": "https://q-qims-demo.idm.qa.covapp.io",
+    "dateFormat": "shortDate",
+    "breakpointOption": 700,
+    "languages": {
+        "en":"English",
+        "pt":"Português (Portuguese)",
+        "tr":"Türk (Turkish)",
+        "zh":"中文 (Chinese - Simplified)",
+        "fr":"Français (French)",
+        "es":"Español (Spanish)",
+        "it":"Italiano (Italian)",
+        "ru":"Pусский (Russian)",
+        "th":"ไทย (Thai)",
+        "ja":"日本語 (Japanese)",
+        "de":"Deutsche (German)"
+    },
+    "languageResources": {
+        "url": "node_modules/cui-i18n-bcbsm/dist/cui-i18n/angular-translate/",
+        "prefix": "locale-",
+        "suffix": ".json"
+    },
+    "iconSets":[
+        {
+            "name":"cui",
+            "path":"node_modules/@covisint/cui-icons/dist/icons/icons-out.svg",
+            "defaultViewBox":"0 0 48 48"
+        },
+        {
+            "name":"fa",
+            "path":"node_modules/@covisint/cui-icons/dist/font-awesome/font-awesome-out.svg",
+            "defaultViewBox":"0 0 216 216"
+        }
+    ],
+    "paginationOptions": [3, 10, 25, 50, 100, 200]
+}

@@ -1,0 +1,13 @@
+target/
+node_modules/
+bower_components/
+.DS_Store
+**/.DS_Store
+.settings
+bin
+.classpath
+.project
+.tmp/
+build/
+*.iml
+npm-debug.log

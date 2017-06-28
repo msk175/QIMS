@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>QuintilesIMS</title>
+  <!-- <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" /> -->
+  <!-- build:css app/css/main.css -->
+  <link rel="stylesheet" href="assets/concat/css/main.css">
+  <!-- endbuild -->
+
+  <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0">
+  <style>
+  .h1--bold, .h2--bold, .h3--bold, .h4--bold, .h5--bold, .h6--bold, .bold, .cui-modal__primary-message, .cui-expandable__body-pane .cui-expandable__pane-title, .cui-modal__secondary-message, .cui-text-area__label, .cui-expandable__title .cui-expandable__title-left, .cui-expandable__body-pane .cui-expandable__pane-content, .cui-action__popover-title, .cui-field-val__field, .cui-applications__new-request .cui-applications__categories .cui-applications__category, .cui-organization__page-title, .cui-breadcrumb .cui-breadcrumb__links, .cui-breadcrumb--mobile .cui-breadcrumb__link--current .cui-breadcrumb__mobile-link, .cui-expandable__body--alt-bg .cui-expandable__body-header, .cui-expandable__body--alt-bg .cui-expandable__link, .cui-flex-table__heading, .cui-flex-table__tr--b .cui-flex-table__review, .cui-media--centered .cui-media__title, .cui-media__content--dark, .cui-action__title, .cui-organization__approved, .cui-organization__denied, .cui-organization__approval-summary, .cui-organization__user-details .cui-media__content--bold{
+	  letter-spacing:0!important;
+  }
+  </style>
+</head>
+<body ng-controller="baseCtrl as base" data-snap-ignore="true">
+
+  <!-- Application Loading -->
+  <div ng-cloak ng-if="base.loader.for.wholeApp" ng-inlude="'app/common-templates/index/whole-app-loader.html'"></div>
+
+  <!-- Content -->
+  <div class="cui-wrapper v2" ng-if="!base.loader.for.wholeApp" ng-cloak ng-include="'app/common-templates/index/content.html'"></div>
+
+  <!-- build:js app/js/vendor.js -->
+  <script src="unsupported/modernizr-custom.js"></script>
+  <script src="node_modules/babel-polyfill/dist/polyfill.js"></script>
+  <script src="node_modules/tether/dist/js/tether.js"></script>
+  <script src="node_modules/blueimp-md5/js/md5.min.js"></script>
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script src="node_modules/lodash/lodash.js"></script>
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/snapjs/snap.js"></script>
+  <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="node_modules/angular-messages/angular-messages.js"></script>
+  <script src="node_modules/angular-cookies/angular-cookies.js"></script>
+  <script src="node_modules/angular-sanitize/angular-sanitize.js"></script>
+  <script src="node_modules/angular-dynamic-locale/tmhDynamicLocale.min.js"></script>
+  <script src="node_modules/angular-snap/angular-snap.js"></script>
+  <script src="node_modules/angular-translate/dist/angular-translate.js"></script>
+  <script src="node_modules/angular-translate-storage-local/angular-translate-storage-local.js"></script>
+  <script src="node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+  <script src="node_modules/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+  <script src="node_modules/angular-translate-handler-log/angular-translate-handler-log.js"></script>
+  <script src="node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
+  <script src="node_modules/@covisint/cui-ng/dist/cui-ng.js"></script>
+  <script src="node_modules/@covisint/cui-i18n/translate.js"></script>
+  <script src="node_modules/@covisint/cui.js/dist/cui.min.js"></script>
+  <script src="node_modules/svg4everybody/dist/svg4everybody.min.js"></script>
+  <script src="node_modules/angular-animate/angular-animate.js"></script>
+  <!-- endbuild -->
+
+<!-- build:js app/js/app.js -->
+<script src="assets/concat/js/app.js"></script>
+<!-- endbuild -->
+
+<script>svg4everybody();</script>
+
+  <!-- This app brought to you by the power of cui-ng -->
+</body>
+</html>
