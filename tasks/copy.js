@@ -20,6 +20,7 @@ module.exports = function(grunt,config){
         },
         {
             src: [
+	    'assets/images/**.*',
             'node_modules/@covisint/cui-i18n/dist/<%= config.i18nVersion %>/cui-i18n/angular-translate/*.json',
             'node_modules/angular-i18n/*.js',
             'node_modules/@covisint/cui-icons/iconList',
@@ -38,6 +39,10 @@ module.exports = function(grunt,config){
             ],
             dest: '<%= config.buildDir %>/'
         },
+	{
+		 src: ['app/modules/user/user_icon/**/*'],
+		 dest: '<%= config.buildDir %>/'
+		 },
         appCustom,
         nonConcatFolder
       ]

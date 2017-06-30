@@ -197,3 +197,43 @@ Global layout styles
     display:flex;
   }
 }
+
+.v2 .cui-desktop-menu--collapse .cui-header__svg-logo,
+.v2 .cui-header__svg-logo {
+    margin: 16px auto;
+}
+
+.v2 .cui-desktop-menu--collapse .cui-header__svg-logo_displaced,
+.v2 .cui-header__svg-logo_displaced {
+    margin: $cui-header__svg-logo__margin;
+    top: 0px;
+    @media screen and (max-width: 999px) {
+        left: calc(50% - 125px);
+    }
+    @media screen and (min-width: 1000px) {
+        position: absolute;
+        right: 475px;
+    }
+    @media screen and (min-width: 1300px) {
+        left: calc(50% - 125px);
+    }
+}
+
+.cui-header__svg-logo {
+    width: $cui-header__svg-logo__width;
+    height: $cui-header__svg-logo__height;
+    display: block;
+    background: url(/assets/images/logo.png) no-repeat left top;
+    background-size: 242px;
+    /*  background:url(../images/logo2.png) 0 0 no-repeat; height:52px; width:242px; margin: 16px 16px 16px 16px; */
+}
+
+.v2 .cui-header {
+    background: linear-gradient($header-primary-background-color, $header-secondary-background-color);
+    // background: $header-background-color;
+    border-bottom: $cui-header__border-bottom__width solid $cui-primary-colors--medium-light;
+    border-image: $cui-horizontal-gradient 30 stretch;
+    margin: -$cui-header__border-bottom__width 0px 0px 0px;
+    padding: 0px 30px 0px 30px;
+}
+
