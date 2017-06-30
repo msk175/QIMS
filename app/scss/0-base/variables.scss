@@ -1,3 +1,6 @@
+$cui-font-color2:#4a4a4a;
+$quaternary-background:#fdfdfd;
+
 /***** Use these variables to overwrite the default appearance settings. *****/
 
 /* Variables */
@@ -42,8 +45,6 @@ $button-text-color--visited: $cui-v2-colors-secondary;
 
 /* This comes in the default M2X. I'm not sure what it does. */
 $cui-switch-height: 35px;
-$cui-font-color2:#4a4a4a;
-$quaternary-background:#fdfdfd;
 
 /* This is the gradient on the navbar and in the default M2X it's also on the header. */
 $cui-background-gradient: linear-gradient(to right, $cui-primary-colors--medium-light, $light-blue);

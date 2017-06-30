@@ -663,227 +663,6 @@ angular.module('registration',[])
 }]);
 
 angular.module('registration')
-.controller('divisionCtrl',['$scope', 'API', function($scope, API) {
-    var newDivision = this;
-    newDivision.userLogin = {};
-    newDivision.orgSearch = {};
-
-    newDivision.passwordPolicies = [  // WORKAROUND CASE #5
-        {
-            'allowUpperChars': true,
-            'allowLowerChars': true,
-            'allowNumChars': true,
-            'allowSpecialChars': true,
-            'requiredNumberOfCharClasses': 3
-        },
-        {
-            'disallowedChars':'^&*)(#$'
-        },
-        {
-            'min': 8,
-            'max': 18
-        },
-        {
-            'disallowedWords': ['password', 'admin']
-        }
-    ];
-
-    API.cui.getSecurityQuestions()
-    .then(function(res){
-            // Removes first question as it is blank
-            res.splice(0,1);
-
-            // Splits questions to use between both dropdowns
-            var numberOfQuestions = res.length,
-            numberOfQuestionsFloor = Math.floor(numberOfQuestions/2);
-
-            newDivision.userLogin.challengeQuestions1 = res.slice(0,numberOfQuestionsFloor);
-            newDivision.userLogin.challengeQuestions2 = res.slice(numberOfQuestionsFloor);
-
-            // Preload question into input
-            newDivision.userLogin.question1 = newDivision.userLogin.challengeQuestions1[0];
-            newDivision.userLogin.question2 = newDivision.userLogin.challengeQuestions2[0];
-            return API.cui.getOrganizations();
-    })
-    .then(function(res) {
-        newDivision.organizationList = res;
-        $scope.$digest();
-    })
-    .fail(function(err){
-        console.log(err);
-    });
-
-    var searchOrganizations = function() {
-        // this if statement stops the search from executing
-        // when the controller first fires  and the search object is undefined/
-        // once pagination is impletemented this won't be needed
-        if (newDivision.orgSearch) {
-            API.cui.getOrganizations({'qs': [['name', newDivision.orgSearch.name]]})
-            .then(function(res){
-                newDivision.organizationList = res;
-                $scope.$apply();
-            })
-            .fail(function(err){
-                console.log(err);
-            });
-        }
-    };
-
-    $scope.$watchCollection('newDivision.orgSearch', searchOrganizations);
-
-}]);
-
-angular.module('registration')
-.controller('tloCtrl',['$scope', 'API', function($scope, API) {
-	var newTLO = this;
-	newTLO.userLogin = {};
-
-  var handleError=function(err){
-    console.log('Error\n',err);
-  };
-
-  newTLO.passwordPolicies = [ // WORKAROUND CASE #5
-    {
-      'allowUpperChars': true,
-      'allowLowerChars': true,
-      'allowNumChars': true,
-      'allowSpecialChars': true,
-      'requiredNumberOfCharClasses': 3
-    },
-    {
-      'disallowedChars':'^&*)(#$'
-    },
-    {
-      'min': 8,
-      'max': 18
-    },
-    {
-      'disallowedWords': ['password', 'admin']
-    }
-  ];
-
-
-  API.cui.getSecurityQuestions()
-  .then(function(res){
-    // Removes first question as it is blank
-    res.splice(0,1);
-
-    // Splits questions to use between both dropdowns
-    var numberOfQuestions = res.length,
-    numberOfQuestionsFloor = Math.floor(numberOfQuestions/2);
-
-    newTLO.userLogin.challengeQuestions1 = res.slice(0,numberOfQuestionsFloor);
-    newTLO.userLogin.challengeQuestions2 = res.slice(numberOfQuestionsFloor);
-
-    // Preload question into input
-    newTLO.userLogin.question1 = newTLO.userLogin.challengeQuestions1[0];
-    newTLO.userLogin.question2 = newTLO.userLogin.challengeQuestions2[0];
-  })
-  .fail(handleError);
-
-}]);
-
-angular.module('registration')
-.controller('userCSVCtrl', function(API,APIError,Base,localStorageService,$scope,$state,$http) {
-
-    const userCSV = this
-
-    userCSV.submitError = false
-    userCSV.initializing = true
-    APIError.offFor('userCSV.initializing')
-	var organization_id='OIESO-CLOUD13807765';
-		
-	if (!Base.user.entitlements.length>0) {
-		userCSV.initializing = false;
-		$state.go('misc.notAuth');	
-	}
-	
-	 API.cui.initiateNonce()
-    .then(res => {
-        return API.cui.getSecurityQuestionsNonce()
-    })
-    .then(res => {
-        res.splice(0, 1) // Split questions
-        let numberOfQuestions = res.length
-        let numberOfQuestionsFloor = Math.floor(numberOfQuestions/2)
-
-		var challengeQuestions1 = res.slice(0, numberOfQuestionsFloor)
-        var challengeQuestions2 = res.slice(numberOfQuestionsFloor)
-
-		
-		var securityQuestionAccount = {
-			version: '1',
-			questions: [{
-				question: {
-					id: challengeQuestions1[0].id,
-					type: 'question',
-					realm: 'IESO-CLOUD'
-				},
-				answer: 'test',
-				index: 1
-			},
-			{
-				question: {
-					id: challengeQuestions2[0].id,
-					type: 'question',
-					realm: 'IESO-CLOUD'
-				},
-				answer: 'test',
-				index: 2
-			}]
-		}
-		$scope.security = JSON.stringify(securityQuestionAccount);
-        return API.cui.getOrganizationNonce({organizationId: organization_id})
-    })
-	.then(res => {
-		$scope.organization = JSON.stringify(res);	
-	})
-
-
-    userCSV.submit = () => {
-	   userCSV.submitting=true;
-	   var csvfile = $scope.csvFile;
-	   
-	   if (typeof csvfile == 'undefined') {
-			userCSV.errorMessage="No file found, please try again.";
-			userCSV.submitError=true;
-	   } else {
-		   if ((csvfile.name).match(/.csv$/i)) {
-				userCSV.errorMessage="";
-				$http({
-					'method'  : 'POST',
-					'url'     : 'http://localhost:3000/upload/csv',
-					'headers' : {
-						'Content-Type': undefined
-					},
-					'data'    : { 
-						'security' : $scope.security,
-						'organization' : $scope.organization,
-						'csvfile' : $scope.csvFile
-					},
-					transformRequest: function (data, headersGetter) {
-						var formData = new FormData();
-						angular.forEach(data, function (value, key) {
-							formData.append(key, value);
-						});
-
-						var headers = headersGetter();
-						delete headers['Content-Type'];
-
-						return formData;
-					}
-				}).then(function(data) {
-					$state.go('misc.success-csv');
-				});	
-		   } else {
-				userCSV.errorMessage="You have chosen a file that is not a .csv file";
-				userCSV.submitError=true;
-		   }
-	   }
-	   userCSV.submitting=false;
-    }
-})
-angular.module('registration')
 .controller('userInvitedCtrl', function(APIError, localStorageService, Registration, $scope, $state,$q,LocaleService, $window,Base,$stateParams,$pagination,$filter) {
 
     const userInvited = this
@@ -2319,7 +2098,7 @@ angular.module('organization', [])
         })
         // Org Requests/ADMIN
         .state('organization.requests.orgRegistrationRequests', {
-            url:'/orgRequests?page&pageSize',
+            url:'/orgRequests?page&pageSize&organizationName',
             templateUrl: templateBase + 'requests/orgRequests/orgRegistrationRequests/requests-RegistrationRequests.html',
             controller: returnCtrlAs('orgRegistrationRequests'),
             access: {
@@ -2499,7 +2278,7 @@ angular.module('organization')
 .controller('orgApplicationDetailsCtrl', function(API,APIHelpers,APIError,Loader,Sort,User,$q,$scope,$state,$stateParams) {
 
     const orgApplicationDetails = this;
-    const organizationId = User.user.organization.id;
+    const organizationId = $stateParams.orgId
     const serviceId = $stateParams.appId;
     const loaderName = 'orgApplicationDetails.';
     orgApplicationDetails.stateParamsOrgId=$stateParams.orgId
@@ -2564,9 +2343,9 @@ angular.module('organization')
 
     Loader.onFor(loaderName + 'app');
 
-    API.cui.getOrganizationHierarchy({organizationId: User.user.organization.id})
+    API.cui.getOrganization({organizationId: organizationId})
     .then((res) => {
-        orgApplicationDetails.organizationList = APIHelpers.flattenOrgHierarchy(res);
+        orgApplicationDetails.organization = res
         return API.cui.getOrganizationGrantedApps({organizationId: organizationId, qs: [['service.id', serviceId]]});
     })
     .then((res) => {
@@ -3669,205 +3448,6 @@ angular.module('organization')
     }
 
     /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
-
-});
-
-angular.module('organization')
-.controller('orgDirectoryCtrl',function($scope,$stateParams,API,$filter,Sort,$state,$q,User,$pagination) {
-    'use strict';
-
-    const orgDirectory = this;
-
-    orgDirectory.loading = true;
-    orgDirectory.sortFlag = false;
-    orgDirectory.userList = [];
-    orgDirectory.unparsedUserList = [];
-    orgDirectory.statusList = ['active', 'locked', 'pending', 'suspended', 'rejected', 'removed'];
-    orgDirectory.statusCount = [0,0,0,0,0,0,0];
-    orgDirectory.paginationPageSize = orgDirectory.paginationPageSize || $pagination.getUserValue() || $pagination.getPaginationOptions()[0];
-
-    // HELPER FUNCTIONS START ------------------------------------------------------------------------
-
-    const handleError = function handleError(err) {
-        orgDirectory.loading = false;
-        $scope.$digest();
-        console.log('Error', err);
-    };
-
-    const getStatusList = function(users) {
-        let statusList = [];
-        let statusCount = [orgDirectory.unparsedUserList.length];
-
-        users.forEach(function(user) {
-            if (user.status) {
-                let statusInStatusList = _.some(statusList, function(status, i) {
-                    if (angular.equals(status, user.status)) {
-                        statusCount[i+1] ? statusCount[i+1]++ : statusCount[i+1] = 1;
-                        return true;
-                    }
-                    return false;
-                });
-
-                if (!statusInStatusList) {
-                    statusList.push(user.status);
-                    statusCount[statusList.length] = 1;
-                }
-            }
-        });
-        orgDirectory.statusCount = statusCount;
-        return statusList;
-    };
-
-    const flattenHierarchy = (orgChildrenArray) => {
-        if (orgChildrenArray) {
-            let childrenArray = orgChildrenArray;
-            let orgList = [];
-
-            childrenArray.forEach(function(childOrg) {
-                if (childOrg.children) {
-                    let newChildArray = childOrg.children;
-                    delete childOrg['children'];
-                    orgList.push(childOrg);
-                    orgList.push(flattenHierarchy(newChildArray));
-                }
-                else {
-                    orgList.push(childOrg);
-                }
-            });
-            return _.flatten(orgList);
-        }
-    };
-
-    const getUserListAppCount = (userArray) => {
-        let userList = userArray;
-
-        userList.forEach((user) => {
-            API.cui.getPersonGrantedCount({personId: user.id})
-            .then((res) => {
-                user.appCount = res;
-            })
-            .fail((error) => {
-                user.appCount = 0;
-            });
-        });
-
-        return userList;
-    };
-
-    const getPeopleAndCount = () => {
-        const getPersonOptions = {
-            'qs': [
-                ['organization.id', String(orgDirectory.organization.id)],
-                ['pageSize', String(orgDirectory.paginationPageSize)],
-                ['page', String(1)]
-            ]
-        };
-
-        const countPersonOptions = {
-            'qs': ['organization.id', String(orgDirectory.organization.id)]
-        };
-
-        $q.all([API.cui.getPersons(getPersonOptions), API.cui.countPersons(countPersonOptions)])
-        .then((res) => {
-            orgDirectory.unparsedUserList = angular.copy(res[0]);
-            orgDirectory.statusList = getStatusList(orgDirectory.userList);
-            orgDirectory.orgPersonCount = res[1];
-            orgDirectory.userList = orgDirectory.unparsedUserList = getUserListAppCount(orgDirectory.unparsedUserList);
-            orgDirectory.loading = false;
-            orgDirectory.reRenderPagination && orgDirectory.reRenderPagination();
-        });
-    };
-
-    // HELPER FUNCTIONS END --------------------------------------------------------------------------
-
-    // ON LOAD START ---------------------------------------------------------------------------------
-
-    API.cui.getOrganizationHierarchy({organizationId: User.user.organization.id})
-    .then((res) => {
-        orgDirectory.organization = res;
-        orgDirectory.organizationList = flattenHierarchy(res.children);
-        getPeopleAndCount();
-    });
-
-    // ON LOAD END -----------------------------------------------------------------------------------
-
-    // ON CLICK START --------------------------------------------------------------------------------
-
-    orgDirectory.getOrgMembers = (organization) => {
-        orgDirectory.loading = true;
-        orgDirectory.organization = organization;
-        API.cui.getPersons({'qs': [['organization.id', String(orgDirectory.organization.id)]]})
-        .then(function(res) {
-            orgDirectory.userList = orgDirectory.unparsedUserList = getUserListAppCount(res);
-            orgDirectory.statusList = getStatusList(orgDirectory.userList);
-            return API.cui.countPersons({'qs': ['organization.id', String(orgDirectory.organization.id)]});
-        })
-        .then(function(res) {
-            orgDirectory.orgPersonCount = res;
-            orgDirectory.loading = false;
-            $scope.$digest();
-        })
-        .fail(handleError);
-    };
-
-    orgDirectory.sort = function sort(sortType) {
-        Sort.listSort(orgDirectory.userList, sortType, orgDirectory.sortFlag);
-        orgDirectory.sortFlag =! orgDirectory.sortFlag;
-    };
-
-    orgDirectory.parseUsersByStatus = function parseUsersByStatus(status) {
-        if (status === 'all') {
-            orgDirectory.userList = orgDirectory.unparsedUserList;
-        }
-        else {
-            let filteredUsers = _.filter(orgDirectory.unparsedUserList, function(user) {
-                return user.status === status;
-            });
-            orgDirectory.userList = filteredUsers;
-        }
-    };
-
-    orgDirectory.paginationHandler = function paginationHandler(page) {
-        API.cui.getPersons({'qs': [['organization.id', String(orgDirectory.organization.id)],
-                                    ['pageSize', String(orgDirectory.paginationPageSize)], ['page', String(page)]]})
-        .then(function(res) {
-            orgDirectory.userList = orgDirectory.unparsedUserList = getUserListAppCount(res);
-            orgDirectory.statusList = getStatusList(orgDirectory.userList);
-        })
-        .fail(handleError);
-    };
-
-    orgDirectory.userClick = (clickedUser) => {
-        switch (clickedUser.status) {
-            case 'active':
-            case 'unactivated':
-            case 'inactive':
-                $state.go('organization.directory.userDetails', {userID: clickedUser.id, orgID: clickedUser.organization.id});
-                break;
-            case 'pending':
-                $state.go('organization.requests.personRequest', {userID: clickedUser.id, orgID: clickedUser.organization.id});
-                break;
-        }
-    };
-
-    // ON CLICK END ----------------------------------------------------------------------------------
-
-    // WATCHERS START --------------------------------------------------------------------------------
-
-    $scope.$watch('orgDirectory.paginationPageSize', function(newValue, oldValue) {
-        if (newValue && oldValue && newValue !== oldValue) {
-            API.cui.getPersons({'qs': [['organization.id', String(orgDirectory.organization.id)],
-                                ['pageSize', String(orgDirectory.paginationPageSize)], ['page', 1]]})
-            .then(function(res) {
-                orgDirectory.userList = orgDirectory.unparsedUserList = getUserListAppCount(res);
-                orgDirectory.paginationCurrentPage = 1;
-                orgDirectory.statusList = getStatusList(orgDirectory.userList);
-            })
-            .fail(handleError);
-        }
-    });
-
-    // WATCHERS END ----------------------------------------------------------------------------------
 
 });
 
@@ -6803,12 +6383,25 @@ angular.module('organization')
 			}
 		}
 
-    orgRegistrationRequests.updateSearchParams = (page) => {
+    orgRegistrationRequests.updateSearch = (updateType, updateValue) => {
     	//cui.log('updateSearchParams', page);
-        if (page) orgRegistrationRequests.search.page = page
+    	switch(updateType){
+    		case 'organizationName':
+    			orgRegistrationRequests.search.page=1
+    			orgRegistrationRequests.search.organizationName=updateValue
+    			break
+    	}
         // WHY transition to this same route? if setting notify:false? what is the purpose? just to add an item to history?
         $state.transitionTo('organization.requests.orgRegistrationRequests', orgRegistrationRequests.search, {notify: false})
         init()
+    }
+
+    orgRegistrationRequests.pageChange = (newpage) => {
+        orgRegistrationRequests.updateSearch('page', newpage)
+    }
+
+    orgRegistrationRequests.searchCallback= (searchWord) => {
+        orgRegistrationRequests.updateSearch('organizationName',searchWord)
     }
     /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
@@ -7064,59 +6657,6 @@ angular.module('organization')
 
     // ON CLICK END ----------------------------------------------------------------------------------
 })
-
-angular.module('organization')
-.controller('orgRequestsCtrl',function(API,$stateParams,$q,$state) {
-    'use strict';
-
-    const orgRequests = this,
-    		userId = $stateParams.userID,
-    		orgId = $stateParams.orgID;
-
-    let apiPromises = [];
-
-    orgRequests.loading = true;
-
-    // HELPER FUNCTIONS START ------------------------------------------------------------------------
-    // HELPER FUNCTIONS END --------------------------------------------------------------------------
-
-    // ON LOAD START ---------------------------------------------------------------------------------
-
-    apiPromises.push(
-    	API.cui.getOrganization({organizationId: orgId})
-    	.then((res) => {
-    		orgRequests.organization = res;
-            console.log('orgRequests.organization',orgRequests.organization);
-    	})
-    );
-
-    apiPromises.push(
-        API.cui.getAllOrganizationRequests({qs: ['organizationId', orgId]})
-        .then((res) => {
-            console.log('orgReqs', res);
-        })
-    );
-
-    $q.all(apiPromises)
-    .then(() => {
-        orgRequests.loading = false;
-    })
-    .catch((error) => {
-        orgRequests.loading = false;
-        console.log(error);
-    });
-
-    // ON LOAD END -----------------------------------------------------------------------------------
-
-    // ON CLICK START --------------------------------------------------------------------------------
-
-    orgRequests.viewRequest = (requestId) => {
-        $state.go('requests.organizationRequest', {orgID: orgId, requestID: requestId});
-    };
-
-    // ON CLICK END ----------------------------------------------------------------------------------
-
-});
 
 angular.module('organization')
 .controller('organizationRequestReviewCtrl', function(DataStorage, Loader, ServicePackage, $q, $state, $stateParams, $timeout,APIError,API,$scope) {
@@ -7415,6 +6955,9 @@ angular.module('organization')
     const personRequest = this
     const userId = $stateParams.userId
     const organizationId = $stateParams.orgId
+    // Needed when there is no packages
+    personRequest.approvedCount = 0
+    personRequest.deniedCount = 0
 
     personRequest.success = false
 
@@ -7438,11 +6981,12 @@ angular.module('organization')
 
     const handleSuccess = (res) => {
         Loader.offFor('personRequest.submitting')
-            personRequest.success = true
-            API.user.userRegistrationRequestsCount=API.user.userRegistrationRequestsCount-1
-            $scope.$digest()
-            $timeout(() => {
-                $state.go('organization.requests.usersRegistrationRequests')
+        personRequest.success = true
+        DataStorage.deleteType('userPersonRequest')
+        API.user.userRegistrationRequestsCount=API.user.userRegistrationRequestsCount-1
+        $scope.$digest()
+        $timeout(() => {
+            $state.go('organization.requests.usersRegistrationRequests')
         }, 3000)  
     }
 
@@ -7457,35 +7001,50 @@ angular.module('organization')
 
     // ON LOAD START ---------------------------------------------------------------------------------
 
-    Loader.onFor('personRequest.init')
-
-    PersonRequest.getPersonRegistrationRequestData(userId, organizationId)
-    .then(res => {
-        if (!res.request) {
-            APIError.onFor('personRequest.noRequest')
-            $timeout(() => $state.go('organization.requests.usersRegistrationRequests'), 5000)
+    let getPackageDetails = () => {
+        if (personRequest.request.request.packages) {
+            ServicePackage.getAllUserPendingPackageData(userId)
+            .then(res => {
+                personRequest.request.completePackageData = res
+            })
+            .catch(err => {
+                APIError.onFor('personRequest.noRequest')
+                $timeout(() => $state.go('organization.requests.usersRegistrationRequests'), 5000)
+            })
         }
-        else {
-            personRequest.request = res    
-            Loader.offFor('personRequest.init')
+        else{
+            personRequest.request.completePackageData =[]
         }
-    })
+    }
 
-    ServicePackage.getAllUserPendingPackageData(userId)
-    .then(res => {
-        personRequest.packages = res
-    })
-    .catch(err => {
-        APIError.onFor('personRequest.noRequest')
-        $timeout(() => $state.go('organization.requests.usersRegistrationRequests'), 5000)
-    })
+    // Check LocalStorage if data is already obtained in previous page
+    let storageData=DataStorage.getType('userPersonRequest')
+    if (storageData&&userId===storageData.request.registrant.id) {
+        personRequest.request=storageData;
+        getPackageDetails()
+    }
+    else{
+        Loader.onFor('personRequest.init')
+        PersonRequest.getPersonRegistrationRequestData(userId, organizationId)
+        .then(res => {
+            if (!res.request) {
+                APIError.onFor('personRequest.noRequest')
+                $timeout(() => $state.go('organization.requests.usersRegistrationRequests'), 5000)
+            }
+            else {
+                personRequest.request = res
+                getPackageDetails()    
+                Loader.offFor('personRequest.init')
+            }
+        })
+    }
 
     // ON LOAD END -----------------------------------------------------------------------------------
 
     // ON CLICK START --------------------------------------------------------------------------------
 
     personRequest.reviewApprovals = () => {
-        DataStorage.setType('userPersonRequest', { personRequest })
+        DataStorage.setType('userPersonRequest', personRequest.request )
         $state.go('organization.requests.personRequestReview', { userId: userId, orgId: organizationId })
     }
 
@@ -7567,6 +7126,7 @@ angular.module('organization')
     const handleSuccess = (res) => {
         Loader.offFor('personRequestReview.submitting')
             personRequestReview.success = true
+            DataStorage.deleteType('userPersonRequest')
             $scope.$digest()
             $timeout(() => {
                 $state.go('organization.requests.usersRegistrationRequests')
@@ -7583,23 +7143,20 @@ angular.module('organization')
 
     // ON LOAD START ---------------------------------------------------------------------------------
 
-    Loader.onFor('personRequestReview.init')
+    const requestData = DataStorage.getType('userPersonRequest')
+    if (requestData&&requestData.request.registrant.id===userId) {
+        personRequestReview.packages = requestData.completePackageData
+        personRequestReview.personData = requestData.personData
+        personRequestReview.organization = requestData.organization
+        personRequestReview.request = requestData.request
 
-    const requestData = DataStorage.getType('userPersonRequest').personRequest
-    if (!requestData) {
-        $state.go('organization.requests.personRequest',{userId:userId, orgId:orgId})
-    };
-
-    personRequestReview.packages = requestData.packages
-    personRequestReview.person = requestData.request.person
-    personRequestReview.organization = requestData.request.organization
-    personRequestReview.request = requestData.request.request
-
-    if (personRequestReview.packages.length > 0) {
-    	getApprovalCounts(personRequestReview.packages)
+        if (personRequestReview.packages.length > 0) {
+            getApprovalCounts(personRequestReview.packages)
+        }
     }
-
-    Loader.offFor('personRequestReview.init')
+    else{
+        $state.go('organization.requests.personRequest',{userId:userId, orgId:orgId})
+    }
 
     // ON LOAD END -----------------------------------------------------------------------------------
 
@@ -7631,6 +7188,7 @@ angular.module('organization')
                 .then(() => {
                     Loader.offFor('personRequestReview.submitting')
                     personRequestReview.success = true
+                    DataStorage.deleteType('userPersonRequest')
                     $timeout(() => {
                         $state.go('organization.requests.usersRegistrationRequests')
                     }, 3000)  
@@ -7863,7 +7421,7 @@ angular.module('organization')
 
 angular.module('organization')
 .controller('usersRegistrationRequestsCtrl', 
-		function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,$scope) {
+		function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,$scope,DataStorage) {
 
     const scopeName = 'usersRegistrationRequests.'
 		const usersRegistrationRequests = this
@@ -7984,30 +7542,38 @@ angular.module('organization')
 				_.each(res, function(regReq) {
 					// NB create an obj and bind it to scope...
 					var data = {};
-        	usersRegistrationRequests.data.push(data);
+					data.request=regReq
+		        	usersRegistrationRequests.data.push(data);
 
-        	// ..then cache the calls, which populate obj asynchronously...
-	        calls.push(
-		        getPerson(regReq.registrant.id).then(function(person) {
-		        	data.personData = person || {};
-		        	var pkgId = (! _.isEmpty(regReq.packages)) ? regReq.packages[0].id : '';
-		          return getPackage(pkgId);
-						}).then(function(pkg) {
-		        	data.packageData = pkg;
-		        	console.log(data.personData.organization.id)
-		        	var orgId = (data.personData && data.personData.organization) ? data.personData.organization.id : '';
+		        	// ..then cache the calls, which populate obj asynchronously...
+			        calls.push(
+				        getPerson(regReq.registrant.id)
+				        .then(function(person) {
+				        	data.personData = person || {};
+				        	var pkgId = (! _.isEmpty(regReq.packages)) ? regReq.packages[0].id : '';
+				          	return getPackage(pkgId);
+						})
+				        .then(function(pkg) {
+				        	data.packageData = pkg;
+				        	console.log(data.personData.organization.id)
+				        	var orgId = (data.personData && data.personData.organization) ? data.personData.organization.id : '';
 							return getOrg(orgId);
-						}).then(function(org) {
+						})
+				        .then(function(org) {
 							if (! data.personData.organization) {
 								data.personData.organization = {};
 							}
-							data.personData.organization.name = (! _.isEmpty(org)) ? org.name : '';	        	
+							data.personData.organization.name = (! _.isEmpty(org)) ? org.name : '';
+							data.organization={
+								id:org.id,
+								name:org.name
+							}        	
 							return $.Deferred().resolve();
-	      		}).fail(function() {
-	      			// mute the failures so as not to derail the entire list
+			      		}).fail(function() {
+			      			// mute the failures so as not to derail the entire list
 							return $.Deferred().resolve();
-	      		})
-		      );
+			      		})
+				    );
 				});
 				return $.Deferred().resolve(calls);
 			}).then(function(calls) {
@@ -8069,6 +7635,7 @@ angular.module('organization')
 		usersRegistrationRequests.goToDetails = function(request) {
 			if (request.personData && request.personData.id && 
 				request.personData.organization && request.personData.organization.id) {
+				DataStorage.setType('userPersonRequest', {personData:request.personData, organization:request.organization,request:request.request,packageData:request.packageData} )
 				$state.go('organization.requests.personRequest', {
 				 	'userId': request.personData.id, 
 					'orgId': request.personData.organization.id 
@@ -8184,7 +7751,7 @@ angular.module('misc', [])
                 templateUrl: templateBase + 'search/search.html',
                 controller: returnCtrlAs('search'),
                 access: {
-                    permittedLogic:appConfig.accessByAnyAdmin
+                    permittedLogic:appConfig.globalSearch
                 }
             })
             .state('misc', {
@@ -8215,8 +7782,8 @@ angular.module('misc', [])
     }]);
 
 angular.module('misc')
-    .controller('searchCtrl', ['API', '$scope', '$stateParams', '$state', '$q', '$pagination','APIHelpers','Loader', 'APIError',
-    function(API, $scope, $stateParams, $state, $q, $pagination,APIHelpers,Loader,APIError) {
+    .controller('searchCtrl', ['API', '$scope', '$stateParams', '$state', '$q', '$pagination','APIHelpers','Loader', 'APIError','Base',
+    function(API, $scope, $stateParams, $state, $q, $pagination,APIHelpers,Loader,APIError,Base) {
         let search = this;
         search.currentParentOrg = API.user.organization.id;
 
@@ -8290,9 +7857,9 @@ angular.module('misc')
 
         }
 
-        search.searchNow = function(type) {
+        search.searchNow = function(searchOrPage) {
             search.pageError=false
-            if (type) {
+            if (searchOrPage) {
                 search.searchParams.page=1
             }
             Loader.onFor('search.loading')
@@ -8374,20 +7941,14 @@ angular.module('misc')
         //     search.orgCount=count
         //     return API.cui.getOrganizations({qs:APIHelpers.getQs(search.searchParams)})
         // })
-        Loader.onFor('search.loading')
-        let qs=APIHelpers.getQs(search.searchParams)
-        qs.push(['status','active'],['status','suspended'])
-        API.cui.getOrganizations({qs:qs})
-        .then(res => {
-            search.orgs = res
-            if (search.orgs.length===0) {
-                search.noRecords=true
-            }
-        })
-        .fail(error => {
-            search.pageError=true
-        })
-        .always(handleAll)
+        // Authorization for org serach and user search
+        if (Base.accessToSecurityAndExchangeAdmins()) {            
+            search.searchNow(true)
+        }
+        else{
+            search.searchType = "people"
+            search.searchNow(true)
+        }
 
         /* -------------------------------------------- ON LOAD END --------------------------------------------- */
 
@@ -8930,8 +8491,7 @@ angular.module('common')
   };
 }]);
 angular.module('common')
-.factory('API',['$state','User','$rootScope','$window','$location','CustomAPI','$q','localStorageService','Loader','$timeout','Base','LocaleService',
-($state,User,$rootScope,$window,$location,CustomAPI,$q,localStorage,Loader,$timeout,Base,LocaleService) => {
+.factory('API', (Base, CustomAPI, Loader, localStorageService, User, $location, $q, $timeout, $window,LocaleService) => {
 
     let authInfo = {}
     let myCUI = {}
@@ -8940,26 +8500,36 @@ angular.module('common')
 
     const populateUserInfo = (info, redirectOpts) => {
         const deferred = $q.defer()
-        let userInfo, roleList
+        let userInfo, roleList, entitlementList
         authInfo = info
         User.set(info)
 
         $q.all([
             myCUI.getPersonRoles({ personId: authInfo.cuid }),
-            myCUI.getPerson({ personId: authInfo.cuid })                        
+            myCUI.getPersonEntitlements({ personId: authInfo.cuid }),
+            myCUI.getPerson({ personId: authInfo.cuid })
         ])
         .then(res => {
             roleList = res[0].map(x => x.name)
-            User.setEntitlements(roleList)
-            userInfo = res[1]
-            return myCUI.getOrganization({ organizationId: res[1].organization.id })
+            User.setRoles(roleList)
+
+            entitlementList = res[1].map(x => x.privilegeName)
+            User.setEntitlements(entitlementList)
+
+            userInfo = res[2]
+            LocaleService.setLocaleByDisplayName(appConfig.languages[userInfo.language])
+            return myCUI.getOrganizationWithAttributes({ organizationId: res[2].organization.id })
         })
         .then(res => {
             userInfo.organization = res
             User.set(userInfo)
-            deferred.resolve({ roleList, redirect: redirectOpts })
+            //cui.log('populateUserInfo', User);
+            //get user notification related information  as lazy loading,
+            // No need to hold entire UI apps for this loading.
+            getNotificationDetails(userInfo)
+            deferred.resolve({ roleList: roleList, redirect: redirectOpts })
         })
-        
+
         return deferred.promise
     }
 
@@ -9010,19 +8580,27 @@ angular.module('common')
             ]
         })
         .then((cuiObject) => {
-            Base.logout = cuiObject.covLogout
+            if (appConfig.logoutUrl) {
+                Base.logout = () => {
+                    myCUI.covLogout({
+                        redirect: appConfig.logoutUrl,
+                        qs: [['type', 'logout']]
+                    })
+                }    
+            }
+            else Base.logout = cuiObject.covLogout
             angular.copy(cuiObject, myCUI)
             myCUI.setAuthHandler(jwtAuthHandler)
             // overwrite the service url to get the solution instance id
             appConfig.solutionInstancesUrl && myCUI.setServiceUrl(appConfig.solutionInstancesUrl)
             return myCUI.covAuthInfo({originUri: appConfig.originUri})
         })
-        .then(()=>{
+        .then(() => {
             // reset the service url
             appConfig.debugServiceUrl
                 ? myCUI.setServiceUrl(appConfig.debugServiceUrl)
                 : myCUI.setServiceUrl(appConfig.serviceUrl)
-            $timeout(()=> Loader.offFor('wholeApp'),50)
+            $timeout(() => Loader.offFor('wholeApp'), 50)
             deferred.resolve()
         })
         return deferred.promise
@@ -9039,8 +8617,9 @@ angular.module('common')
         authenticateUser: (redirectOpts) => {
             const deferred = $q.defer()
             const sessionInfo = myCUI.getCovAuthInfo()
-            if(redirectOpts.toState.name!=='auth') {
-                localStorage.set('appRedirect',redirectOpts) // set the redirect to whatever the last state before auth was
+
+            if (redirectOpts.toState.name!=='auth') {
+                localStorageService.set('appRedirect',redirectOpts) // set the redirect to whatever the last state before auth was
                 Loader.onFor('wholeApp','redirecting-to-sso') // don't need to turn this loader off since covAuth takes us to another page
                 appConfig.solutionInstancesUrl && myCUI.setServiceUrl(appConfig.solutionInstancesUrl)
                 jwtAuthHandler() // force redirect to SSO
@@ -9048,9 +8627,9 @@ angular.module('common')
             else {
                 Loader.onFor('wholeApp','getting-user-info')
                 myCUI.handleCovAuthResponse({ selfRedirect: true })
-                .then((res)=>{
-                    populateUserInfo(res,localStorage.get('appRedirect'))
-                    .then((res) => {
+                .then(res => {
+                    populateUserInfo(res,localStorageService.get('appRedirect'))
+                    .then(res => {
                         deferred.resolve(res)
                         $timeout(()=> Loader.offFor('wholeApp'),50)
                     })
@@ -9066,7 +8645,7 @@ angular.module('common')
 
     return apiFactory
 
-}])
+})
 
 angular.module('common')
 .factory('APIError', (SharedService) => {
@@ -9312,6 +8891,12 @@ angular.module('common')
 			},
 			accessByAnyAdmin: function(){
 				return permitted(appConfig.accessByAnyAdmin, User.getRoles(), User.getEntitlements());
+			},
+			globalSearch: function(){
+				return permitted(appConfig.globalSearch, User.getRoles(), User.getEntitlements());
+			},
+			accessToSecurityAndExchangeAdmins:function(){
+				return permitted(appConfig.accessToSecurityAndExchangeAdmins, User.getRoles(), User.getEntitlements());
 			}
 		}
 	}])
@@ -10145,7 +9730,7 @@ angular.module('common')
 
 		CommonAPI.getPerson(userId)
 		.then(personData => {
-			requestData.person = personData
+			requestData.personData = personData
 		})
 		.finally(() => {
 			callsCompleted += 1
@@ -10950,569 +10535,6 @@ angular.module('common')
 		getUserCount: getUserCount
 	}
 
-})
-
-angular.module('common')
-.factory('UserProfileV2', function(API, APIError, LocaleService, Timezones, $filter, $q, $timeout, $window) {
-
-    const errorName = 'userProfileFactory.'
-    const facebook = 'facebook'
-    const google = 'google'
-    const twitter = 'twitter'
-
-    const UserProfile = {
-        
-        setSocialAccount:function(type,index){
-            var socialAccount={};
-            socialAccount.socialName=type;
-            socialAccount.linked="";
-            return socialAccount;
-        },
-
-        initUser: function(userId) {
-            let defer = $q.defer()
-            let user = {}
-
-            API.cui.getPerson({ personId: userId })
-            .done(res => {
-                // If the person object has no addresses we need to initialize it
-                if (!res.addresses) res.addresses = [{streets: []}]
-                user.user = Object.assign({}, res)
-                user.tempUser = Object.assign({}, res)
-                defer.resolve(user)
-            })
-            .fail(err => {
-                console.error('Failed getting user information', err)
-                APIError.onFor(errorName + 'initUser')
-                $timeout(() => {
-                    APIError.offFor(errorName + 'initUser')
-                }, 5000)
-                defer.reject(err)
-            })
-            return defer.promise
-        },
-
-        initSecurityQuestions: function(userId) {
-            let defer = $q.defer()
-            let securityQuestions = {
-                userSecurityQuestions: {},
-                tempUserSecurityQuestions: {},
-                allSecurityQuestions: [],
-                allSecurityQuestionsDup: []
-            }
-
-            $q.all([
-                API.cui.getSecurityQuestionAccount({ personId: userId }), 
-                API.cui.getSecurityQuestions()
-            ])
-            .then(res => {
-                angular.copy(res[0], securityQuestions.userSecurityQuestions)
-                angular.copy(res[0], securityQuestions.tempUserSecurityQuestions)
-                angular.copy(res[1], securityQuestions.allSecurityQuestions) 
-                angular.copy(res[1], securityQuestions.allSecurityQuestionsDup)
-
-                securityQuestions.allSecurityQuestions.splice(0, 1)
-
-                let numberOfQuestions = securityQuestions.allSecurityQuestions.length
-                let numberOfQuestionsFloor = Math.floor(numberOfQuestions/2)
-
-                securityQuestions.allChallengeQuestions0 = securityQuestions.allSecurityQuestions.slice(0, numberOfQuestionsFloor)
-                securityQuestions.allChallengeQuestions1 = securityQuestions.allSecurityQuestions.slice(numberOfQuestionsFloor)
-
-                securityQuestions.challengeQuestionsTexts = UserProfile.selectTextsForQuestions(securityQuestions)
-
-                defer.resolve(securityQuestions)
-            })
-            .catch(err => {
-                console.error('Failed getting security question data', err)
-                APIError.onFor(errorName + 'initSecurityQuestions')
-                $timeout(() => {
-                    APIError.offFor(errorName + 'initSecurityQuestions')
-                }, 5000)
-                defer.reject(err)
-            })
-            return defer.promise
-        },
-
-        selectTextsForQuestions: function(securityQuestions) {
-            let challengeQuestionsTexts = []
-
-            angular.forEach(securityQuestions.userSecurityQuestions.questions, (userQuestion) => {
-                let question = _.find(securityQuestions.allSecurityQuestionsDup, (question) => {
-                    return question.id === userQuestion.question.id
-                })
-                challengeQuestionsTexts.push($filter('cuiI18n')(question.question))
-            })
-            return challengeQuestionsTexts
-        },
-        
-        initSocialLogin: function(userId) {
-            let defer = $q.defer()
-            let user = {}
-            let socialLoginAccounts = [];
-
-
-            API.cui.getSocialLoginAccounts({ personId: userId })
-            .done(res => {
-                
-                //console.log("socialLoginAccounts:::"+res.length);
-                res.forEach(function(respons){
-                        console.log(respons);
-                        socialLoginAccounts.push(respons); 
-                    });
-                console.log("socialLoginAccounts:::444"+socialLoginAccounts);
-                socialLoginAccounts.forEach(function(respons1){
-                        console.log(respons1);
-                    });
-                user.socialLoginAccounts=socialLoginAccounts;
-
-                defer.resolve(user)
-            })
-            .fail(err => {
-                console.error('Failed getting user SocialLoginAccounts information', err)
-                APIError.onFor(errorName + 'initSocialLogin')
-                $timeout(() => {
-                    APIError.offFor(errorName + 'initSocialLogin')
-                }, 5000)
-                defer.reject(err)
-            })
-            return defer.promise
-        },
-
-        initMFA: function(userId) {
-            let defer = $q.defer()
-            let user = {}
-            let mfaConfg={}
-            API.cui.getPersonAttributes({personId: userId})
-            .done(function(res){
-                UserProfile.userAttributesTemplate=angular.copy(res);
-                UserProfile.userAttributesTemplate.attributes.forEach(function(attribute){
-                console.log("In initMFA attributes" + JSON.stringify(attribute))
-                if (attribute.value!="null") {
-                console.log("mfa: attribute.value::"+attribute.value);
-
-                    switch(attribute.name){
-                        case 'TWO_FACTOR_AUTH_TYPE':mfaConfg=attribute.value;
-                        break;
-                    }// end if for switch
-                }// end if for attribute.value
-                })                
-                console.log("mfa: user.mfaConfg::"+mfaConfg);
-                user.mfaConfg=mfaConfg;
-
-                defer.resolve(user)
-            })
-            .fail(err => {
-                console.error('Failed getting user initMFA information', err)
-                APIError.onFor(errorName + 'initMFA')
-                $timeout(() => {
-                    APIError.offFor(errorName + 'initMFA')
-                }, 5000)
-                defer.reject(err)
-            })
-            return defer.promise
-        },// initMFA 
-
-        initPasswordPolicy: function(organizationId) {
-            let defer = $q.defer()
-            let passwordPolicy = {}
-
-            API.cui.getOrganization({ organizationId: organizationId })
-            .then(res => {
-                passwordPolicy.organization = res
-                return API.cui.getPasswordPolicy({policyId: res.passwordPolicy.id})
-            })
-            .then(res => {
-                passwordPolicy.passwordRules = res.rules
-                defer.resolve(passwordPolicy)
-            })
-            .fail(err => {
-                console.error('Failed getting password policy data', err)
-                APIError.onFor(errorName + 'initPasswordPolicy')
-                $timeout(() => {
-                    APIError.offFor(errorName + 'initPasswordPolicy')
-                }, 5000)
-                defer.reject(err)
-            })
-            return defer.promise
-        },
-
-        initUserProfile: function(userId, organizationId) {
-            let defer = $q.defer()
-            let profile = {}
-            let callsCompleted = 0
-
-            console.log("user id "+userId+", org id "+organizationId);
-
-            UserProfile.initUser(userId)
-            .then(res => {
-                angular.merge(profile, res)
-                console.log(" initUser callsCompleted : "+callsCompleted)
-            })
-            .finally(() => {
-                callsCompleted++
-                if (callsCompleted === 4) defer.resolve(profile)
-            })
-
-            UserProfile.initSecurityQuestions(userId)
-            .then(res => {
-                angular.merge(profile, res)
-                console.log(" initSecurityQuestions callsCompleted : "+callsCompleted)
-            })
-            .finally(() => {
-                callsCompleted++
-                if (callsCompleted === 4) defer.resolve(profile)
-            })
-
-            UserProfile.initPasswordPolicy(organizationId)
-            .then(res => {
-                angular.merge(profile, res)
-                console.log(" initPasswordPolicy callsCompleted : "+callsCompleted)
-            })
-            .finally(() => {
-                callsCompleted++
-                if (callsCompleted === 4) defer.resolve(profile)
-            })
-
-            //Added for integration for Social login and MFA
-            UserProfile.initSocialLogin(userId)
-            .then(res => {
-                angular.merge(profile, res)
-                console.log(" initSocialLogin : "+callsCompleted)
-                //alert(JSON.stringify(profile));
-                //console.log("----")
-                //console.log(JSON.stringify(profile))
-            })
-            .finally(() => {
-                callsCompleted += 1
-                if (callsCompleted === 4) defer.resolve(profile)
-            })
-        
-            UserProfile.initMFA(userId)
-            .then(res => {
-                angular.merge(profile, res)
-                //profile['mfaConfg'] = res
-                //angular.merge(profile, res)
-                //alert(JSON.stringify(profile));
-                //console.log("----")
-                // profile.user.confg='push'
-                console.log(" initMFA callsCompleted : "+callsCompleted)
-                console.log(" initMFA in UserProfileV2 function after mfa merge "+JSON.stringify(profile))
-            })
-            .finally(() => {
-                callsCompleted += 1
-                if (callsCompleted === 4) defer.resolve(profile)
-            })
-
-            return defer.promise
-        },
-
-        buildPersonPasswordAccount: function(user, passwordAccount, organization) {
-            return {
-                version: '1',
-                username: user.username,
-                currentPassword: passwordAccount.currentPassword,
-                password: passwordAccount.password,
-                passwordPolicy: organization.passwordPolicy,
-                authenticationPolicy: organization.authenticationPolicy
-            }
-        },
-
-        injectUI: function(profile, $scope, personId) {
-            let userId
-
-            personId
-                ? userId = personId
-                : userId = API.getUser()
-
-            profile.saving = false
-            profile.fail = false
-            profile.success = false
-            profile.timezoneById = Timezones.timezoneById
-            profile.toggleOffFunctions = {}
-
-            profile.resetAllData = () => {
-                angular.copy(profile.userSecurityQuestions, profile.tempUserSecurityQuestions)
-                angular.copy(profile.user, profile.tempUser)
-            }
-
-            profile.toggleAllOff = () => {
-                angular.forEach(profile.toggleOffFunctions, function(toggleOff) {
-                    toggleOff()
-                })
-                profile.resetAllData()
-            }
-
-            profile.pushToggleOff = (toggleOffObject) => {
-                if (!profile.toggleOffFunctions) profile.toggleOffFunctions = {}
-                profile.toggleOffFunctions[toggleOffObject.name] = toggleOffObject.function
-            }
-
-            profile.resetPasswordFields = () => {
-                profile.userPasswordAccount = {
-                    currentPassword: '',
-                    password: ''
-                }
-                profile.passwordRe = ''
-            }
-
-            profile.checkIfRepeatedSecurityAnswer = (securityQuestions, formObject) => {
-                securityQuestions.forEach((secQuestion, i) => {
-                    let securityAnswerRepeatedIndex = _.findIndex(securityQuestions, (secQuestionToCompareTo, z) => {
-                        return z !== i && secQuestion.answer && secQuestionToCompareTo.answer && secQuestion.answer.toUpperCase() === secQuestionToCompareTo.answer.toUpperCase()
-                    })
-                    if (securityAnswerRepeatedIndex > -1) {
-                        if (formObject['answer' + securityAnswerRepeatedIndex]) {
-                            formObject['answer' + securityAnswerRepeatedIndex].$setValidity('securityAnswerRepeated', false)
-                        }
-                        if (formObject['answer' + i]) {
-                            formObject['answer' + i].$setValidity('securityAnswerRepeated', false)
-                        }
-                    }
-                    else {
-                        if (formObject['answer' + i]) {
-                            formObject['answer' + i].$setValidity('securityAnswerRepeated', true)
-                        }
-                    }
-                })
-            }
-
-            profile.updatePerson = (section, toggleOff) => {
-                if (section) profile[section] = { submitting: true }
-
-                if (!profile.userCountry) profile.tempUser.addresses[0].country = profile.user.addresses[0].country
-                else profile.tempUser.addresses[0].country = profile.userCountry.originalObject.code
-
-                // [7/20/2016] Note: Can't pass in 'activatedDate' anymore when updating a person
-                delete profile.tempUser['activatedDate']
-
-                API.cui.updatePerson({personId: userId, data:profile.tempUser})
-                .always(() => {
-                    if (section) profile[section].submitting = false
-                    $scope.$digest()
-                })
-                .done(() => {
-                    angular.copy(profile.tempUser, profile.user)
-                    LocaleService.setLocaleByDisplayName(appConfig.languages[profile.user.language])
-                    if (toggleOff) toggleOff()
-                })
-                .fail((err) => {
-                    console.error('Failed to update user profile:', err)
-                    if (section) profile[section].error = true
-                })
-            }
-
-            profile.updatePassword = function(section, toggleOff) {
-                if (section) {
-                    profile[section] = { submitting: true }
-                }
-
-                API.cui.updatePersonPassword({ 
-                    personId: userId, 
-                    data: UserProfile.buildPersonPasswordAccount(profile.user, profile.userPasswordAccount, profile.organization) 
-                })
-                .always(() => {
-                    if (section) {
-                        profile[section].submitting = false
-                    }
-                })
-                .done(() => {
-                    if (toggleOff) {
-                        toggleOff()
-                    }
-                    profile.passwordUpdateSuccess = true
-                    $timeout(() => {
-                        profile.passwordUpdateSuccess = false
-                    }, 5000)
-                    profile.resetPasswordFields()
-                    $scope.$digest()
-                })
-                .fail((err) => {
-                    console.error('Error updating password', err)
-                    if (section) {
-                        profile[section].error = true
-                    }
-                    $scope.$digest()
-                })
-            }
-
-            profile.saveChallengeQuestions = (section, toggleOff) => {
-                if (section) profile[section] = { submitting: true }
-                profile.userSecurityQuestions = angular.copy(profile.tempUserSecurityQuestions)
-
-                API.cui.updateSecurityQuestionAccount({
-                    personId: userId,
-                    data: {
-                        version: '1',
-                        id: userId,
-                        questions: profile.userSecurityQuestions.questions
-                    }
-                })
-                .always(() => {
-                    if (section) profile[section].submitting = false
-                })
-                .done(() => {
-                    if (toggleOff) toggleOff()
-                    profile.challengeQuestionsTexts = UserProfile.selectTextsForQuestions(profile)
-                    $scope.$digest()
-                })
-                .fail(err => {
-                    console.error('Error updating security questions', err)
-                    if (section) profile[section].error = true
-                    $scope.$digest()
-                })
-            }
-
-            profile.updatePersonMFAConfig = (section, toggleOff) => {
-                if (section) {
-                    profile[section] = { submitting: true }
-                    //console.log("In updatePersonMFAConfig" + JSON.stringify(profile))
-                    console.log("In updatePersonMFAConfig 2" + profile.mfa.confg);
-
-                        API.cui.getPersonAttributes({personId: userId})
-                        .then(function(res){
-                            UserProfile.userAttributesTemplate=angular.copy(res);
-                            console.log("In updatePersonMFAConfig attributes response: " + JSON.stringify(UserProfile.userAttributesTemplate))
-
-                            UserProfile.userAttributesTemplate.attributes.forEach(function(attribute){
-                            console.log("In updatePersonMFAConfig attributes" + JSON.stringify(attribute))
-                            if (attribute.value!="null") {
-                                switch(attribute.name){
-                                    case 'TWO_FACTOR_AUTH_TYPE':attribute.value=profile.mfa.confg;
-                                    break;
-                                }// end if for switch
-                            }// end if for attribute.value
-                            })
-                            console.log("In updatePersonMFAConfig attributes response after: " + JSON.stringify(UserProfile.userAttributesTemplate))
-                             API.cui.updatePersonAttributes({personId: API.getUser(), useCuid:true , data:UserProfile.userAttributesTemplate})
-                            .then(function(res){
-                                //angular.copy(userProfile.tempUserAttributes, userProfile.userAttributes);
-                                if (section) {
-                                    profile[section].submitting = false;
-                                }
-                                if (toggleOff) {
-                                    toggleOff();
-                                }
-                                $scope.$digest();
-                                console.log("In updatePersonMFAConfig attributes response of get attributes : " + JSON.stringify(res));
-                            })
-                            .fail(function(err){
-                                console.log(err);
-                                if (section) {
-                                    profile[section].submitting = false;
-                                    profile[section].error = true;
-                                }
-                                $scope.$digest();
-                            })                
-
-                        })//end for getPersonAttributes.
-                                    
-                } // end if section
-            } // end for function  
-            
-            profile.unlinkSocialLogin = (section, name) => {
-                if (section) {
-                    profile[section] = { submitting: true }
-                    console.log("In unlink "+name)
-                    API.cui.unlinkSocialLoginAccount({
-                        personId: userId,
-                        configId: name
-                    })
-                    .always(() => {
-                        if (section) {
-                            profile[section].submitting = false;
-                            UserProfile.initSocialLogin(userId)
-                            .then(res => {
-                                angular.merge(profile, res)
-                                //alert(JSON.stringify(profile));
-                                //console.log("----")
-                                //console.log(JSON.stringify(profile))
-                            })
-                            .finally(() => {})                        
-                        }
-                    })
-                    .done(() => {
-//                        if (toggleOff) {
-//                            toggleOff();
-//                        }
-                        $scope.$digest()
-                    })
-                    .fail(err => {
-                        console.error('Error updating security questions', err)
-                        if (section) {
-                            profile[section].error = true;
-                        }
-                        $scope.$digest()
-                    })
-                }
-            }
-            
-            // Link a social profile, where name is the social name, like "facebook" or "twitter"
-            profile.updateSocialLogin = (section, name) => {
-                if (section) {
-                    profile[section] = { submitting: true }
-                    console.log("In SocialLoginAccounts00")
-                    var socialLoingUrl=appConfig.serviceUrl;
-                    var sid=localStorage.getItem("cui.sii");
-                    console.log("solutionInstanceId : "+sid)
-//                    socialLoingUrl= socialLoingUrl+'/social-accounts/v1/social/authorize/facebook?solutionInstanceId='+sid+'&type=link';
-                    socialLoingUrl= socialLoingUrl+'/social-accounts/v1/social/authorize/'+name+'?solutionInstanceId='+sid+'&type=link';
-                    console.log(socialLoingUrl)
-                    $window.location.href=socialLoingUrl;
-                    //$window.location.href='https://q-joe-soln-acme.idm.qa.covapp.io/p/apiProxy/social-accounts/v1/social/authorize/facebook?solutionInstanceId=aabae226-3841-4dfe-b703-e769ce01275b&type=link'                    
-                    //$window.location.href='https://q-joe-soln-dev01.idm.qa.covapp.io/p/apiProxy/social-accounts/v1/social/authorize/facebook?solutionInstanceId=b41deeb0-4888-4c97-85cf-1bf64fc5230f&type=link'
-                    //$window.location.href='https://q-joe-soln-dev01.idm.qa.covapp.io/p/apiProxy/social-accounts/v1/social/authorize/facebook?solutioInstanceId=b41deeb0-4888-4c97-85cf-1bf64fc5230f';
-                    //$location.path('https://q-joe-soln-dev01.idm.qa.covapp.io/p/apiProxy/social-accounts/v1/social/authorize/facebook?solutioInstanceId=b41deeb0-4888-4c97-85cf-1bf64fc5230f')
-                }
-            }            
-
-//            profile.updatePersonMFAConfig = (section, toggleOff) => {
-//                if (section) {
-//                    profile[section] = { submitting: true }
-//                    //console.log("In updatePersonMFAConfig" + JSON.stringify(profile))
-//                    console.log("In updatePersonMFAConfig 2" + profile.mfa.confg);
-//
-//                    API.cui.getPersonAttributes({personId: userId})
-//                    .then(function(res){
-//                        UserProfile.userAttributesTemplate=angular.copy(res);
-//                        console.log("In updatePersonMFAConfig attributes response: " + JSON.stringify(UserProfile.userAttributesTemplate))
-//
-//                        UserProfile.userAttributesTemplate.attributes.forEach(function(attribute){
-//                        console.log("In updatePersonMFAConfig attributes" + JSON.stringify(attribute))
-//                        if (attribute.value!="null") {
-//                            switch(attribute.name){
-//                                case 'TWO_FACTOR_AUTH_TYPE':attribute.value=profile.mfa.confg;
-//                                break;
-//                            }// end if for switch
-//                        }// end if for attribute.value
-//                        })
-//                        console.log("In updatePersonMFAConfig attributes response after: " + JSON.stringify(UserProfile.userAttributesTemplate))
-//                         API.cui.updatePersonAttributes({personId: API.getUser(), useCuid:true , data:UserProfile.userAttributesTemplate})
-//                        .then(function(res){
-//                            //angular.copy(userProfile.tempUserAttributes, userProfile.userAttributes);
-//                            if (section) {
-//                                profile[section].submitting = false;
-//                            }
-//                            if (toggleOff) {
-//                                toggleOff();
-//                            }
-//                            $scope.$digest();
-//                        })
-//                        .fail(function(err){
-//                            console.log(err);
-//                            if (section) {
-//                                profile[section].submitting = false;
-//                                profile[section].error = true;
-//                            }
-//                            $scope.$digest();
-//                        })                
-//                    })//end for getPersonAttributes.
-//                } // end if section
-//            } // end for function     
-        }
-    }
-
-    return UserProfile
 })
 
 angular.module('common')
@@ -13137,119 +12159,6 @@ function(API,$scope,$state,AppRequests,localStorage) {
     };
 
     // ON CLICK FUNCTIONS END -------------------------------------------------------------------------
-
-}]);
-
-angular.module('applications')
-.controller('orgApplicationsCtrl', ['$scope','API','Sort','$stateParams',
-function($scope,API,Sort,$stateParams) {
-    'use strict';
-
-    var orgApplications = this;
-    var organizationId = $stateParams.id;
-
-    orgApplications.loading = true;
-    orgApplications.sortFlag = false;
-    orgApplications.categoriesFlag = false;
-    orgApplications.statusFlag = false;
-    orgApplications.appList = [];
-    orgApplications.unparsedAppList = [];
-    orgApplications.categoryList = [];
-    orgApplications.statusList = ['active', 'suspended', 'pending'];
-    orgApplications.statusCount = [0,0,0,0];
-
-    // HELPER FUNCTIONS START ---------------------------------------------------------------------------------
-
-    var handleError = function handleError(err) {
-        orgApplications.loading = false;
-        $scope.$digest();
-        console.log('Error', err);
-    };
-
-    var getListOfCategories = function(services) {
-        // WORKAROUND CASE # 7
-        var categoryList = [];
-        var categoryCount = [orgApplications.unparsedAppList.length];
-
-        services.forEach(function(service) {
-            if (service.category) {
-                var serviceCategoryInCategoryList = _.some(categoryList, function(category, i) {
-                    if (angular.equals(category, service.category)) {
-                        categoryCount[i+1] ? categoryCount[i+1]++ : categoryCount[i+1] = 1;
-                        return true;
-                    }
-                    return false;
-                });
-
-                if (!serviceCategoryInCategoryList) {
-                    categoryList.push(service.category);
-                    categoryCount[categoryList.length] = 1;
-                }
-            }
-        });
-        orgApplications.categoryCount = categoryCount;
-        return categoryList;
-    };
-
-    var getApplicationsFromGrants = function(grants) {
-        // WORKAROUND CASE #1
-        // Get services from each grant
-        var i = 0;
-        grants.forEach(function(grant) {
-            API.cui.getPackageServices({ 'packageId': grant.servicePackage.id })
-            .then(function(res) {
-                i++;
-                res.forEach(function(service) {
-                    // Set some of the grant attributes to its associated service
-                    service.status = grant.status;
-                    service.dateCreated = grant.creation;
-                    service.parentPackage = grant.servicePackage.id;
-                    orgApplications.appList.push(service);
-                });
-
-                if (i === grants.length) {
-                    orgApplications.appList = _.uniq(orgApplications.appList, function(app) {
-                        return app.id;
-                    });
-                    angular.copy(orgApplications.appList, orgApplications.unparsedAppList);
-                    orgApplications.statusCount[0] = orgApplications.appList.length;
-                    orgApplications.categoryList = getListOfCategories(orgApplications.appList);
-                    orgApplications.loading = false;
-                    $scope.$digest();
-                }
-            })
-            .fail(handleError);
-        });
-    };
-
-    // HELPER FUNCTIONS END -----------------------------------------------------------------------------------
-
-    // ON LOAD START ------------------------------------------------------------------------------------------
-
-    if (organizationId) {
-        // Load organization applications of id parameter
-        API.cui.getOrganizationPackages({ organizationId: organizationId })
-        .then(function(res) {
-            getApplicationsFromGrants(res);
-        })
-        .fail(handleError);
-    }
-    else {
-        // Load logged in user's organization applications
-        API.cui.getPerson({ personId: API.getUser(), useCuid:true })
-        .then(function(res) {
-            return API.cui.getOrganizationPackages({ organizationId: res.organization.id });
-        })
-        .then(function(res) {
-            getApplicationsFromGrants(res);
-        })
-        .fail(handleError);
-    }
-
-    // ON LOAD END --------------------------------------------------------------------------------------------
-
-    // ON CLICK FUNCTIONS START -------------------------------------------------------------------------------
-    // ON CLICK FUNCTIONS END ---------------------------------------------------------------------------------
 
 }]);
 

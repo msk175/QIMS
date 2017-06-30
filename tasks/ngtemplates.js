@@ -14,7 +14,8 @@ module.exports = function(grunt,config){
     build: {
       files:[
         {
-          src: ['<%= config.appFolder.replace("./","") %>/**/*.html','!<%= config.appFolder.replace("./","") %>/<%= config.nonConcatHtmlFolder %>/**/*'],
+          src: ['<%= config.appFolder.replace("./","") %>/**/*.html',
+          '!<%= config.appFolder.replace("./","") %>/<%= config.nonConcatHtmlFolder %>/**/*'],
           dest: 'assets/concat/js/templateCache.js'
         }
       ],

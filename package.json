@@ -13,14 +13,6 @@
     "url": "https://github.com/thirdwavellc/cui-bcbsm/issues"
   },
   "homepage": "https://github.com/thirdwavellc/cui-bcbsm",
-  "dependencies": {
-    "cui-i18n-bcbsm": "git+ssh://git@github.com:Covisint/cui-i18n-bcbsm.git",
-    "lato-font": "^1.1.1",
-    "@covisint/cui-idm-b2x": "1.2.4",
-    "@covisint/cui-ng": "^2.0.1",
-    "angular-ui-router": "0.2.18",
-    "@covisint/cui-i18n": "1.0.34"
-  },
   "devDependencies": {
     "@covisint/cui-idm-b2x": "1.2.4"
   }

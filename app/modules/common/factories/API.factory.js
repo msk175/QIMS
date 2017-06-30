@@ -1,6 +1,5 @@
 angular.module('common')
-.factory('API',['$state','User','$rootScope','$window','$location','CustomAPI','$q','localStorageService','Loader','$timeout','Base','LocaleService',
-($state,User,$rootScope,$window,$location,CustomAPI,$q,localStorage,Loader,$timeout,Base,LocaleService) => {
+.factory('API', (Base, CustomAPI, Loader, localStorageService, User, $location, $q, $timeout, $window,LocaleService) => {
 
     let authInfo = {}
     let myCUI = {}
@@ -9,26 +8,36 @@ angular.module('common')
 
     const populateUserInfo = (info, redirectOpts) => {
         const deferred = $q.defer()
-        let userInfo, roleList
+        let userInfo, roleList, entitlementList
         authInfo = info
         User.set(info)
 
         $q.all([
             myCUI.getPersonRoles({ personId: authInfo.cuid }),
-            myCUI.getPerson({ personId: authInfo.cuid })                        
+            myCUI.getPersonEntitlements({ personId: authInfo.cuid }),
+            myCUI.getPerson({ personId: authInfo.cuid })
         ])
         .then(res => {
             roleList = res[0].map(x => x.name)
-            User.setEntitlements(roleList)
-            userInfo = res[1]
-            return myCUI.getOrganization({ organizationId: res[1].organization.id })
+            User.setRoles(roleList)
+
+            entitlementList = res[1].map(x => x.privilegeName)
+            User.setEntitlements(entitlementList)
+
+            userInfo = res[2]
+            LocaleService.setLocaleByDisplayName(appConfig.languages[userInfo.language])
+            return myCUI.getOrganizationWithAttributes({ organizationId: res[2].organization.id })
         })
         .then(res => {
             userInfo.organization = res
             User.set(userInfo)
-            deferred.resolve({ roleList, redirect: redirectOpts })
+            //cui.log('populateUserInfo', User);
+            //get user notification related information  as lazy loading,
+            // No need to hold entire UI apps for this loading.
+            getNotificationDetails(userInfo)
+            deferred.resolve({ roleList: roleList, redirect: redirectOpts })
         })
-        
+
         return deferred.promise
     }
 
@@ -79,19 +88,27 @@ angular.module('common')
             ]
         })
         .then((cuiObject) => {
-            Base.logout = cuiObject.covLogout
+            if (appConfig.logoutUrl) {
+                Base.logout = () => {
+                    myCUI.covLogout({
+                        redirect: appConfig.logoutUrl,
+                        qs: [['type', 'logout']]
+                    })
+                }    
+            }
+            else Base.logout = cuiObject.covLogout
             angular.copy(cuiObject, myCUI)
             myCUI.setAuthHandler(jwtAuthHandler)
             // overwrite the service url to get the solution instance id
             appConfig.solutionInstancesUrl && myCUI.setServiceUrl(appConfig.solutionInstancesUrl)
             return myCUI.covAuthInfo({originUri: appConfig.originUri})
         })
-        .then(()=>{
+        .then(() => {
             // reset the service url
             appConfig.debugServiceUrl
                 ? myCUI.setServiceUrl(appConfig.debugServiceUrl)
                 : myCUI.setServiceUrl(appConfig.serviceUrl)
-            $timeout(()=> Loader.offFor('wholeApp'),50)
+            $timeout(() => Loader.offFor('wholeApp'), 50)
             deferred.resolve()
         })
         return deferred.promise
@@ -108,8 +125,9 @@ angular.module('common')
         authenticateUser: (redirectOpts) => {
             const deferred = $q.defer()
             const sessionInfo = myCUI.getCovAuthInfo()
-            if(redirectOpts.toState.name!=='auth') {
-                localStorage.set('appRedirect',redirectOpts) // set the redirect to whatever the last state before auth was
+
+            if (redirectOpts.toState.name!=='auth') {
+                localStorageService.set('appRedirect',redirectOpts) // set the redirect to whatever the last state before auth was
                 Loader.onFor('wholeApp','redirecting-to-sso') // don't need to turn this loader off since covAuth takes us to another page
                 appConfig.solutionInstancesUrl && myCUI.setServiceUrl(appConfig.solutionInstancesUrl)
                 jwtAuthHandler() // force redirect to SSO
@@ -117,9 +135,9 @@ angular.module('common')
             else {
                 Loader.onFor('wholeApp','getting-user-info')
                 myCUI.handleCovAuthResponse({ selfRedirect: true })
-                .then((res)=>{
-                    populateUserInfo(res,localStorage.get('appRedirect'))
-                    .then((res) => {
+                .then(res => {
+                    populateUserInfo(res,localStorageService.get('appRedirect'))
+                    .then(res => {
                         deferred.resolve(res)
                         $timeout(()=> Loader.offFor('wholeApp'),50)
                     })
@@ -135,4 +153,4 @@ angular.module('common')
 
     return apiFactory
 
-}])
+})

@@ -1,8 +1,0 @@
-/* Makes the text in the applications list align. */
-.cui-media__title,
-.cui-media__content {
-	padding: 0;
-  @media screen and (min-width: 701px) {
-    flex: 1;
-  }
-}

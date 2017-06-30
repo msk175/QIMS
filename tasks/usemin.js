@@ -6,5 +6,5 @@ module.exports = function(grunt,config){
         css: ['<%= config.buildDir %>/app/css/**/*.css'],
         js: ['<%= config.buildDir %>/app/js/**/*.js'],
         html: ['<%= config.buildDir %>/index.html']
-    }
+    };
 };

@@ -1,5 +1,5 @@
 {
-    "originUri": "q-qa1-q-adn.idm.qa.covapp.io",
-    "serviceUrl": "https://q-qa1-q-adn.idm.qa.covapp.io/p/apiProxy",
-    "solutionInstancesUrl": "https://q-qa1-q-adn.idm.qa.covapp.io"
+    "originUri": "q-qims-demo.identity.qa.covapp.io",
+    "serviceUrl": "https://q-qims-demo.idm.qa.covapp.io/p/apiProxy",
+    "solutionInstancesUrl": "https://q-qims-demo.idm.qa.covapp.io"
 }

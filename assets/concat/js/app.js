@@ -7,13 +7,12 @@ var i18nPackageJson=void 0;
 $.get('./appConfig.json').
 then(function(configData){
 appConfig=Object.assign({},appConfig,configData);
-//return $.get('./appConfig-env.json')
+return $.get('./appConfig-env.json');
+}).
+then(function(envConfigData){
+appConfig=Object.assign({},appConfig,envConfigData);
 return $.get('./package.json');
-})
-/*.then(function(envConfigData) {
-		appConfig = Object.assign({}, appConfig, envConfigData)
-		return $.get('./package.json')
-	})*/.
+}).
 then(function(packageJsonData){
 packageJson=Object.assign({},packageJson,packageJsonData);
 if(appConfig.languageResources.dependencyOrigin==='cui-idm-b2x'){
@@ -79,7 +78,7 @@ access:loginRequired});
 }]);
 
 angular.module('user').
-controller('appGrantHistoryCtrl',['Loader', 'User', '$scope', 'API', 'APIError', '$filter', '$pagination', '$q', '$state', '$stateParams', function(Loader,User,$scope,API,APIError,$filter,$pagination,$q,$state,$stateParams){
+controller('appGrantHistoryCtrl',function(Loader,User,$scope,API,APIError,$filter,$pagination,$q,$state,$stateParams){
 
 var appGrantHistory=this;
 var scopeName='appGrantHistory.';
@@ -236,9 +235,9 @@ $scope.$digest();
 });
 /* -------------------------------------------- ON LOAD END --------------------------------------------- */
 
-}]);
+});
 angular.module('user').
-controller('appRequestHistoryCtrl',['Loader', 'User', '$scope', 'API', 'APIError', '$filter', '$pagination', '$q', '$state', '$stateParams', function(Loader,User,$scope,API,APIError,$filter,$pagination,$q,$state,$stateParams){
+controller('appRequestHistoryCtrl',function(Loader,User,$scope,API,APIError,$filter,$pagination,$q,$state,$stateParams){
 
 var appRequestHistory=this;
 var scopeName='appRequestHistory.';
@@ -457,9 +456,9 @@ $scope.$digest();
 });
 /* -------------------------------------------- ON LOAD END --------------------------------------------- */
 
-}]);
+});
 angular.module('user').
-controller('userHistoryCtrl',['Loader', 'User', 'UserHistory', '$scope', function(Loader,User,UserHistory,$scope){
+controller('userHistoryCtrl',function(Loader,User,UserHistory,$scope){
 
 var userHistory=this;
 var scopeName='userHistory.';
@@ -481,9 +480,9 @@ Loader.offFor(scopeName+'initHistory');
 
 /* -------------------------------------------- ON LOAD END --------------------------------------------- */
 
-}]);
+});
 angular.module('user').
-controller('userProfileCtrl',['Loader', 'User', 'UserProfile', '$scope', function(Loader,User,UserProfile,$scope){
+controller('userProfileCtrl',function(Loader,User,UserProfile,$scope){
 
 var userProfile=this;
 var scopeName='userProfile.';
@@ -530,10 +529,10 @@ Loader.offFor(scopeName+'initProfile');
 
 /* --------------------------------------------- ON LOAD END ---------------------------------------------- */
 
-}]);
+});
 
 angular.module('user').
-controller('userRolesCtrl',['Loader', 'User', 'UserProfile', '$scope', 'API', 'APIError', '$timeout', '$state', function(Loader,User,UserProfile,$scope,API,APIError,$timeout,$state){
+controller('userRolesCtrl',function(Loader,User,UserProfile,$scope,API,APIError,$timeout,$state){
 'use strict';
 
 var userRoles=this;
@@ -654,7 +653,7 @@ userRoles.appCheckboxValid=false;
 }
 },true);
 // ON CLICK END ----------------------------------------------------------------------------------
-}]);
+});
 
 
 angular.module('registration',[]).
@@ -693,228 +692,7 @@ mobile:false}});
 }]);
 
 angular.module('registration').
-controller('divisionCtrl',['$scope','API',function($scope,API){
-var newDivision=this;
-newDivision.userLogin={};
-newDivision.orgSearch={};
-
-newDivision.passwordPolicies=[// WORKAROUND CASE #5
-{
-'allowUpperChars':true,
-'allowLowerChars':true,
-'allowNumChars':true,
-'allowSpecialChars':true,
-'requiredNumberOfCharClasses':3},
-
-{
-'disallowedChars':'^&*)(#$'},
-
-{
-'min':8,
-'max':18},
-
-{
-'disallowedWords':['password','admin']}];
-
-
-
-API.cui.getSecurityQuestions().
-then(function(res){
-// Removes first question as it is blank
-res.splice(0,1);
-
-// Splits questions to use between both dropdowns
-var numberOfQuestions=res.length,
-numberOfQuestionsFloor=Math.floor(numberOfQuestions/2);
-
-newDivision.userLogin.challengeQuestions1=res.slice(0,numberOfQuestionsFloor);
-newDivision.userLogin.challengeQuestions2=res.slice(numberOfQuestionsFloor);
-
-// Preload question into input
-newDivision.userLogin.question1=newDivision.userLogin.challengeQuestions1[0];
-newDivision.userLogin.question2=newDivision.userLogin.challengeQuestions2[0];
-return API.cui.getOrganizations();
-}).
-then(function(res){
-newDivision.organizationList=res;
-$scope.$digest();
-}).
-fail(function(err){
-console.log(err);
-});
-
-var searchOrganizations=function searchOrganizations(){
-// this if statement stops the search from executing
-// when the controller first fires  and the search object is undefined/
-// once pagination is impletemented this won't be needed
-if(newDivision.orgSearch){
-API.cui.getOrganizations({'qs':[['name',newDivision.orgSearch.name]]}).
-then(function(res){
-newDivision.organizationList=res;
-$scope.$apply();
-}).
-fail(function(err){
-console.log(err);
-});
-}
-};
-
-$scope.$watchCollection('newDivision.orgSearch',searchOrganizations);
-
-}]);
-
-angular.module('registration').
-controller('tloCtrl',['$scope','API',function($scope,API){
-var newTLO=this;
-newTLO.userLogin={};
-
-var handleError=function handleError(err){
-console.log('Error\n',err);
-};
-
-newTLO.passwordPolicies=[// WORKAROUND CASE #5
-{
-'allowUpperChars':true,
-'allowLowerChars':true,
-'allowNumChars':true,
-'allowSpecialChars':true,
-'requiredNumberOfCharClasses':3},
-
-{
-'disallowedChars':'^&*)(#$'},
-
-{
-'min':8,
-'max':18},
-
-{
-'disallowedWords':['password','admin']}];
-
-
-
-
-API.cui.getSecurityQuestions().
-then(function(res){
-// Removes first question as it is blank
-res.splice(0,1);
-
-// Splits questions to use between both dropdowns
-var numberOfQuestions=res.length,
-numberOfQuestionsFloor=Math.floor(numberOfQuestions/2);
-
-newTLO.userLogin.challengeQuestions1=res.slice(0,numberOfQuestionsFloor);
-newTLO.userLogin.challengeQuestions2=res.slice(numberOfQuestionsFloor);
-
-// Preload question into input
-newTLO.userLogin.question1=newTLO.userLogin.challengeQuestions1[0];
-newTLO.userLogin.question2=newTLO.userLogin.challengeQuestions2[0];
-}).
-fail(handleError);
-
-}]);
-
-angular.module('registration').
-controller('userCSVCtrl',['API', 'APIError', 'Base', 'localStorageService', '$scope', '$state', '$http', function(API,APIError,Base,localStorageService,$scope,$state,$http){
-
-var userCSV=this;
-
-userCSV.submitError=false;
-userCSV.initializing=true;
-APIError.offFor('userCSV.initializing');
-var organization_id='OIESO-CLOUD13807765';
-
-if(!Base.user.entitlements.length>0){
-userCSV.initializing=false;
-$state.go('misc.notAuth');
-}
-
-API.cui.initiateNonce().
-then(function(res){
-return API.cui.getSecurityQuestionsNonce();
-}).
-then(function(res){
-res.splice(0,1);// Split questions
-var numberOfQuestions=res.length;
-var numberOfQuestionsFloor=Math.floor(numberOfQuestions/2);
-
-var challengeQuestions1=res.slice(0,numberOfQuestionsFloor);
-var challengeQuestions2=res.slice(numberOfQuestionsFloor);
-
-
-var securityQuestionAccount={
-version:'1',
-questions:[{
-question:{
-id:challengeQuestions1[0].id,
-type:'question',
-realm:'IESO-CLOUD'},
-
-answer:'test',
-index:1},
-
-{
-question:{
-id:challengeQuestions2[0].id,
-type:'question',
-realm:'IESO-CLOUD'},
-
-answer:'test',
-index:2}]};
-
-
-$scope.security=JSON.stringify(securityQuestionAccount);
-return API.cui.getOrganizationNonce({organizationId:organization_id});
-}).
-then(function(res){
-$scope.organization=JSON.stringify(res);
-});
-
-
-userCSV.submit=function(){
-userCSV.submitting=true;
-var csvfile=$scope.csvFile;
-
-if(typeof csvfile=='undefined'){
-userCSV.errorMessage="No file found, please try again.";
-userCSV.submitError=true;
-}else{
-if(csvfile.name.match(/.csv$/i)){
-userCSV.errorMessage="";
-$http({
-'method':'POST',
-'url':'http://localhost:3000/upload/csv',
-'headers':{
-'Content-Type':undefined},
-
-'data':{
-'security':$scope.security,
-'organization':$scope.organization,
-'csvfile':$scope.csvFile},
-
-transformRequest:function transformRequest(data,headersGetter){
-var formData=new FormData();
-angular.forEach(data,function(value,key){
-formData.append(key,value);
-});
-
-var headers=headersGetter();
-delete headers['Content-Type'];
-
-return formData;
-}}).
-then(function(data){
-$state.go('misc.success-csv');
-});
-}else{
-userCSV.errorMessage="You have chosen a file that is not a .csv file";
-userCSV.submitError=true;
-}
-}
-userCSV.submitting=false;
-};
-}]);
-angular.module('registration').
-controller('userInvitedCtrl',['APIError', 'localStorageService', 'Registration', '$scope', '$state', '$q', 'LocaleService', '$window', 'Base', '$stateParams', '$pagination', '$filter', function(APIError,localStorageService,Registration,$scope,$state,$q,LocaleService,$window,Base,$stateParams,$pagination,$filter){
+controller('userInvitedCtrl',function(APIError,localStorageService,Registration,$scope,$state,$q,LocaleService,$window,Base,$stateParams,$pagination,$filter){
 
 var userInvited=this;
 var encodedString=btoa($stateParams.inviteId+':'+$stateParams.pin);
@@ -1511,10 +1289,10 @@ userInvited.inlineEdit.challengeAnswer2(userInvited.userLogin.challengeAnswer2);
 
 /* --------------------------------------------- WATCHERS END --------------------------------------------- */
 
-}]);
+});
 
 angular.module('registration').
-controller('userWalkupCtrl',['APIError', 'localStorageService', 'Registration', '$scope', '$state', '$q', 'LocaleService', '$window', 'Base', '$pagination', '$filter', function(APIError,localStorageService,Registration,$scope,$state,$q,LocaleService,$window,Base,$pagination,$filter){
+controller('userWalkupCtrl',function(APIError,localStorageService,Registration,$scope,$state,$q,LocaleService,$window,Base,$pagination,$filter){
 
 var userWalkup=this;
 
@@ -2031,7 +1809,7 @@ userWalkup.inlineEdit.challengeAnswer2(userWalkup.userLogin.challengeAnswer2);
 
 /* --------------------------------------------- WATCHERS END --------------------------------------------- */
 
-}]);
+});
 
 angular.module('organization',[]).
 config(['$stateProvider',function($stateProvider){
@@ -2349,7 +2127,7 @@ permittedLogic:appConfig.accessByAnyAdmin}})
 
 // Org Requests/ADMIN
 .state('organization.requests.orgRegistrationRequests',{
-url:'/orgRequests?page&pageSize',
+url:'/orgRequests?page&pageSize&organizationName',
 templateUrl:templateBase+'requests/orgRequests/orgRegistrationRequests/requests-RegistrationRequests.html',
 controller:returnCtrlAs('orgRegistrationRequests'),
 access:{
@@ -2367,7 +2145,7 @@ permittedLogic:appConfig.orgAdminLogic}});
 }]);
 
 angular.module('organization').
-controller('orgAppRequestCtrl',['API', 'DataStorage', 'Loader', 'User', '$scope', '$state', '$stateParams', function(API,DataStorage,Loader,User,$scope,$state,$stateParams){
+controller('orgAppRequestCtrl',function(API,DataStorage,Loader,User,$scope,$state,$stateParams){
 
 var orgAppRequest=this;
 var orgAppsBeingRequested=DataStorage.getType('orgAppsBeingRequested');
@@ -2405,10 +2183,10 @@ $state.go('organization.search',{name:searchWord});
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('orgAppRequestReviewCtrl',['API', 'APIError', 'BuildPackageRequests', 'DataStorage', 'Loader', 'User', '$q', '$state', '$timeout', 'AppRequests', '$stateParams', function(API,APIError,BuildPackageRequests,DataStorage,Loader,User,$q,$state,$timeout,AppRequests,$stateParams){
+controller('orgAppRequestReviewCtrl',function(API,APIError,BuildPackageRequests,DataStorage,Loader,User,$q,$state,$timeout,AppRequests,$stateParams){
 
 var orgAppRequestReview=this;
 var loaderName='orgAppRequestReview.';
@@ -2523,13 +2301,13 @@ orgAppRequestReview.step=2;
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('orgApplicationDetailsCtrl',['API', 'APIHelpers', 'APIError', 'Loader', 'Sort', 'User', '$q', '$scope', '$state', '$stateParams', function(API,APIHelpers,APIError,Loader,Sort,User,$q,$scope,$state,$stateParams){
+controller('orgApplicationDetailsCtrl',function(API,APIHelpers,APIError,Loader,Sort,User,$q,$scope,$state,$stateParams){
 
 var orgApplicationDetails=this;
-var organizationId=User.user.organization.id;
+var organizationId=$stateParams.orgId;
 var serviceId=$stateParams.appId;
 var loaderName='orgApplicationDetails.';
 orgApplicationDetails.stateParamsOrgId=$stateParams.orgId;
@@ -2594,9 +2372,9 @@ APIError.onFor(loaderName+'grants: ',error);
 
 Loader.onFor(loaderName+'app');
 
-API.cui.getOrganizationHierarchy({organizationId:User.user.organization.id}).
+API.cui.getOrganization({organizationId:organizationId}).
 then(function(res){
-orgApplicationDetails.organizationList=APIHelpers.flattenOrgHierarchy(res);
+orgApplicationDetails.organization=res;
 return API.cui.getOrganizationGrantedApps({organizationId:organizationId,qs:[['service.id',serviceId]]});
 }).
 then(function(res){
@@ -2749,9 +2527,9 @@ $scope.$apply();
 };
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
-}]);
+});
 angular.module('organization').
-controller('organizationApplicationsCtrl',['API', 'Sort', 'User', '$filter', '$pagination', '$q', '$scope', '$state', '$stateParams', function(API,Sort,User,$filter,$pagination,$q,$scope,$state,$stateParams){
+controller('organizationApplicationsCtrl',function(API,Sort,User,$filter,$pagination,$q,$scope,$state,$stateParams){
 
 var organizationApplications=this;
 organizationApplications.stateParamsOrgId=$stateParams.orgId;
@@ -2942,10 +2720,10 @@ $state.go('organization.applicationDetails',opts);
 
 // ON CLICK FUNCTIONS END ---------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('orgAppSearchCtrl',['API', 'DataStorage', 'Loader', 'User', '$pagination', '$q', '$state', '$stateParams', function(API,DataStorage,Loader,User,$pagination,$q,$state,$stateParams){
+controller('orgAppSearchCtrl',function(API,DataStorage,Loader,User,$pagination,$q,$state,$stateParams){
 
 var orgAppSearch=this;
 var loaderName='orgAppSearch.loading';
@@ -3186,10 +2964,10 @@ orgAppSearch.toggleRequest(_.find(orgAppSearch.list,{id:bundledApp.id}));
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('orgDetailsCtrl',['API', 'Loader', '$scope', '$stateParams', 'APIError', 'APIHelpers', '$timeout', '$q', function(API,Loader,$scope,$stateParams,APIError,APIHelpers,$timeout,$q){
+controller('orgDetailsCtrl',function(API,Loader,$scope,$stateParams,APIError,APIHelpers,$timeout,$q){
 
 var orgDetails=this;
 var scopeName='orgDetails.';
@@ -3241,10 +3019,10 @@ APIError.onFor('orgDetails.org');
 /* --------------------------------------------- ON CLICK START ---------------------------------------------- */
 
 /* --------------------------------------------- ON CLICK END ---------------------------------------------- */
-}]);
+});
 
 angular.module('organization').
-controller('orgDetailsAppsCtrl',['API', '$stateParams', '$q', '$state', 'DataStorage', '$pagination', 'Loader', '$filter', '$scope', function(API,$stateParams,$q,$state,DataStorage,$pagination,Loader,$filter,$scope){
+controller('orgDetailsAppsCtrl',function(API,$stateParams,$q,$state,DataStorage,$pagination,Loader,$filter,$scope){
 'use strict';
 
 
@@ -3436,10 +3214,10 @@ orgId:application.owningOrganization.id};
 $state.go('organization.applicationDetails',opts);
 };
 // ON CLICK FUNCTIONS END ------------------------------------------------------------------------
-}]);
+});
 
 angular.module('organization').
-controller('orgDetailsHierarchyCtrl',['API', 'APIError', 'Loader', 'User', '$scope', '$state', '$stateParams', function(API,APIError,Loader,User,$scope,$state,$stateParams){
+controller('orgDetailsHierarchyCtrl',function(API,APIError,Loader,User,$scope,$state,$stateParams){
 'use strict';
 var orgDetailsHierarchy=this;
 var pageLoader='orgDetailsHierarchy.loading';
@@ -3508,10 +3286,10 @@ object.expanded=!object.expanded;
 // updateOrgChildren(orgDetailsHierarchy.organizationHierarchy[0].children)
 $scope.$digest();
 };
-}]);
+});
 
 angular.module('organization').
-controller('orgDetailsProfileCtrl',['Loader', 'Organization', '$stateParams', '$q', 'APIError', function(Loader,Organization,$stateParams,$q,APIError){
+controller('orgDetailsProfileCtrl',function(Loader,Organization,$stateParams,$q,APIError){
 
 var orgDetailsProfile=this;
 var scopeName='orgDetailsProfile.';
@@ -3548,10 +3326,10 @@ APIError.onFor('orgDetailsProfile.init');
 
 /* --------------------------------------------- ON LOAD END ---------------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('orgDetailsUsersCtrl',['API', 'APIError', 'APIHelpers', 'CuiMobileNavFactory', 'Loader', 'User', 'UserList', '$filter', '$pagination', '$q', '$state', '$stateParams', function(API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,UserList,$filter,$pagination,$q,$state,$stateParams){
+controller('orgDetailsUsersCtrl',function(API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,UserList,$filter,$pagination,$q,$state,$stateParams){
 
 var orgDetailsUsers=this;
 var scopeName='orgDetailsUsers.';
@@ -3700,209 +3478,10 @@ initDirectory(organization.id);
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('orgDirectoryCtrl',['$scope', '$stateParams', 'API', '$filter', 'Sort', '$state', '$q', 'User', '$pagination', function($scope,$stateParams,API,$filter,Sort,$state,$q,User,$pagination){
-'use strict';
-
-var orgDirectory=this;
-
-orgDirectory.loading=true;
-orgDirectory.sortFlag=false;
-orgDirectory.userList=[];
-orgDirectory.unparsedUserList=[];
-orgDirectory.statusList=['active','locked','pending','suspended','rejected','removed'];
-orgDirectory.statusCount=[0,0,0,0,0,0,0];
-orgDirectory.paginationPageSize=orgDirectory.paginationPageSize||$pagination.getUserValue()||$pagination.getPaginationOptions()[0];
-
-// HELPER FUNCTIONS START ------------------------------------------------------------------------
-
-var handleError=function handleError(err){
-orgDirectory.loading=false;
-$scope.$digest();
-console.log('Error',err);
-};
-
-var getStatusList=function getStatusList(users){
-var statusList=[];
-var statusCount=[orgDirectory.unparsedUserList.length];
-
-users.forEach(function(user){
-if(user.status){
-var statusInStatusList=_.some(statusList,function(status,i){
-if(angular.equals(status,user.status)){
-statusCount[i+1]?statusCount[i+1]++:statusCount[i+1]=1;
-return true;
-}
-return false;
-});
-
-if(!statusInStatusList){
-statusList.push(user.status);
-statusCount[statusList.length]=1;
-}
-}
-});
-orgDirectory.statusCount=statusCount;
-return statusList;
-};
-
-var flattenHierarchy=function flattenHierarchy(orgChildrenArray){
-if(orgChildrenArray){
-var childrenArray=orgChildrenArray;
-var orgList=[];
-
-childrenArray.forEach(function(childOrg){
-if(childOrg.children){
-var newChildArray=childOrg.children;
-delete childOrg['children'];
-orgList.push(childOrg);
-orgList.push(flattenHierarchy(newChildArray));
-}else
-{
-orgList.push(childOrg);
-}
-});
-return _.flatten(orgList);
-}
-};
-
-var getUserListAppCount=function getUserListAppCount(userArray){
-var userList=userArray;
-
-userList.forEach(function(user){
-API.cui.getPersonGrantedCount({personId:user.id}).
-then(function(res){
-user.appCount=res;
-}).
-fail(function(error){
-user.appCount=0;
-});
-});
-
-return userList;
-};
-
-var getPeopleAndCount=function getPeopleAndCount(){
-var getPersonOptions={
-'qs':[
-['organization.id',String(orgDirectory.organization.id)],
-['pageSize',String(orgDirectory.paginationPageSize)],
-['page',String(1)]]};
-
-
-
-var countPersonOptions={
-'qs':['organization.id',String(orgDirectory.organization.id)]};
-
-
-$q.all([API.cui.getPersons(getPersonOptions),API.cui.countPersons(countPersonOptions)]).
-then(function(res){
-orgDirectory.unparsedUserList=angular.copy(res[0]);
-orgDirectory.statusList=getStatusList(orgDirectory.userList);
-orgDirectory.orgPersonCount=res[1];
-orgDirectory.userList=orgDirectory.unparsedUserList=getUserListAppCount(orgDirectory.unparsedUserList);
-orgDirectory.loading=false;
-orgDirectory.reRenderPagination&&orgDirectory.reRenderPagination();
-});
-};
-
-// HELPER FUNCTIONS END --------------------------------------------------------------------------
-
-// ON LOAD START ---------------------------------------------------------------------------------
-
-API.cui.getOrganizationHierarchy({organizationId:User.user.organization.id}).
-then(function(res){
-orgDirectory.organization=res;
-orgDirectory.organizationList=flattenHierarchy(res.children);
-getPeopleAndCount();
-});
-
-// ON LOAD END -----------------------------------------------------------------------------------
-
-// ON CLICK START --------------------------------------------------------------------------------
-
-orgDirectory.getOrgMembers=function(organization){
-orgDirectory.loading=true;
-orgDirectory.organization=organization;
-API.cui.getPersons({'qs':[['organization.id',String(orgDirectory.organization.id)]]}).
-then(function(res){
-orgDirectory.userList=orgDirectory.unparsedUserList=getUserListAppCount(res);
-orgDirectory.statusList=getStatusList(orgDirectory.userList);
-return API.cui.countPersons({'qs':['organization.id',String(orgDirectory.organization.id)]});
-}).
-then(function(res){
-orgDirectory.orgPersonCount=res;
-orgDirectory.loading=false;
-$scope.$digest();
-}).
-fail(handleError);
-};
-
-orgDirectory.sort=function sort(sortType){
-Sort.listSort(orgDirectory.userList,sortType,orgDirectory.sortFlag);
-orgDirectory.sortFlag=!orgDirectory.sortFlag;
-};
-
-orgDirectory.parseUsersByStatus=function parseUsersByStatus(status){
-if(status==='all'){
-orgDirectory.userList=orgDirectory.unparsedUserList;
-}else
-{
-var filteredUsers=_.filter(orgDirectory.unparsedUserList,function(user){
-return user.status===status;
-});
-orgDirectory.userList=filteredUsers;
-}
-};
-
-orgDirectory.paginationHandler=function paginationHandler(page){
-API.cui.getPersons({'qs':[['organization.id',String(orgDirectory.organization.id)],
-['pageSize',String(orgDirectory.paginationPageSize)],['page',String(page)]]}).
-then(function(res){
-orgDirectory.userList=orgDirectory.unparsedUserList=getUserListAppCount(res);
-orgDirectory.statusList=getStatusList(orgDirectory.userList);
-}).
-fail(handleError);
-};
-
-orgDirectory.userClick=function(clickedUser){
-switch(clickedUser.status){
-case'active':
-case'unactivated':
-case'inactive':
-$state.go('organization.directory.userDetails',{userID:clickedUser.id,orgID:clickedUser.organization.id});
-break;
-case'pending':
-$state.go('organization.requests.personRequest',{userID:clickedUser.id,orgID:clickedUser.organization.id});
-break;}
-
-};
-
-// ON CLICK END ----------------------------------------------------------------------------------
-
-// WATCHERS START --------------------------------------------------------------------------------
-
-$scope.$watch('orgDirectory.paginationPageSize',function(newValue,oldValue){
-if(newValue&&oldValue&&newValue!==oldValue){
-API.cui.getPersons({'qs':[['organization.id',String(orgDirectory.organization.id)],
-['pageSize',String(orgDirectory.paginationPageSize)],['page',1]]}).
-then(function(res){
-orgDirectory.userList=orgDirectory.unparsedUserList=getUserListAppCount(res);
-orgDirectory.paginationCurrentPage=1;
-orgDirectory.statusList=getStatusList(orgDirectory.userList);
-}).
-fail(handleError);
-}
-});
-
-// WATCHERS END ----------------------------------------------------------------------------------
-
-}]);
-
-angular.module('organization').
-controller('userAppDetailsCtrl',['API', '$scope', '$stateParams', '$state', '$q', 'APIHelpers', 'Loader', 'APIError', 'DataStorage', '$timeout', function(API,$scope,$stateParams,$state,$q,APIHelpers,Loader,APIError,DataStorage,$timeout){
+controller('userAppDetailsCtrl',function(API,$scope,$stateParams,$state,$q,APIHelpers,Loader,APIError,DataStorage,$timeout){
 var userAppDetails=this;
 userAppDetails.relatedApps=[];
 userAppDetails.prevState={
@@ -4234,10 +3813,10 @@ console.log('There was an error updating user\'s app claims',+err);
 };
 // ON CLICK FUNCTIONS END ------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('userDetailsCtrl',['API', 'Loader', '$scope', '$stateParams', 'APIError', 'APIHelpers', '$timeout', '$q', function(API,Loader,$scope,$stateParams,APIError,APIHelpers,$timeout,$q){
+controller('userDetailsCtrl',function(API,Loader,$scope,$stateParams,APIError,APIHelpers,$timeout,$q){
 
 var userDetails=this;
 var scopeName='userDetails.';
@@ -4593,10 +4172,10 @@ $scope.$digest();
 };
 
 /* --------------------------------------------- ON CLICK END ---------------------------------------------- */
-}]);
+});
 
 angular.module('organization').
-controller('userDetailsAppsCtrl',['API', '$stateParams', '$q', '$state', 'DataStorage', function(API,$stateParams,$q,$state,DataStorage){
+controller('userDetailsAppsCtrl',function(API,$stateParams,$q,$state,DataStorage){
 'use strict';
 
 var userDetailsApps=this,
@@ -4695,10 +4274,10 @@ $state.go('organization.directory.userAppDetails',{appId:application.id,orgId:or
 };
 
 // ON CLICK FUNCTIONS END ------------------------------------------------------------------------
-}]);
+});
 
 angular.module('organization').
-controller('userDetailsHistoryCtrl',['API', '$stateParams', '$q', function(API,$stateParams,$q){
+controller('userDetailsHistoryCtrl',function(API,$stateParams,$q){
 'use strict';
 
 var userDetailsHistory=this,
@@ -4730,10 +4309,10 @@ console.log(error);
 
 // ON LOAD END -----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('userDetailsProfileCtrl',['Loader', 'UserProfile', '$scope', '$stateParams', function(Loader,UserProfile,$scope,$stateParams){
+controller('userDetailsProfileCtrl',function(Loader,UserProfile,$scope,$stateParams){
 
 var userDetailsProfile=this;
 var scopeName='userDetailsProfile.';
@@ -4752,10 +4331,10 @@ Loader.offFor(scopeName+'initProfile');
 
 /* --------------------------------------------- ON LOAD END ---------------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('userDetailsRolesCtrl',['API', '$stateParams', '$q', '$scope', 'APIError', '$timeout', function(API,$stateParams,$q,$scope,APIError,$timeout){
+controller('userDetailsRolesCtrl',function(API,$stateParams,$q,$scope,APIError,$timeout){
 'use strict';
 
 var userDetailsRoles=this,
@@ -4863,10 +4442,10 @@ userDetailsRoles.appCheckboxValid=false;
 
 // ON LOAD END -----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('orgDirectoryCtrl',['API', 'APIError', 'APIHelpers', 'CuiMobileNavFactory', 'Loader', 'User', 'UserList', '$filter', '$pagination', '$q', '$state', '$stateParams', function(API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,UserList,$filter,$pagination,$q,$state,$stateParams){
+controller('orgDirectoryCtrl',function(API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,UserList,$filter,$pagination,$q,$state,$stateParams){
 
 var orgDirectory=this;
 var scopeName='orgDirectory.';
@@ -5015,10 +4594,10 @@ initDirectory(organization.id);
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('orgHierarchyCtrl',['API', 'APIError', 'DataStorage', 'Loader', 'User', '$scope', '$state', '$stateParams', function(API,APIError,DataStorage,Loader,User,$scope,$state,$stateParams){
+controller('orgHierarchyCtrl',function(API,APIError,DataStorage,Loader,User,$scope,$state,$stateParams){
 
 var orgHierarchy=this;
 var pageLoader='orgHierarchy.loading';
@@ -5115,10 +4694,10 @@ updateFlag(org.children);
 updateFlag(orgHierarchy.organizationHierarchy[0].children);
 };
 /* */
-}]);
+});
 
 angular.module('organization').
-controller('divisionCtrl',['APIError', 'API', '$scope', '$state', '$q', 'Base', '$stateParams', 'User', '$timeout', 'DataStorage', function(APIError,API,$scope,$state,$q,Base,$stateParams,User,$timeout,DataStorage){
+controller('divisionCtrl',function(APIError,API,$scope,$state,$q,Base,$stateParams,User,$timeout,DataStorage){
 
 var division=this;
 division.sendInvitationError='';
@@ -5234,10 +4813,10 @@ $scope.$digest();
 division.goToOrg=function(){
 
 };
-}]);
+});
 
 angular.module('organization').
-controller('tloCtrl',['APIError', 'API', '$scope', '$state', '$q', 'Base', '$stateParams', 'User', '$timeout', function(APIError,API,$scope,$state,$q,Base,$stateParams,User,$timeout){
+controller('tloCtrl',function(APIError,API,$scope,$state,$q,Base,$stateParams,User,$timeout){
 
 var tlo=this;
 tlo.sendInvitationError='';
@@ -5294,10 +4873,10 @@ tlo.sendInvitationError=true;
 tlo.emailAddressError=true;
 }
 };
-}]);
+});
 
 angular.module('organization').
-controller('userCtrl',['APIError', 'API', '$scope', '$state', '$q', 'Base', '$stateParams', 'User', '$timeout', 'DataStorage', function(APIError,API,$scope,$state,$q,Base,$stateParams,User,$timeout,DataStorage){
+controller('userCtrl',function(APIError,API,$scope,$state,$q,Base,$stateParams,User,$timeout,DataStorage){
 
 var user=this;
 user.sendInvitationError='';
@@ -5425,10 +5004,10 @@ user.selectOrgFromList=false;
 $scope.$digest();
 };
 
-}]);
+});
 
 angular.module('organization').
-controller('orgProfileCtrl',['DataStorage', 'Loader', 'Organization', 'User', '$stateParams', '$q', 'APIError', function(DataStorage,Loader,Organization,User,$stateParams,$q,APIError){
+controller('orgProfileCtrl',function(DataStorage,Loader,Organization,User,$stateParams,$q,APIError){
 
 var orgProfile=this;
 var storedData=DataStorage.getType('orgProfile');
@@ -5479,10 +5058,10 @@ APIError.onFor('orgProfile.init');
 
 /* --------------------------------------------- ON LOAD END ---------------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-factory('NewGrant',['DataStorage', 'API', '$stateParams', function(DataStorage,API,$stateParams){
+factory('NewGrant',function(DataStorage,API,$stateParams){
 var newGrant={};
 var newGrantsInStorage=void 0;
 /*
@@ -5614,9 +5193,9 @@ return packageGrants;
 };
 
 return newGrant;
-}]);
+});
 angular.module('organization').
-controller('newGrantClaimsCtrl',['API', 'APIHelpers', 'DataStorage', 'Loader', 'NewGrant', '$stateParams', '$q', '$scope', '$state', '$timeout', function(API,APIHelpers,DataStorage,Loader,NewGrant,$stateParams,$q,$scope,$state,$timeout){
+controller('newGrantClaimsCtrl',function(API,APIHelpers,DataStorage,Loader,NewGrant,$stateParams,$q,$scope,$state,$timeout){
 
 var newGrantClaims=this;
 var loaderType='newGrantClaims.';
@@ -5726,10 +5305,10 @@ newGrantClaims.error=true;
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('newGrantCtrl',['API', '$stateParams', '$scope', '$state', '$filter', 'Loader', 'DataStorage', 'NewGrant', function(API,$stateParams,$scope,$state,$filter,Loader,DataStorage,NewGrant){
+controller('newGrantCtrl',function(API,$stateParams,$scope,$state,$filter,Loader,DataStorage,NewGrant){
 
 var newGrant=this;
 newGrant.prevState={
@@ -5803,10 +5382,10 @@ $state.go('organization.requests.newGrantClaims',{userId:$stateParams.userId,org
 };
 // ON CLICK END ----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('newGrantSearchCtrl',['$scope', '$state', '$stateParams', 'API', 'DataStorage', 'Loader', '$pagination', 'APIHelpers', 'NewGrant', '$q', function($scope,$state,$stateParams,API,DataStorage,Loader,$pagination,APIHelpers,NewGrant,$q){
+controller('newGrantSearchCtrl',function($scope,$state,$stateParams,API,DataStorage,Loader,$pagination,APIHelpers,NewGrant,$q){
 var newGrantSearch=this;
 newGrantSearch.prevState={
 params:{
@@ -5970,10 +5549,10 @@ newGrantSearch.toggleRequest({type:'application',payload:_.find(newGrantSearch.a
 }
 };
 // ON CLICK END ----------------------------------------------------------------------------------
-}]);
+});
 
 angular.module('organization').
-controller('newOrgGrantClaimsCtrl',['API', 'APIHelpers', 'DataStorage', 'Loader', 'NewGrant', '$stateParams', '$q', '$scope', '$state', '$timeout', function(API,APIHelpers,DataStorage,Loader,NewGrant,$stateParams,$q,$scope,$state,$timeout){
+controller('newOrgGrantClaimsCtrl',function(API,APIHelpers,DataStorage,Loader,NewGrant,$stateParams,$q,$scope,$state,$timeout){
 
 var newOrgGrantClaims=this;
 var loaderType='newOrgGrantClaims.';
@@ -6088,10 +5667,10 @@ newOrgGrantClaims.error=true;
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('newOrgGrantCtrl',['API', '$stateParams', '$scope', '$state', '$filter', 'Loader', 'DataStorage', 'NewGrant', function(API,$stateParams,$scope,$state,$filter,Loader,DataStorage,NewGrant){
+controller('newOrgGrantCtrl',function(API,$stateParams,$scope,$state,$filter,Loader,DataStorage,NewGrant){
 
 var newOrgGrant=this;
 newOrgGrant.prevState={
@@ -6172,10 +5751,10 @@ $state.go('organization.requests.newOrgGrantClaims',{orgId:$stateParams.orgId});
 };
 // ON CLICK END ----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('newOrgGrantSearchCtrl',['$scope', '$state', '$stateParams', 'API', 'DataStorage', 'Loader', '$pagination', 'APIHelpers', 'NewGrant', '$q', 'APIError', function($scope,$state,$stateParams,API,DataStorage,Loader,$pagination,APIHelpers,NewGrant,$q,APIError){
+controller('newOrgGrantSearchCtrl',function($scope,$state,$stateParams,API,DataStorage,Loader,$pagination,APIHelpers,NewGrant,$q,APIError){
 var newOrgGrantSearch=this;
 newOrgGrantSearch.prevState={
 params:{
@@ -6402,11 +5981,11 @@ newOrgGrantSearch.toggleRequest({type:'application',payload:_.find(newOrgGrantSe
 }
 };
 // ON CLICK END ----------------------------------------------------------------------------------
-}]);
+});
 
 angular.module('organization').
 controller('orgAppRequestsCtrl',
-['$timeout', '$filter', '$pagination', '$state', '$stateParams', 'API', 'APIError', 'APIHelpers', 'CuiMobileNavFactory', 'Loader', 'User', 'DataStorage', function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,DataStorage){
+function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,DataStorage){
 
 var scopeName='orgAppRequests.';
 var orgAppRequests=this;
@@ -6615,11 +6194,11 @@ init();
 };
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
 controller('orgRegistrationRequestsCtrl',
-['$timeout', '$filter', '$pagination', '$state', '$stateParams', 'API', 'APIError', 'APIHelpers', 'CuiMobileNavFactory', 'Loader', 'User', 'DataStorage', function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,DataStorage){
+function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,DataStorage){
 
 var scopeName='orgRegistrationRequests.';
 var orgRegistrationRequests=this;
@@ -6833,19 +6412,32 @@ cui.log('orgRegistrationRequests goToDetails missing keys',request);
 }
 };
 
-orgRegistrationRequests.updateSearchParams=function(page){
+orgRegistrationRequests.updateSearch=function(updateType,updateValue){
 //cui.log('updateSearchParams', page);
-if(page)orgRegistrationRequests.search.page=page;
+switch(updateType){
+case'organizationName':
+orgRegistrationRequests.search.page=1;
+orgRegistrationRequests.search.organizationName=updateValue;
+break;}
+
 // WHY transition to this same route? if setting notify:false? what is the purpose? just to add an item to history?
 $state.transitionTo('organization.requests.orgRegistrationRequests',orgRegistrationRequests.search,{notify:false});
 init();
 };
+
+orgRegistrationRequests.pageChange=function(newpage){
+orgRegistrationRequests.updateSearch('page',newpage);
+};
+
+orgRegistrationRequests.searchCallback=function(searchWord){
+orgRegistrationRequests.updateSearch('organizationName',searchWord);
+};
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('organizationAppRequestCtrl',['APIError', 'DataStorage', 'Loader', '$state', '$stateParams', '$timeout', 'API', '$scope', '$q', 'ServicePackage', function(APIError,DataStorage,Loader,$state,$stateParams,$timeout,API,$scope,$q,ServicePackage){
+controller('organizationAppRequestCtrl',function(APIError,DataStorage,Loader,$state,$stateParams,$timeout,API,$scope,$q,ServicePackage){
 'use strict';
 
 var organizationAppRequest=this;
@@ -6908,10 +6500,10 @@ $state.go('organization.requests.organizationAppRequestReview',{userId:userId,or
 };
 
 // ON CLICK END ----------------------------------------------------------------------------------
-}]);
+});
 
 angular.module('organization').
-controller('organizationAppRequestReviewCtrl',['DataStorage', 'Loader', 'ServicePackage', '$q', '$state', '$stateParams', '$timeout', 'APIError', 'API', '$scope', function(DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout,APIError,API,$scope){
+controller('organizationAppRequestReviewCtrl',function(DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout,APIError,API,$scope){
 'use strict';
 
 var organizationAppRequestReview=this;
@@ -7012,10 +6604,10 @@ fail(handleError);
 
 // ON CLICK END ----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('organizationRequestCtrl',['APIError', 'DataStorage', 'Loader', '$state', '$stateParams', '$timeout', 'API', '$scope', '$q', 'ServicePackage', function(APIError,DataStorage,Loader,$state,$stateParams,$timeout,API,$scope,$q,ServicePackage){
+controller('organizationRequestCtrl',function(APIError,DataStorage,Loader,$state,$stateParams,$timeout,API,$scope,$q,ServicePackage){
 'use strict';
 
 var organizationRequest=this;
@@ -7093,63 +6685,10 @@ $state.go('organization.requests.organizationRequestReview',{userId:userId,orgId
 };
 
 // ON CLICK END ----------------------------------------------------------------------------------
-}]);
-
-angular.module('organization').
-controller('orgRequestsCtrl',['API', '$stateParams', '$q', '$state', function(API,$stateParams,$q,$state){
-'use strict';
-
-var orgRequests=this,
-userId=$stateParams.userID,
-orgId=$stateParams.orgID;
-
-var apiPromises=[];
-
-orgRequests.loading=true;
-
-// HELPER FUNCTIONS START ------------------------------------------------------------------------
-// HELPER FUNCTIONS END --------------------------------------------------------------------------
-
-// ON LOAD START ---------------------------------------------------------------------------------
-
-apiPromises.push(
-API.cui.getOrganization({organizationId:orgId}).
-then(function(res){
-orgRequests.organization=res;
-console.log('orgRequests.organization',orgRequests.organization);
-}));
-
-
-apiPromises.push(
-API.cui.getAllOrganizationRequests({qs:['organizationId',orgId]}).
-then(function(res){
-console.log('orgReqs',res);
-}));
-
-
-$q.all(apiPromises).
-then(function(){
-orgRequests.loading=false;
-}).
-catch(function(error){
-orgRequests.loading=false;
-console.log(error);
 });
 
-// ON LOAD END -----------------------------------------------------------------------------------
-
-// ON CLICK START --------------------------------------------------------------------------------
-
-orgRequests.viewRequest=function(requestId){
-$state.go('requests.organizationRequest',{orgID:orgId,requestID:requestId});
-};
-
-// ON CLICK END ----------------------------------------------------------------------------------
-
-}]);
-
 angular.module('organization').
-controller('organizationRequestReviewCtrl',['DataStorage', 'Loader', 'ServicePackage', '$q', '$state', '$stateParams', '$timeout', 'APIError', 'API', '$scope', function(DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout,APIError,API,$scope){
+controller('organizationRequestReviewCtrl',function(DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout,APIError,API,$scope){
 'use strict';
 
 var organizationRequestReview=this;
@@ -7269,10 +6808,10 @@ fail(handleError);
 
 // ON CLICK END ----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('pendingRequestsCtrl',['API', 'DataStorage', 'Loader', 'ServicePackage', '$q', '$state', '$stateParams', '$timeout', function(API,DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout){
+controller('pendingRequestsCtrl',function(API,DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout){
 'use strict';
 
 var pendingRequests=this;
@@ -7358,10 +6897,10 @@ pendingRequests.reviewApprovals();
 
 // ON CLICK END ----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('pendingRequestsReviewCtrl',['DataStorage', 'Loader', 'ServicePackage', '$q', '$state', '$stateParams', '$timeout', function(DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout){
+controller('pendingRequestsReviewCtrl',function(DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout){
 'use strict';
 
 var pendingRequestsReview=this;
@@ -7436,15 +6975,18 @@ $state.go('organization.requests.pendingRequests',{userId:userId,orgId:orgId});
 
 // ON CLICK END ----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('personRequestCtrl',['APIError', 'DataStorage', 'Loader', 'PersonRequest', 'ServicePackage', '$state', '$stateParams', '$timeout', 'API', '$scope', function(APIError,DataStorage,Loader,PersonRequest,ServicePackage,$state,$stateParams,$timeout,API,$scope){
+controller('personRequestCtrl',function(APIError,DataStorage,Loader,PersonRequest,ServicePackage,$state,$stateParams,$timeout,API,$scope){
 'use strict';
 
 var personRequest=this;
 var userId=$stateParams.userId;
 var organizationId=$stateParams.orgId;
+// Needed when there is no packages
+personRequest.approvedCount=0;
+personRequest.deniedCount=0;
 
 personRequest.success=false;
 
@@ -7469,6 +7011,7 @@ break;}
 var handleSuccess=function handleSuccess(res){
 Loader.offFor('personRequest.submitting');
 personRequest.success=true;
+DataStorage.deleteType('userPersonRequest');
 API.user.userRegistrationRequestsCount=API.user.userRegistrationRequestsCount-1;
 $scope.$digest();
 $timeout(function(){
@@ -7487,8 +7030,30 @@ $scope.$digest();
 
 // ON LOAD START ---------------------------------------------------------------------------------
 
-Loader.onFor('personRequest.init');
+var getPackageDetails=function getPackageDetails(){
+if(personRequest.request.request.packages){
+ServicePackage.getAllUserPendingPackageData(userId).
+then(function(res){
+personRequest.request.completePackageData=res;
+}).
+catch(function(err){
+APIError.onFor('personRequest.noRequest');
+$timeout(function(){return $state.go('organization.requests.usersRegistrationRequests');},5000);
+});
+}else
+{
+personRequest.request.completePackageData=[];
+}
+};
 
+// Check LocalStorage if data is already obtained in previous page
+var storageData=DataStorage.getType('userPersonRequest');
+if(storageData&&userId===storageData.request.registrant.id){
+personRequest.request=storageData;
+getPackageDetails();
+}else
+{
+Loader.onFor('personRequest.init');
 PersonRequest.getPersonRegistrationRequestData(userId,organizationId).
 then(function(res){
 if(!res.request){
@@ -7497,25 +7062,18 @@ $timeout(function(){return $state.go('organization.requests.usersRegistrationReq
 }else
 {
 personRequest.request=res;
+getPackageDetails();
 Loader.offFor('personRequest.init');
 }
 });
-
-ServicePackage.getAllUserPendingPackageData(userId).
-then(function(res){
-personRequest.packages=res;
-}).
-catch(function(err){
-APIError.onFor('personRequest.noRequest');
-$timeout(function(){return $state.go('organization.requests.usersRegistrationRequests');},5000);
-});
+}
 
 // ON LOAD END -----------------------------------------------------------------------------------
 
 // ON CLICK START --------------------------------------------------------------------------------
 
 personRequest.reviewApprovals=function(){
-DataStorage.setType('userPersonRequest',{personRequest:personRequest});
+DataStorage.setType('userPersonRequest',personRequest.request);
 $state.go('organization.requests.personRequestReview',{userId:userId,orgId:organizationId});
 };
 
@@ -7565,10 +7123,10 @@ personRequest.reviewApprovals();
 }
 };
 // ON CLICK END ----------------------------------------------------------------------------------
-}]);
+});
 
 angular.module('organization').
-controller('personRequestReviewCtrl',['DataStorage', 'Loader', 'PersonRequest', 'ServicePackage', '$q', '$state', '$stateParams', '$timeout', 'API', '$scope', function(DataStorage,Loader,PersonRequest,ServicePackage,$q,$state,$stateParams,$timeout,API,$scope){
+controller('personRequestReviewCtrl',function(DataStorage,Loader,PersonRequest,ServicePackage,$q,$state,$stateParams,$timeout,API,$scope){
 'use strict';
 
 var personRequestReview=this;
@@ -7597,6 +7155,7 @@ break;}
 var handleSuccess=function handleSuccess(res){
 Loader.offFor('personRequestReview.submitting');
 personRequestReview.success=true;
+DataStorage.deleteType('userPersonRequest');
 $scope.$digest();
 $timeout(function(){
 $state.go('organization.requests.usersRegistrationRequests');
@@ -7613,23 +7172,20 @@ $scope.$digest();
 
 // ON LOAD START ---------------------------------------------------------------------------------
 
-Loader.onFor('personRequestReview.init');
-
-var requestData=DataStorage.getType('userPersonRequest').personRequest;
-if(!requestData){
-$state.go('organization.requests.personRequest',{userId:userId,orgId:orgId});
-};
-
-personRequestReview.packages=requestData.packages;
-personRequestReview.person=requestData.request.person;
-personRequestReview.organization=requestData.request.organization;
-personRequestReview.request=requestData.request.request;
+var requestData=DataStorage.getType('userPersonRequest');
+if(requestData&&requestData.request.registrant.id===userId){
+personRequestReview.packages=requestData.completePackageData;
+personRequestReview.personData=requestData.personData;
+personRequestReview.organization=requestData.organization;
+personRequestReview.request=requestData.request;
 
 if(personRequestReview.packages.length>0){
 getApprovalCounts(personRequestReview.packages);
 }
-
-Loader.offFor('personRequestReview.init');
+}else
+{
+$state.go('organization.requests.personRequest',{userId:userId,orgId:orgId});
+}
 
 // ON LOAD END -----------------------------------------------------------------------------------
 
@@ -7661,6 +7217,7 @@ $q.all(packageRequestCalls).
 then(function(){
 Loader.offFor('personRequestReview.submitting');
 personRequestReview.success=true;
+DataStorage.deleteType('userPersonRequest');
 $timeout(function(){
 $state.go('organization.requests.usersRegistrationRequests');
 },3000);
@@ -7677,11 +7234,11 @@ fail(handleError);
 
 // ON CLICK END ----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
 controller('usersAppRequestsCtrl',
-['$timeout', '$filter', '$pagination', '$state', '$stateParams', 'API', 'APIError', 'APIHelpers', 'CuiMobileNavFactory', 'Loader', 'User', function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User){
+function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User){
 
 var scopeName='usersAppRequests.';
 var usersAppRequests=this;
@@ -7889,11 +7446,11 @@ init();
 };
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
 controller('usersRegistrationRequestsCtrl',
-['$timeout', '$filter', '$pagination', '$state', '$stateParams', 'API', 'APIError', 'APIHelpers', 'CuiMobileNavFactory', 'Loader', 'User', '$scope', function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,$scope){
+function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,$scope,DataStorage){
 
 var scopeName='usersRegistrationRequests.';
 var usersRegistrationRequests=this;
@@ -8014,24 +7571,32 @@ var calls=[];
 _.each(res,function(regReq){
 // NB create an obj and bind it to scope...
 var data={};
+data.request=regReq;
 usersRegistrationRequests.data.push(data);
 
 // ..then cache the calls, which populate obj asynchronously...
 calls.push(
-getPerson(regReq.registrant.id).then(function(person){
+getPerson(regReq.registrant.id).
+then(function(person){
 data.personData=person||{};
 var pkgId=!_.isEmpty(regReq.packages)?regReq.packages[0].id:'';
 return getPackage(pkgId);
-}).then(function(pkg){
+}).
+then(function(pkg){
 data.packageData=pkg;
 console.log(data.personData.organization.id);
 var orgId=data.personData&&data.personData.organization?data.personData.organization.id:'';
 return getOrg(orgId);
-}).then(function(org){
+}).
+then(function(org){
 if(!data.personData.organization){
 data.personData.organization={};
 }
 data.personData.organization.name=!_.isEmpty(org)?org.name:'';
+data.organization={
+id:org.id,
+name:org.name};
+
 return $.Deferred().resolve();
 }).fail(function(){
 // mute the failures so as not to derail the entire list
@@ -8099,6 +7664,7 @@ usersRegistrationRequests.data=_.orderBy(usersRegistrationRequests.data,sortBy,o
 usersRegistrationRequests.goToDetails=function(request){
 if(request.personData&&request.personData.id&&
 request.personData.organization&&request.personData.organization.id){
+DataStorage.setType('userPersonRequest',{personData:request.personData,organization:request.organization,request:request.request,packageData:request.packageData});
 $state.go('organization.requests.personRequest',{
 'userId':request.personData.id,
 'orgId':request.personData.organization.id});
@@ -8168,10 +7734,10 @@ init();
 /*return undefined*/
 };
 
-}]);
+});
 
 angular.module('organization').
-controller('orgRolesCtrl',['$scope', function($scope){
+controller('orgRolesCtrl',function($scope){
 'use strict';
 
 var orgRoles=this;
@@ -8192,7 +7758,7 @@ console.log('Error',err);
 // ON CLICK START --------------------------------------------------------------------------------
 // ON CLICK END ----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('misc',[]).
 config(['$stateProvider',function($stateProvider){
@@ -8214,7 +7780,7 @@ url:'/search?page&pageSize',
 templateUrl:templateBase+'search/search.html',
 controller:returnCtrlAs('search'),
 access:{
-permittedLogic:appConfig.accessByAnyAdmin}}).
+permittedLogic:appConfig.globalSearch}}).
 
 
 state('misc',{
@@ -8245,8 +7811,8 @@ templateUrl:templateBase+'status/status-loadError.html'});
 }]);
 
 angular.module('misc').
-controller('searchCtrl',['API','$scope','$stateParams','$state','$q','$pagination','APIHelpers','Loader','APIError',
-function(API,$scope,$stateParams,$state,$q,$pagination,APIHelpers,Loader,APIError){
+controller('searchCtrl',['API','$scope','$stateParams','$state','$q','$pagination','APIHelpers','Loader','APIError','Base',
+function(API,$scope,$stateParams,$state,$q,$pagination,APIHelpers,Loader,APIError,Base){
 var search=this;
 search.currentParentOrg=API.user.organization.id;
 
@@ -8320,9 +7886,9 @@ if(add){search.users.push(newPerson);}
 
 };
 
-search.searchNow=function(type){
+search.searchNow=function(searchOrPage){
 search.pageError=false;
-if(type){
+if(searchOrPage){
 search.searchParams.page=1;
 }
 Loader.onFor('search.loading');
@@ -8404,20 +7970,14 @@ search.organizationList=null;
 //     search.orgCount=count
 //     return API.cui.getOrganizations({qs:APIHelpers.getQs(search.searchParams)})
 // })
-Loader.onFor('search.loading');
-var qs=APIHelpers.getQs(search.searchParams);
-qs.push(['status','active'],['status','suspended']);
-API.cui.getOrganizations({qs:qs}).
-then(function(res){
-search.orgs=res;
-if(search.orgs.length===0){
-search.noRecords=true;
+// Authorization for org serach and user search
+if(Base.accessToSecurityAndExchangeAdmins()){
+search.searchNow(true);
+}else
+{
+search.searchType="people";
+search.searchNow(true);
 }
-}).
-fail(function(error){
-search.pageError=true;
-}).
-always(handleAll);
 
 /* -------------------------------------------- ON LOAD END --------------------------------------------- */
 
@@ -8452,7 +8012,7 @@ $state.go('organization.directory.orgDetails',stateOpts);
 }]);
 
 angular.module('common',['translate','ngMessages','cui.authorization','cui-ng','ui.router','snap','LocalStorageModule']).
-config(['$translateProvider', '$locationProvider', '$urlRouterProvider', '$injector', 'localStorageServiceProvider', '$cuiIconProvider', '$cuiI18nProvider', '$paginationProvider', '$stateProvider', '$compileProvider', '$cuiResizeHandlerProvider', function($translateProvider,$locationProvider,$urlRouterProvider,$injector,
+config(function($translateProvider,$locationProvider,$urlRouterProvider,$injector,
 localStorageServiceProvider,$cuiIconProvider,$cuiI18nProvider,$paginationProvider,
 $stateProvider,$compileProvider,$cuiResizeHandlerProvider){
 
@@ -8558,7 +8118,7 @@ throw new Error('You don\'t have breakpointOption set in your appConfig.json');
 
 $compileProvider.debugInfoEnabled(false);
 
-}]);
+});
 
 angular.module('common').
 run(['LocaleService','$rootScope','$state','$http','$templateCache','$cuiI18n','User',
@@ -8726,11 +8286,11 @@ $state.go('welcome');
 }]);
 
 angular.module('common').
-controller('baseCtrl',['Base', '$scope', function(Base,$scope){
+controller('baseCtrl',function(Base,$scope){
 
 $scope.base=Base;
 $scope.base.pendingNotificationFlag=false;
-}]).
+}).
 
 filter('capitalize',function(){
 return function(input){
@@ -8745,7 +8305,7 @@ return!!input?input.charAt(0).toUpperCase()+input.substr(1).toLowerCase():'';
 });
 
 angular.module('common').
-directive('disableAnimate',['$animate', function($animate){return{
+directive('disableAnimate',function($animate){return{
 
 /*
 		Use this directive to disable the animation window that is introduced by ng-animate.
@@ -8757,11 +8317,11 @@ directive('disableAnimate',['$animate', function($animate){return{
 restrict:'A',
 link:function link(attrs,elem){
 $animate.enabled(elem,false);
-}};}]);
+}};});
 
 
 angular.module('common').
-factory('CuiMobileNavFactory',['PubSub', 'User', '$filter', function(PubSub,User,$filter){
+factory('CuiMobileNavFactory',function(PubSub,User,$filter){
 return{
 title:User.user.organization.name,
 defaultTitle:User.user.organization.name,
@@ -8779,8 +8339,8 @@ setDefaultTitle:function setDefaultTitle(newDefaultTitle){
 this.defaultTitle=newDefaultTitle;
 }};
 
-}]).
-directive('cuiMobileNav',['CuiMobileNavFactory', 'PubSub', '$state', function(CuiMobileNavFactory,PubSub,$state){return{
+}).
+directive('cuiMobileNav',function(CuiMobileNavFactory,PubSub,$state){return{
 restrict:'E',
 scope:{
 showIf:'=',
@@ -8803,7 +8363,7 @@ scope.$on('$destroy',function(){
 PubSub.unsubscribe(pubSubSubscription);
 });
 },
-template:'\n        <nav class="cui-breadcrumb--mobile" id="breadcrumb-button" aria-hidden="true" ng-click="toggle()" off-click="close()">\n            <ul class="cui-breadcrumb__links">\n                <li class="cui-breadcrumb__link cui-breadcrumb__link--current">\n                    <span class="cui-breadcrumb__mobile-link" ng-if="links[currentState]" class="active"><span class="cui-mobile-only" ng-if="activeTitle">{{activeTitle}}.</span>{{links[currentState].label}}</span>\n                    <span class="cui-breadcrumb__mobile-link" ng-if="!links[currentState]" class="active"><span class="cui-mobile-only" ng-if="activeTitle">{{activeTitle}}.</span>{{label}}</span>\n                </li>\n                <div class="cui-popover cui-popover--menu cui-breadcrumb__popover cui-popover--top cui-popover__categories-popover" tether target="#breadcrumb-button" attachment="top left" target-attachment="bottom left" offset="-10px 0" ng-if="showIf">\n                    <li class="cui-breadcrumb__link cui-popover__row" ng-repeat="(state, stateDetails) in links" ng-if="currentState!==state">\n                        <a class="cui-breadcrumb__mobile-link" ui-sref="{{state}}(stateDetails.stateParams)">{{stateDetails.label}}</a>\n                    </li>\n                </div>\n            </ul>\n        </nav>\n    '};}]);
+template:'\n        <nav class="cui-breadcrumb--mobile" id="breadcrumb-button" aria-hidden="true" ng-click="toggle()" off-click="close()">\n            <ul class="cui-breadcrumb__links">\n                <li class="cui-breadcrumb__link cui-breadcrumb__link--current">\n                    <span class="cui-breadcrumb__mobile-link" ng-if="links[currentState]" class="active"><span class="cui-mobile-only" ng-if="activeTitle">{{activeTitle}}.</span>{{links[currentState].label}}</span>\n                    <span class="cui-breadcrumb__mobile-link" ng-if="!links[currentState]" class="active"><span class="cui-mobile-only" ng-if="activeTitle">{{activeTitle}}.</span>{{label}}</span>\n                </li>\n                <div class="cui-popover cui-popover--menu cui-breadcrumb__popover cui-popover--top cui-popover__categories-popover" tether target="#breadcrumb-button" attachment="top left" target-attachment="bottom left" offset="-10px 0" ng-if="showIf">\n                    <li class="cui-breadcrumb__link cui-popover__row" ng-repeat="(state, stateDetails) in links" ng-if="currentState!==state">\n                        <a class="cui-breadcrumb__mobile-link" ui-sref="{{state}}(stateDetails.stateParams)">{{stateDetails.label}}</a>\n                    </li>\n                </div>\n            </ul>\n        </nav>\n    '};});
 
 
 
@@ -8864,7 +8424,7 @@ return routes;
 }};
 
 }).
-directive('cuiRouteHistory',['CuiRouteHistoryFactory', '$state', function(CuiRouteHistoryFactory,$state){return{
+directive('cuiRouteHistory',function(CuiRouteHistoryFactory,$state){return{
 restrict:'E',
 link:function link(scope,elem,attrs){
 //scope.currentState = $state.current.name;
@@ -8890,10 +8450,10 @@ template:'\n        <nav class="cui-breadcrumb">\n            <ul class="cui-bre
 
 
 //            <a ng-if="route.uiroute !== null" ui-sref="{{route.uiroute}}">{{route.text}}</a>
-};}]);
+};});
 
 angular.module('common').
-directive('cuiSuccessPane',['$state', '$timeout', function($state,$timeout){return{
+directive('cuiSuccessPane',function($state,$timeout){return{
 
 /*****
 		--- Usage ---
@@ -8932,7 +8492,7 @@ scope.close();
 },scope.closeAfter);
 }
 },
-template:'\n        <div class="cui-modal" ng-if="showIf" ng-click="close()">\n            <div class="cui-modal__pane">\n                <div class="cui-modal__icon">\n                    <cui-icon cui-svg-icon="cui:check-with-border" class="cui-modal__icon"></cui-icon>\n                </div>\n                <span class="cui-modal__primary-message">{{\'cui-success\' | translate}}</span>\n                <ng-transclude></ng-transclude>\n            </div>\n        </div>\n    '};}]);
+template:'\n        <div class="cui-modal" ng-if="showIf" ng-click="close()">\n            <div class="cui-modal__pane">\n                <div class="cui-modal__icon">\n                    <cui-icon cui-svg-icon="cui:check-with-border" class="cui-modal__icon"></cui-icon>\n                </div>\n                <span class="cui-modal__primary-message">{{\'cui-success\' | translate}}</span>\n                <ng-transclude></ng-transclude>\n            </div>\n        </div>\n    '};});
 
 
 
@@ -8960,8 +8520,7 @@ scope.$watch(function(){return[scope.$eval(attrs.unique),ctrl.$viewValue];},chec
 
 }]);
 angular.module('common').
-factory('API',['$state','User','$rootScope','$window','$location','CustomAPI','$q','localStorageService','Loader','$timeout','Base','LocaleService',
-function($state,User,$rootScope,$window,$location,CustomAPI,$q,localStorage,Loader,$timeout,Base,LocaleService){
+factory('API',function(Base,CustomAPI,Loader,localStorageService,User,$location,$q,$timeout,$window,LocaleService){
 
 var authInfo={};
 var myCUI={};
@@ -8970,23 +8529,33 @@ Base.authInfo=authInfo;
 
 var populateUserInfo=function populateUserInfo(info,redirectOpts){
 var deferred=$q.defer();
-var userInfo=void 0,roleList=void 0;
+var userInfo=void 0,roleList=void 0,entitlementList=void 0;
 authInfo=info;
 User.set(info);
 
 $q.all([
 myCUI.getPersonRoles({personId:authInfo.cuid}),
+myCUI.getPersonEntitlements({personId:authInfo.cuid}),
 myCUI.getPerson({personId:authInfo.cuid})]).
 
 then(function(res){
 roleList=res[0].map(function(x){return x.name;});
-User.setEntitlements(roleList);
-userInfo=res[1];
-return myCUI.getOrganization({organizationId:res[1].organization.id});
+User.setRoles(roleList);
+
+entitlementList=res[1].map(function(x){return x.privilegeName;});
+User.setEntitlements(entitlementList);
+
+userInfo=res[2];
+LocaleService.setLocaleByDisplayName(appConfig.languages[userInfo.language]);
+return myCUI.getOrganizationWithAttributes({organizationId:res[2].organization.id});
 }).
 then(function(res){
 userInfo.organization=res;
 User.set(userInfo);
+//cui.log('populateUserInfo', User);
+//get user notification related information  as lazy loading,
+// No need to hold entire UI apps for this loading.
+getNotificationDetails(userInfo);
 deferred.resolve({roleList:roleList,redirect:redirectOpts});
 });
 
@@ -9040,6 +8609,14 @@ CustomAPI]}).
 
 
 then(function(cuiObject){
+if(appConfig.logoutUrl){
+Base.logout=function(){
+myCUI.covLogout({
+redirect:appConfig.logoutUrl,
+qs:[['type','logout']]});
+
+};
+}else
 Base.logout=cuiObject.covLogout;
 angular.copy(cuiObject,myCUI);
 myCUI.setAuthHandler(jwtAuthHandler);
@@ -9069,8 +8646,9 @@ initApi:initApi,
 authenticateUser:function authenticateUser(redirectOpts){
 var deferred=$q.defer();
 var sessionInfo=myCUI.getCovAuthInfo();
+
 if(redirectOpts.toState.name!=='auth'){
-localStorage.set('appRedirect',redirectOpts);// set the redirect to whatever the last state before auth was
+localStorageService.set('appRedirect',redirectOpts);// set the redirect to whatever the last state before auth was
 Loader.onFor('wholeApp','redirecting-to-sso');// don't need to turn this loader off since covAuth takes us to another page
 appConfig.solutionInstancesUrl&&myCUI.setServiceUrl(appConfig.solutionInstancesUrl);
 jwtAuthHandler();// force redirect to SSO
@@ -9079,7 +8657,7 @@ jwtAuthHandler();// force redirect to SSO
 Loader.onFor('wholeApp','getting-user-info');
 myCUI.handleCovAuthResponse({selfRedirect:true}).
 then(function(res){
-populateUserInfo(res,localStorage.get('appRedirect')).
+populateUserInfo(res,localStorageService.get('appRedirect')).
 then(function(res){
 deferred.resolve(res);
 $timeout(function(){return Loader.offFor('wholeApp');},50);
@@ -9096,17 +8674,17 @@ authInfo:authInfo};
 
 return apiFactory;
 
-}]);
+});
 
 angular.module('common').
-factory('APIError',['SharedService', function(SharedService){
+factory('APIError',function(SharedService){
 var APIError=Object.create(SharedService);
 APIError.details=Object.assign({},APIError.details);
 APIError.for=APIError.details;
 return APIError;
-}]);
+});
 angular.module('common').
-factory('APIHelpers',['API', '$filter', function(API,$filter){
+factory('APIHelpers',function(API,$filter){
 'use strict';
 
 var apiHelpers={
@@ -9273,10 +8851,10 @@ return collectionData;
 
 return apiHelpers;
 
-}]);
+});
 
 angular.module('common').
-factory('Base',['APIError', 'BaseExtensions', 'Countries', 'Languages', 'LocaleService', 'Loader', 'Menu', 'Theme', 'Timezones', 'User', '$state', '$translate', function(APIError,BaseExtensions,Countries,Languages,LocaleService,Loader,Menu,Theme,Timezones,User,$state,$translate){
+factory('Base',function(APIError,BaseExtensions,Countries,Languages,LocaleService,Loader,Menu,Theme,Timezones,User,$state,$translate){
 
 var baseFactory={
 apiError:APIError,
@@ -9312,7 +8890,7 @@ generateHiddenPassword:function generateHiddenPassword(password){return Array(pa
 
 return Object.assign({},baseFactory,BaseExtensions);
 
-}]);
+});
 
 angular.module('common').
 factory('BaseExtensions',['cui.authorization.permitted','User',function(permitted,User){
@@ -9342,12 +8920,18 @@ return permitted(appConfig.grantAppToOrgLogic,User.getRoles(),User.getEntitlemen
 },
 accessByAnyAdmin:function accessByAnyAdmin(){
 return permitted(appConfig.accessByAnyAdmin,User.getRoles(),User.getEntitlements());
+},
+globalSearch:function globalSearch(){
+return permitted(appConfig.globalSearch,User.getRoles(),User.getEntitlements());
+},
+accessToSecurityAndExchangeAdmins:function accessToSecurityAndExchangeAdmins(){
+return permitted(appConfig.accessToSecurityAndExchangeAdmins,User.getRoles(),User.getEntitlements());
 }};
 
 }]);
 
 angular.module('common').
-factory('CommonAPI',['API', 'APIError', '$q', function(API,APIError,$q){
+factory('CommonAPI',function(API,APIError,$q){
 'use strict';
 
 // This service handles basic API calls that are done throughout the project.
@@ -9415,10 +8999,10 @@ getOrganization:getOrganization,
 getOrganizationHierarchy:getOrganizationHierarchy};
 
 
-}]);
+});
 
 angular.module('common').
-factory('Countries',['$http', '$rootScope', '$translate', function($http,$rootScope,$translate){
+factory('Countries',function($http,$rootScope,$translate){
 
 var countries=[];
 
@@ -9462,10 +9046,10 @@ return{
 list:countries,
 getCountryByCode:getCountryByCode};
 
-}]);
+});
 
 angular.module('common').
-factory('CustomAPI',['CustomAPIExtension', function(CustomAPIExtension){
+factory('CustomAPI',function(CustomAPIExtension){
 
 var calls=[
 {
@@ -9674,7 +9258,7 @@ type:'POST'}];
 
 return calls.concat(CustomAPIExtension);
 
-}]);
+});
 
 angular.module('common').
 factory('CustomAPIExtension',function(){
@@ -9818,7 +9402,7 @@ return calls;
 });
 
 angular.module('common').
-factory('DataStorage',['API', 'localStorageService', function(API,localStorageService){
+factory('DataStorage',function(API,localStorageService){
 
 var storage=localStorageService.get('dataStorage')||{};
 var dataStorage={};
@@ -9943,7 +9527,7 @@ saveToLocaStorage();
 };
 
 return dataStorage;
-}]);
+});
 
 angular.module('common').
 factory('Languages',['$cuiI18n','LocaleService',function($cuiI18n,LocaleService){
@@ -9962,15 +9546,15 @@ return LocaleService.getLocaleCode();
 
 }]);
 angular.module('common').
-factory('Loader',['SharedService', function(SharedService){
+factory('Loader',function(SharedService){
 var Loader=Object.create(SharedService);
 Loader.details=Object.assign({},Loader.details);
 Loader.for=Loader.details;
 return Loader;
-}]);
+});
 
 angular.module('common').
-factory('Menu',['snapRemote', '$rootScope', '$window', function(snapRemote,$rootScope,$window){
+factory('Menu',function(snapRemote,$rootScope,$window){
 
 var shouldShowMobileNav=function shouldShowMobileNav(){
 if($window.innerWidth>=1000){
@@ -10036,10 +9620,10 @@ angular.isDefined(stateMenuOptions.mobile)&&stateMenuOptions.mobile===false)?thi
 }
 }};
 
-}]);
+});
 
 angular.module('common').
-factory('Organization',['API', '$q', function(API,$q){
+factory('Organization',function(API,$q){
 
 var factoryName='organizationFactory.';
 
@@ -10115,10 +9699,10 @@ getOrganization:getOrganization,
 initOrganizationProfile:initOrganizationProfile};
 
 
-}]);
+});
 
 angular.module('common').
-factory('PersonRequest',['API', 'APIError', 'CommonAPI', '$q', function(API,APIError,CommonAPI,$q){
+factory('PersonRequest',function(API,APIError,CommonAPI,$q){
 'use strict';
 
 /*
@@ -10175,7 +9759,7 @@ defer.resolve(requestData);
 
 CommonAPI.getPerson(userId).
 then(function(personData){
-requestData.person=personData;
+requestData.personData=personData;
 }).
 finally(function(){
 callsCompleted+=1;
@@ -10222,10 +9806,10 @@ throw new Error('Requires a decision of "approved" or "denied" and the request o
 
 return personRequestFactory;
 
-}]);
+});
 
 angular.module('common').
-factory('Registration',['API', 'APIError', 'Base', '$q', function(API,APIError,Base,$q){
+factory('Registration',function(API,APIError,Base,$q){
 
 var self={};
 var pub={};
@@ -10574,7 +10158,7 @@ return self.isUsernameOrEmailTaken([['emailAddress',email]]);
 
 return pub;
 
-}]);
+});
 
 angular.module('common').
 service('SharedService',function(){
@@ -10756,7 +10340,7 @@ clear:clearActiveTheme};
 });
 
 angular.module('common').
-factory('Timezones',['$http', '$rootScope', '$translate', function($http,$rootScope,$translate){
+factory('Timezones',function($http,$rootScope,$translate){
 
 var timezones=[];
 
@@ -10804,10 +10388,10 @@ return{
 all:timezones,
 timezoneById:getTimezoneById};
 
-}]);
+});
 
 angular.module('common').
-factory('User',['$rootScope', function($rootScope){
+factory('User',function($rootScope){
 
 /*
         This factory is intended to store data/logic pertaining to the logged in user only.
@@ -10843,10 +10427,10 @@ getRoles:function getRoles(){return user.roles;},
 user:user};
 
 
-}]);
+});
 
 angular.module('common').
-factory('UserHistory',['API', 'APIError', 'LocaleService', '$q', '$timeout', function(API,APIError,LocaleService,$q,$timeout){
+factory('UserHistory',function(API,APIError,LocaleService,$q,$timeout){
 
 var errorName='userHistoryFactory.';
 
@@ -10932,10 +10516,10 @@ history.success=false;
 
 
 return UserHistory;
-}]);
+});
 
 angular.module('common').
-factory('UserList',['API', 'APIError', 'APIHelpers', '$q', function(API,APIError,APIHelpers,$q){
+factory('UserList',function(API,APIError,APIHelpers,$q){
 
 var errorName='UserListFactory.';
 
@@ -10980,573 +10564,10 @@ getUsers:getUsers,
 getUserCount:getUserCount};
 
 
-}]);
+});
 
 angular.module('common').
-factory('UserProfileV2',['API', 'APIError', 'LocaleService', 'Timezones', '$filter', '$q', '$timeout', '$window', function(API,APIError,LocaleService,Timezones,$filter,$q,$timeout,$window){
-
-var errorName='userProfileFactory.';
-var facebook='facebook';
-var google='google';
-var twitter='twitter';
-
-var UserProfile={
-
-setSocialAccount:function setSocialAccount(type,index){
-var socialAccount={};
-socialAccount.socialName=type;
-socialAccount.linked="";
-return socialAccount;
-},
-
-initUser:function initUser(userId){
-var defer=$q.defer();
-var user={};
-
-API.cui.getPerson({personId:userId}).
-done(function(res){
-// If the person object has no addresses we need to initialize it
-if(!res.addresses)res.addresses=[{streets:[]}];
-user.user=Object.assign({},res);
-user.tempUser=Object.assign({},res);
-defer.resolve(user);
-}).
-fail(function(err){
-console.error('Failed getting user information',err);
-APIError.onFor(errorName+'initUser');
-$timeout(function(){
-APIError.offFor(errorName+'initUser');
-},5000);
-defer.reject(err);
-});
-return defer.promise;
-},
-
-initSecurityQuestions:function initSecurityQuestions(userId){
-var defer=$q.defer();
-var securityQuestions={
-userSecurityQuestions:{},
-tempUserSecurityQuestions:{},
-allSecurityQuestions:[],
-allSecurityQuestionsDup:[]};
-
-
-$q.all([
-API.cui.getSecurityQuestionAccount({personId:userId}),
-API.cui.getSecurityQuestions()]).
-
-then(function(res){
-angular.copy(res[0],securityQuestions.userSecurityQuestions);
-angular.copy(res[0],securityQuestions.tempUserSecurityQuestions);
-angular.copy(res[1],securityQuestions.allSecurityQuestions);
-angular.copy(res[1],securityQuestions.allSecurityQuestionsDup);
-
-securityQuestions.allSecurityQuestions.splice(0,1);
-
-var numberOfQuestions=securityQuestions.allSecurityQuestions.length;
-var numberOfQuestionsFloor=Math.floor(numberOfQuestions/2);
-
-securityQuestions.allChallengeQuestions0=securityQuestions.allSecurityQuestions.slice(0,numberOfQuestionsFloor);
-securityQuestions.allChallengeQuestions1=securityQuestions.allSecurityQuestions.slice(numberOfQuestionsFloor);
-
-securityQuestions.challengeQuestionsTexts=UserProfile.selectTextsForQuestions(securityQuestions);
-
-defer.resolve(securityQuestions);
-}).
-catch(function(err){
-console.error('Failed getting security question data',err);
-APIError.onFor(errorName+'initSecurityQuestions');
-$timeout(function(){
-APIError.offFor(errorName+'initSecurityQuestions');
-},5000);
-defer.reject(err);
-});
-return defer.promise;
-},
-
-selectTextsForQuestions:function selectTextsForQuestions(securityQuestions){
-var challengeQuestionsTexts=[];
-
-angular.forEach(securityQuestions.userSecurityQuestions.questions,function(userQuestion){
-var question=_.find(securityQuestions.allSecurityQuestionsDup,function(question){
-return question.id===userQuestion.question.id;
-});
-challengeQuestionsTexts.push($filter('cuiI18n')(question.question));
-});
-return challengeQuestionsTexts;
-},
-
-initSocialLogin:function initSocialLogin(userId){
-var defer=$q.defer();
-var user={};
-var socialLoginAccounts=[];
-
-
-API.cui.getSocialLoginAccounts({personId:userId}).
-done(function(res){
-
-//console.log("socialLoginAccounts:::"+res.length);
-res.forEach(function(respons){
-console.log(respons);
-socialLoginAccounts.push(respons);
-});
-console.log("socialLoginAccounts:::444"+socialLoginAccounts);
-socialLoginAccounts.forEach(function(respons1){
-console.log(respons1);
-});
-user.socialLoginAccounts=socialLoginAccounts;
-
-defer.resolve(user);
-}).
-fail(function(err){
-console.error('Failed getting user SocialLoginAccounts information',err);
-APIError.onFor(errorName+'initSocialLogin');
-$timeout(function(){
-APIError.offFor(errorName+'initSocialLogin');
-},5000);
-defer.reject(err);
-});
-return defer.promise;
-},
-
-initMFA:function initMFA(userId){
-var defer=$q.defer();
-var user={};
-var mfaConfg={};
-API.cui.getPersonAttributes({personId:userId}).
-done(function(res){
-UserProfile.userAttributesTemplate=angular.copy(res);
-UserProfile.userAttributesTemplate.attributes.forEach(function(attribute){
-console.log("In initMFA attributes"+JSON.stringify(attribute));
-if(attribute.value!="null"){
-console.log("mfa: attribute.value::"+attribute.value);
-
-switch(attribute.name){
-case'TWO_FACTOR_AUTH_TYPE':mfaConfg=attribute.value;
-break;}
-// end if for switch
-}// end if for attribute.value
-});
-console.log("mfa: user.mfaConfg::"+mfaConfg);
-user.mfaConfg=mfaConfg;
-
-defer.resolve(user);
-}).
-fail(function(err){
-console.error('Failed getting user initMFA information',err);
-APIError.onFor(errorName+'initMFA');
-$timeout(function(){
-APIError.offFor(errorName+'initMFA');
-},5000);
-defer.reject(err);
-});
-return defer.promise;
-},// initMFA 
-
-initPasswordPolicy:function initPasswordPolicy(organizationId){
-var defer=$q.defer();
-var passwordPolicy={};
-
-API.cui.getOrganization({organizationId:organizationId}).
-then(function(res){
-passwordPolicy.organization=res;
-return API.cui.getPasswordPolicy({policyId:res.passwordPolicy.id});
-}).
-then(function(res){
-passwordPolicy.passwordRules=res.rules;
-defer.resolve(passwordPolicy);
-}).
-fail(function(err){
-console.error('Failed getting password policy data',err);
-APIError.onFor(errorName+'initPasswordPolicy');
-$timeout(function(){
-APIError.offFor(errorName+'initPasswordPolicy');
-},5000);
-defer.reject(err);
-});
-return defer.promise;
-},
-
-initUserProfile:function initUserProfile(userId,organizationId){
-var defer=$q.defer();
-var profile={};
-var callsCompleted=0;
-
-console.log("user id "+userId+", org id "+organizationId);
-
-UserProfile.initUser(userId).
-then(function(res){
-angular.merge(profile,res);
-console.log(" initUser callsCompleted : "+callsCompleted);
-}).
-finally(function(){
-callsCompleted++;
-if(callsCompleted===4)defer.resolve(profile);
-});
-
-UserProfile.initSecurityQuestions(userId).
-then(function(res){
-angular.merge(profile,res);
-console.log(" initSecurityQuestions callsCompleted : "+callsCompleted);
-}).
-finally(function(){
-callsCompleted++;
-if(callsCompleted===4)defer.resolve(profile);
-});
-
-UserProfile.initPasswordPolicy(organizationId).
-then(function(res){
-angular.merge(profile,res);
-console.log(" initPasswordPolicy callsCompleted : "+callsCompleted);
-}).
-finally(function(){
-callsCompleted++;
-if(callsCompleted===4)defer.resolve(profile);
-});
-
-//Added for integration for Social login and MFA
-UserProfile.initSocialLogin(userId).
-then(function(res){
-angular.merge(profile,res);
-console.log(" initSocialLogin : "+callsCompleted);
-//alert(JSON.stringify(profile));
-//console.log("----")
-//console.log(JSON.stringify(profile))
-}).
-finally(function(){
-callsCompleted+=1;
-if(callsCompleted===4)defer.resolve(profile);
-});
-
-UserProfile.initMFA(userId).
-then(function(res){
-angular.merge(profile,res);
-//profile['mfaConfg'] = res
-//angular.merge(profile, res)
-//alert(JSON.stringify(profile));
-//console.log("----")
-// profile.user.confg='push'
-console.log(" initMFA callsCompleted : "+callsCompleted);
-console.log(" initMFA in UserProfileV2 function after mfa merge "+JSON.stringify(profile));
-}).
-finally(function(){
-callsCompleted+=1;
-if(callsCompleted===4)defer.resolve(profile);
-});
-
-return defer.promise;
-},
-
-buildPersonPasswordAccount:function buildPersonPasswordAccount(user,passwordAccount,organization){
-return{
-version:'1',
-username:user.username,
-currentPassword:passwordAccount.currentPassword,
-password:passwordAccount.password,
-passwordPolicy:organization.passwordPolicy,
-authenticationPolicy:organization.authenticationPolicy};
-
-},
-
-injectUI:function injectUI(profile,$scope,personId){
-var userId=void 0;
-
-personId?
-userId=personId:
-userId=API.getUser();
-
-profile.saving=false;
-profile.fail=false;
-profile.success=false;
-profile.timezoneById=Timezones.timezoneById;
-profile.toggleOffFunctions={};
-
-profile.resetAllData=function(){
-angular.copy(profile.userSecurityQuestions,profile.tempUserSecurityQuestions);
-angular.copy(profile.user,profile.tempUser);
-};
-
-profile.toggleAllOff=function(){
-angular.forEach(profile.toggleOffFunctions,function(toggleOff){
-toggleOff();
-});
-profile.resetAllData();
-};
-
-profile.pushToggleOff=function(toggleOffObject){
-if(!profile.toggleOffFunctions)profile.toggleOffFunctions={};
-profile.toggleOffFunctions[toggleOffObject.name]=toggleOffObject.function;
-};
-
-profile.resetPasswordFields=function(){
-profile.userPasswordAccount={
-currentPassword:'',
-password:''};
-
-profile.passwordRe='';
-};
-
-profile.checkIfRepeatedSecurityAnswer=function(securityQuestions,formObject){
-securityQuestions.forEach(function(secQuestion,i){
-var securityAnswerRepeatedIndex=_.findIndex(securityQuestions,function(secQuestionToCompareTo,z){
-return z!==i&&secQuestion.answer&&secQuestionToCompareTo.answer&&secQuestion.answer.toUpperCase()===secQuestionToCompareTo.answer.toUpperCase();
-});
-if(securityAnswerRepeatedIndex>-1){
-if(formObject['answer'+securityAnswerRepeatedIndex]){
-formObject['answer'+securityAnswerRepeatedIndex].$setValidity('securityAnswerRepeated',false);
-}
-if(formObject['answer'+i]){
-formObject['answer'+i].$setValidity('securityAnswerRepeated',false);
-}
-}else
-{
-if(formObject['answer'+i]){
-formObject['answer'+i].$setValidity('securityAnswerRepeated',true);
-}
-}
-});
-};
-
-profile.updatePerson=function(section,toggleOff){
-if(section)profile[section]={submitting:true};
-
-if(!profile.userCountry)profile.tempUser.addresses[0].country=profile.user.addresses[0].country;else
-profile.tempUser.addresses[0].country=profile.userCountry.originalObject.code;
-
-// [7/20/2016] Note: Can't pass in 'activatedDate' anymore when updating a person
-delete profile.tempUser['activatedDate'];
-
-API.cui.updatePerson({personId:userId,data:profile.tempUser}).
-always(function(){
-if(section)profile[section].submitting=false;
-$scope.$digest();
-}).
-done(function(){
-angular.copy(profile.tempUser,profile.user);
-LocaleService.setLocaleByDisplayName(appConfig.languages[profile.user.language]);
-if(toggleOff)toggleOff();
-}).
-fail(function(err){
-console.error('Failed to update user profile:',err);
-if(section)profile[section].error=true;
-});
-};
-
-profile.updatePassword=function(section,toggleOff){
-if(section){
-profile[section]={submitting:true};
-}
-
-API.cui.updatePersonPassword({
-personId:userId,
-data:UserProfile.buildPersonPasswordAccount(profile.user,profile.userPasswordAccount,profile.organization)}).
-
-always(function(){
-if(section){
-profile[section].submitting=false;
-}
-}).
-done(function(){
-if(toggleOff){
-toggleOff();
-}
-profile.passwordUpdateSuccess=true;
-$timeout(function(){
-profile.passwordUpdateSuccess=false;
-},5000);
-profile.resetPasswordFields();
-$scope.$digest();
-}).
-fail(function(err){
-console.error('Error updating password',err);
-if(section){
-profile[section].error=true;
-}
-$scope.$digest();
-});
-};
-
-profile.saveChallengeQuestions=function(section,toggleOff){
-if(section)profile[section]={submitting:true};
-profile.userSecurityQuestions=angular.copy(profile.tempUserSecurityQuestions);
-
-API.cui.updateSecurityQuestionAccount({
-personId:userId,
-data:{
-version:'1',
-id:userId,
-questions:profile.userSecurityQuestions.questions}}).
-
-
-always(function(){
-if(section)profile[section].submitting=false;
-}).
-done(function(){
-if(toggleOff)toggleOff();
-profile.challengeQuestionsTexts=UserProfile.selectTextsForQuestions(profile);
-$scope.$digest();
-}).
-fail(function(err){
-console.error('Error updating security questions',err);
-if(section)profile[section].error=true;
-$scope.$digest();
-});
-};
-
-profile.updatePersonMFAConfig=function(section,toggleOff){
-if(section){
-profile[section]={submitting:true};
-//console.log("In updatePersonMFAConfig" + JSON.stringify(profile))
-console.log("In updatePersonMFAConfig 2"+profile.mfa.confg);
-
-API.cui.getPersonAttributes({personId:userId}).
-then(function(res){
-UserProfile.userAttributesTemplate=angular.copy(res);
-console.log("In updatePersonMFAConfig attributes response: "+JSON.stringify(UserProfile.userAttributesTemplate));
-
-UserProfile.userAttributesTemplate.attributes.forEach(function(attribute){
-console.log("In updatePersonMFAConfig attributes"+JSON.stringify(attribute));
-if(attribute.value!="null"){
-switch(attribute.name){
-case'TWO_FACTOR_AUTH_TYPE':attribute.value=profile.mfa.confg;
-break;}
-// end if for switch
-}// end if for attribute.value
-});
-console.log("In updatePersonMFAConfig attributes response after: "+JSON.stringify(UserProfile.userAttributesTemplate));
-API.cui.updatePersonAttributes({personId:API.getUser(),useCuid:true,data:UserProfile.userAttributesTemplate}).
-then(function(res){
-//angular.copy(userProfile.tempUserAttributes, userProfile.userAttributes);
-if(section){
-profile[section].submitting=false;
-}
-if(toggleOff){
-toggleOff();
-}
-$scope.$digest();
-console.log("In updatePersonMFAConfig attributes response of get attributes : "+JSON.stringify(res));
-}).
-fail(function(err){
-console.log(err);
-if(section){
-profile[section].submitting=false;
-profile[section].error=true;
-}
-$scope.$digest();
-});
-
-});//end for getPersonAttributes.
-
-}// end if section
-};// end for function  
-
-profile.unlinkSocialLogin=function(section,name){
-if(section){
-profile[section]={submitting:true};
-console.log("In unlink "+name);
-API.cui.unlinkSocialLoginAccount({
-personId:userId,
-configId:name}).
-
-always(function(){
-if(section){
-profile[section].submitting=false;
-UserProfile.initSocialLogin(userId).
-then(function(res){
-angular.merge(profile,res);
-//alert(JSON.stringify(profile));
-//console.log("----")
-//console.log(JSON.stringify(profile))
-}).
-finally(function(){});
-}
-}).
-done(function(){
-//                        if (toggleOff) {
-//                            toggleOff();
-//                        }
-$scope.$digest();
-}).
-fail(function(err){
-console.error('Error updating security questions',err);
-if(section){
-profile[section].error=true;
-}
-$scope.$digest();
-});
-}
-};
-
-// Link a social profile, where name is the social name, like "facebook" or "twitter"
-profile.updateSocialLogin=function(section,name){
-if(section){
-profile[section]={submitting:true};
-console.log("In SocialLoginAccounts00");
-var socialLoingUrl=appConfig.serviceUrl;
-var sid=localStorage.getItem("cui.sii");
-console.log("solutionInstanceId : "+sid);
-//                    socialLoingUrl= socialLoingUrl+'/social-accounts/v1/social/authorize/facebook?solutionInstanceId='+sid+'&type=link';
-socialLoingUrl=socialLoingUrl+'/social-accounts/v1/social/authorize/'+name+'?solutionInstanceId='+sid+'&type=link';
-console.log(socialLoingUrl);
-$window.location.href=socialLoingUrl;
-//$window.location.href='https://q-joe-soln-acme.idm.qa.covapp.io/p/apiProxy/social-accounts/v1/social/authorize/facebook?solutionInstanceId=aabae226-3841-4dfe-b703-e769ce01275b&type=link'                    
-//$window.location.href='https://q-joe-soln-dev01.idm.qa.covapp.io/p/apiProxy/social-accounts/v1/social/authorize/facebook?solutionInstanceId=b41deeb0-4888-4c97-85cf-1bf64fc5230f&type=link'
-//$window.location.href='https://q-joe-soln-dev01.idm.qa.covapp.io/p/apiProxy/social-accounts/v1/social/authorize/facebook?solutioInstanceId=b41deeb0-4888-4c97-85cf-1bf64fc5230f';
-//$location.path('https://q-joe-soln-dev01.idm.qa.covapp.io/p/apiProxy/social-accounts/v1/social/authorize/facebook?solutioInstanceId=b41deeb0-4888-4c97-85cf-1bf64fc5230f')
-}
-};
-
-//            profile.updatePersonMFAConfig = (section, toggleOff) => {
-//                if (section) {
-//                    profile[section] = { submitting: true }
-//                    //console.log("In updatePersonMFAConfig" + JSON.stringify(profile))
-//                    console.log("In updatePersonMFAConfig 2" + profile.mfa.confg);
-//
-//                    API.cui.getPersonAttributes({personId: userId})
-//                    .then(function(res){
-//                        UserProfile.userAttributesTemplate=angular.copy(res);
-//                        console.log("In updatePersonMFAConfig attributes response: " + JSON.stringify(UserProfile.userAttributesTemplate))
-//
-//                        UserProfile.userAttributesTemplate.attributes.forEach(function(attribute){
-//                        console.log("In updatePersonMFAConfig attributes" + JSON.stringify(attribute))
-//                        if (attribute.value!="null") {
-//                            switch(attribute.name){
-//                                case 'TWO_FACTOR_AUTH_TYPE':attribute.value=profile.mfa.confg;
-//                                break;
-//                            }// end if for switch
-//                        }// end if for attribute.value
-//                        })
-//                        console.log("In updatePersonMFAConfig attributes response after: " + JSON.stringify(UserProfile.userAttributesTemplate))
-//                         API.cui.updatePersonAttributes({personId: API.getUser(), useCuid:true , data:UserProfile.userAttributesTemplate})
-//                        .then(function(res){
-//                            //angular.copy(userProfile.tempUserAttributes, userProfile.userAttributes);
-//                            if (section) {
-//                                profile[section].submitting = false;
-//                            }
-//                            if (toggleOff) {
-//                                toggleOff();
-//                            }
-//                            $scope.$digest();
-//                        })
-//                        .fail(function(err){
-//                            console.log(err);
-//                            if (section) {
-//                                profile[section].submitting = false;
-//                                profile[section].error = true;
-//                            }
-//                            $scope.$digest();
-//                        })                
-//                    })//end for getPersonAttributes.
-//                } // end if section
-//            } // end for function     
-}};
-
-
-return UserProfile;
-}]);
-
-angular.module('common').
-factory('UserProfile',['API', 'APIError', 'LocaleService', 'Timezones', '$filter', '$q', '$timeout', function(API,APIError,LocaleService,Timezones,$filter,$q,$timeout){
+factory('UserProfile',function(API,APIError,LocaleService,Timezones,$filter,$q,$timeout){
 
 var errorName='userProfileFactory.';
 
@@ -12043,10 +11064,10 @@ $scope.$digest();
 
 
 return UserProfile;
-}]);
+});
 
 angular.module('common').
-factory('BuildPackageRequests',['API', function(API){
+factory('BuildPackageRequests',function(API){
 
 /*
         Helper factory for creating and sending service package requests.
@@ -12117,7 +11138,7 @@ reason:arrayOfApps[_i2]._reason||''});
 return packageRequests.map(function(data){return API.cui.createPackageRequest({data:data});});
 
 };
-}]);
+});
 
 angular.module('common').
 factory('AppRequests',['$filter',function($filter){
@@ -12178,7 +11199,7 @@ return arrayOfPackageRequests;
 return appRequests;
 }]);
 angular.module('common').
-factory('ServicePackage',['API', 'APIError', '$q', function(API,APIError,$q){
+factory('ServicePackage',function(API,APIError,$q){
 'use strict';
 
 /*
@@ -12393,7 +11414,7 @@ throw new Error('Package request object must contain "approval" of either "appro
 
 return servicePackage;
 
-}]);
+});
 
 angular.module('applications',[]).
 config(['$stateProvider',function($stateProvider){
@@ -12500,7 +11521,7 @@ access:loginRequired});
 }]);
 
 angular.module('applications').
-controller('myApplicationDetailsCtrl',['API', '$scope', '$stateParams', '$state', '$q', 'APIHelpers', 'Loader', 'APIError', 'DataStorage', function(API,$scope,$stateParams,$state,$q,APIHelpers,Loader,APIError,DataStorage){
+controller('myApplicationDetailsCtrl',function(API,$scope,$stateParams,$state,$q,APIHelpers,Loader,APIError,DataStorage){
 var myApplicationDetails=this;
 myApplicationDetails.relatedApps=[];
 
@@ -12611,10 +11632,10 @@ $state.go('applications.myApplicationDetails',{
 
 // ON CLICK FUNCTIONS END ------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('applications').
-controller('manageApplicationsCtrl',['API', 'APIError', 'APIHelpers', 'DataStorage', 'Loader', 'User', '$filter', '$pagination', '$q', '$scope', '$state', '$stateParams', function(API,APIError,APIHelpers,DataStorage,Loader,User,$filter,$pagination,$q,$scope,$state,$stateParams){
+controller('manageApplicationsCtrl',function(API,APIError,APIHelpers,DataStorage,Loader,User,$filter,$pagination,$q,$scope,$state,$stateParams){
 
 var manageApplications=this;
 var userId=User.user.id;
@@ -12831,10 +11852,10 @@ $state.go('applications.myApplicationDetails',opts);
 
 // ON CLICK FUNCTIONS END ---------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('applications').
-controller('myApplicationsCtrl',['API', 'APIError', 'APIHelpers', 'DataStorage', 'Loader', 'User', '$filter', '$pagination', '$q', '$scope', '$state', '$stateParams', function(API,APIError,APIHelpers,DataStorage,Loader,User,$filter,$pagination,$q,$scope,$state,$stateParams){
+controller('myApplicationsCtrl',function(API,APIError,APIHelpers,DataStorage,Loader,User,$filter,$pagination,$q,$scope,$state,$stateParams){
 var myApplications=this;
 var userId=User.user.id;
 var loaderName='myApplications.';
@@ -12991,7 +12012,7 @@ break;}
 $state.transitionTo('applications.myApplications',myApplications.search,{notify:false});
 onLoad(true);
 };
-}]);
+});
 
 angular.module('applications').
 controller('applicationReviewCtrl',['$scope','API','AppRequests','$timeout','$state','$q','localStorageService',function($scope,API,AppRequests,$timeout,$state,$q,localStorage){
@@ -13171,120 +12192,7 @@ $state.go('applications.search',{name:searchWord});
 }]);
 
 angular.module('applications').
-controller('orgApplicationsCtrl',['$scope','API','Sort','$stateParams',
-function($scope,API,Sort,$stateParams){
-'use strict';
-
-var orgApplications=this;
-var organizationId=$stateParams.id;
-
-orgApplications.loading=true;
-orgApplications.sortFlag=false;
-orgApplications.categoriesFlag=false;
-orgApplications.statusFlag=false;
-orgApplications.appList=[];
-orgApplications.unparsedAppList=[];
-orgApplications.categoryList=[];
-orgApplications.statusList=['active','suspended','pending'];
-orgApplications.statusCount=[0,0,0,0];
-
-// HELPER FUNCTIONS START ---------------------------------------------------------------------------------
-
-var handleError=function handleError(err){
-orgApplications.loading=false;
-$scope.$digest();
-console.log('Error',err);
-};
-
-var getListOfCategories=function getListOfCategories(services){
-// WORKAROUND CASE # 7
-var categoryList=[];
-var categoryCount=[orgApplications.unparsedAppList.length];
-
-services.forEach(function(service){
-if(service.category){
-var serviceCategoryInCategoryList=_.some(categoryList,function(category,i){
-if(angular.equals(category,service.category)){
-categoryCount[i+1]?categoryCount[i+1]++:categoryCount[i+1]=1;
-return true;
-}
-return false;
-});
-
-if(!serviceCategoryInCategoryList){
-categoryList.push(service.category);
-categoryCount[categoryList.length]=1;
-}
-}
-});
-orgApplications.categoryCount=categoryCount;
-return categoryList;
-};
-
-var getApplicationsFromGrants=function getApplicationsFromGrants(grants){
-// WORKAROUND CASE #1
-// Get services from each grant
-var i=0;
-grants.forEach(function(grant){
-API.cui.getPackageServices({'packageId':grant.servicePackage.id}).
-then(function(res){
-i++;
-res.forEach(function(service){
-// Set some of the grant attributes to its associated service
-service.status=grant.status;
-service.dateCreated=grant.creation;
-service.parentPackage=grant.servicePackage.id;
-orgApplications.appList.push(service);
-});
-
-if(i===grants.length){
-orgApplications.appList=_.uniq(orgApplications.appList,function(app){
-return app.id;
-});
-angular.copy(orgApplications.appList,orgApplications.unparsedAppList);
-orgApplications.statusCount[0]=orgApplications.appList.length;
-orgApplications.categoryList=getListOfCategories(orgApplications.appList);
-orgApplications.loading=false;
-$scope.$digest();
-}
-}).
-fail(handleError);
-});
-};
-
-// HELPER FUNCTIONS END -----------------------------------------------------------------------------------
-
-// ON LOAD START ------------------------------------------------------------------------------------------
-
-if(organizationId){
-// Load organization applications of id parameter
-API.cui.getOrganizationPackages({organizationId:organizationId}).
-then(function(res){
-getApplicationsFromGrants(res);
-}).
-fail(handleError);
-}else
-{
-// Load logged in user's organization applications
-API.cui.getPerson({personId:API.getUser(),useCuid:true}).
-then(function(res){
-return API.cui.getOrganizationPackages({organizationId:res.organization.id});
-}).
-then(function(res){
-getApplicationsFromGrants(res);
-}).
-fail(handleError);
-}
-
-// ON LOAD END --------------------------------------------------------------------------------------------
-
-// ON CLICK FUNCTIONS START -------------------------------------------------------------------------------
-// ON CLICK FUNCTIONS END ---------------------------------------------------------------------------------
-
-}]);
-
-angular.module('applications').
-controller('pendingAppRequestsCtrl',['API', 'APIError', 'APIHelpers', 'DataStorage', 'Loader', '$filter', '$pagination', '$q', '$scope', '$state', '$stateParams', function(API,APIError,APIHelpers,DataStorage,Loader,$filter,$pagination,$q,$scope,$state,$stateParams){
+controller('pendingAppRequestsCtrl',function(API,APIError,APIHelpers,DataStorage,Loader,$filter,$pagination,$q,$scope,$state,$stateParams){
 
 var pendingAppRequests=this;
 var loaderName='pendingAppRequests.';
@@ -13412,7 +12320,7 @@ pendingAppRequests.updateSearch('name',searchWord);
 };
 
 // ON CLICK FUNCTIONS END -------------------------------------------------------------------------------
-}]);
+});
 angular.module('applications').
 controller('applicationSearchCtrl',['API','$scope','$stateParams','$state','AppRequests','localStorageService','$q','$pagination',function(API,$scope,$stateParams,$state,AppRequests,localStorage,$q,$pagination){
 var applicationSearch=this;
