@@ -106,7 +106,7 @@ angular.module('organization')
           user.success=true
            user.sendInvitationError=false;
            $timeout(() => {
-                 $state.go('organization.profile', {'orgId':user.stateParamsOrgId});
+                 $state.go('invitation.inviteSelect');
             }, 3000); 
         })
         .catch(error => {

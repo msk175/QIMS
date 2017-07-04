@@ -78,7 +78,7 @@ access:loginRequired});
 }]);
 
 angular.module('user').
-controller('appGrantHistoryCtrl',['Loader', 'User', '$scope', 'API', 'APIError', '$filter', '$pagination', '$q', '$state', '$stateParams', function(Loader,User,$scope,API,APIError,$filter,$pagination,$q,$state,$stateParams){
+controller('appGrantHistoryCtrl',function(Loader,User,$scope,API,APIError,$filter,$pagination,$q,$state,$stateParams){
 
 var appGrantHistory=this;
 var scopeName='appGrantHistory.';
@@ -235,9 +235,9 @@ $scope.$digest();
 });
 /* -------------------------------------------- ON LOAD END --------------------------------------------- */
 
-}]);
+});
 angular.module('user').
-controller('appRequestHistoryCtrl',['Loader', 'User', '$scope', 'API', 'APIError', '$filter', '$pagination', '$q', '$state', '$stateParams', function(Loader,User,$scope,API,APIError,$filter,$pagination,$q,$state,$stateParams){
+controller('appRequestHistoryCtrl',function(Loader,User,$scope,API,APIError,$filter,$pagination,$q,$state,$stateParams){
 
 var appRequestHistory=this;
 var scopeName='appRequestHistory.';
@@ -456,9 +456,9 @@ $scope.$digest();
 });
 /* -------------------------------------------- ON LOAD END --------------------------------------------- */
 
-}]);
+});
 angular.module('user').
-controller('userHistoryCtrl',['Loader', 'User', 'UserHistory', '$scope', function(Loader,User,UserHistory,$scope){
+controller('userHistoryCtrl',function(Loader,User,UserHistory,$scope){
 
 var userHistory=this;
 var scopeName='userHistory.';
@@ -480,9 +480,9 @@ Loader.offFor(scopeName+'initHistory');
 
 /* -------------------------------------------- ON LOAD END --------------------------------------------- */
 
-}]);
+});
 angular.module('user').
-controller('userProfileCtrl',['Loader', 'User', 'UserProfile', '$scope', function(Loader,User,UserProfile,$scope){
+controller('userProfileCtrl',function(Loader,User,UserProfile,$scope){
 
 var userProfile=this;
 var scopeName='userProfile.';
@@ -529,10 +529,10 @@ Loader.offFor(scopeName+'initProfile');
 
 /* --------------------------------------------- ON LOAD END ---------------------------------------------- */
 
-}]);
+});
 
 angular.module('user').
-controller('userRolesCtrl',['Loader', 'User', 'UserProfile', '$scope', 'API', 'APIError', '$timeout', '$state', function(Loader,User,UserProfile,$scope,API,APIError,$timeout,$state){
+controller('userRolesCtrl',function(Loader,User,UserProfile,$scope,API,APIError,$timeout,$state){
 'use strict';
 
 var userRoles=this;
@@ -653,7 +653,7 @@ userRoles.appCheckboxValid=false;
 }
 },true);
 // ON CLICK END ----------------------------------------------------------------------------------
-}]);
+});
 
 
 angular.module('registration',[]).
@@ -692,7 +692,7 @@ mobile:false}});
 }]);
 
 angular.module('registration').
-controller('userInvitedCtrl',['APIError', 'localStorageService', 'Registration', '$scope', '$state', '$q', 'LocaleService', '$window', 'Base', '$stateParams', '$pagination', '$filter', function(APIError,localStorageService,Registration,$scope,$state,$q,LocaleService,$window,Base,$stateParams,$pagination,$filter){
+controller('userInvitedCtrl',function(APIError,localStorageService,Registration,$scope,$state,$q,LocaleService,$window,Base,$stateParams,$pagination,$filter){
 
 var userInvited=this;
 var encodedString=btoa($stateParams.inviteId+':'+$stateParams.pin);
@@ -1289,10 +1289,10 @@ userInvited.inlineEdit.challengeAnswer2(userInvited.userLogin.challengeAnswer2);
 
 /* --------------------------------------------- WATCHERS END --------------------------------------------- */
 
-}]);
+});
 
 angular.module('registration').
-controller('userWalkupCtrl',['APIError', 'localStorageService', 'Registration', '$scope', '$state', '$q', 'LocaleService', '$window', 'Base', '$pagination', '$filter', function(APIError,localStorageService,Registration,$scope,$state,$q,LocaleService,$window,Base,$pagination,$filter){
+controller('userWalkupCtrl',function(APIError,localStorageService,Registration,$scope,$state,$q,LocaleService,$window,Base,$pagination,$filter){
 
 var userWalkup=this;
 
@@ -1809,7 +1809,7 @@ userWalkup.inlineEdit.challengeAnswer2(userWalkup.userLogin.challengeAnswer2);
 
 /* --------------------------------------------- WATCHERS END --------------------------------------------- */
 
-}]);
+});
 
 angular.module('organization',[]).
 config(['$stateProvider',function($stateProvider){
@@ -2145,7 +2145,7 @@ permittedLogic:appConfig.orgAdminLogic}});
 }]);
 
 angular.module('organization').
-controller('orgAppRequestCtrl',['API', 'DataStorage', 'Loader', 'User', '$scope', '$state', '$stateParams', function(API,DataStorage,Loader,User,$scope,$state,$stateParams){
+controller('orgAppRequestCtrl',function(API,DataStorage,Loader,User,$scope,$state,$stateParams){
 
 var orgAppRequest=this;
 var orgAppsBeingRequested=DataStorage.getType('orgAppsBeingRequested');
@@ -2183,10 +2183,10 @@ $state.go('organization.search',{name:searchWord});
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('orgAppRequestReviewCtrl',['API', 'APIError', 'BuildPackageRequests', 'DataStorage', 'Loader', 'User', '$q', '$state', '$timeout', 'AppRequests', '$stateParams', function(API,APIError,BuildPackageRequests,DataStorage,Loader,User,$q,$state,$timeout,AppRequests,$stateParams){
+controller('orgAppRequestReviewCtrl',function(API,APIError,BuildPackageRequests,DataStorage,Loader,User,$q,$state,$timeout,AppRequests,$stateParams){
 
 var orgAppRequestReview=this;
 var loaderName='orgAppRequestReview.';
@@ -2301,10 +2301,10 @@ orgAppRequestReview.step=2;
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('orgApplicationDetailsCtrl',['API', 'APIHelpers', 'APIError', 'Loader', 'Sort', 'User', '$q', '$scope', '$state', '$stateParams', function(API,APIHelpers,APIError,Loader,Sort,User,$q,$scope,$state,$stateParams){
+controller('orgApplicationDetailsCtrl',function(API,APIHelpers,APIError,Loader,Sort,User,$q,$scope,$state,$stateParams){
 
 var orgApplicationDetails=this;
 var organizationId=$stateParams.orgId;
@@ -2527,9 +2527,9 @@ $scope.$apply();
 };
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
-}]);
+});
 angular.module('organization').
-controller('organizationApplicationsCtrl',['API', 'Sort', 'User', '$filter', '$pagination', '$q', '$scope', '$state', '$stateParams', function(API,Sort,User,$filter,$pagination,$q,$scope,$state,$stateParams){
+controller('organizationApplicationsCtrl',function(API,Sort,User,$filter,$pagination,$q,$scope,$state,$stateParams){
 
 var organizationApplications=this;
 organizationApplications.stateParamsOrgId=$stateParams.orgId;
@@ -2720,10 +2720,10 @@ $state.go('organization.applicationDetails',opts);
 
 // ON CLICK FUNCTIONS END ---------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('orgAppSearchCtrl',['API', 'DataStorage', 'Loader', 'User', '$pagination', '$q', '$state', '$stateParams', function(API,DataStorage,Loader,User,$pagination,$q,$state,$stateParams){
+controller('orgAppSearchCtrl',function(API,DataStorage,Loader,User,$pagination,$q,$state,$stateParams){
 
 var orgAppSearch=this;
 var loaderName='orgAppSearch.loading';
@@ -2964,10 +2964,10 @@ orgAppSearch.toggleRequest(_.find(orgAppSearch.list,{id:bundledApp.id}));
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('orgDetailsCtrl',['API', 'Loader', '$scope', '$stateParams', 'APIError', 'APIHelpers', '$timeout', '$q', function(API,Loader,$scope,$stateParams,APIError,APIHelpers,$timeout,$q){
+controller('orgDetailsCtrl',function(API,Loader,$scope,$stateParams,APIError,APIHelpers,$timeout,$q){
 
 var orgDetails=this;
 var scopeName='orgDetails.';
@@ -3019,10 +3019,10 @@ APIError.onFor('orgDetails.org');
 /* --------------------------------------------- ON CLICK START ---------------------------------------------- */
 
 /* --------------------------------------------- ON CLICK END ---------------------------------------------- */
-}]);
+});
 
 angular.module('organization').
-controller('orgDetailsAppsCtrl',['API', '$stateParams', '$q', '$state', 'DataStorage', '$pagination', 'Loader', '$filter', '$scope', function(API,$stateParams,$q,$state,DataStorage,$pagination,Loader,$filter,$scope){
+controller('orgDetailsAppsCtrl',function(API,$stateParams,$q,$state,DataStorage,$pagination,Loader,$filter,$scope){
 'use strict';
 
 
@@ -3214,10 +3214,10 @@ orgId:application.owningOrganization.id};
 $state.go('organization.applicationDetails',opts);
 };
 // ON CLICK FUNCTIONS END ------------------------------------------------------------------------
-}]);
+});
 
 angular.module('organization').
-controller('orgDetailsHierarchyCtrl',['API', 'APIError', 'Loader', 'User', '$scope', '$state', '$stateParams', function(API,APIError,Loader,User,$scope,$state,$stateParams){
+controller('orgDetailsHierarchyCtrl',function(API,APIError,Loader,User,$scope,$state,$stateParams){
 'use strict';
 var orgDetailsHierarchy=this;
 var pageLoader='orgDetailsHierarchy.loading';
@@ -3286,10 +3286,10 @@ object.expanded=!object.expanded;
 // updateOrgChildren(orgDetailsHierarchy.organizationHierarchy[0].children)
 $scope.$digest();
 };
-}]);
+});
 
 angular.module('organization').
-controller('orgDetailsProfileCtrl',['Loader', 'Organization', '$stateParams', '$q', 'APIError', function(Loader,Organization,$stateParams,$q,APIError){
+controller('orgDetailsProfileCtrl',function(Loader,Organization,$stateParams,$q,APIError){
 
 var orgDetailsProfile=this;
 var scopeName='orgDetailsProfile.';
@@ -3326,10 +3326,10 @@ APIError.onFor('orgDetailsProfile.init');
 
 /* --------------------------------------------- ON LOAD END ---------------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('orgDetailsUsersCtrl',['API', 'APIError', 'APIHelpers', 'CuiMobileNavFactory', 'Loader', 'User', 'UserList', '$filter', '$pagination', '$q', '$state', '$stateParams', function(API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,UserList,$filter,$pagination,$q,$state,$stateParams){
+controller('orgDetailsUsersCtrl',function(API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,UserList,$filter,$pagination,$q,$state,$stateParams){
 
 var orgDetailsUsers=this;
 var scopeName='orgDetailsUsers.';
@@ -3478,10 +3478,10 @@ initDirectory(organization.id);
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('userAppDetailsCtrl',['API', '$scope', '$stateParams', '$state', '$q', 'APIHelpers', 'Loader', 'APIError', 'DataStorage', '$timeout', function(API,$scope,$stateParams,$state,$q,APIHelpers,Loader,APIError,DataStorage,$timeout){
+controller('userAppDetailsCtrl',function(API,$scope,$stateParams,$state,$q,APIHelpers,Loader,APIError,DataStorage,$timeout){
 var userAppDetails=this;
 userAppDetails.relatedApps=[];
 userAppDetails.prevState={
@@ -3813,10 +3813,10 @@ console.log('There was an error updating user\'s app claims',+err);
 };
 // ON CLICK FUNCTIONS END ------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('userDetailsCtrl',['API', 'Loader', '$scope', '$stateParams', 'APIError', 'APIHelpers', '$timeout', '$q', function(API,Loader,$scope,$stateParams,APIError,APIHelpers,$timeout,$q){
+controller('userDetailsCtrl',function(API,Loader,$scope,$stateParams,APIError,APIHelpers,$timeout,$q){
 
 var userDetails=this;
 var scopeName='userDetails.';
@@ -4172,10 +4172,10 @@ $scope.$digest();
 };
 
 /* --------------------------------------------- ON CLICK END ---------------------------------------------- */
-}]);
+});
 
 angular.module('organization').
-controller('userDetailsAppsCtrl',['API', '$stateParams', '$q', '$state', 'DataStorage', function(API,$stateParams,$q,$state,DataStorage){
+controller('userDetailsAppsCtrl',function(API,$stateParams,$q,$state,DataStorage){
 'use strict';
 
 var userDetailsApps=this,
@@ -4274,10 +4274,10 @@ $state.go('organization.directory.userAppDetails',{appId:application.id,orgId:or
 };
 
 // ON CLICK FUNCTIONS END ------------------------------------------------------------------------
-}]);
+});
 
 angular.module('organization').
-controller('userDetailsHistoryCtrl',['API', '$stateParams', '$q', function(API,$stateParams,$q){
+controller('userDetailsHistoryCtrl',function(API,$stateParams,$q){
 'use strict';
 
 var userDetailsHistory=this,
@@ -4309,10 +4309,10 @@ console.log(error);
 
 // ON LOAD END -----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('userDetailsProfileCtrl',['Loader', 'UserProfile', '$scope', '$stateParams', function(Loader,UserProfile,$scope,$stateParams){
+controller('userDetailsProfileCtrl',function(Loader,UserProfile,$scope,$stateParams){
 
 var userDetailsProfile=this;
 var scopeName='userDetailsProfile.';
@@ -4331,10 +4331,10 @@ Loader.offFor(scopeName+'initProfile');
 
 /* --------------------------------------------- ON LOAD END ---------------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('userDetailsRolesCtrl',['API', '$stateParams', '$q', '$scope', 'APIError', '$timeout', function(API,$stateParams,$q,$scope,APIError,$timeout){
+controller('userDetailsRolesCtrl',function(API,$stateParams,$q,$scope,APIError,$timeout){
 'use strict';
 
 var userDetailsRoles=this,
@@ -4420,7 +4420,6 @@ init();
 }).
 fail(function(err){
 userDetailsRoles.loading=false;
-APIError.onFor(scopeName+'initHistory');
 userDetailsRoles.rolessubmitError=true;
 $scope.$digest();
 });
@@ -4442,10 +4441,10 @@ userDetailsRoles.appCheckboxValid=false;
 
 // ON LOAD END -----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('orgDirectoryCtrl',['API', 'APIError', 'APIHelpers', 'CuiMobileNavFactory', 'Loader', 'User', 'UserList', '$filter', '$pagination', '$q', '$state', '$stateParams', function(API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,UserList,$filter,$pagination,$q,$state,$stateParams){
+controller('orgDirectoryCtrl',function(API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,UserList,$filter,$pagination,$q,$state,$stateParams){
 
 var orgDirectory=this;
 var scopeName='orgDirectory.';
@@ -4594,10 +4593,10 @@ initDirectory(organization.id);
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('orgHierarchyCtrl',['API', 'APIError', 'DataStorage', 'Loader', 'User', '$scope', '$state', '$stateParams', function(API,APIError,DataStorage,Loader,User,$scope,$state,$stateParams){
+controller('orgHierarchyCtrl',function(API,APIError,DataStorage,Loader,User,$scope,$state,$stateParams){
 
 var orgHierarchy=this;
 var pageLoader='orgHierarchy.loading';
@@ -4694,10 +4693,10 @@ updateFlag(org.children);
 updateFlag(orgHierarchy.organizationHierarchy[0].children);
 };
 /* */
-}]);
+});
 
 angular.module('organization').
-controller('divisionCtrl',['APIError', 'API', '$scope', '$state', '$q', 'Base', '$stateParams', 'User', '$timeout', 'DataStorage', function(APIError,API,$scope,$state,$q,Base,$stateParams,User,$timeout,DataStorage){
+controller('divisionCtrl',function(APIError,API,$scope,$state,$q,Base,$stateParams,User,$timeout,DataStorage){
 
 var division=this;
 division.sendInvitationError='';
@@ -4813,10 +4812,10 @@ $scope.$digest();
 division.goToOrg=function(){
 
 };
-}]);
+});
 
 angular.module('organization').
-controller('tloCtrl',['APIError', 'API', '$scope', '$state', '$q', 'Base', '$stateParams', 'User', '$timeout', function(APIError,API,$scope,$state,$q,Base,$stateParams,User,$timeout){
+controller('tloCtrl',function(APIError,API,$scope,$state,$q,Base,$stateParams,User,$timeout){
 
 var tlo=this;
 tlo.sendInvitationError='';
@@ -4873,10 +4872,10 @@ tlo.sendInvitationError=true;
 tlo.emailAddressError=true;
 }
 };
-}]);
+});
 
 angular.module('organization').
-controller('userCtrl',['APIError', 'API', '$scope', '$state', '$q', 'Base', '$stateParams', 'User', '$timeout', 'DataStorage', function(APIError,API,$scope,$state,$q,Base,$stateParams,User,$timeout,DataStorage){
+controller('userCtrl',function(APIError,API,$scope,$state,$q,Base,$stateParams,User,$timeout,DataStorage){
 
 var user=this;
 user.sendInvitationError='';
@@ -5004,10 +5003,10 @@ user.selectOrgFromList=false;
 $scope.$digest();
 };
 
-}]);
+});
 
 angular.module('organization').
-controller('orgProfileCtrl',['DataStorage', 'Loader', 'Organization', 'User', '$stateParams', '$q', 'APIError', function(DataStorage,Loader,Organization,User,$stateParams,$q,APIError){
+controller('orgProfileCtrl',function(DataStorage,Loader,Organization,User,$stateParams,$q,APIError){
 
 var orgProfile=this;
 var storedData=DataStorage.getType('orgProfile');
@@ -5058,10 +5057,10 @@ APIError.onFor('orgProfile.init');
 
 /* --------------------------------------------- ON LOAD END ---------------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-factory('NewGrant',['DataStorage', 'API', '$stateParams', function(DataStorage,API,$stateParams){
+factory('NewGrant',function(DataStorage,API,$stateParams){
 var newGrant={};
 var newGrantsInStorage=void 0;
 /*
@@ -5193,9 +5192,9 @@ return packageGrants;
 };
 
 return newGrant;
-}]);
+});
 angular.module('organization').
-controller('newGrantClaimsCtrl',['API', 'APIHelpers', 'DataStorage', 'Loader', 'NewGrant', '$stateParams', '$q', '$scope', '$state', '$timeout', function(API,APIHelpers,DataStorage,Loader,NewGrant,$stateParams,$q,$scope,$state,$timeout){
+controller('newGrantClaimsCtrl',function(API,APIHelpers,DataStorage,Loader,NewGrant,$stateParams,$q,$scope,$state,$timeout){
 
 var newGrantClaims=this;
 var loaderType='newGrantClaims.';
@@ -5305,10 +5304,10 @@ newGrantClaims.error=true;
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('newGrantCtrl',['API', '$stateParams', '$scope', '$state', '$filter', 'Loader', 'DataStorage', 'NewGrant', function(API,$stateParams,$scope,$state,$filter,Loader,DataStorage,NewGrant){
+controller('newGrantCtrl',function(API,$stateParams,$scope,$state,$filter,Loader,DataStorage,NewGrant){
 
 var newGrant=this;
 newGrant.prevState={
@@ -5382,10 +5381,10 @@ $state.go('organization.requests.newGrantClaims',{userId:$stateParams.userId,org
 };
 // ON CLICK END ----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('newGrantSearchCtrl',['$scope', '$state', '$stateParams', 'API', 'DataStorage', 'Loader', '$pagination', 'APIHelpers', 'NewGrant', '$q', function($scope,$state,$stateParams,API,DataStorage,Loader,$pagination,APIHelpers,NewGrant,$q){
+controller('newGrantSearchCtrl',function($scope,$state,$stateParams,API,DataStorage,Loader,$pagination,APIHelpers,NewGrant,$q){
 var newGrantSearch=this;
 newGrantSearch.prevState={
 params:{
@@ -5549,10 +5548,10 @@ newGrantSearch.toggleRequest({type:'application',payload:_.find(newGrantSearch.a
 }
 };
 // ON CLICK END ----------------------------------------------------------------------------------
-}]);
+});
 
 angular.module('organization').
-controller('newOrgGrantClaimsCtrl',['API', 'APIHelpers', 'DataStorage', 'Loader', 'NewGrant', '$stateParams', '$q', '$scope', '$state', '$timeout', function(API,APIHelpers,DataStorage,Loader,NewGrant,$stateParams,$q,$scope,$state,$timeout){
+controller('newOrgGrantClaimsCtrl',function(API,APIHelpers,DataStorage,Loader,NewGrant,$stateParams,$q,$scope,$state,$timeout){
 
 var newOrgGrantClaims=this;
 var loaderType='newOrgGrantClaims.';
@@ -5667,10 +5666,10 @@ newOrgGrantClaims.error=true;
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('newOrgGrantCtrl',['API', '$stateParams', '$scope', '$state', '$filter', 'Loader', 'DataStorage', 'NewGrant', function(API,$stateParams,$scope,$state,$filter,Loader,DataStorage,NewGrant){
+controller('newOrgGrantCtrl',function(API,$stateParams,$scope,$state,$filter,Loader,DataStorage,NewGrant){
 
 var newOrgGrant=this;
 newOrgGrant.prevState={
@@ -5751,10 +5750,10 @@ $state.go('organization.requests.newOrgGrantClaims',{orgId:$stateParams.orgId});
 };
 // ON CLICK END ----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('newOrgGrantSearchCtrl',['$scope', '$state', '$stateParams', 'API', 'DataStorage', 'Loader', '$pagination', 'APIHelpers', 'NewGrant', '$q', 'APIError', function($scope,$state,$stateParams,API,DataStorage,Loader,$pagination,APIHelpers,NewGrant,$q,APIError){
+controller('newOrgGrantSearchCtrl',function($scope,$state,$stateParams,API,DataStorage,Loader,$pagination,APIHelpers,NewGrant,$q,APIError){
 var newOrgGrantSearch=this;
 newOrgGrantSearch.prevState={
 params:{
@@ -5981,11 +5980,11 @@ newOrgGrantSearch.toggleRequest({type:'application',payload:_.find(newOrgGrantSe
 }
 };
 // ON CLICK END ----------------------------------------------------------------------------------
-}]);
+});
 
 angular.module('organization').
 controller('orgAppRequestsCtrl',
-['$timeout', '$filter', '$pagination', '$state', '$stateParams', 'API', 'APIError', 'APIHelpers', 'CuiMobileNavFactory', 'Loader', 'User', 'DataStorage', function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,DataStorage){
+function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,DataStorage){
 
 var scopeName='orgAppRequests.';
 var orgAppRequests=this;
@@ -6194,11 +6193,11 @@ init();
 };
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
 controller('orgRegistrationRequestsCtrl',
-['$timeout', '$filter', '$pagination', '$state', '$stateParams', 'API', 'APIError', 'APIHelpers', 'CuiMobileNavFactory', 'Loader', 'User', 'DataStorage', function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,DataStorage){
+function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,DataStorage){
 
 var scopeName='orgRegistrationRequests.';
 var orgRegistrationRequests=this;
@@ -6434,10 +6433,10 @@ orgRegistrationRequests.updateSearch('organizationName',searchWord);
 };
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
-controller('organizationAppRequestCtrl',['APIError', 'DataStorage', 'Loader', '$state', '$stateParams', '$timeout', 'API', '$scope', '$q', 'ServicePackage', function(APIError,DataStorage,Loader,$state,$stateParams,$timeout,API,$scope,$q,ServicePackage){
+controller('organizationAppRequestCtrl',function(APIError,DataStorage,Loader,$state,$stateParams,$timeout,API,$scope,$q,ServicePackage){
 'use strict';
 
 var organizationAppRequest=this;
@@ -6500,10 +6499,10 @@ $state.go('organization.requests.organizationAppRequestReview',{userId:userId,or
 };
 
 // ON CLICK END ----------------------------------------------------------------------------------
-}]);
+});
 
 angular.module('organization').
-controller('organizationAppRequestReviewCtrl',['DataStorage', 'Loader', 'ServicePackage', '$q', '$state', '$stateParams', '$timeout', 'APIError', 'API', '$scope', function(DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout,APIError,API,$scope){
+controller('organizationAppRequestReviewCtrl',function(DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout,APIError,API,$scope){
 'use strict';
 
 var organizationAppRequestReview=this;
@@ -6604,10 +6603,10 @@ fail(handleError);
 
 // ON CLICK END ----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('organizationRequestCtrl',['APIError', 'DataStorage', 'Loader', '$state', '$stateParams', '$timeout', 'API', '$scope', '$q', 'ServicePackage', function(APIError,DataStorage,Loader,$state,$stateParams,$timeout,API,$scope,$q,ServicePackage){
+controller('organizationRequestCtrl',function(APIError,DataStorage,Loader,$state,$stateParams,$timeout,API,$scope,$q,ServicePackage){
 'use strict';
 
 var organizationRequest=this;
@@ -6685,10 +6684,10 @@ $state.go('organization.requests.organizationRequestReview',{userId:userId,orgId
 };
 
 // ON CLICK END ----------------------------------------------------------------------------------
-}]);
+});
 
 angular.module('organization').
-controller('organizationRequestReviewCtrl',['DataStorage', 'Loader', 'ServicePackage', '$q', '$state', '$stateParams', '$timeout', 'APIError', 'API', '$scope', function(DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout,APIError,API,$scope){
+controller('organizationRequestReviewCtrl',function(DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout,APIError,API,$scope){
 'use strict';
 
 var organizationRequestReview=this;
@@ -6808,10 +6807,10 @@ fail(handleError);
 
 // ON CLICK END ----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('pendingRequestsCtrl',['API', 'DataStorage', 'Loader', 'ServicePackage', '$q', '$state', '$stateParams', '$timeout', function(API,DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout){
+controller('pendingRequestsCtrl',function(API,DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout){
 'use strict';
 
 var pendingRequests=this;
@@ -6897,10 +6896,10 @@ pendingRequests.reviewApprovals();
 
 // ON CLICK END ----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('pendingRequestsReviewCtrl',['DataStorage', 'Loader', 'ServicePackage', '$q', '$state', '$stateParams', '$timeout', function(DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout){
+controller('pendingRequestsReviewCtrl',function(DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout){
 'use strict';
 
 var pendingRequestsReview=this;
@@ -6975,10 +6974,10 @@ $state.go('organization.requests.pendingRequests',{userId:userId,orgId:orgId});
 
 // ON CLICK END ----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
-controller('personRequestCtrl',['APIError', 'DataStorage', 'Loader', 'PersonRequest', 'ServicePackage', '$state', '$stateParams', '$timeout', 'API', '$scope', function(APIError,DataStorage,Loader,PersonRequest,ServicePackage,$state,$stateParams,$timeout,API,$scope){
+controller('personRequestCtrl',function(APIError,DataStorage,Loader,PersonRequest,ServicePackage,$state,$stateParams,$timeout,API,$scope){
 'use strict';
 
 var personRequest=this;
@@ -7123,10 +7122,10 @@ personRequest.reviewApprovals();
 }
 };
 // ON CLICK END ----------------------------------------------------------------------------------
-}]);
+});
 
 angular.module('organization').
-controller('personRequestReviewCtrl',['DataStorage', 'Loader', 'PersonRequest', 'ServicePackage', '$q', '$state', '$stateParams', '$timeout', 'API', '$scope', function(DataStorage,Loader,PersonRequest,ServicePackage,$q,$state,$stateParams,$timeout,API,$scope){
+controller('personRequestReviewCtrl',function(DataStorage,Loader,PersonRequest,ServicePackage,$q,$state,$stateParams,$timeout,API,$scope){
 'use strict';
 
 var personRequestReview=this;
@@ -7234,11 +7233,11 @@ fail(handleError);
 
 // ON CLICK END ----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('organization').
 controller('usersAppRequestsCtrl',
-['$timeout', '$filter', '$pagination', '$state', '$stateParams', 'API', 'APIError', 'APIHelpers', 'CuiMobileNavFactory', 'Loader', 'User', function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User){
+function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User){
 
 var scopeName='usersAppRequests.';
 var usersAppRequests=this;
@@ -7446,11 +7445,11 @@ init();
 };
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-}]);
+});
 
 angular.module('organization').
 controller('usersRegistrationRequestsCtrl',
-['$timeout', '$filter', '$pagination', '$state', '$stateParams', 'API', 'APIError', 'APIHelpers', 'CuiMobileNavFactory', 'Loader', 'User', '$scope', 'DataStorage', function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,$scope,DataStorage){
+function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,$scope,DataStorage){
 
 var scopeName='usersRegistrationRequests.';
 var usersRegistrationRequests=this;
@@ -7734,10 +7733,10 @@ init();
 /*return undefined*/
 };
 
-}]);
+});
 
 angular.module('organization').
-controller('orgRolesCtrl',['$scope', function($scope){
+controller('orgRolesCtrl',function($scope){
 'use strict';
 
 var orgRoles=this;
@@ -7758,7 +7757,7 @@ console.log('Error',err);
 // ON CLICK START --------------------------------------------------------------------------------
 // ON CLICK END ----------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('misc',[]).
 config(['$stateProvider',function($stateProvider){
@@ -8012,7 +8011,7 @@ $state.go('organization.directory.orgDetails',stateOpts);
 }]);
 
 angular.module('common',['translate','ngMessages','cui.authorization','cui-ng','ui.router','snap','LocalStorageModule']).
-config(['$translateProvider', '$locationProvider', '$urlRouterProvider', '$injector', 'localStorageServiceProvider', '$cuiIconProvider', '$cuiI18nProvider', '$paginationProvider', '$stateProvider', '$compileProvider', '$cuiResizeHandlerProvider', function($translateProvider,$locationProvider,$urlRouterProvider,$injector,
+config(function($translateProvider,$locationProvider,$urlRouterProvider,$injector,
 localStorageServiceProvider,$cuiIconProvider,$cuiI18nProvider,$paginationProvider,
 $stateProvider,$compileProvider,$cuiResizeHandlerProvider){
 
@@ -8118,7 +8117,7 @@ throw new Error('You don\'t have breakpointOption set in your appConfig.json');
 
 $compileProvider.debugInfoEnabled(false);
 
-}]);
+});
 
 angular.module('common').
 run(['LocaleService','$rootScope','$state','$http','$templateCache','$cuiI18n','User',
@@ -8286,11 +8285,11 @@ $state.go('welcome');
 }]);
 
 angular.module('common').
-controller('baseCtrl',['Base', '$scope', function(Base,$scope){
+controller('baseCtrl',function(Base,$scope){
 
 $scope.base=Base;
 $scope.base.pendingNotificationFlag=false;
-}]).
+}).
 
 filter('capitalize',function(){
 return function(input){
@@ -8305,7 +8304,7 @@ return!!input?input.charAt(0).toUpperCase()+input.substr(1).toLowerCase():'';
 });
 
 angular.module('common').
-directive('disableAnimate',['$animate', function($animate){return{
+directive('disableAnimate',function($animate){return{
 
 /*
 		Use this directive to disable the animation window that is introduced by ng-animate.
@@ -8317,11 +8316,11 @@ directive('disableAnimate',['$animate', function($animate){return{
 restrict:'A',
 link:function link(attrs,elem){
 $animate.enabled(elem,false);
-}};}]);
+}};});
 
 
 angular.module('common').
-factory('CuiMobileNavFactory',['PubSub', 'User', '$filter', function(PubSub,User,$filter){
+factory('CuiMobileNavFactory',function(PubSub,User,$filter){
 return{
 title:User.user.organization.name,
 defaultTitle:User.user.organization.name,
@@ -8339,8 +8338,8 @@ setDefaultTitle:function setDefaultTitle(newDefaultTitle){
 this.defaultTitle=newDefaultTitle;
 }};
 
-}]).
-directive('cuiMobileNav',['CuiMobileNavFactory', 'PubSub', '$state', function(CuiMobileNavFactory,PubSub,$state){return{
+}).
+directive('cuiMobileNav',function(CuiMobileNavFactory,PubSub,$state){return{
 restrict:'E',
 scope:{
 showIf:'=',
@@ -8363,7 +8362,7 @@ scope.$on('$destroy',function(){
 PubSub.unsubscribe(pubSubSubscription);
 });
 },
-template:'\n        <nav class="cui-breadcrumb--mobile" id="breadcrumb-button" aria-hidden="true" ng-click="toggle()" off-click="close()">\n            <ul class="cui-breadcrumb__links">\n                <li class="cui-breadcrumb__link cui-breadcrumb__link--current">\n                    <span class="cui-breadcrumb__mobile-link" ng-if="links[currentState]" class="active"><span class="cui-mobile-only" ng-if="activeTitle">{{activeTitle}}.</span>{{links[currentState].label}}</span>\n                    <span class="cui-breadcrumb__mobile-link" ng-if="!links[currentState]" class="active"><span class="cui-mobile-only" ng-if="activeTitle">{{activeTitle}}.</span>{{label}}</span>\n                </li>\n                <div class="cui-popover cui-popover--menu cui-breadcrumb__popover cui-popover--top cui-popover__categories-popover" tether target="#breadcrumb-button" attachment="top left" target-attachment="bottom left" offset="-10px 0" ng-if="showIf">\n                    <li class="cui-breadcrumb__link cui-popover__row" ng-repeat="(state, stateDetails) in links" ng-if="currentState!==state">\n                        <a class="cui-breadcrumb__mobile-link" ui-sref="{{state}}(stateDetails.stateParams)">{{stateDetails.label}}</a>\n                    </li>\n                </div>\n            </ul>\n        </nav>\n    '};}]);
+template:'\n        <nav class="cui-breadcrumb--mobile" id="breadcrumb-button" aria-hidden="true" ng-click="toggle()" off-click="close()">\n            <ul class="cui-breadcrumb__links">\n                <li class="cui-breadcrumb__link cui-breadcrumb__link--current">\n                    <span class="cui-breadcrumb__mobile-link" ng-if="links[currentState]" class="active"><span class="cui-mobile-only" ng-if="activeTitle">{{activeTitle}}.</span>{{links[currentState].label}}</span>\n                    <span class="cui-breadcrumb__mobile-link" ng-if="!links[currentState]" class="active"><span class="cui-mobile-only" ng-if="activeTitle">{{activeTitle}}.</span>{{label}}</span>\n                </li>\n                <div class="cui-popover cui-popover--menu cui-breadcrumb__popover cui-popover--top cui-popover__categories-popover" tether target="#breadcrumb-button" attachment="top left" target-attachment="bottom left" offset="-10px 0" ng-if="showIf">\n                    <li class="cui-breadcrumb__link cui-popover__row" ng-repeat="(state, stateDetails) in links" ng-if="currentState!==state">\n                        <a class="cui-breadcrumb__mobile-link" ui-sref="{{state}}(stateDetails.stateParams)">{{stateDetails.label}}</a>\n                    </li>\n                </div>\n            </ul>\n        </nav>\n    '};});
 
 
 
@@ -8424,7 +8423,7 @@ return routes;
 }};
 
 }).
-directive('cuiRouteHistory',['CuiRouteHistoryFactory', '$state', function(CuiRouteHistoryFactory,$state){return{
+directive('cuiRouteHistory',function(CuiRouteHistoryFactory,$state){return{
 restrict:'E',
 link:function link(scope,elem,attrs){
 //scope.currentState = $state.current.name;
@@ -8450,10 +8449,10 @@ template:'\n        <nav class="cui-breadcrumb">\n            <ul class="cui-bre
 
 
 //            <a ng-if="route.uiroute !== null" ui-sref="{{route.uiroute}}">{{route.text}}</a>
-};}]);
+};});
 
 angular.module('common').
-directive('cuiSuccessPane',['$state', '$timeout', function($state,$timeout){return{
+directive('cuiSuccessPane',function($state,$timeout){return{
 
 /*****
 		--- Usage ---
@@ -8492,7 +8491,7 @@ scope.close();
 },scope.closeAfter);
 }
 },
-template:'\n        <div class="cui-modal" ng-if="showIf" ng-click="close()">\n            <div class="cui-modal__pane">\n                <div class="cui-modal__icon">\n                    <cui-icon cui-svg-icon="cui:check-with-border" class="cui-modal__icon"></cui-icon>\n                </div>\n                <span class="cui-modal__primary-message">{{\'cui-success\' | translate}}</span>\n                <ng-transclude></ng-transclude>\n            </div>\n        </div>\n    '};}]);
+template:'\n        <div class="cui-modal" ng-if="showIf" ng-click="close()">\n            <div class="cui-modal__pane">\n                <div class="cui-modal__icon">\n                    <cui-icon cui-svg-icon="cui:check-with-border" class="cui-modal__icon"></cui-icon>\n                </div>\n                <span class="cui-modal__primary-message">{{\'cui-success\' | translate}}</span>\n                <ng-transclude></ng-transclude>\n            </div>\n        </div>\n    '};});
 
 
 
@@ -8520,7 +8519,7 @@ scope.$watch(function(){return[scope.$eval(attrs.unique),ctrl.$viewValue];},chec
 
 }]);
 angular.module('common').
-factory('API',['Base', 'CustomAPI', 'Loader', 'localStorageService', 'User', '$location', '$q', '$timeout', '$window', 'LocaleService', function(Base,CustomAPI,Loader,localStorageService,User,$location,$q,$timeout,$window,LocaleService){
+factory('API',function(Base,CustomAPI,Loader,localStorageService,User,$location,$q,$timeout,$window,LocaleService){
 
 var authInfo={};
 var myCUI={};
@@ -8674,17 +8673,17 @@ authInfo:authInfo};
 
 return apiFactory;
 
-}]);
+});
 
 angular.module('common').
-factory('APIError',['SharedService', function(SharedService){
+factory('APIError',function(SharedService){
 var APIError=Object.create(SharedService);
 APIError.details=Object.assign({},APIError.details);
 APIError.for=APIError.details;
 return APIError;
-}]);
+});
 angular.module('common').
-factory('APIHelpers',['API', '$filter', function(API,$filter){
+factory('APIHelpers',function(API,$filter){
 'use strict';
 
 var apiHelpers={
@@ -8851,10 +8850,10 @@ return collectionData;
 
 return apiHelpers;
 
-}]);
+});
 
 angular.module('common').
-factory('Base',['APIError', 'BaseExtensions', 'Countries', 'Languages', 'LocaleService', 'Loader', 'Menu', 'Theme', 'Timezones', 'User', '$state', '$translate', function(APIError,BaseExtensions,Countries,Languages,LocaleService,Loader,Menu,Theme,Timezones,User,$state,$translate){
+factory('Base',function(APIError,BaseExtensions,Countries,Languages,LocaleService,Loader,Menu,Theme,Timezones,User,$state,$translate){
 
 var baseFactory={
 apiError:APIError,
@@ -8890,7 +8889,7 @@ generateHiddenPassword:function generateHiddenPassword(password){return Array(pa
 
 return Object.assign({},baseFactory,BaseExtensions);
 
-}]);
+});
 
 angular.module('common').
 factory('BaseExtensions',['cui.authorization.permitted','User',function(permitted,User){
@@ -8931,7 +8930,7 @@ return permitted(appConfig.accessToSecurityAndExchangeAdmins,User.getRoles(),Use
 }]);
 
 angular.module('common').
-factory('CommonAPI',['API', 'APIError', '$q', function(API,APIError,$q){
+factory('CommonAPI',function(API,APIError,$q){
 'use strict';
 
 // This service handles basic API calls that are done throughout the project.
@@ -8999,10 +8998,10 @@ getOrganization:getOrganization,
 getOrganizationHierarchy:getOrganizationHierarchy};
 
 
-}]);
+});
 
 angular.module('common').
-factory('Countries',['$http', '$rootScope', '$translate', function($http,$rootScope,$translate){
+factory('Countries',function($http,$rootScope,$translate){
 
 var countries=[];
 
@@ -9046,10 +9045,10 @@ return{
 list:countries,
 getCountryByCode:getCountryByCode};
 
-}]);
+});
 
 angular.module('common').
-factory('CustomAPI',['CustomAPIExtension', function(CustomAPIExtension){
+factory('CustomAPI',function(CustomAPIExtension){
 
 var calls=[
 {
@@ -9258,7 +9257,7 @@ type:'POST'}];
 
 return calls.concat(CustomAPIExtension);
 
-}]);
+});
 
 angular.module('common').
 factory('CustomAPIExtension',function(){
@@ -9402,7 +9401,7 @@ return calls;
 });
 
 angular.module('common').
-factory('DataStorage',['API', 'localStorageService', function(API,localStorageService){
+factory('DataStorage',function(API,localStorageService){
 
 var storage=localStorageService.get('dataStorage')||{};
 var dataStorage={};
@@ -9527,7 +9526,7 @@ saveToLocaStorage();
 };
 
 return dataStorage;
-}]);
+});
 
 angular.module('common').
 factory('Languages',['$cuiI18n','LocaleService',function($cuiI18n,LocaleService){
@@ -9546,15 +9545,15 @@ return LocaleService.getLocaleCode();
 
 }]);
 angular.module('common').
-factory('Loader',['SharedService', function(SharedService){
+factory('Loader',function(SharedService){
 var Loader=Object.create(SharedService);
 Loader.details=Object.assign({},Loader.details);
 Loader.for=Loader.details;
 return Loader;
-}]);
+});
 
 angular.module('common').
-factory('Menu',['snapRemote', '$rootScope', '$window', function(snapRemote,$rootScope,$window){
+factory('Menu',function(snapRemote,$rootScope,$window){
 
 var shouldShowMobileNav=function shouldShowMobileNav(){
 if($window.innerWidth>=1000){
@@ -9620,10 +9619,10 @@ angular.isDefined(stateMenuOptions.mobile)&&stateMenuOptions.mobile===false)?thi
 }
 }};
 
-}]);
+});
 
 angular.module('common').
-factory('Organization',['API', '$q', function(API,$q){
+factory('Organization',function(API,$q){
 
 var factoryName='organizationFactory.';
 
@@ -9699,10 +9698,147 @@ getOrganization:getOrganization,
 initOrganizationProfile:initOrganizationProfile};
 
 
-}]);
+});
 
 angular.module('common').
-factory('PersonRequest',['API', 'APIError', 'CommonAPI', '$q', function(API,APIError,CommonAPI,$q){
+factory('PersonAndOrgRequest',function(API,APIError,CommonAPI,$q){
+'use strict';
+
+/*
+		Use this service as a helper when dealing with person requests.
+
+		Allows you to get a person's registration request or a wrapper call that also gets you the person's and their
+		organization's data.
+	*/
+
+var PersonAndOrgRequestFactory={};
+var errorName='PersonAndOrgRequestFactory.';
+
+/****************************************
+				Service Functions
+	****************************************/
+
+// Returns the registration request associated with the userId
+PersonAndOrgRequestFactory.getPersonRegistrationRequest=function(userId){
+var defer=$q.defer();
+
+API.cui.getPersonRegistrationRequest({qs:[['registrant.id',userId]]}).
+done(function(registrationResponse){
+defer.resolve(registrationResponse[0]);
+}).
+fail(function(err){
+console.error('Failed getting user\'s registration request');
+APIError.onFor(errorName+'getRegistrationRequest');
+defer.reject(err);
+});
+
+return defer.promise;
+};
+
+PersonAndOrgRequestFactory.getOrgRegistrationRequest=function(organizationId){
+var defer=$q.defer();
+
+API.cui.getOrgRegistrationRequests({qs:[['organization.id',organizationId]]}).
+done(function(registrationResponse){
+defer.resolve(registrationResponse[0]);
+}).
+fail(function(err){
+console.error('Failed getting organization\'s registration request');
+APIError.onFor(errorName+'getRegistrationRequest');
+defer.reject(err);
+});
+
+return defer.promise;
+};
+
+/*
+		Wrapper call for: 	PersonRequest.getPersonRegistrationRequest()
+							CommonAPI.getPerson()
+							CommonAPI.getOrganization()
+	*/
+PersonAndOrgRequestFactory.getRegistrationRequestData=function(userId,organizationId,type){
+var defer=$q.defer();
+var callsCompleted=0;
+var requestData={};
+
+if(type==='person'){
+PersonAndOrgRequestFactory.getPersonRegistrationRequest(userId).
+then(function(registrationRequest){
+requestData.request=registrationRequest;
+}).
+finally(function(){
+callsCompleted+=1;
+if(callsCompleted===3){
+defer.resolve(requestData);
+}
+});
+}else
+{
+PersonAndOrgRequestFactory.getOrgRegistrationRequest(organizationId).
+then(function(registrationRequest){
+requestData.request=registrationRequest;
+}).
+finally(function(){
+callsCompleted+=1;
+if(callsCompleted===3){
+defer.resolve(requestData);
+}
+});
+}
+
+CommonAPI.getPerson(userId).
+then(function(personData){
+requestData.personData=personData;
+}).
+finally(function(){
+callsCompleted+=1;
+if(callsCompleted===3){
+defer.resolve(requestData);
+}
+});
+
+CommonAPI.getOrganization(organizationId).
+then(function(organizationData){
+requestData.organization=organizationData;
+}).
+finally(function(){
+callsCompleted+=1;
+if(callsCompleted===3){
+defer.resolve(requestData);
+}
+});
+
+return defer.promise;
+};
+
+// Provided a decision ('approved' or 'denied') and the person request object
+// Handles the approval/denial of the person request
+PersonAndOrgRequestFactory.handleRequestApproval=function(decision,request){
+var data=[['requestId',request.id]];
+
+if(decision==='approved'){
+API.cui.approvePersonRegistration({qs:data});
+}else
+if(decision==='denied'){
+if(request.rejectReason){
+data.push(['reason',request.rejectReason]);
+return API.cui.denyPersonRegistration({qs:data});
+}else
+{
+return API.cui.denyPersonRegistration({qs:data});
+}
+}else
+{
+throw new Error('Requires a decision of "approved" or "denied" and the request object.');
+}
+};
+
+return PersonAndOrgRequestFactory;
+
+});
+
+angular.module('common').
+factory('PersonRequest',function(API,APIError,CommonAPI,$q){
 'use strict';
 
 /*
@@ -9806,10 +9942,10 @@ throw new Error('Requires a decision of "approved" or "denied" and the request o
 
 return personRequestFactory;
 
-}]);
+});
 
 angular.module('common').
-factory('Registration',['API', 'APIError', 'Base', '$q', function(API,APIError,Base,$q){
+factory('Registration',function(API,APIError,Base,$q){
 
 var self={};
 var pub={};
@@ -10158,7 +10294,7 @@ return self.isUsernameOrEmailTaken([['emailAddress',email]]);
 
 return pub;
 
-}]);
+});
 
 angular.module('common').
 service('SharedService',function(){
@@ -10340,7 +10476,7 @@ clear:clearActiveTheme};
 });
 
 angular.module('common').
-factory('Timezones',['$http', '$rootScope', '$translate', function($http,$rootScope,$translate){
+factory('Timezones',function($http,$rootScope,$translate){
 
 var timezones=[];
 
@@ -10388,10 +10524,10 @@ return{
 all:timezones,
 timezoneById:getTimezoneById};
 
-}]);
+});
 
 angular.module('common').
-factory('User',['$rootScope', function($rootScope){
+factory('User',function($rootScope){
 
 /*
         This factory is intended to store data/logic pertaining to the logged in user only.
@@ -10427,10 +10563,10 @@ getRoles:function getRoles(){return user.roles;},
 user:user};
 
 
-}]);
+});
 
 angular.module('common').
-factory('UserHistory',['API', 'APIError', 'LocaleService', '$q', '$timeout', function(API,APIError,LocaleService,$q,$timeout){
+factory('UserHistory',function(API,APIError,LocaleService,$q,$timeout){
 
 var errorName='userHistoryFactory.';
 
@@ -10516,10 +10652,10 @@ history.success=false;
 
 
 return UserHistory;
-}]);
+});
 
 angular.module('common').
-factory('UserList',['API', 'APIError', 'APIHelpers', '$q', function(API,APIError,APIHelpers,$q){
+factory('UserList',function(API,APIError,APIHelpers,$q){
 
 var errorName='UserListFactory.';
 
@@ -10564,10 +10700,10 @@ getUsers:getUsers,
 getUserCount:getUserCount};
 
 
-}]);
+});
 
 angular.module('common').
-factory('UserProfile',['API', 'APIError', 'LocaleService', 'Timezones', '$filter', '$q', '$timeout', function(API,APIError,LocaleService,Timezones,$filter,$q,$timeout){
+factory('UserProfile',function(API,APIError,LocaleService,Timezones,$filter,$q,$timeout){
 
 var errorName='userProfileFactory.';
 
@@ -11064,10 +11200,10 @@ $scope.$digest();
 
 
 return UserProfile;
-}]);
+});
 
 angular.module('common').
-factory('BuildPackageRequests',['API', function(API){
+factory('BuildPackageRequests',function(API){
 
 /*
         Helper factory for creating and sending service package requests.
@@ -11138,7 +11274,7 @@ reason:arrayOfApps[_i2]._reason||''});
 return packageRequests.map(function(data){return API.cui.createPackageRequest({data:data});});
 
 };
-}]);
+});
 
 angular.module('common').
 factory('AppRequests',['$filter',function($filter){
@@ -11199,7 +11335,7 @@ return arrayOfPackageRequests;
 return appRequests;
 }]);
 angular.module('common').
-factory('ServicePackage',['API', 'APIError', '$q', function(API,APIError,$q){
+factory('ServicePackage',function(API,APIError,$q){
 'use strict';
 
 /*
@@ -11414,7 +11550,7 @@ throw new Error('Package request object must contain "approval" of either "appro
 
 return servicePackage;
 
-}]);
+});
 
 angular.module('applications',[]).
 config(['$stateProvider',function($stateProvider){
@@ -11521,7 +11657,7 @@ access:loginRequired});
 }]);
 
 angular.module('applications').
-controller('myApplicationDetailsCtrl',['API', '$scope', '$stateParams', '$state', '$q', 'APIHelpers', 'Loader', 'APIError', 'DataStorage', function(API,$scope,$stateParams,$state,$q,APIHelpers,Loader,APIError,DataStorage){
+controller('myApplicationDetailsCtrl',function(API,$scope,$stateParams,$state,$q,APIHelpers,Loader,APIError,DataStorage){
 var myApplicationDetails=this;
 myApplicationDetails.relatedApps=[];
 
@@ -11632,10 +11768,10 @@ $state.go('applications.myApplicationDetails',{
 
 // ON CLICK FUNCTIONS END ------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('applications').
-controller('manageApplicationsCtrl',['API', 'APIError', 'APIHelpers', 'DataStorage', 'Loader', 'User', '$filter', '$pagination', '$q', '$scope', '$state', '$stateParams', function(API,APIError,APIHelpers,DataStorage,Loader,User,$filter,$pagination,$q,$scope,$state,$stateParams){
+controller('manageApplicationsCtrl',function(API,APIError,APIHelpers,DataStorage,Loader,User,$filter,$pagination,$q,$scope,$state,$stateParams){
 
 var manageApplications=this;
 var userId=User.user.id;
@@ -11852,10 +11988,10 @@ $state.go('applications.myApplicationDetails',opts);
 
 // ON CLICK FUNCTIONS END ---------------------------------------------------------------------------------
 
-}]);
+});
 
 angular.module('applications').
-controller('myApplicationsCtrl',['API', 'APIError', 'APIHelpers', 'DataStorage', 'Loader', 'User', '$filter', '$pagination', '$q', '$scope', '$state', '$stateParams', function(API,APIError,APIHelpers,DataStorage,Loader,User,$filter,$pagination,$q,$scope,$state,$stateParams){
+controller('myApplicationsCtrl',function(API,APIError,APIHelpers,DataStorage,Loader,User,$filter,$pagination,$q,$scope,$state,$stateParams){
 var myApplications=this;
 var userId=User.user.id;
 var loaderName='myApplications.';
@@ -12012,7 +12148,7 @@ break;}
 $state.transitionTo('applications.myApplications',myApplications.search,{notify:false});
 onLoad(true);
 };
-}]);
+});
 
 angular.module('applications').
 controller('applicationReviewCtrl',['$scope','API','AppRequests','$timeout','$state','$q','localStorageService',function($scope,API,AppRequests,$timeout,$state,$q,localStorage){
@@ -12192,7 +12328,7 @@ $state.go('applications.search',{name:searchWord});
 }]);
 
 angular.module('applications').
-controller('pendingAppRequestsCtrl',['API', 'APIError', 'APIHelpers', 'DataStorage', 'Loader', '$filter', '$pagination', '$q', '$scope', '$state', '$stateParams', function(API,APIError,APIHelpers,DataStorage,Loader,$filter,$pagination,$q,$scope,$state,$stateParams){
+controller('pendingAppRequestsCtrl',function(API,APIError,APIHelpers,DataStorage,Loader,$filter,$pagination,$q,$scope,$state,$stateParams){
 
 var pendingAppRequests=this;
 var loaderName='pendingAppRequests.';
@@ -12320,7 +12456,7 @@ pendingAppRequests.updateSearch('name',searchWord);
 };
 
 // ON CLICK FUNCTIONS END -------------------------------------------------------------------------------
-}]);
+});
 angular.module('applications').
 controller('applicationSearchCtrl',['API','$scope','$stateParams','$state','AppRequests','localStorageService','$q','$pagination',function(API,$scope,$stateParams,$state,AppRequests,localStorage,$q,$pagination){
 var applicationSearch=this;
