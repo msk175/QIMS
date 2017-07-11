@@ -127,6 +127,20 @@ angular.module('applications')
             applicationReview.step=2
         }
     }
+
+    // Error validation
+    applicationReview.customError = {
+        email: {
+            email: function(){
+                var EMAIL_REGEXP = /^[a-z0-9!#$%&*?_.-]+@[a-z0-9!#$%&*?_.-][a-z0-9!#$%&*?_.-]+[.][a-z0-9!#$%&*?_.-][a-z0-9!#$%&*?_.-]+/i;
+                if (applicationReview.extendedData&&applicationReview.extendedData.email) {
+                    return EMAIL_REGEXP.test(applicationReview.extendedData.email)
+                }else{
+                    return true;
+                }
+            }
+        }
+    }
     // ON CLICK END -----------------------------------------------------------------------------------
 
 }]);

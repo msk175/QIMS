@@ -11,3 +11,8 @@ bin
 build/
 *.iml
 npm-debug.log
+assets/
+appConfig-env.json
+appConfig-build.json
+app/
+desktop.ini

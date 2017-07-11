@@ -54,6 +54,34 @@
         <div class="cui-loading__container" ng-if="applicationReview.attempting">
           <div class="cui-loading cui-loading--center" ></div>
         </div>
+        <!-- email and protocol -->
+        <!-- First row -->
+          <div class="cui-wizard__field-row">
+            <!-- Email -->
+            <div class="cui-wizard__field-container cui-wizard__field-container--half">
+              <label>{{'cui-email' | translate}}</label>
+              <!-- required -->
+              <div class="cui-error" ng-messages="reviewRequest.email.$error" ng-if="reviewRequest.email.$dirty">
+                <div class="cui-error__message" ng-message="required">{{'cui-this-field-is-required' | translate}}</div>
+              </div>
+              <!-- email regex validation -->
+                <div class="cui-error" ng-if="reviewRequest.email.$error.email && reviewRequest.email.$dirty">
+                    <div class="cui-error__message">{{'cui-this-is-not-valid-email' | translate}}</div>
+                </div>
+              <input type="text" name="email" class="cui-input" ng-required="true" custom-error="applicationReview.customError.email" ng-model="applicationReview.extendedData.email"/>
+            </div>
+        </div>
+
+            <!-- Protocol -->
+        <div class="cui-wizard__field-row">
+            <div class="cui-wizard__field-container cui-wizard__field-container--half">
+              <label>{{'protocol' | translate}}</label>
+              <div class="cui-error" ng-messages="reviewRequest.protocol.$error" ng-if="reviewRequest.protocol.$dirty">
+                <div class="cui-error__message" ng-message="required">{{'cui-this-field-is-required' | translate}}</div>
+              </div>
+              <input type="text" ng-model="applicationReview.extendedData.protocol" name="protocol" class="cui-input" ng-required="true"/>
+            </div>
+        </div>
         <div>
             <h3 class="h4 bold">{{'requested-items' | translate}}:</h3>
             <div class="cui-applications__review-apps">

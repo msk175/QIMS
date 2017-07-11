@@ -163,11 +163,11 @@ firstValue;
 var getCountsOfStatus=function getCountsOfStatus(qsValue){
 var opts={
 personId:API.getUser(),
-useCuid:true};
+useCuid:true
 
 //Assign query strings if any value passed 
 //otherwise it will get full count
-if(qsValue){
+};if(qsValue){
 opts.qs=[['status',qsValue]];
 }
 API.cui.getPersonApplicationsGrantHistory(opts).
@@ -351,11 +351,11 @@ firstValue;
 var getCountsOfStatus=function getCountsOfStatus(qsValue){
 var opts={
 personId:API.getUser(),
-useCuid:true};
+useCuid:true
 
 //Assign query strings if any value passed 
 //otherwise it will get full count
-if(qsValue){
+};if(qsValue){
 opts.qs=[['status',qsValue]];
 }
 API.cui.getPersonApplicationsGrantHistory(opts).
@@ -381,11 +381,11 @@ fail(function(err){
 var getCountsOfApproved=function getCountsOfApproved(qsValue){
 var opts={
 personId:API.getUser(),
-useCuid:true};
+useCuid:true
 
 //Assign query strings if any value passed 
 //otherwise it will get full count
-if(qsValue){
+};if(qsValue){
 opts.qs=[['status',qsValue]];
 }
 API.cui.getPersonApplicationsRequestHistory(opts).
@@ -1125,12 +1125,12 @@ return userInvited.userLogin.challengeAnswer2!==userInvited.userLogin.challengeA
 }else{
 return true;
 }
-}}};
+}}
 
 
 
 //Error handlers for Inline Edits in review page
-userInvited.inlineEdit={
+};userInvited.inlineEdit={
 firstName:function firstName(value){
 if(!angular.isDefined(value)){
 userInvited.inlineEdit.firstNameError={};
@@ -1161,10 +1161,10 @@ userInvited.inlineEdit.emailError={};
 {
 userInvited.inlineEdit.emailError={
 required:value===""||!value,
-email:!EMAIL_REGXP.test(value)};
+email:!EMAIL_REGXP.test(value)
 
 //emailTaken:
-if(!userInvited.inlineEdit.emailError.required&&!userInvited.inlineEdit.emailError.email){
+};if(!userInvited.inlineEdit.emailError.required&&!userInvited.inlineEdit.emailError.email){
 userInvited.checkDuplicateEmail(value);
 }
 
@@ -1213,10 +1213,10 @@ userInvited.inlineEdit.userIdError={};
 }else
 {
 userInvited.inlineEdit.userIdError={
-required:value===""||!value};
+required:value===""||!value
 
 //usernameTaken: 
-if(!userInvited.inlineEdit.userIdError.required){
+};if(!userInvited.inlineEdit.userIdError.required){
 $q.all([Registration.isUsernameTaken(value).promise]).
 then(function(res){
 userInvited.inlineEdit.userIdError.usernameTaken=!res[0];
@@ -1283,11 +1283,11 @@ userInvited.inlineEdit.challengeAnswer1(userInvited.userLogin.challengeAnswer1);
 },
 updateChallengeAnswer2Error:function updateChallengeAnswer2Error(){
 userInvited.inlineEdit.challengeAnswer2(userInvited.userLogin.challengeAnswer2);
-}};
+}
 
 
 
-/* --------------------------------------------- WATCHERS END --------------------------------------------- */
+/* --------------------------------------------- WATCHERS END --------------------------------------------- */};
 
 });
 
@@ -1645,12 +1645,12 @@ return userWalkup.userLogin.challengeAnswer2!==userWalkup.userLogin.challengeAns
 }else{
 return true;
 }
-}}};
+}}
 
 
 
 //Error handlers for Inline Edits in review page
-userWalkup.inlineEdit={
+};userWalkup.inlineEdit={
 firstName:function firstName(value){
 if(!angular.isDefined(value)){
 userWalkup.inlineEdit.firstNameError={};
@@ -1681,10 +1681,10 @@ userWalkup.inlineEdit.emailError={};
 {
 userWalkup.inlineEdit.emailError={
 required:value===""||!value,
-email:!EMAIL_REGXP.test(value)};
+email:!EMAIL_REGXP.test(value)
 
 //emailTaken:
-if(!userWalkup.inlineEdit.emailError.required&&!userWalkup.inlineEdit.emailError.email){
+};if(!userWalkup.inlineEdit.emailError.required&&!userWalkup.inlineEdit.emailError.email){
 userWalkup.checkDuplicateEmail(value);
 }
 
@@ -1733,10 +1733,10 @@ userWalkup.inlineEdit.userIdError={};
 }else
 {
 userWalkup.inlineEdit.userIdError={
-required:value===""||!value};
+required:value===""||!value
 
 //usernameTaken: 
-if(!userWalkup.inlineEdit.userIdError.required){
+};if(!userWalkup.inlineEdit.userIdError.required){
 $q.all([Registration.isUsernameTaken(value).promise]).
 then(function(res){
 userWalkup.inlineEdit.userIdError.usernameTaken=!res[0];
@@ -1803,11 +1803,11 @@ userWalkup.inlineEdit.challengeAnswer1(userWalkup.userLogin.challengeAnswer1);
 },
 updateChallengeAnswer2Error:function updateChallengeAnswer2Error(){
 userWalkup.inlineEdit.challengeAnswer2(userWalkup.userLogin.challengeAnswer2);
-}};
+}
 
 
 
-/* --------------------------------------------- WATCHERS END --------------------------------------------- */
+/* --------------------------------------------- WATCHERS END --------------------------------------------- */};
 
 });
 
@@ -3495,10 +3495,10 @@ userAppDetails.dropDown={
 claims:false,
 suspend:false,
 unsuspend:false,
-remove:false};
+remove:false
 
 // HELPER FUNCTIONS START ------------------------------------------------------------------------
-var getClaims=function getClaims(app){
+};var getClaims=function getClaims(app){
 var deferred=$q.defer();
 var packageId=app.servicePackage.id;
 
@@ -5315,13 +5315,13 @@ params:{
 userId:$stateParams.userId,
 orgId:$stateParams.orgId},
 
-name:"organization.directory.userDetails"};
+name:"organization.directory.userDetails"
 
 // HELPER FUNCTIONS START ------------------------------------------------------------------------
 // HELPER FUNCTIONS END --------------------------------------------------------------------------
 
 // ON LOAD START ---------------------------------------------------------------------------------
-newGrant.searchType='applications';
+};newGrant.searchType='applications';
 
 /****
         grants in DataStorage are under the type 'newGrant' and look like
@@ -5391,7 +5391,7 @@ params:{
 userId:$stateParams.userId,
 orgId:$stateParams.orgId},
 
-name:"organization.directory.userDetails"};
+name:"organization.directory.userDetails"
 
 
 // HELPER FUNCTIONS START ------------------------------------------------------------------------
@@ -5410,7 +5410,7 @@ name:"organization.directory.userDetails"};
                 packages:<object of packages being granted>
             }
         ]
-    ****/
+    ****/};
 
 NewGrant.pullFromStorage(newGrantSearch,$stateParams.userId,'person');
 
@@ -10041,7 +10041,7 @@ request.packages=_.uniqBy(request.packages,'id');
 }
 
 return request;
-}};
+}
 
 
 /**
@@ -10049,7 +10049,7 @@ return request;
      * @param method method name
      * @param args method arguments
      * @returns {*} promise
-     */
+     */};
 self.makeNonceCall=function(method){for(var _len=arguments.length,args=Array(_len>1?_len-1:0),_key=1;_key<_len;_key++){args[_key-1]=arguments[_key];}
 var deferred=$.Deferred();
 var tag="registration/self/makeNonceCall";
@@ -11795,11 +11795,11 @@ firstValue;
 var getCountsOfStatus=function getCountsOfStatus(qsValue){
 var opts={
 personId:API.getUser(),
-useCuid:true};
+useCuid:true
 
 //Assign query strings if any value passed 
 //otherwise it will get full count
-if(qsValue){
+};if(qsValue){
 opts.qs=[['grant.status',qsValue]];
 }
 API.cui.getPersonGrantedAppCount(opts).
@@ -12279,8 +12279,22 @@ applicationReview.tacContent=application.tac.tacText;
 applicationReview.step=2;
 }
 };
-// ON CLICK END -----------------------------------------------------------------------------------
 
+// Error validation
+applicationReview.customError={
+email:{
+email:function email(){
+var EMAIL_REGEXP=/^[a-z0-9!#$%&*?_.-]+@[a-z0-9!#$%&*?_.-][a-z0-9!#$%&*?_.-]+[.][a-z0-9!#$%&*?_.-][a-z0-9!#$%&*?_.-]+/i;
+if(applicationReview.extendedData&&applicationReview.extendedData.email){
+return EMAIL_REGEXP.test(applicationReview.extendedData.email);
+}else{
+return true;
+}
+}}
+
+
+// ON CLICK END -----------------------------------------------------------------------------------
+};
 }]);
 angular.module('applications').
 controller('newAppRequestCtrl',['API','$scope','$state','AppRequests','localStorageService',

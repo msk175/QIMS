@@ -13,6 +13,11 @@
     "url": "https://github.com/thirdwavellc/cui-bcbsm/issues"
   },
   "homepage": "https://github.com/thirdwavellc/cui-bcbsm",
+  "dependencies" : {
+    "angular-ui-router": "0.2.18",
+    "@covisint/cui-ng": "2.0.1",
+    "@covisint/cui-i18n": "1.0.34"
+    },
   "devDependencies": {
     "@covisint/cui-idm-b2x": "1.2.4"
   }
