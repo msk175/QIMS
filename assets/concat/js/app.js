@@ -78,7 +78,7 @@ access:loginRequired});
 }]);
 
 angular.module('user').
-controller('appGrantHistoryCtrl',function(Loader,User,$scope,API,APIError,$filter,$pagination,$q,$state,$stateParams){
+controller('appGrantHistoryCtrl',['Loader', 'User', '$scope', 'API', 'APIError', '$filter', '$pagination', '$q', '$state', '$stateParams', function(Loader,User,$scope,API,APIError,$filter,$pagination,$q,$state,$stateParams){
 
 var appGrantHistory=this;
 var scopeName='appGrantHistory.';
@@ -235,9 +235,9 @@ $scope.$digest();
 });
 /* -------------------------------------------- ON LOAD END --------------------------------------------- */
 
-});
+}]);
 angular.module('user').
-controller('appRequestHistoryCtrl',function(Loader,User,$scope,API,APIError,$filter,$pagination,$q,$state,$stateParams){
+controller('appRequestHistoryCtrl',['Loader', 'User', '$scope', 'API', 'APIError', '$filter', '$pagination', '$q', '$state', '$stateParams', function(Loader,User,$scope,API,APIError,$filter,$pagination,$q,$state,$stateParams){
 
 var appRequestHistory=this;
 var scopeName='appRequestHistory.';
@@ -456,9 +456,9 @@ $scope.$digest();
 });
 /* -------------------------------------------- ON LOAD END --------------------------------------------- */
 
-});
+}]);
 angular.module('user').
-controller('userHistoryCtrl',function(Loader,User,UserHistory,$scope){
+controller('userHistoryCtrl',['Loader', 'User', 'UserHistory', '$scope', function(Loader,User,UserHistory,$scope){
 
 var userHistory=this;
 var scopeName='userHistory.';
@@ -480,9 +480,9 @@ Loader.offFor(scopeName+'initHistory');
 
 /* -------------------------------------------- ON LOAD END --------------------------------------------- */
 
-});
+}]);
 angular.module('user').
-controller('userProfileCtrl',function(Loader,User,UserProfile,$scope){
+controller('userProfileCtrl',['Loader', 'User', 'UserProfile', '$scope', function(Loader,User,UserProfile,$scope){
 
 var userProfile=this;
 var scopeName='userProfile.';
@@ -529,10 +529,10 @@ Loader.offFor(scopeName+'initProfile');
 
 /* --------------------------------------------- ON LOAD END ---------------------------------------------- */
 
-});
+}]);
 
 angular.module('user').
-controller('userRolesCtrl',function(Loader,User,UserProfile,$scope,API,APIError,$timeout,$state){
+controller('userRolesCtrl',['Loader', 'User', 'UserProfile', '$scope', 'API', 'APIError', '$timeout', '$state', function(Loader,User,UserProfile,$scope,API,APIError,$timeout,$state){
 'use strict';
 
 var userRoles=this;
@@ -653,7 +653,7 @@ userRoles.appCheckboxValid=false;
 }
 },true);
 // ON CLICK END ----------------------------------------------------------------------------------
-});
+}]);
 
 
 angular.module('registration',[]).
@@ -692,7 +692,7 @@ mobile:false}});
 }]);
 
 angular.module('registration').
-controller('userInvitedCtrl',function(APIError,localStorageService,Registration,$scope,$state,$q,LocaleService,$window,Base,$stateParams,$pagination,$filter){
+controller('userInvitedCtrl',['APIError', 'localStorageService', 'Registration', '$scope', '$state', '$q', 'LocaleService', '$window', 'Base', '$stateParams', '$pagination', '$filter', function(APIError,localStorageService,Registration,$scope,$state,$q,LocaleService,$window,Base,$stateParams,$pagination,$filter){
 
 var userInvited=this;
 var encodedString=btoa($stateParams.inviteId+':'+$stateParams.pin);
@@ -1289,10 +1289,10 @@ userInvited.inlineEdit.challengeAnswer2(userInvited.userLogin.challengeAnswer2);
 
 /* --------------------------------------------- WATCHERS END --------------------------------------------- */};
 
-});
+}]);
 
 angular.module('registration').
-controller('userWalkupCtrl',function(APIError,localStorageService,Registration,$scope,$state,$q,LocaleService,$window,Base,$pagination,$filter){
+controller('userWalkupCtrl',['APIError', 'localStorageService', 'Registration', '$scope', '$state', '$q', 'LocaleService', '$window', 'Base', '$pagination', '$filter', function(APIError,localStorageService,Registration,$scope,$state,$q,LocaleService,$window,Base,$pagination,$filter){
 
 var userWalkup=this;
 
@@ -1809,7 +1809,7 @@ userWalkup.inlineEdit.challengeAnswer2(userWalkup.userLogin.challengeAnswer2);
 
 /* --------------------------------------------- WATCHERS END --------------------------------------------- */};
 
-});
+}]);
 
 angular.module('organization',[]).
 config(['$stateProvider',function($stateProvider){
@@ -2145,7 +2145,7 @@ permittedLogic:appConfig.orgAdminLogic}});
 }]);
 
 angular.module('organization').
-controller('orgAppRequestCtrl',function(API,DataStorage,Loader,User,$scope,$state,$stateParams){
+controller('orgAppRequestCtrl',['API', 'DataStorage', 'Loader', 'User', '$scope', '$state', '$stateParams', function(API,DataStorage,Loader,User,$scope,$state,$stateParams){
 
 var orgAppRequest=this;
 var orgAppsBeingRequested=DataStorage.getType('orgAppsBeingRequested');
@@ -2183,10 +2183,10 @@ $state.go('organization.search',{name:searchWord});
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-});
+}]);
 
 angular.module('organization').
-controller('orgAppRequestReviewCtrl',function(API,APIError,BuildPackageRequests,DataStorage,Loader,User,$q,$state,$timeout,AppRequests,$stateParams){
+controller('orgAppRequestReviewCtrl',['API', 'APIError', 'BuildPackageRequests', 'DataStorage', 'Loader', 'User', '$q', '$state', '$timeout', 'AppRequests', '$stateParams', function(API,APIError,BuildPackageRequests,DataStorage,Loader,User,$q,$state,$timeout,AppRequests,$stateParams){
 
 var orgAppRequestReview=this;
 var loaderName='orgAppRequestReview.';
@@ -2301,10 +2301,10 @@ orgAppRequestReview.step=2;
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-});
+}]);
 
 angular.module('organization').
-controller('orgApplicationDetailsCtrl',function(API,APIHelpers,APIError,Loader,Sort,User,$q,$scope,$state,$stateParams){
+controller('orgApplicationDetailsCtrl',['API', 'APIHelpers', 'APIError', 'Loader', 'Sort', 'User', '$q', '$scope', '$state', '$stateParams', function(API,APIHelpers,APIError,Loader,Sort,User,$q,$scope,$state,$stateParams){
 
 var orgApplicationDetails=this;
 var organizationId=$stateParams.orgId;
@@ -2527,9 +2527,9 @@ $scope.$apply();
 };
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
-});
+}]);
 angular.module('organization').
-controller('organizationApplicationsCtrl',function(API,Sort,User,$filter,$pagination,$q,$scope,$state,$stateParams){
+controller('organizationApplicationsCtrl',['API', 'Sort', 'User', '$filter', '$pagination', '$q', '$scope', '$state', '$stateParams', function(API,Sort,User,$filter,$pagination,$q,$scope,$state,$stateParams){
 
 var organizationApplications=this;
 organizationApplications.stateParamsOrgId=$stateParams.orgId;
@@ -2720,10 +2720,10 @@ $state.go('organization.applicationDetails',opts);
 
 // ON CLICK FUNCTIONS END ---------------------------------------------------------------------------------
 
-});
+}]);
 
 angular.module('organization').
-controller('orgAppSearchCtrl',function(API,DataStorage,Loader,User,$pagination,$q,$state,$stateParams){
+controller('orgAppSearchCtrl',['API', 'DataStorage', 'Loader', 'User', '$pagination', '$q', '$state', '$stateParams', function(API,DataStorage,Loader,User,$pagination,$q,$state,$stateParams){
 
 var orgAppSearch=this;
 var loaderName='orgAppSearch.loading';
@@ -2964,10 +2964,10 @@ orgAppSearch.toggleRequest(_.find(orgAppSearch.list,{id:bundledApp.id}));
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-});
+}]);
 
 angular.module('organization').
-controller('orgDetailsCtrl',function(API,Loader,$scope,$stateParams,APIError,APIHelpers,$timeout,$q){
+controller('orgDetailsCtrl',['API', 'Loader', '$scope', '$stateParams', 'APIError', 'APIHelpers', '$timeout', '$q', function(API,Loader,$scope,$stateParams,APIError,APIHelpers,$timeout,$q){
 
 var orgDetails=this;
 var scopeName='orgDetails.';
@@ -3019,10 +3019,10 @@ APIError.onFor('orgDetails.org');
 /* --------------------------------------------- ON CLICK START ---------------------------------------------- */
 
 /* --------------------------------------------- ON CLICK END ---------------------------------------------- */
-});
+}]);
 
 angular.module('organization').
-controller('orgDetailsAppsCtrl',function(API,$stateParams,$q,$state,DataStorage,$pagination,Loader,$filter,$scope){
+controller('orgDetailsAppsCtrl',['API', '$stateParams', '$q', '$state', 'DataStorage', '$pagination', 'Loader', '$filter', '$scope', function(API,$stateParams,$q,$state,DataStorage,$pagination,Loader,$filter,$scope){
 'use strict';
 
 
@@ -3214,10 +3214,10 @@ orgId:application.owningOrganization.id};
 $state.go('organization.applicationDetails',opts);
 };
 // ON CLICK FUNCTIONS END ------------------------------------------------------------------------
-});
+}]);
 
 angular.module('organization').
-controller('orgDetailsHierarchyCtrl',function(API,APIError,Loader,User,$scope,$state,$stateParams){
+controller('orgDetailsHierarchyCtrl',['API', 'APIError', 'Loader', 'User', '$scope', '$state', '$stateParams', function(API,APIError,Loader,User,$scope,$state,$stateParams){
 'use strict';
 var orgDetailsHierarchy=this;
 var pageLoader='orgDetailsHierarchy.loading';
@@ -3286,10 +3286,10 @@ object.expanded=!object.expanded;
 // updateOrgChildren(orgDetailsHierarchy.organizationHierarchy[0].children)
 $scope.$digest();
 };
-});
+}]);
 
 angular.module('organization').
-controller('orgDetailsProfileCtrl',function(Loader,Organization,$stateParams,$q,APIError){
+controller('orgDetailsProfileCtrl',['Loader', 'Organization', '$stateParams', '$q', 'APIError', function(Loader,Organization,$stateParams,$q,APIError){
 
 var orgDetailsProfile=this;
 var scopeName='orgDetailsProfile.';
@@ -3326,10 +3326,10 @@ APIError.onFor('orgDetailsProfile.init');
 
 /* --------------------------------------------- ON LOAD END ---------------------------------------------- */
 
-});
+}]);
 
 angular.module('organization').
-controller('orgDetailsUsersCtrl',function(API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,UserList,$filter,$pagination,$q,$state,$stateParams){
+controller('orgDetailsUsersCtrl',['API', 'APIError', 'APIHelpers', 'CuiMobileNavFactory', 'Loader', 'User', 'UserList', '$filter', '$pagination', '$q', '$state', '$stateParams', function(API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,UserList,$filter,$pagination,$q,$state,$stateParams){
 
 var orgDetailsUsers=this;
 var scopeName='orgDetailsUsers.';
@@ -3478,10 +3478,10 @@ initDirectory(organization.id);
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-});
+}]);
 
 angular.module('organization').
-controller('userAppDetailsCtrl',function(API,$scope,$stateParams,$state,$q,APIHelpers,Loader,APIError,DataStorage,$timeout){
+controller('userAppDetailsCtrl',['API', '$scope', '$stateParams', '$state', '$q', 'APIHelpers', 'Loader', 'APIError', 'DataStorage', '$timeout', function(API,$scope,$stateParams,$state,$q,APIHelpers,Loader,APIError,DataStorage,$timeout){
 var userAppDetails=this;
 userAppDetails.relatedApps=[];
 userAppDetails.prevState={
@@ -3813,10 +3813,10 @@ console.log('There was an error updating user\'s app claims',+err);
 };
 // ON CLICK FUNCTIONS END ------------------------------------------------------------------------
 
-});
+}]);
 
 angular.module('organization').
-controller('userDetailsCtrl',function(API,Loader,$scope,$stateParams,APIError,APIHelpers,$timeout,$q){
+controller('userDetailsCtrl',['API', 'Loader', '$scope', '$stateParams', 'APIError', 'APIHelpers', '$timeout', '$q', function(API,Loader,$scope,$stateParams,APIError,APIHelpers,$timeout,$q){
 
 var userDetails=this;
 var scopeName='userDetails.';
@@ -4172,10 +4172,10 @@ $scope.$digest();
 };
 
 /* --------------------------------------------- ON CLICK END ---------------------------------------------- */
-});
+}]);
 
 angular.module('organization').
-controller('userDetailsAppsCtrl',function(API,$stateParams,$q,$state,DataStorage){
+controller('userDetailsAppsCtrl',['API', '$stateParams', '$q', '$state', 'DataStorage', function(API,$stateParams,$q,$state,DataStorage){
 'use strict';
 
 var userDetailsApps=this,
@@ -4274,10 +4274,10 @@ $state.go('organization.directory.userAppDetails',{appId:application.id,orgId:or
 };
 
 // ON CLICK FUNCTIONS END ------------------------------------------------------------------------
-});
+}]);
 
 angular.module('organization').
-controller('userDetailsHistoryCtrl',function(API,$stateParams,$q){
+controller('userDetailsHistoryCtrl',['API', '$stateParams', '$q', function(API,$stateParams,$q){
 'use strict';
 
 var userDetailsHistory=this,
@@ -4309,10 +4309,10 @@ console.log(error);
 
 // ON LOAD END -----------------------------------------------------------------------------------
 
-});
+}]);
 
 angular.module('organization').
-controller('userDetailsProfileCtrl',function(Loader,UserProfile,$scope,$stateParams){
+controller('userDetailsProfileCtrl',['Loader', 'UserProfile', '$scope', '$stateParams', function(Loader,UserProfile,$scope,$stateParams){
 
 var userDetailsProfile=this;
 var scopeName='userDetailsProfile.';
@@ -4331,10 +4331,10 @@ Loader.offFor(scopeName+'initProfile');
 
 /* --------------------------------------------- ON LOAD END ---------------------------------------------- */
 
-});
+}]);
 
 angular.module('organization').
-controller('userDetailsRolesCtrl',function(API,$stateParams,$q,$scope,APIError,$timeout){
+controller('userDetailsRolesCtrl',['API', '$stateParams', '$q', '$scope', 'APIError', '$timeout', function(API,$stateParams,$q,$scope,APIError,$timeout){
 'use strict';
 
 var userDetailsRoles=this,
@@ -4441,10 +4441,10 @@ userDetailsRoles.appCheckboxValid=false;
 
 // ON LOAD END -----------------------------------------------------------------------------------
 
-});
+}]);
 
 angular.module('organization').
-controller('orgDirectoryCtrl',function(API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,UserList,$filter,$pagination,$q,$state,$stateParams){
+controller('orgDirectoryCtrl',['API', 'APIError', 'APIHelpers', 'CuiMobileNavFactory', 'Loader', 'User', 'UserList', '$filter', '$pagination', '$q', '$state', '$stateParams', function(API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,UserList,$filter,$pagination,$q,$state,$stateParams){
 
 var orgDirectory=this;
 var scopeName='orgDirectory.';
@@ -4593,10 +4593,10 @@ initDirectory(organization.id);
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-});
+}]);
 
 angular.module('organization').
-controller('orgHierarchyCtrl',function(API,APIError,DataStorage,Loader,User,$scope,$state,$stateParams){
+controller('orgHierarchyCtrl',['API', 'APIError', 'DataStorage', 'Loader', 'User', '$scope', '$state', '$stateParams', function(API,APIError,DataStorage,Loader,User,$scope,$state,$stateParams){
 
 var orgHierarchy=this;
 var pageLoader='orgHierarchy.loading';
@@ -4693,10 +4693,10 @@ updateFlag(org.children);
 updateFlag(orgHierarchy.organizationHierarchy[0].children);
 };
 /* */
-});
+}]);
 
 angular.module('organization').
-controller('divisionCtrl',function(APIError,API,$scope,$state,$q,Base,$stateParams,User,$timeout,DataStorage){
+controller('divisionCtrl',['APIError', 'API', '$scope', '$state', '$q', 'Base', '$stateParams', 'User', '$timeout', 'DataStorage', function(APIError,API,$scope,$state,$q,Base,$stateParams,User,$timeout,DataStorage){
 
 var division=this;
 division.sendInvitationError='';
@@ -4812,10 +4812,10 @@ $scope.$digest();
 division.goToOrg=function(){
 
 };
-});
+}]);
 
 angular.module('organization').
-controller('tloCtrl',function(APIError,API,$scope,$state,$q,Base,$stateParams,User,$timeout){
+controller('tloCtrl',['APIError', 'API', '$scope', '$state', '$q', 'Base', '$stateParams', 'User', '$timeout', function(APIError,API,$scope,$state,$q,Base,$stateParams,User,$timeout){
 
 var tlo=this;
 tlo.sendInvitationError='';
@@ -4872,10 +4872,10 @@ tlo.sendInvitationError=true;
 tlo.emailAddressError=true;
 }
 };
-});
+}]);
 
 angular.module('organization').
-controller('userCtrl',function(APIError,API,$scope,$state,$q,Base,$stateParams,User,$timeout,DataStorage){
+controller('userCtrl',['APIError', 'API', '$scope', '$state', '$q', 'Base', '$stateParams', 'User', '$timeout', 'DataStorage', function(APIError,API,$scope,$state,$q,Base,$stateParams,User,$timeout,DataStorage){
 
 var user=this;
 user.sendInvitationError='';
@@ -5003,10 +5003,10 @@ user.selectOrgFromList=false;
 $scope.$digest();
 };
 
-});
+}]);
 
 angular.module('organization').
-controller('orgProfileCtrl',function(DataStorage,Loader,Organization,User,$stateParams,$q,APIError){
+controller('orgProfileCtrl',['DataStorage', 'Loader', 'Organization', 'User', '$stateParams', '$q', 'APIError', function(DataStorage,Loader,Organization,User,$stateParams,$q,APIError){
 
 var orgProfile=this;
 var storedData=DataStorage.getType('orgProfile');
@@ -5057,10 +5057,10 @@ APIError.onFor('orgProfile.init');
 
 /* --------------------------------------------- ON LOAD END ---------------------------------------------- */
 
-});
+}]);
 
 angular.module('organization').
-factory('NewGrant',function(DataStorage,API,$stateParams){
+factory('NewGrant',['DataStorage', 'API', '$stateParams', function(DataStorage,API,$stateParams){
 var newGrant={};
 var newGrantsInStorage=void 0;
 /*
@@ -5192,9 +5192,9 @@ return packageGrants;
 };
 
 return newGrant;
-});
+}]);
 angular.module('organization').
-controller('newGrantClaimsCtrl',function(API,APIHelpers,DataStorage,Loader,NewGrant,$stateParams,$q,$scope,$state,$timeout){
+controller('newGrantClaimsCtrl',['API', 'APIHelpers', 'DataStorage', 'Loader', 'NewGrant', '$stateParams', '$q', '$scope', '$state', '$timeout', function(API,APIHelpers,DataStorage,Loader,NewGrant,$stateParams,$q,$scope,$state,$timeout){
 
 var newGrantClaims=this;
 var loaderType='newGrantClaims.';
@@ -5304,10 +5304,10 @@ newGrantClaims.error=true;
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-});
+}]);
 
 angular.module('organization').
-controller('newGrantCtrl',function(API,$stateParams,$scope,$state,$filter,Loader,DataStorage,NewGrant){
+controller('newGrantCtrl',['API', '$stateParams', '$scope', '$state', '$filter', 'Loader', 'DataStorage', 'NewGrant', function(API,$stateParams,$scope,$state,$filter,Loader,DataStorage,NewGrant){
 
 var newGrant=this;
 newGrant.prevState={
@@ -5381,10 +5381,10 @@ $state.go('organization.requests.newGrantClaims',{userId:$stateParams.userId,org
 };
 // ON CLICK END ----------------------------------------------------------------------------------
 
-});
+}]);
 
 angular.module('organization').
-controller('newGrantSearchCtrl',function($scope,$state,$stateParams,API,DataStorage,Loader,$pagination,APIHelpers,NewGrant,$q){
+controller('newGrantSearchCtrl',['$scope', '$state', '$stateParams', 'API', 'DataStorage', 'Loader', '$pagination', 'APIHelpers', 'NewGrant', '$q', function($scope,$state,$stateParams,API,DataStorage,Loader,$pagination,APIHelpers,NewGrant,$q){
 var newGrantSearch=this;
 newGrantSearch.prevState={
 params:{
@@ -5548,10 +5548,10 @@ newGrantSearch.toggleRequest({type:'application',payload:_.find(newGrantSearch.a
 }
 };
 // ON CLICK END ----------------------------------------------------------------------------------
-});
+}]);
 
 angular.module('organization').
-controller('newOrgGrantClaimsCtrl',function(API,APIHelpers,DataStorage,Loader,NewGrant,$stateParams,$q,$scope,$state,$timeout){
+controller('newOrgGrantClaimsCtrl',['API', 'APIHelpers', 'DataStorage', 'Loader', 'NewGrant', '$stateParams', '$q', '$scope', '$state', '$timeout', function(API,APIHelpers,DataStorage,Loader,NewGrant,$stateParams,$q,$scope,$state,$timeout){
 
 var newOrgGrantClaims=this;
 var loaderType='newOrgGrantClaims.';
@@ -5666,10 +5666,10 @@ newOrgGrantClaims.error=true;
 
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-});
+}]);
 
 angular.module('organization').
-controller('newOrgGrantCtrl',function(API,$stateParams,$scope,$state,$filter,Loader,DataStorage,NewGrant){
+controller('newOrgGrantCtrl',['API', '$stateParams', '$scope', '$state', '$filter', 'Loader', 'DataStorage', 'NewGrant', function(API,$stateParams,$scope,$state,$filter,Loader,DataStorage,NewGrant){
 
 var newOrgGrant=this;
 newOrgGrant.prevState={
@@ -5750,10 +5750,10 @@ $state.go('organization.requests.newOrgGrantClaims',{orgId:$stateParams.orgId});
 };
 // ON CLICK END ----------------------------------------------------------------------------------
 
-});
+}]);
 
 angular.module('organization').
-controller('newOrgGrantSearchCtrl',function($scope,$state,$stateParams,API,DataStorage,Loader,$pagination,APIHelpers,NewGrant,$q,APIError){
+controller('newOrgGrantSearchCtrl',['$scope', '$state', '$stateParams', 'API', 'DataStorage', 'Loader', '$pagination', 'APIHelpers', 'NewGrant', '$q', 'APIError', function($scope,$state,$stateParams,API,DataStorage,Loader,$pagination,APIHelpers,NewGrant,$q,APIError){
 var newOrgGrantSearch=this;
 newOrgGrantSearch.prevState={
 params:{
@@ -5980,11 +5980,11 @@ newOrgGrantSearch.toggleRequest({type:'application',payload:_.find(newOrgGrantSe
 }
 };
 // ON CLICK END ----------------------------------------------------------------------------------
-});
+}]);
 
 angular.module('organization').
 controller('orgAppRequestsCtrl',
-function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,DataStorage){
+['$timeout', '$filter', '$pagination', '$state', '$stateParams', 'API', 'APIError', 'APIHelpers', 'CuiMobileNavFactory', 'Loader', 'User', 'DataStorage', function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,DataStorage){
 
 var scopeName='orgAppRequests.';
 var orgAppRequests=this;
@@ -6193,11 +6193,11 @@ init();
 };
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-});
+}]);
 
 angular.module('organization').
 controller('orgRegistrationRequestsCtrl',
-function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,DataStorage){
+['$timeout', '$filter', '$pagination', '$state', '$stateParams', 'API', 'APIError', 'APIHelpers', 'CuiMobileNavFactory', 'Loader', 'User', 'DataStorage', function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,DataStorage){
 
 var scopeName='orgRegistrationRequests.';
 var orgRegistrationRequests=this;
@@ -6433,10 +6433,10 @@ orgRegistrationRequests.updateSearch('organizationName',searchWord);
 };
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-});
+}]);
 
 angular.module('organization').
-controller('organizationAppRequestCtrl',function(APIError,DataStorage,Loader,$state,$stateParams,$timeout,API,$scope,$q,ServicePackage){
+controller('organizationAppRequestCtrl',['APIError', 'DataStorage', 'Loader', '$state', '$stateParams', '$timeout', 'API', '$scope', '$q', 'ServicePackage', function(APIError,DataStorage,Loader,$state,$stateParams,$timeout,API,$scope,$q,ServicePackage){
 'use strict';
 
 var organizationAppRequest=this;
@@ -6499,10 +6499,10 @@ $state.go('organization.requests.organizationAppRequestReview',{userId:userId,or
 };
 
 // ON CLICK END ----------------------------------------------------------------------------------
-});
+}]);
 
 angular.module('organization').
-controller('organizationAppRequestReviewCtrl',function(DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout,APIError,API,$scope){
+controller('organizationAppRequestReviewCtrl',['DataStorage', 'Loader', 'ServicePackage', '$q', '$state', '$stateParams', '$timeout', 'APIError', 'API', '$scope', function(DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout,APIError,API,$scope){
 'use strict';
 
 var organizationAppRequestReview=this;
@@ -6603,10 +6603,10 @@ fail(handleError);
 
 // ON CLICK END ----------------------------------------------------------------------------------
 
-});
+}]);
 
 angular.module('organization').
-controller('organizationRequestCtrl',function(APIError,DataStorage,Loader,$state,$stateParams,$timeout,API,$scope,$q,ServicePackage){
+controller('organizationRequestCtrl',['APIError', 'DataStorage', 'Loader', '$state', '$stateParams', '$timeout', 'API', '$scope', '$q', 'ServicePackage', function(APIError,DataStorage,Loader,$state,$stateParams,$timeout,API,$scope,$q,ServicePackage){
 'use strict';
 
 var organizationRequest=this;
@@ -6684,10 +6684,10 @@ $state.go('organization.requests.organizationRequestReview',{userId:userId,orgId
 };
 
 // ON CLICK END ----------------------------------------------------------------------------------
-});
+}]);
 
 angular.module('organization').
-controller('organizationRequestReviewCtrl',function(DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout,APIError,API,$scope){
+controller('organizationRequestReviewCtrl',['DataStorage', 'Loader', 'ServicePackage', '$q', '$state', '$stateParams', '$timeout', 'APIError', 'API', '$scope', function(DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout,APIError,API,$scope){
 'use strict';
 
 var organizationRequestReview=this;
@@ -6807,10 +6807,10 @@ fail(handleError);
 
 // ON CLICK END ----------------------------------------------------------------------------------
 
-});
+}]);
 
 angular.module('organization').
-controller('pendingRequestsCtrl',function(API,DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout){
+controller('pendingRequestsCtrl',['API', 'DataStorage', 'Loader', 'ServicePackage', '$q', '$state', '$stateParams', '$timeout', function(API,DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout){
 'use strict';
 
 var pendingRequests=this;
@@ -6896,10 +6896,10 @@ pendingRequests.reviewApprovals();
 
 // ON CLICK END ----------------------------------------------------------------------------------
 
-});
+}]);
 
 angular.module('organization').
-controller('pendingRequestsReviewCtrl',function(DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout){
+controller('pendingRequestsReviewCtrl',['DataStorage', 'Loader', 'ServicePackage', '$q', '$state', '$stateParams', '$timeout', function(DataStorage,Loader,ServicePackage,$q,$state,$stateParams,$timeout){
 'use strict';
 
 var pendingRequestsReview=this;
@@ -6974,10 +6974,10 @@ $state.go('organization.requests.pendingRequests',{userId:userId,orgId:orgId});
 
 // ON CLICK END ----------------------------------------------------------------------------------
 
-});
+}]);
 
 angular.module('organization').
-controller('personRequestCtrl',function(APIError,DataStorage,Loader,PersonRequest,ServicePackage,$state,$stateParams,$timeout,API,$scope){
+controller('personRequestCtrl',['APIError', 'DataStorage', 'Loader', 'PersonRequest', 'ServicePackage', '$state', '$stateParams', '$timeout', 'API', '$scope', function(APIError,DataStorage,Loader,PersonRequest,ServicePackage,$state,$stateParams,$timeout,API,$scope){
 'use strict';
 
 var personRequest=this;
@@ -7122,10 +7122,10 @@ personRequest.reviewApprovals();
 }
 };
 // ON CLICK END ----------------------------------------------------------------------------------
-});
+}]);
 
 angular.module('organization').
-controller('personRequestReviewCtrl',function(DataStorage,Loader,PersonRequest,ServicePackage,$q,$state,$stateParams,$timeout,API,$scope){
+controller('personRequestReviewCtrl',['DataStorage', 'Loader', 'PersonRequest', 'ServicePackage', '$q', '$state', '$stateParams', '$timeout', 'API', '$scope', function(DataStorage,Loader,PersonRequest,ServicePackage,$q,$state,$stateParams,$timeout,API,$scope){
 'use strict';
 
 var personRequestReview=this;
@@ -7233,11 +7233,11 @@ fail(handleError);
 
 // ON CLICK END ----------------------------------------------------------------------------------
 
-});
+}]);
 
 angular.module('organization').
 controller('usersAppRequestsCtrl',
-function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User){
+['$timeout', '$filter', '$pagination', '$state', '$stateParams', 'API', 'APIError', 'APIHelpers', 'CuiMobileNavFactory', 'Loader', 'User', function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User){
 
 var scopeName='usersAppRequests.';
 var usersAppRequests=this;
@@ -7445,11 +7445,11 @@ init();
 };
 /* ---------------------------------------- ON CLICK FUNCTIONS END ---------------------------------------- */
 
-});
+}]);
 
 angular.module('organization').
 controller('usersRegistrationRequestsCtrl',
-function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,$scope,DataStorage){
+['$timeout', '$filter', '$pagination', '$state', '$stateParams', 'API', 'APIError', 'APIHelpers', 'CuiMobileNavFactory', 'Loader', 'User', '$scope', 'DataStorage', function($timeout,$filter,$pagination,$state,$stateParams,API,APIError,APIHelpers,CuiMobileNavFactory,Loader,User,$scope,DataStorage){
 
 var scopeName='usersRegistrationRequests.';
 var usersRegistrationRequests=this;
@@ -7733,10 +7733,10 @@ init();
 /*return undefined*/
 };
 
-});
+}]);
 
 angular.module('organization').
-controller('orgRolesCtrl',function($scope){
+controller('orgRolesCtrl',['$scope', function($scope){
 'use strict';
 
 var orgRoles=this;
@@ -7757,7 +7757,7 @@ console.log('Error',err);
 // ON CLICK START --------------------------------------------------------------------------------
 // ON CLICK END ----------------------------------------------------------------------------------
 
-});
+}]);
 
 angular.module('misc',[]).
 config(['$stateProvider',function($stateProvider){
@@ -8011,7 +8011,7 @@ $state.go('organization.directory.orgDetails',stateOpts);
 }]);
 
 angular.module('common',['translate','ngMessages','cui.authorization','cui-ng','ui.router','snap','LocalStorageModule']).
-config(function($translateProvider,$locationProvider,$urlRouterProvider,$injector,
+config(['$translateProvider', '$locationProvider', '$urlRouterProvider', '$injector', 'localStorageServiceProvider', '$cuiIconProvider', '$cuiI18nProvider', '$paginationProvider', '$stateProvider', '$compileProvider', '$cuiResizeHandlerProvider', function($translateProvider,$locationProvider,$urlRouterProvider,$injector,
 localStorageServiceProvider,$cuiIconProvider,$cuiI18nProvider,$paginationProvider,
 $stateProvider,$compileProvider,$cuiResizeHandlerProvider){
 
@@ -8117,7 +8117,7 @@ throw new Error('You don\'t have breakpointOption set in your appConfig.json');
 
 $compileProvider.debugInfoEnabled(false);
 
-});
+}]);
 
 angular.module('common').
 run(['LocaleService','$rootScope','$state','$http','$templateCache','$cuiI18n','User',
@@ -8285,11 +8285,11 @@ $state.go('welcome');
 }]);
 
 angular.module('common').
-controller('baseCtrl',function(Base,$scope){
+controller('baseCtrl',['Base', '$scope', function(Base,$scope){
 
 $scope.base=Base;
 $scope.base.pendingNotificationFlag=false;
-}).
+}]).
 
 filter('capitalize',function(){
 return function(input){
@@ -8304,7 +8304,7 @@ return!!input?input.charAt(0).toUpperCase()+input.substr(1).toLowerCase():'';
 });
 
 angular.module('common').
-directive('disableAnimate',function($animate){return{
+directive('disableAnimate',['$animate', function($animate){return{
 
 /*
 		Use this directive to disable the animation window that is introduced by ng-animate.
@@ -8316,11 +8316,11 @@ directive('disableAnimate',function($animate){return{
 restrict:'A',
 link:function link(attrs,elem){
 $animate.enabled(elem,false);
-}};});
+}};}]);
 
 
 angular.module('common').
-factory('CuiMobileNavFactory',function(PubSub,User,$filter){
+factory('CuiMobileNavFactory',['PubSub', 'User', '$filter', function(PubSub,User,$filter){
 return{
 title:User.user.organization.name,
 defaultTitle:User.user.organization.name,
@@ -8338,8 +8338,8 @@ setDefaultTitle:function setDefaultTitle(newDefaultTitle){
 this.defaultTitle=newDefaultTitle;
 }};
 
-}).
-directive('cuiMobileNav',function(CuiMobileNavFactory,PubSub,$state){return{
+}]).
+directive('cuiMobileNav',['CuiMobileNavFactory', 'PubSub', '$state', function(CuiMobileNavFactory,PubSub,$state){return{
 restrict:'E',
 scope:{
 showIf:'=',
@@ -8362,7 +8362,7 @@ scope.$on('$destroy',function(){
 PubSub.unsubscribe(pubSubSubscription);
 });
 },
-template:'\n        <nav class="cui-breadcrumb--mobile" id="breadcrumb-button" aria-hidden="true" ng-click="toggle()" off-click="close()">\n            <ul class="cui-breadcrumb__links">\n                <li class="cui-breadcrumb__link cui-breadcrumb__link--current">\n                    <span class="cui-breadcrumb__mobile-link" ng-if="links[currentState]" class="active"><span class="cui-mobile-only" ng-if="activeTitle">{{activeTitle}}.</span>{{links[currentState].label}}</span>\n                    <span class="cui-breadcrumb__mobile-link" ng-if="!links[currentState]" class="active"><span class="cui-mobile-only" ng-if="activeTitle">{{activeTitle}}.</span>{{label}}</span>\n                </li>\n                <div class="cui-popover cui-popover--menu cui-breadcrumb__popover cui-popover--top cui-popover__categories-popover" tether target="#breadcrumb-button" attachment="top left" target-attachment="bottom left" offset="-10px 0" ng-if="showIf">\n                    <li class="cui-breadcrumb__link cui-popover__row" ng-repeat="(state, stateDetails) in links" ng-if="currentState!==state">\n                        <a class="cui-breadcrumb__mobile-link" ui-sref="{{state}}(stateDetails.stateParams)">{{stateDetails.label}}</a>\n                    </li>\n                </div>\n            </ul>\n        </nav>\n    '};});
+template:'\n        <nav class="cui-breadcrumb--mobile" id="breadcrumb-button" aria-hidden="true" ng-click="toggle()" off-click="close()">\n            <ul class="cui-breadcrumb__links">\n                <li class="cui-breadcrumb__link cui-breadcrumb__link--current">\n                    <span class="cui-breadcrumb__mobile-link" ng-if="links[currentState]" class="active"><span class="cui-mobile-only" ng-if="activeTitle">{{activeTitle}}.</span>{{links[currentState].label}}</span>\n                    <span class="cui-breadcrumb__mobile-link" ng-if="!links[currentState]" class="active"><span class="cui-mobile-only" ng-if="activeTitle">{{activeTitle}}.</span>{{label}}</span>\n                </li>\n                <div class="cui-popover cui-popover--menu cui-breadcrumb__popover cui-popover--top cui-popover__categories-popover" tether target="#breadcrumb-button" attachment="top left" target-attachment="bottom left" offset="-10px 0" ng-if="showIf">\n                    <li class="cui-breadcrumb__link cui-popover__row" ng-repeat="(state, stateDetails) in links" ng-if="currentState!==state">\n                        <a class="cui-breadcrumb__mobile-link" ui-sref="{{state}}(stateDetails.stateParams)">{{stateDetails.label}}</a>\n                    </li>\n                </div>\n            </ul>\n        </nav>\n    '};}]);
 
 
 
@@ -8423,7 +8423,7 @@ return routes;
 }};
 
 }).
-directive('cuiRouteHistory',function(CuiRouteHistoryFactory,$state){return{
+directive('cuiRouteHistory',['CuiRouteHistoryFactory', '$state', function(CuiRouteHistoryFactory,$state){return{
 restrict:'E',
 link:function link(scope,elem,attrs){
 //scope.currentState = $state.current.name;
@@ -8449,10 +8449,10 @@ template:'\n        <nav class="cui-breadcrumb">\n            <ul class="cui-bre
 
 
 //            <a ng-if="route.uiroute !== null" ui-sref="{{route.uiroute}}">{{route.text}}</a>
-};});
+};}]);
 
 angular.module('common').
-directive('cuiSuccessPane',function($state,$timeout){return{
+directive('cuiSuccessPane',['$state', '$timeout', function($state,$timeout){return{
 
 /*****
 		--- Usage ---
@@ -8491,7 +8491,7 @@ scope.close();
 },scope.closeAfter);
 }
 },
-template:'\n        <div class="cui-modal" ng-if="showIf" ng-click="close()">\n            <div class="cui-modal__pane">\n                <div class="cui-modal__icon">\n                    <cui-icon cui-svg-icon="cui:check-with-border" class="cui-modal__icon"></cui-icon>\n                </div>\n                <span class="cui-modal__primary-message">{{\'cui-success\' | translate}}</span>\n                <ng-transclude></ng-transclude>\n            </div>\n        </div>\n    '};});
+template:'\n        <div class="cui-modal" ng-if="showIf" ng-click="close()">\n            <div class="cui-modal__pane">\n                <div class="cui-modal__icon">\n                    <cui-icon cui-svg-icon="cui:check-with-border" class="cui-modal__icon"></cui-icon>\n                </div>\n                <span class="cui-modal__primary-message">{{\'cui-success\' | translate}}</span>\n                <ng-transclude></ng-transclude>\n            </div>\n        </div>\n    '};}]);
 
 
 
@@ -8519,7 +8519,7 @@ scope.$watch(function(){return[scope.$eval(attrs.unique),ctrl.$viewValue];},chec
 
 }]);
 angular.module('common').
-factory('API',function(Base,CustomAPI,Loader,localStorageService,User,$location,$q,$timeout,$window,LocaleService){
+factory('API',['Base', 'CustomAPI', 'Loader', 'localStorageService', 'User', '$location', '$q', '$timeout', '$window', 'LocaleService', function(Base,CustomAPI,Loader,localStorageService,User,$location,$q,$timeout,$window,LocaleService){
 
 var authInfo={};
 var myCUI={};
@@ -8673,17 +8673,17 @@ authInfo:authInfo};
 
 return apiFactory;
 
-});
+}]);
 
 angular.module('common').
-factory('APIError',function(SharedService){
+factory('APIError',['SharedService', function(SharedService){
 var APIError=Object.create(SharedService);
 APIError.details=Object.assign({},APIError.details);
 APIError.for=APIError.details;
 return APIError;
-});
+}]);
 angular.module('common').
-factory('APIHelpers',function(API,$filter){
+factory('APIHelpers',['API', '$filter', function(API,$filter){
 'use strict';
 
 var apiHelpers={
@@ -8850,10 +8850,10 @@ return collectionData;
 
 return apiHelpers;
 
-});
+}]);
 
 angular.module('common').
-factory('Base',function(APIError,BaseExtensions,Countries,Languages,LocaleService,Loader,Menu,Theme,Timezones,User,$state,$translate){
+factory('Base',['APIError', 'BaseExtensions', 'Countries', 'Languages', 'LocaleService', 'Loader', 'Menu', 'Theme', 'Timezones', 'User', '$state', '$translate', function(APIError,BaseExtensions,Countries,Languages,LocaleService,Loader,Menu,Theme,Timezones,User,$state,$translate){
 
 var baseFactory={
 apiError:APIError,
@@ -8889,7 +8889,7 @@ generateHiddenPassword:function generateHiddenPassword(password){return Array(pa
 
 return Object.assign({},baseFactory,BaseExtensions);
 
-});
+}]);
 
 angular.module('common').
 factory('BaseExtensions',['cui.authorization.permitted','User',function(permitted,User){
@@ -8930,7 +8930,7 @@ return permitted(appConfig.accessToSecurityAndExchangeAdmins,User.getRoles(),Use
 }]);
 
 angular.module('common').
-factory('CommonAPI',function(API,APIError,$q){
+factory('CommonAPI',['API', 'APIError', '$q', function(API,APIError,$q){
 'use strict';
 
 // This service handles basic API calls that are done throughout the project.
@@ -8998,10 +8998,10 @@ getOrganization:getOrganization,
 getOrganizationHierarchy:getOrganizationHierarchy};
 
 
-});
+}]);
 
 angular.module('common').
-factory('Countries',function($http,$rootScope,$translate){
+factory('Countries',['$http', '$rootScope', '$translate', function($http,$rootScope,$translate){
 
 var countries=[];
 
@@ -9045,10 +9045,10 @@ return{
 list:countries,
 getCountryByCode:getCountryByCode};
 
-});
+}]);
 
 angular.module('common').
-factory('CustomAPI',function(CustomAPIExtension){
+factory('CustomAPI',['CustomAPIExtension', function(CustomAPIExtension){
 
 var calls=[
 {
@@ -9257,7 +9257,7 @@ type:'POST'}];
 
 return calls.concat(CustomAPIExtension);
 
-});
+}]);
 
 angular.module('common').
 factory('CustomAPIExtension',function(){
@@ -9401,7 +9401,7 @@ return calls;
 });
 
 angular.module('common').
-factory('DataStorage',function(API,localStorageService){
+factory('DataStorage',['API', 'localStorageService', function(API,localStorageService){
 
 var storage=localStorageService.get('dataStorage')||{};
 var dataStorage={};
@@ -9526,7 +9526,7 @@ saveToLocaStorage();
 };
 
 return dataStorage;
-});
+}]);
 
 angular.module('common').
 factory('Languages',['$cuiI18n','LocaleService',function($cuiI18n,LocaleService){
@@ -9545,15 +9545,15 @@ return LocaleService.getLocaleCode();
 
 }]);
 angular.module('common').
-factory('Loader',function(SharedService){
+factory('Loader',['SharedService', function(SharedService){
 var Loader=Object.create(SharedService);
 Loader.details=Object.assign({},Loader.details);
 Loader.for=Loader.details;
 return Loader;
-});
+}]);
 
 angular.module('common').
-factory('Menu',function(snapRemote,$rootScope,$window){
+factory('Menu',['snapRemote', '$rootScope', '$window', function(snapRemote,$rootScope,$window){
 
 var shouldShowMobileNav=function shouldShowMobileNav(){
 if($window.innerWidth>=1000){
@@ -9619,10 +9619,10 @@ angular.isDefined(stateMenuOptions.mobile)&&stateMenuOptions.mobile===false)?thi
 }
 }};
 
-});
+}]);
 
 angular.module('common').
-factory('Organization',function(API,$q){
+factory('Organization',['API', '$q', function(API,$q){
 
 var factoryName='organizationFactory.';
 
@@ -9698,10 +9698,10 @@ getOrganization:getOrganization,
 initOrganizationProfile:initOrganizationProfile};
 
 
-});
+}]);
 
 angular.module('common').
-factory('PersonAndOrgRequest',function(API,APIError,CommonAPI,$q){
+factory('PersonAndOrgRequest',['API', 'APIError', 'CommonAPI', '$q', function(API,APIError,CommonAPI,$q){
 'use strict';
 
 /*
@@ -9835,10 +9835,10 @@ throw new Error('Requires a decision of "approved" or "denied" and the request o
 
 return PersonAndOrgRequestFactory;
 
-});
+}]);
 
 angular.module('common').
-factory('PersonRequest',function(API,APIError,CommonAPI,$q){
+factory('PersonRequest',['API', 'APIError', 'CommonAPI', '$q', function(API,APIError,CommonAPI,$q){
 'use strict';
 
 /*
@@ -9942,10 +9942,10 @@ throw new Error('Requires a decision of "approved" or "denied" and the request o
 
 return personRequestFactory;
 
-});
+}]);
 
 angular.module('common').
-factory('Registration',function(API,APIError,Base,$q){
+factory('Registration',['API', 'APIError', 'Base', '$q', function(API,APIError,Base,$q){
 
 var self={};
 var pub={};
@@ -10294,7 +10294,7 @@ return self.isUsernameOrEmailTaken([['emailAddress',email]]);
 
 return pub;
 
-});
+}]);
 
 angular.module('common').
 service('SharedService',function(){
@@ -10476,7 +10476,7 @@ clear:clearActiveTheme};
 });
 
 angular.module('common').
-factory('Timezones',function($http,$rootScope,$translate){
+factory('Timezones',['$http', '$rootScope', '$translate', function($http,$rootScope,$translate){
 
 var timezones=[];
 
@@ -10524,10 +10524,10 @@ return{
 all:timezones,
 timezoneById:getTimezoneById};
 
-});
+}]);
 
 angular.module('common').
-factory('User',function($rootScope){
+factory('User',['$rootScope', function($rootScope){
 
 /*
         This factory is intended to store data/logic pertaining to the logged in user only.
@@ -10563,10 +10563,10 @@ getRoles:function getRoles(){return user.roles;},
 user:user};
 
 
-});
+}]);
 
 angular.module('common').
-factory('UserHistory',function(API,APIError,LocaleService,$q,$timeout){
+factory('UserHistory',['API', 'APIError', 'LocaleService', '$q', '$timeout', function(API,APIError,LocaleService,$q,$timeout){
 
 var errorName='userHistoryFactory.';
 
@@ -10652,10 +10652,10 @@ history.success=false;
 
 
 return UserHistory;
-});
+}]);
 
 angular.module('common').
-factory('UserList',function(API,APIError,APIHelpers,$q){
+factory('UserList',['API', 'APIError', 'APIHelpers', '$q', function(API,APIError,APIHelpers,$q){
 
 var errorName='UserListFactory.';
 
@@ -10700,10 +10700,10 @@ getUsers:getUsers,
 getUserCount:getUserCount};
 
 
-});
+}]);
 
 angular.module('common').
-factory('UserProfile',function(API,APIError,LocaleService,Timezones,$filter,$q,$timeout){
+factory('UserProfile',['API', 'APIError', 'LocaleService', 'Timezones', '$filter', '$q', '$timeout', function(API,APIError,LocaleService,Timezones,$filter,$q,$timeout){
 
 var errorName='userProfileFactory.';
 
@@ -11200,10 +11200,10 @@ $scope.$digest();
 
 
 return UserProfile;
-});
+}]);
 
 angular.module('common').
-factory('BuildPackageRequests',function(API){
+factory('BuildPackageRequests',['API', function(API){
 
 /*
         Helper factory for creating and sending service package requests.
@@ -11274,7 +11274,7 @@ reason:arrayOfApps[_i2]._reason||''});
 return packageRequests.map(function(data){return API.cui.createPackageRequest({data:data});});
 
 };
-});
+}]);
 
 angular.module('common').
 factory('AppRequests',['$filter',function($filter){
@@ -11335,7 +11335,7 @@ return arrayOfPackageRequests;
 return appRequests;
 }]);
 angular.module('common').
-factory('ServicePackage',function(API,APIError,$q){
+factory('ServicePackage',['API', 'APIError', '$q', function(API,APIError,$q){
 'use strict';
 
 /*
@@ -11550,7 +11550,7 @@ throw new Error('Package request object must contain "approval" of either "appro
 
 return servicePackage;
 
-});
+}]);
 
 angular.module('applications',[]).
 config(['$stateProvider',function($stateProvider){
@@ -11581,7 +11581,7 @@ controller:returnCtrlAs('myApplicationDetails'),
 access:loginRequired}).
 
 state('applications.newRequest',{
-url:'/request',
+url:'/request?userId',
 templateUrl:templateBase+'newRequestReview/newRequest.html',
 controller:returnCtrlAs('newAppRequest'),
 access:loginRequired}).
@@ -11657,7 +11657,7 @@ access:loginRequired});
 }]);
 
 angular.module('applications').
-controller('myApplicationDetailsCtrl',function(API,$scope,$stateParams,$state,$q,APIHelpers,Loader,APIError,DataStorage){
+controller('myApplicationDetailsCtrl',['API', '$scope', '$stateParams', '$state', '$q', 'APIHelpers', 'Loader', 'APIError', 'DataStorage', function(API,$scope,$stateParams,$state,$q,APIHelpers,Loader,APIError,DataStorage){
 var myApplicationDetails=this;
 myApplicationDetails.relatedApps=[];
 
@@ -11768,10 +11768,10 @@ $state.go('applications.myApplicationDetails',{
 
 // ON CLICK FUNCTIONS END ------------------------------------------------------------------------
 
-});
+}]);
 
 angular.module('applications').
-controller('manageApplicationsCtrl',function(API,APIError,APIHelpers,DataStorage,Loader,User,$filter,$pagination,$q,$scope,$state,$stateParams){
+controller('manageApplicationsCtrl',['API', 'APIError', 'APIHelpers', 'DataStorage', 'Loader', 'User', '$filter', '$pagination', '$q', '$scope', '$state', '$stateParams', function(API,APIError,APIHelpers,DataStorage,Loader,User,$filter,$pagination,$q,$scope,$state,$stateParams){
 
 var manageApplications=this;
 var userId=User.user.id;
@@ -11988,10 +11988,10 @@ $state.go('applications.myApplicationDetails',opts);
 
 // ON CLICK FUNCTIONS END ---------------------------------------------------------------------------------
 
-});
+}]);
 
 angular.module('applications').
-controller('myApplicationsCtrl',function(API,APIError,APIHelpers,DataStorage,Loader,User,$filter,$pagination,$q,$scope,$state,$stateParams){
+controller('myApplicationsCtrl',['API', 'APIError', 'APIHelpers', 'DataStorage', 'Loader', 'User', '$filter', '$pagination', '$q', '$scope', '$state', '$stateParams', function(API,APIError,APIHelpers,DataStorage,Loader,User,$filter,$pagination,$q,$scope,$state,$stateParams){
 var myApplications=this;
 var userId=User.user.id;
 var loaderName='myApplications.';
@@ -12148,7 +12148,7 @@ break;}
 $state.transitionTo('applications.myApplications',myApplications.search,{notify:false});
 onLoad(true);
 };
-});
+}]);
 
 angular.module('applications').
 controller('applicationReviewCtrl',['$scope','API','AppRequests','$timeout','$state','$q','localStorageService',function($scope,API,AppRequests,$timeout,$state,$q,localStorage){
@@ -12297,16 +12297,27 @@ return true;
 };
 }]);
 angular.module('applications').
-controller('newAppRequestCtrl',['API','$scope','$state','AppRequests','localStorageService',
-function(API,$scope,$state,AppRequests,localStorage){
+controller('newAppRequestCtrl',['API','$scope','$state','AppRequests','localStorageService','Loader','$pagination','APIHelpers','$stateParams',
+function(API,$scope,$state,AppRequests,localStorage,Loader,$pagination,APIHelpers,$stateParams){
 
 var newAppRequest=this;
+
+newAppRequest.step="selectCategory";
+newAppRequest.searchParams=Object.assign({},$stateParams);
+newAppRequest.searchParams.pageSize=newAppRequest.searchParams.pageSize||$pagination.getUserValue()||$pagination.getPaginationOptions()[0];
 
 // HELPER FUNCTIONS START ------------------------------------------------------------------------
 
 // HELPER FUNCTIONS END ---------------------------------------------------------------------------
 
 // ON LOAD START ----------------------------------------------------------------------------------------
+
+// QIMS Customization Start
+if(_.find(API.user.roles,function(role){return role==="QI Employee Birthright";})){
+newAppRequest.step="selectUser";
+newAppRequest.requestBy="yourself";
+}
+
 
 if(Object.keys(AppRequests.get()).length===0&&localStorage.get('appsBeingRequested')){
 AppRequests.set(localStorage.get('appsBeingRequested'));
@@ -12337,12 +12348,51 @@ newAppRequest.searchCallback=function(searchWord){
 $state.go('applications.search',{name:searchWord});
 };
 
+newAppRequest.updateSearchParams=function(page){
+newAppRequest.searchParams.page=page;
+API.cui.getPersons({qs:APIHelpers.getQs(newAppRequest.searchParams)}).
+then(function(res){
+newAppRequest.userList=res;
+Loader.offFor('newAppRequest.userList');
+$scope.$digest();
+}).
+fail(function(err){
+console.log('There was an error fetching persons'+err);
+
+});
+};
+
+newAppRequest.userClick=function(user){
+newAppRequest.step="selectCategory";
+newAppRequest.searchParams.userId=user.id;
+$state.transitionTo('applications.newRequest',newAppRequest.searchParams,{notify:false});
+};
 // ON CLICK FUNCTIONS END -------------------------------------------------------------------------
 
+// WATCHERS---------------------------------------------
+
+$scope.$watch("newAppRequest.requestBy",function(newValue){
+if(newValue&&newValue==='others'){
+if(!newAppRequest.userList){
+Loader.onFor('newAppRequest.userList');
+API.cui.countPersons().
+then(function(count){
+newAppRequest.userCount=count;
+newAppRequest.updateSearchParams(1);
+}).
+fail(function(err){
+console.log('There was an error fetching persons'+err);
+});
+}else
+{
+Loader.offFor('newAppRequest.userList');
+}
+}
+},true);
 }]);
 
 angular.module('applications').
-controller('pendingAppRequestsCtrl',function(API,APIError,APIHelpers,DataStorage,Loader,$filter,$pagination,$q,$scope,$state,$stateParams){
+controller('pendingAppRequestsCtrl',['API', 'APIError', 'APIHelpers', 'DataStorage', 'Loader', '$filter', '$pagination', '$q', '$scope', '$state', '$stateParams', function(API,APIError,APIHelpers,DataStorage,Loader,$filter,$pagination,$q,$scope,$state,$stateParams){
 
 var pendingAppRequests=this;
 var loaderName='pendingAppRequests.';
@@ -12470,7 +12520,7 @@ pendingAppRequests.updateSearch('name',searchWord);
 };
 
 // ON CLICK FUNCTIONS END -------------------------------------------------------------------------------
-});
+}]);
 angular.module('applications').
 controller('applicationSearchCtrl',['API','$scope','$stateParams','$state','AppRequests','localStorageService','$q','$pagination',function(API,$scope,$stateParams,$state,AppRequests,localStorage,$q,$pagination){
 var applicationSearch=this;
@@ -12720,6 +12770,10027 @@ $urlRouterProvider.otherwise(function($injector){
 var $state=$injector.get('$state');
 $state.go('welcome');
 });
+
+}]);
+
+angular.module('app').run(['$templateCache',function($templateCache){
+'use strict';
+
+$templateCache.put('app/common-templates/index/content.html',
+"<snap-drawer ng-if=base.menu.mobile.enabled>\n"+
+"  \n"+
+"  <div ng-include=\"'app/common-templates/index/snap-menu-mobile.html'\"></div>\n"+
+"</snap-drawer>\n"+
+"\n"+
+"<snap-content snap-opt-disable=\"'right'\" ng-class=base.theme.get()>\n"+
+"  \n"+
+"  <div disable-animate class=cui-desktop-menu ng-class=\"{'cui-desktop-menu--collapse' : base.menu.desktop.state==='closed'}\" ng-if=base.menu.desktop.enabled ng-include=\"'app/common-templates/index/snap-menu.html'\"></div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-nav__content-wrapper ng-class=\"{\n"+
+"      'cui-desktop-menu--collapse' : base.menu.desktop.state==='closed', \n"+
+"      'cui-nav__content-wrapper--full-width': !base.menu.desktop.enabled\n"+
+"    }\">\n"+
+"    <div class=\"cui-menu__toggle-button--desktop cui-menu__toggle-button-container active\" ng-click=base.menu.desktop.toggle() ng-class=\"{'active' : base.menu.desktop.state==='open'}\" ng-if=base.menu.desktop.enabled style=margin-right:20px>\n"+
+"      <div class=cui-menu__toggle-button></div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <header class=cui-header>\n"+
+"      <div ng-include=\"'app/common-templates/index/header.html'\"></div>\n"+
+"    </header>\n"+
+"\n"+
+"    \n"+
+"    \n"+
+"\n"+
+"    \n"+
+"    <div ui-view class=\"js-main-content dummy\" ng-cloak ng-class=\"{'js-main-content--search-open': searchEnabled}\"></div>\n"+
+"    \n"+
+"    <div class=cui-footer ng-include=\"'app/common-templates/index/footer.html'\"></div>\n"+
+"  </div>\n"+
+"</snap-content>\n");
+
+
+
+$templateCache.put('app/common-templates/index/footer.html',
+"  <div class=cui-footer__col><a href=https://www.quintilesims.com/ target=_blank class=cui-footer__link>QuintilesIMS</a></div>\n"+
+"          <div class=cui-footer__col><a href=https://www.quintilesims.com/terms-of-use target=_blank class=cui-footer__link>{{'terms-of-service' | translate}}</a></div>\n"+
+"          <div class=cui-footer__col><a href=https://www.quintilesims.com/privacy-statement target=_blank class=cui-footer__link>{{'privacy-policy' | translate}}</a></div>\n"+
+"          <div class=cui-footer__col><a href=https://www.quintilesims.com/contact-us target=_blank class=cui-footer__link>{{'contact-us' | translate}}</a></div>\n"+
+"          <div class=cui-footer__col ng-translate-language-select class=cui-footer__translate></div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-footer__col ng-translate-language-select class=cui-footer__translate></div>\n");
+
+
+
+$templateCache.put('app/common-templates/index/header.html',
+"<div class=cui-header__top>\n"+
+"  <div class=\"menu-toggle menu-toggle--mobile\" snap-toggle=left ng-click=base.menu.mobile.toggle() ng-if=base.menu.mobile.enabled style=margin-right:20px>\n"+
+"    <div class=menu-toggle--button></div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"    <div class=cui-header__search-container ng-model=searchEnabled ng-if=base.accessByAnyAdmin()>\n"+
+"        <a ui-sref=search><cui-icon cui-svg-icon=cui:search svg-class=cui-header__search-icon preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"        </a>\n"+
+"    </div>\n"+
+"\n"+
+"  \n"+
+"    <svg class=cui-header__svg-logo ng-class=\"{'cui-header__svg-logo_displaced': base.user.name.given}\" viewBox=\"0 0 640 124\">\n"+
+"      <use xmlns:xlink=http://www.w3.org/1999/xlink xlink:href=\"\"></use>\n"+
+"    </svg>\n"+
+"\n"+
+"  <div class=cui-profile class-toggle toggled-class=cui-profile--active ng-click=toggleClass() off-click=toggleOff() ng-if=base.user.name.given>\n"+
+"    \n"+
+"    <span class=cui-profile__user-name>{{base.user.name.given}} {{base.user.name.surname}}</span>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-profile__user-avatar cui-avatar cui-avatar-email=base.user.email cui-avatar-names=\"[base.user.name.given, base.user.name.surname]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"\n"+
+"    \n"+
+"    <div id=cui-profile__popup class=cui-profile__user-menu>\n"+
+"      <div class=cui-profile__menu-item ui-sref=user.profile({orgId:base.user.organization.id,userId:base.user.id})>\n"+
+"        <a href=\"\" class=cui-profile__link>{{'cui-my-profile' | translate}}</a>\n"+
+"        <div>\n"+
+"          <cui-icon cui-svg-icon=cui:profile svg-class=cui-profile__link-icon use-class=svg viewbox=\"-2 -2 52 52\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"                \n"+
+"      <div class=cui-profile__menu-item ng-click=base.logout()>\n"+
+"        <a href=\"\" class=cui-profile__link>{{'log-out' | translate}}</a>\n"+
+"        <div>\n"+
+"          <cui-icon cui-svg-icon=cui:log-out svg-class=cui-profile__link-icon use-class=svg viewbox=\"-2 -2 52 52\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"\n"+
+"    <div>\n"+
+"      <cui-icon cui-svg-icon=fa:arrow459 svg-class=cui-profile__chevron use-class=svg viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"  <div ng-if=!base.user.name.given class=cui-profile>\n"+
+"    <li class=cui-off-canvas__section ng-class=cui-off-canvas__section--active>\n"+
+"      <a class=cui-off-canvas__section-link ui-sref=applications.myApplications disabled>\n"+
+"         <span class=cui-styleguide__nav__name>{{'cui-login' | translate }}</span>\n"+
+"      </a>\n"+
+"    </li>\n"+
+"  </div>\n"+
+"  <div ng-if=!base.user.name.given class=cui-profile__mobile-login>\n"+
+"    <li class=cui-off-canvas__section ng-class=cui-off-canvas__section--active>\n"+
+"      <a class=cui-off-canvas__section-link ui-sref=applications.myApplications disabled>\n"+
+"         <span class=cui-styleguide__nav__name>{{'cui-login' | translate }}</span>\n"+
+"      </a>\n"+
+"    </li>\n"+
+"  </div>\n"+
+"    \n"+
+"  <div class=pending_notification class-toggle toggled-class=pending_notification--active ng-click=toggleClass() off-click=toggleOff() ng-if=base.user.name.given>\n"+
+"    \n"+
+"    <svg class=cursor__pointer width=22px height=24px viewBox=\"0 0 22 24\" version=1.1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink>\n"+
+"      \n"+
+"      <title>Bell</title>\n"+
+"      <desc>Created with Sketch.</desc>\n"+
+"      <defs></defs>\n"+
+"      <g id=Symbols stroke=none stroke-width=1 fill=none fill-rule=evenodd>\n"+
+"          <g id=Notification-Icon transform=\"translate(1.000000, -3.000000)\" stroke-width=0.5 stroke=#FFFFFF fill=#FFFFFF>\n"+
+"              <g id=Bell>\n"+
+"                  <g transform=\"translate(0.000000, 3.000000)\">\n"+
+"                      <path d=\"M0.196491532,19.1216063 C0.0879722556,19.1216063 0.0387030805,19.0412224 0.0846895705,18.9457112 L2.22984183,14.4903604 L2.22984183,7.9274928 C2.22984183,7.9274928 2.38475426,3.00517126 8.09891803,1.93174439 C8.09891803,1.93174439 9.69392945,-0.337757414 11.7378074,1.93174439 C11.7378074,1.93174439 16.5694189,2.6368854 17.3591617,7.91211909 L17.3591617,14.459613 L19.7582272,18.9445435 C19.8105363,19.0423326 19.7644283,19.1216063 19.6564496,19.1216063 L0.196491532,19.1216063 Z\" id=Shape></path>\n"+
+"                      <path d=\"M7.5,21.1153846 L11.6357054,21.1153846 C11.6357054,21.1153846 11.7081548,23.5201737 9.68626795,23.5828833 C9.68626795,23.5828833 7.64581208,23.935581 7.5,21.1153846 L7.5,21.1153846 Z\" id=Shape></path>\n"+
+"                  </g>\n"+
+"              </g>\n"+
+"          </g>\n"+
+"      </g>\n"+
+"    </svg>\n"+
+"    <sup class=bell_badge ng-if=\"(base.user.pendingApps && base.user.pendingApps.length!=0)|| (base.user.totalCount&&base.user.totalCount!==0)\">\n"+
+"      <svg width=7px height=7px viewBox=\"0 0 7 7\" version=1.1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink>\n"+
+"        \n"+
+"        <title>bell-badge</title>\n"+
+"        <desc>Created with Sketch.</desc>\n"+
+"        <defs></defs>\n"+
+"        <g id=Symbols stroke=none stroke-width=1 fill=none fill-rule=evenodd>\n"+
+"            <g id=Notification-Icon transform=\"translate(-19.000000, 0.000000)\" fill=#FF4400>\n"+
+"                <g id=bell-badge>\n"+
+"                    <circle cx=22.8529412 cy=3.92307692 r=3></circle>\n"+
+"                </g>\n"+
+"            </g>\n"+
+"        </g>\n"+
+"      </svg>\n"+
+"    </sup>\n"+
+"    <div class=pending-content_wrapper>      \n"+
+"      <div class=\"dummy pending-content__block\">\n"+
+"        <div class=pending-content__title-container>\n"+
+"          <h4 class=\"cui-action__title cui-action__title-small\" ng-if=base.canGrantAppToUser()>{{'pending'|translate}} {{'requests'|translate}}</h4>\n"+
+"          <h4 class=\"cui-action__title cui-action__title-small\" ng-if=!base.canGrantAppToUser()>{{'pending'|translate}} {{'approval'|translate}}</h4>\n"+
+"          \n"+
+"          <div ng-click=\"base.pendingNotificationFlag=false\">\n"+
+"            <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-action__icon viewbox=\"0 0 48 53\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"        <div ng-if=!base.canGrantAppToUser()> \n"+
+"          <div class=pending-content__row ng-repeat=\"pendingApp in base.user.pendingApps\">\n"+
+"            {{pendingApp|cuiI18n|capitalize}}\n"+
+"          </div>\n"+
+"          <div class=pending-content__row ng-if=\"base.user.pendingApps.length==0\">\n"+
+"            {{'no-pending-apps'|translate}}\n"+
+"          </div>\n"+
+"        </div>\n"+
+"        <div ng-if=base.canGrantAppToUser()>\n"+
+"          <div class=pending-content__row ui-sref=organization.requests.usersRegistrationRequests ng-click=\"base.pendingNotificationFlag=false\">{{'user'|translate}}({{base.user.userRegistrationRequestsCount}})</div>\n"+
+"          <div class=pending-content__row ui-sref=organization.requests.usersAppRequests ng-click=\"base.pendingNotificationFlag=false\"> {{'user'|translate}} {{'cui-applications'|translate}}({{base.user.userAppRequestsCount}})</div>\n"+
+"          <div class=pending-content__row ui-sref=organization.requests.orgRegistrationRequests ng-click=\"base.pendingNotificationFlag=false\">{{'cui-org'|translate}}({{base.user.orgRegistrationRequestsCount}})</div>\n"+
+"          <div class=pending-content__row ui-sref=organization.requests.orgAppRequests ng-click=\"base.pendingNotificationFlag=false\">{{'cui-org'|translate}} {{'cui-applications'|translate}}({{base.user.orgAppRequestsCount}})</div>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/common-templates/index/snap-menu-mobile.html',
+"<div class=\"cui-profile cui-profile--mobile\" class-toggle toggled-class=cui-profile--active ng-click=toggleClass() off-click=toggleOff() ng-if=base.user.name.given>\n"+
+"  <div class=cui-profile__row>\n"+
+"\n"+
+"    \n"+
+"    <span class=cui-profile__user-name>{{base.user.name.given}} {{base.user.name.surname}}</span>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-media__image-container>\n"+
+"      <div class=cui-media__image cui-avatar cui-avatar-email=base.user.email cui-avatar-names=\"[base.user.name.given, base.user.name.surname]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"    </div>\n"+
+"\n"+
+"    <div>\n"+
+"      <cui-icon cui-svg-icon=fa:arrow459 svg-class=cui-profile__chevron use-class=svg viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  <div class=cui-profile__row>\n"+
+"    <div id=cui-profile__popup class=cui-profile__user-menu style=\"display:block; opacity:1; position:relative\">\n"+
+"\n"+
+"      \n"+
+"      <div class=cui-profile__menu-item ui-sref=user.profile>\n"+
+"        <a href=\"\" class=cui-profile__link>{{'cui-my-profile' | translate}}</a>\n"+
+"        <div>\n"+
+"          <cui-icon cui-svg-icon=cui:profile svg-class=cui-profile__link-icon use-class=svg viewbox=\"-2 -2 52 52\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div class=cui-profile__menu-item ng-click=base.logout()>\n"+
+"        <a href=\"\" class=cui-profile__link>{{'log-out' | translate}}</a>\n"+
+"        <div>\n"+
+"          <cui-icon cui-svg-icon=cui:log-out svg-class=cui-profile__link-icon use-class=svg viewbox=\"-2 -2 52 52\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<span class=snap-menu--option snap-close ui-sref=welcome ng-if=!base.user.id>\n"+
+"  <span class=snap-menu__option-name>{{'welcome' | translate}}</span>\n"+
+"  <div>\n"+
+"    <cui-icon cui-svg-icon=fa:four29 svg-class=snap-menu__icon viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"  </div>\n"+
+"</span>\n"+
+"\n"+
+"\n"+
+"<span class=snap-menu--option snap-close ui-sref=applications.myApplications ng-if=base.user.id>\n"+
+"  <span class=snap-menu__option-name>{{'my-applications' | translate}}</span>\n"+
+"  <div>\n"+
+"    <cui-icon cui-svg-icon=cui:applications_v2 svg-class=snap-menu__icon viewbox=\"0 0 49 49\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"  </div>\n"+
+"</span>\n"+
+"\n"+
+"\n"+
+"<span class=snap-menu--option snap-close ui-sref=organization.profile({orgId:base.user.organization.id}) ng-if=base.user.id>\n"+
+"  <span class=snap-menu__option-name>{{'my-organization' | translate}}</span>\n"+
+"  <div>\n"+
+"    <cui-icon cui-svg-icon=cui:organization svg-class=snap-menu__icon viewbox=\"0 0 48 48\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"  </div>\n"+
+"</span>\n"+
+"\n"+
+"\n"+
+"<span class=snap-menu--option snap-close ui-sref=pendingAppRequests ng-if=base.user.id>\n"+
+"  <span class=snap-menu__option-name>{{'cui-my-app-requests' | translate}}</span>\n"+
+"  <div>\n"+
+"    <cui-icon cui-svg-icon=cui:status-pending svg-class=snap-menu__icon viewbox=\"0 0 48 48\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"  </div>\n"+
+"</span>\n"+
+"\n"+
+"\n");
+
+
+
+$templateCache.put('app/common-templates/index/snap-menu.html',
+"\n"+
+"<div class=cui-desktop-menu__option ui-sref=welcome ui-sref-active=active ng-if=!base.user.id ng-click=base.menu.desktop.close()>\n"+
+"  <span class=cui-desktop-menu__option-name>{{'welcome' | translate}}</span>\n"+
+"  <cui-icon cui-svg-icon=fa:four29 svg-class=cui-desktop-menu__icon viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-desktop-menu__option ui-sref=applications.myApplications ui-sref-active-nested=active ng-if=base.user.id ng-click=base.menu.desktop.close()>\n"+
+"  <span class=cui-desktop-menu__option-name>{{'my-applications' | translate}}</span>\n"+
+"  <cui-icon cui-svg-icon=cui:applications_v2 svg-class=cui-desktop-menu__icon preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-desktop-menu__option ui-sref=organization.profile({orgId:base.user.organization.id}) ui-sref-active-nested=active ng-if=base.user.id ng-click=base.menu.desktop.close()>\n"+
+"  <span class=cui-desktop-menu__option-name>{{'my-organization' | translate}}</span>\n"+
+"  <cui-icon cui-svg-icon=cui:organization svg-class=cui-desktop-menu__icon preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-desktop-menu__option ui-sref=pendingAppRequests ui-sref-active-nested=active ng-if=base.user.id ng-click=base.menu.desktop.close()>\n"+
+"  <span class=cui-desktop-menu__option-name>{{'cui-my-app-requests' | translate}}</span>\n"+
+"  <cui-icon cui-svg-icon=cui:status-pending svg-class=cui-desktop-menu__icon preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"\n"+
+"\n"+
+"\n"+
+"\n"+
+"\n"+
+"\n"+
+"\n"+
+"\n");
+
+
+
+$templateCache.put('app/common-templates/index/whole-app-loader.html',
+"<div style=\"position: absolute; left: 50%; top: 50%; display: inline-block; transform: translate(-50%,-50%); text-align: center\">\n"+
+"  <h1>{{base.loader.for.wholeApp.message | translate}}</h1>\n"+
+"  <br>\n"+
+"  <div class=cui-loading style=display:inline-block></div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/common-templates/messages.html',
+"<div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"<div class=cui-error__message ng-message=minlength>{{'cui-this-field-needs-to-be-longer' | translate}}</div>\n"+
+"<div class=cui-error__message ng-message=tosRequired>{{'cui-you-need-to-agree-to-toc' | translate}}</div>\n"+
+"<div class=cui-error__message ng-message=email>{{'cui-this-is-not-valid-email' | translate}}</div>\n"+
+"<div class=cui-error__message ng-message=usernameTaken>{{'cui-error-username-exists' | translate}}</div>\n"+
+"<div class=cui-error__message ng-message=emailTaken>{{'cui-error-email-exists' | translate}}</div>\n"+
+"<div class=cui-error__message ng-message=answersMatch>{{'security-question-repeated' | translate}}</div>\n");
+
+
+
+$templateCache.put('app/common-templates/partials/loader-content-sm.html',
+"<div class=cui-loader__page>\n"+
+"\n"+
+"  <div class=cui-loader__row>\n"+
+"    <div class=cui-loader__row-img></div>\n"+
+"    <div class=cui-loader__row-items>\n"+
+"      <div class=cui-loader__row-item></div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  <div class=cui-loader__row>\n"+
+"    <div class=cui-loader__row-img></div>\n"+
+"    <div class=cui-loader__row-items>\n"+
+"      <div class=cui-loader__row-item></div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  <div class=cui-loader__row>\n"+
+"    <div class=cui-loader__row-img></div>\n"+
+"    <div class=cui-loader__row-items>\n"+
+"      <div class=cui-loader__row-item></div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"</div>");
+
+
+
+$templateCache.put('app/common-templates/partials/loader-content-vert.html',
+"<div class=cui-loader__page>\n"+
+"\n"+
+"  <div class=cui-loader__row>\n"+
+"    <div class=cui-loader__row-img></div>\n"+
+"    <div class=cui-loader__row-items>\n"+
+"      <div class=cui-loader__row-item></div>\n"+
+"      <div class=cui-loader__row-item></div>\n"+
+"      <div class=cui-loader__row-item></div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"</div>");
+
+
+
+$templateCache.put('app/common-templates/partials/loader-content.html',
+"<div class=cui-loader__page>\n"+
+"\n"+
+"  <div class=cui-loader__row>\n"+
+"    <div class=cui-loader__row-img></div>\n"+
+"    <div class=cui-loader__row-items>\n"+
+"      <div class=cui-loader__row-item></div>\n"+
+"      <div class=cui-loader__row-item></div>\n"+
+"      <div class=cui-loader__row-item></div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  <div class=cui-loader__row>\n"+
+"    <div class=cui-loader__row-img></div>\n"+
+"    <div class=cui-loader__row-items>\n"+
+"      <div class=cui-loader__row-item></div>\n"+
+"      <div class=cui-loader__row-item></div>\n"+
+"      <div class=cui-loader__row-item></div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  <div class=cui-loader__row>\n"+
+"    <div class=cui-loader__row-img></div>\n"+
+"    <div class=cui-loader__row-items>\n"+
+"      <div class=cui-loader__row-item></div>\n"+
+"      <div class=cui-loader__row-item></div>\n"+
+"      <div class=cui-loader__row-item></div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/common-templates/partials/loader-updating.html',
+"<div class=cui-action__action-container>\n"+
+"	<div class=cui-loading--circle></div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/common-templates/password-validation-history/password-validation-bottom.html',
+"<div class=cui-error__message ng-if=\"policies.requiredNumberOfCharClasses>1\">{{'password-rules' | translate:policies}}<br></div>\n"+
+"\n"+
+"<div class=cui-error__message ng-if=policies.allowLowerChars>\n"+
+"    <div class=cui-error__status ng-class=\"{'cui-error__status--pass': !errors.lowercase}\"></div>\n"+
+"    {{'password-lowercase' | translate}}\n"+
+"</div>\n"+
+"<div class=cui-error__message ng-if=policies.allowUpperChars>\n"+
+"    <div class=cui-error__status ng-class=\"{'cui-error__status--pass': !errors.uppercase}\"></div>\n"+
+"    {{'password-uppercase' | translate}}\n"+
+"</div>\n"+
+"<div class=cui-error__message ng-if=policies.allowNumChars>\n"+
+"    <div class=cui-error__status ng-class=\"{'cui-error__status--pass': !errors.number}\"></div>\n"+
+"    {{'password-number' | translate}}\n"+
+"</div>\n"+
+"<div class=cui-error__message ng-if=policies.allowSpecialChars>\n"+
+"    <div class=cui-error__status ng-class=\"{'cui-error__status--pass': !errors.special}\"></div>\n"+
+"    {{'password-special' | translate}}\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/common-templates/password-validation-history/password-validation-top.html',
+"<p>{{'passwords-must' | translate}}</p>\n"+
+"\n"+
+"<div class=cui-error__message ng-message=lowercaseNotAllowed>\n"+
+"    <div class=cui-error__status ng-class=\"{'cui-error__status--pass': !errors.lowercaseNotAllowed}\"></div>\n"+
+"    {{'lowercase-not-allowed' | translate}}\n"+
+"</div>\n"+
+"<div class=cui-error__message ng-message=uppercaseNotAllowed>\n"+
+"    <div class=cui-error__status ng-class=\"{'cui-error__status--pass': !errors.uppercaseNotAllowed}\"></div>\n"+
+"    {{'uppercase-not-allowed' | translate}}\n"+
+"</div>\n"+
+"<div class=cui-error__message ng-message=numberNotAllowed>\n"+
+"    <div class=cui-error__status ng-class=\"{'cui-error__status--pass': !errors.numberNotAllowed}\"></div>\n"+
+"    {{'numbers-not-allowed' | translate}}\n"+
+"</div>\n"+
+"<div class=cui-error__message ng-message=specialNotAllowed>\n"+
+"    <div class=cui-error__status ng-class=\"{'cui-error__status--pass':!errors.specialNotAllowed}\"></div>\n"+
+"    {{'special-not-allowed' | translate}}\n"+
+"</div>\n"+
+"<div class=cui-error__message ng-message=disallowedWords>\n"+
+"    <div class=cui-error__status></div> \n"+
+"    {{'words-not-allowed' | translate:errors}}\n"+
+"</div>\n"+
+"<div class=cui-error__message ng-message=disallowedChars>\n"+
+"    <div class=cui-error__status></div>\n"+
+"    {{'chars-not-allowed' | translate:errors}}\n"+
+"</div>\n"+
+"\n"+
+"<div class=cui-error__message>\n"+
+"    <div class=cui-error__status ng-class=\"{'cui-error__status--pass': !errors.length}\"></div>\n"+
+"    {{'password-length' | translate:policies}}\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/common-templates/password-validation.html',
+"<p>{{'passwords-must' | translate}}</p>\n"+
+"\n"+
+"<div class=cui-error__message ng-message=lowercaseNotAllowed>\n"+
+"    <div class=cui-error__status ng-class=\"{'cui-error__status--pass': !errors.lowercaseNotAllowed}\"></div>\n"+
+"    {{'lowercase-not-allowed' | translate}}\n"+
+"</div>\n"+
+"<div class=cui-error__message ng-message=uppercaseNotAllowed>\n"+
+"    <div class=cui-error__status ng-class=\"{'cui-error__status--pass': !errors.uppercaseNotAllowed}\"></div>\n"+
+"    {{'uppercase-not-allowed' | translate}}\n"+
+"</div>\n"+
+"<div class=cui-error__message ng-message=numberNotAllowed>\n"+
+"    <div class=cui-error__status ng-class=\"{'cui-error__status--pass': !errors.numberNotAllowed}\"></div>\n"+
+"    {{'numbers-not-allowed' | translate}}\n"+
+"</div>\n"+
+"<div class=cui-error__message ng-message=specialNotAllowed>\n"+
+"    <div class=cui-error__status ng-class=\"{'cui-error__status--pass':!errors.specialNotAllowed}\"></div>\n"+
+"    {{'special-not-allowed' | translate}}\n"+
+"</div>\n"+
+"<div class=cui-error__message ng-message=disallowedWords>\n"+
+"    <div class=cui-error__status></div> \n"+
+"    {{'words-not-allowed' | translate:errors}}\n"+
+"</div>\n"+
+"<div class=cui-error__message ng-message=disallowedChars>\n"+
+"    <div class=cui-error__status></div>\n"+
+"    {{'chars-not-allowed' | translate:policies}}\n"+
+"</div>\n"+
+"\n"+
+"<div class=cui-error__message>\n"+
+"    <div class=cui-error__status ng-class=\"{'cui-error__status--pass': !errors.length}\"></div>\n"+
+"        {{'password-length' | translate:policies}}<br><br>\n"+
+"</div>\n"+
+"\n"+
+"<div class=cui-error__message ng-if=policies.requiredNumberOfCharClasses>{{'password-rules' | translate:policies}}<br></div>\n"+
+"\n"+
+"<div class=cui-error__message ng-if=policies.allowLowerChars>\n"+
+"    <div class=cui-error__status ng-class=\"{'cui-error__status--pass': !errors.lowercase}\"></div>\n"+
+"    {{'password-lowercase' | translate}}\n"+
+"</div>\n"+
+"<div class=cui-error__message ng-if=policies.allowUpperChars>\n"+
+"    <div class=cui-error__status ng-class=\"{'cui-error__status--pass': !errors.uppercase}\"></div>\n"+
+"    {{'password-uppercase' | translate}}\n"+
+"</div>\n"+
+"<div class=cui-error__message ng-if=policies.allowNumChars>\n"+
+"    <div class=cui-error__status ng-class=\"{'cui-error__status--pass': !errors.number}\"></div>\n"+
+"    {{'password-number' | translate}}\n"+
+"</div>\n"+
+"<div class=cui-error__message ng-if=policies.allowSpecialChars>\n"+
+"    <div class=cui-error__status ng-class=\"{'cui-error__status--pass': !errors.special}\"></div>\n"+
+"    {{'password-special' | translate}}\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/common-templates/user-list/user-list-header.html',
+"<div class=\"cui-flex-table__th cui-flex-table__th--c\">\n"+
+"	<div class=cui-flex-table__avatar-col ng-click=scope.userListHeader.nameCallback()>{{'cui-name' | translate | lowercase}}</div>\n"+
+"	<div class=cui-flex-table__mobile-stack>\n"+
+"		<div class=cui-flex-table__left></div>\n"+
+"		<div class=cui-flex-table__middle ng-click=scope.userListHeader.usernameCallback()>{{'username' | translate | lowercase}}</div>\n"+
+"		<div class=cui-flex-table__middle ng-click=scope.userListHeader.registeredCallback()>{{'cui-registered' | translate | lowercase}}</div>\n"+
+"		<div class=cui-flex-table__right ng-click=scope.userListHeader.statusCallback()>{{'status' | translate | lowercase}}</div>\n"+
+"    </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/common-templates/user-list/user-list-row.html',
+"<li class=\"cui-flex-table__tr cui-flex-table__tr--c\">\n"+
+"    <div class=cui-flex-table__avatar-col>\n"+
+"        <div class=cui-profile__user-avatar aria-hidden=true cui-avatar cui-avatar-names=\"[user.name.given, user.name.surname]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"    </div>\n"+
+"    <div class=cui-flex-table__mobile-stack>\n"+
+"        <div class=cui-flex-table__left><span class=cui-flex-table__title>{{user.name.given}} {{user.name.surname}}</span></div>\n"+
+"        <div class=cui-flex-table__middle><span class=cui-mobile-only>{{'username' | translate | lowercase}}: &nbsp;</span>{{user.username}}</div>\n"+
+"        <div class=cui-flex-table__middle><span class=cui-mobile-only>{{'cui-registered' | translate | lowercase}}: &nbsp;</span>{{user.creation | date:base.appConfig.dateFormat}}</div>\n"+
+"        <div class=cui-flex-table__right>\n"+
+"            <span ng-class=\"'cui-status--'+user.status\">{{user.status | translate}}</span>\n"+
+"        </div>\n"+
+"    </div>\n"+
+"</li>\n");
+
+
+
+$templateCache.put('app/modules/applications/myApplications/myApplications-details.html',
+"<div class=cui-applications__app-details>\n"+
+"  \n"+
+"  <div class=code-info>Code for this page can be found <a class=cui-link href=https://github.com/covisint/cui-idm-b2x/tree/master/app/modules/applications/myApplications target=blank>here</a></div>\n"+
+"  \n"+
+"\n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  <div class=cui-action>\n"+
+"    <span class=cui-action__title ng-click=\"base.goBack('applications.manageApplications')\">{{'manage-applications' | translate}}</span>\n"+
+"    \n"+
+"    <div class=cui-action__actions>\n"+
+"      \n"+
+"      <svg ui-sref=applications.newRequest xmlns=http://www.w3.org/2000/svg class=\"cui-action__icon cui-action__icon--new\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 48\">\n"+
+"        <defs>\n"+
+"          <ellipse id=path-1 cx=20 cy=19.672 rx=20 ry=19.672 />\n"+
+"          <filter x=-50% y=-50% width=200% height=200% filterUnits=objectBoundingBox id=filter-2>\n"+
+"            <feOffset dy=3 in=SourceAlpha result=shadowOffsetOuter1 />\n"+
+"            <feGaussianBlur stdDeviation=2 in=shadowOffsetOuter1 result=shadowBlurOuter1 />\n"+
+"            <feColorMatrix values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.27 0\" in=shadowBlurOuter1 />\n"+
+"          </filter>\n"+
+"        </defs>\n"+
+"        <g id=new-with-shadow stroke=none stroke-width=1 fill=none fill-rule=evenodd>\n"+
+"          <g id=New-2 transform=\"translate(3.000000, 1.000000)\">\n"+
+"              <g id=Oval-73>\n"+
+"                <use fill=black fill-opacity=1 filter=url(#filter-2) xlink:href=#path-1></use>\n"+
+"                <use fill=currentColor fill-rule=evenodd xlink:href=#path-1></use>\n"+
+"              </g>\n"+
+"              <path d=\"M22.1371429,17.5349883 L22.1371429,11.8697421 C22.1371429,10.7562937 21.2419442,9.86229506 20.1376608,9.86229506 L19.8623392,9.86229506 C18.7484919,9.86229506 17.8628571,10.7610597 17.8628571,11.8697421 L17.8628571,17.5349883 L12.197611,17.5349883 C11.0841625,17.5349883 10.1901639,18.4301869 10.1901639,19.5344704 L10.1901639,19.8097919 C10.1901639,20.9236392 11.0889286,21.809274 12.197611,21.809274 L17.8628571,21.809274 L17.8628571,27.4745202 C17.8628571,28.5879686 18.7580558,29.4819672 19.8623392,29.4819672 L20.1376608,29.4819672 C21.2515081,29.4819672 22.1371429,28.5832026 22.1371429,27.4745202 L22.1371429,21.809274 L27.802389,21.809274 C28.9158375,21.809274 29.8098361,20.9140754 29.8098361,19.8097919 L29.8098361,19.5344704 C29.8098361,18.4206231 28.9110714,17.5349883 27.802389,17.5349883 L22.1371429,17.5349883 Z\" id=Rectangle-352 fill=#FFFFFF fill-rule=evenodd></path>\n"+
+"          </g>\n"+
+"        </g>\n"+
+"      </svg>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=\"cui-applications__main-container cui-applications__main-container--full\">\n"+
+"    \n"+
+"    <div class=cui-loading__container ng-if=\"base.loader.for['myApplicationDetails.app']||base.loader.for['myApplicationDetails.claims']||base.loader.for['myApplicationDetails.relatedApps']\">\n"+
+"      <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"    </div>\n"+
+"\n"+
+"    <div ng-if=\"!base.loader.for['myApplicationDetails.app']\">\n"+
+"      \n"+
+"      <div class=\"cui-media cui-media--centered\">\n"+
+"        \n"+
+"        <div class=cui-media__image-container>\n"+
+"          <a ng-href={{myApplicationDetails.app.mangledUrl}} target=_blank>\n"+
+"            <div class=cui-media__image cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5 cui-avatar-names=myApplicationDetails.app.name cui-avatar-cuii18n-filter cui-avatar=myApplicationDetails.app.iconUrl></div>\n"+
+"          </a>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=cui-media__body>\n"+
+"          <h3 class=cui-media__title>{{myApplicationDetails.app.name | cuiI18n|capitalize}}</h3>\n"+
+"          <span class=cui-media__content>{{ 'granted' | translate }}: {{myApplicationDetails.app.grant.instant | date:base.appConfig.dateFormat}}</span>\n"+
+"          <span ng-class=\"'cui-status--'+myApplicationDetails.app.grant.status\">{{myApplicationDetails.app.grant.status | lowercase|translate}}</span>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div class=\"cui-tabs class-toggle\">\n"+
+"        <ul class=cui-tabs__nav ng-if=\"myApplicationDetails.claims.length>0\">\n"+
+"          <li class=cui-tabs__tab-container><a class=cui-tabs__tab data-pane=tab1 ng-class=\"{'cui-tabs__tab--active':!myApplicationDetails.inClaims}\" ng-click=\"myApplicationDetails.inClaims=false\">{{'application-details' | translate}}</a></li>\n"+
+"          <li class=cui-tabs__tab-container><a class=cui-tabs__tab data-pane=tab2 ng-class=\"{'cui-tabs__tab--active':myApplicationDetails.inClaims}\" ng-click=\"myApplicationDetails.inClaims=true\">{{'my-claims' | translate}}</a></li>\n"+
+"        </ul>\n"+
+"        <div class=cui-tabs__content>\n"+
+"          \n"+
+"          <div id=tab1 class=cui-tabs__tab-pane ng-class=\"{'cui-tabs__tab-pane--active':!myApplicationDetails.inClaims}\">\n"+
+"            <div class=cui-applications__details>\n"+
+"              \n"+
+"              <div ng-if=\"(!myApplicationDetails.app.bundledApps || myApplicationDetails.app.bundledApps.length===0) && (myApplicationDetails.relatedApps.length===0)\">\n"+
+"                <p>{{'no-bundled-or-related' | translate}}</p>\n"+
+"              </div>\n"+
+"              \n"+
+"              <div ng-if=\"myApplicationDetails.app.bundledApps && myApplicationDetails.app.bundledApps.length!==0\">\n"+
+"                <h4 class=\"h6 bold\">{{'bundled-applications' | translate}}</h4>\n"+
+"                <div class=cui-media ng-repeat=\"application in myApplicationDetails.app.bundledApps\">\n"+
+"                  <div class=cui-media__body>\n"+
+"                    <a class=cui-media__link ng-click=myApplicationDetails.goToDetails(application)>{{application.name | cuiI18n}}</a>\n"+
+"                    <span class=cui-media__content>{{ 'granted' | translate }}: {{myApplicationDetails.app.grant.instant | date:base.appConfig.dateFormat}}</span>\n"+
+"                  </div>\n"+
+"                  <span class=cui-media__status ng-class=\"'cui-status--'+myApplicationDetails.app.grant.status\">{{application.status | lowercase|translate}}</span>  \n"+
+"                </div>\n"+
+"              </div>\n"+
+"              \n"+
+"              <div ng-if=\"myApplicationDetails.relatedApps.length!==0\">\n"+
+"                <h4 class=\"h6 bold\">{{'related-applications' | translate}}</h4>\n"+
+"                <div class=cui-applications__related-apps ng-repeat=\"application in myApplicationDetails.relatedApps\">\n"+
+"                  <div class=cui-applications__related-app-col>\n"+
+"                    <a class=cui-media__link ng-click=myApplicationDetails.goToDetails(application) ng-if=application.grant>{{application.name | cuiI18n}}</a> \n"+
+"                    <span class=cui-media__content ng-if=!application.grant>{{application.name | cuiI18n}}</span>\n"+
+"                    <span class=cui-media__content ng-if=application.grant>{{ 'granted' | translate }}: {{application.grant.instant| date:base.appConfig.dateFormat}}</span> \n"+
+"                    <span class=cui-button ng-if=!application.grant>{{'request' | translate}}</span>\n"+
+"                  </div>\n"+
+"                  <span class=cui-media__status ng-class=\"'cui-status--'+application.status\" ng-if=application.status>{{application.grant.status | lowercase|translate}}</span>  \n"+
+"                </div>\n"+
+"              </div>\n"+
+"            </div>\n"+
+"          </div>\n"+
+"\n"+
+"          \n"+
+"          <div id=tab2 class=cui-tabs__tab-pane ng-class=\"{'cui-tabs__tab-pane--active':myApplicationDetails.inClaims}\" ng-if=\"myApplicationDetails.claims.length>0\">\n"+
+"            <p ng-if=\"!base.apiError.for['myApplicationDetails.claims'] && !myApplicationDetails.claims || myApplicationDetails.claims.length===0\">{{'cui-no-claims' | translate}}</p>\n"+
+"            \n"+
+"            <p style=color:red ng-if=\"base.apiError.for['myApplicationDetails.claims']\">{{'cui-claims-error' | translate}} {{'cui-try-again'|translate}}</p>\n"+
+"            <span ng-repeat=\"claim in myApplicationDetails.claims.packageClaims\">\n"+
+"              <h5 class=h6>{{claim.name | cuiI18n|capitalize}}</h5>\n"+
+"              <p ng-repeat=\"claimValue in claim.claimValues\">{{claimValue.name | cuiI18n |capitalize}}</p>\n"+
+"            </span>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div class=cui-applications__desktop-tabs>\n"+
+"\n"+
+"        \n"+
+"        <div class=\"cui-tile cui-applications__left\">\n"+
+"          <h4 class=\"cui-tile__title cui-applications__title\">{{'bundled-applications' | translate}}</h4>\n"+
+"          <div class=\"cui-tile__body cui-applications__details\">\n"+
+"            \n"+
+"            <div class=cui-applications__no-details ng-if=\"(!myApplicationDetails.app.bundledApps || myApplicationDetails.app.bundledApps.length===0)\">\n"+
+"              <p>{{'no-bundled' | translate}}</p>\n"+
+"            </div>\n"+
+"            \n"+
+"            <div class=cui-applications__bundled-apps ng-if=\"myApplicationDetails.app.bundledApps && myApplicationDetails.app.bundledApps.length!==0\">\n"+
+"              \n"+
+"              <div class=cui-applications__bundled-app ng-repeat=\"application in myApplicationDetails.app.bundledApps\">\n"+
+"                <div class=cui-applications__related-app-col>\n"+
+"                  <a class=\"cui-link bold\" ng-click=myApplicationDetails.goToDetails(application)>{{application.name | cuiI18n}}</a>\n"+
+"                  <span class=cui-media__content>{{ 'granted' | translate | lowercase}}: {{myApplicationDetails.app.grant.instant | date:base.appConfig.dateFormat}}</span>\n"+
+"                </div>\n"+
+"                <div class=cui-media__status ng-class=\"'cui-status--'+myApplicationDetails.app.grant.status\">{{myApplicationDetails.app.grant.status |lowercase|translate}}</div>  \n"+
+"              </div>\n"+
+"            </div>\n"+
+"          </div>\n"+
+"          <br>\n"+
+"          <h4 class=\"cui-tile__title cui-applications__title\" ng-if=\"myApplicationDetails.relatedApps.length!==0\">{{'related-applications' | translate}}</h4>\n"+
+"            <div class=\"cui-tile__body cui-applications__details\" ng-if=\"myApplicationDetails.relatedApps.length!==0\">\n"+
+"            \n"+
+"            <div class=cui-applications__related-apps>\n"+
+"              \n"+
+"                <div class=cui-applications__related-app ng-repeat=\"application in myApplicationDetails.relatedApps\">\n"+
+"                  <div class=cui-applications__related-app-col>\n"+
+"                    <a class=\"cui-link bold\" ng-click=myApplicationDetails.goToDetails(application) ng-if=application.grant>{{application.name | cuiI18n}}</a> \n"+
+"                    <h5 class=bold ng-if=!application.grant>{{application.name | cuiI18n}}</h5>\n"+
+"                    <span class=cui-media__content ng-if=application.grant>{{ 'granted' | translate }}: {{application.grant.instant | date:base.appConfig.dateFormat}}</span> \n"+
+"                  </div>\n"+
+"                  <div class=\"cui-button cui-button--small-rounded\" ng-if=!application.grant>{{'request' | translate}}</div>\n"+
+"                  <div class=cui-media__status ng-class=\"'cui-status--'+application.status\" ng-if=application.grant>{{application.grant.status | lowercase|translate}}</div>  \n"+
+"                </div>\n"+
+"              </div>\n"+
+"            </div>\n"+
+"          </div>\n"+
+"\n"+
+"          \n"+
+"          <div class=\"cui-tile cui-applications__right\" ng-if=\"myApplicationDetails.claims.length>0\">\n"+
+"            <h4 class=\"cui-tile__title cui-tile__title--bg-light cui-applications__title\">{{'my-claims' | translate}}</h4>\n"+
+"            <div class=\"cui-tile__body cui-applications__claims\">\n"+
+"              <p class=cui-applications__no-claims ng-if=\"!base.apiError.for['myApplicationDetails.claims'] && !myApplicationDetails.claims || myApplicationDetails.claims.length===0\">{{'cui-no-claims' | translate}}</p>\n"+
+"              \n"+
+"              <p class=cui-applications__no-claims style=color:red ng-if=\"base.apiError.for['myApplicationDetails.claims']\">{{'cui-claims-error' | translate}} {{'cui-try-again'|translate}}</p>\n"+
+"              <div class=cui-applications__claim ng-repeat=\"claim in myApplicationDetails.claims.packageClaims\">\n"+
+"                <h5 class=\"cui-applications__claim-name h5\">{{claim.name | cuiI18n|capitalize}}</h5>\n"+
+"                <p class=cui-applications__claim-val ng-repeat=\"claimValue in claim.claimValues\">{{claimValue.name | cuiI18n|capitalize}}</p>\n"+
+"              </div>\n"+
+"            </div>\n"+
+"          </div>\n"+
+"\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n");
+
+
+
+$templateCache.put('app/modules/applications/myApplications/myApplications-manage.html',
+"\n"+
+"<div class=code-info>The markup for this page can be found <a class=cui-link href=https://github.com/covisint/cui-idm-b2x/blob/master/app/modules/applications/myApplications/manageApplications.html target=blank>here</a> and the javascript <a class=cui-link href=https://github.com/covisint/cui-idm-b2x/blob/master/app/modules/applications/myApplications/manageApplications.ctrl.js target=blank>here</a>.</div>\n"+
+"\n"+
+"\n"+
+"\n"+
+"\n"+
+"<div class=cui-action>\n"+
+"  <nav class=cui-breadcrumb>\n"+
+"    <ul class=cui-breadcrumb__links>\n"+
+"      \n"+
+"      <li class=cui-breadcrumb__link>\n"+
+"        <a ui-sref=applications.myApplications>{{'my-applications' | translate}}</a>\n"+
+"      </li>\n"+
+"      <li class=\"cui-breadcrumb__link cui-breadcrumb__link--current\">\n"+
+"        <a ui-sref=applications.manageApplications>{{'manage-applications' | translate}}</a>\n"+
+"      </li>\n"+
+"    </ul>\n"+
+"  </nav>\n"+
+"  <cui-mobile-nav show-if=base.appMobileNav links=\"{\n"+
+"    'applications.myApplications':{stateParams:{},label:('my-applications' | translate)},\n"+
+"    'applications.manageApplications':{stateParams:{},label:('manage-applications' | translate)}\n"+
+"  }\">\n"+
+"</cui-mobile-nav>\n"+
+"  <div class=cui-action__actions>\n"+
+"    \n"+
+"    <div class=cui-action__action-container ng-click=\"manageApplications.sortClicked =! manageApplications.sortClicked\" id=sort-button off-click=\"manageApplications.sortClicked=false\">\n"+
+"      <cui-icon cui-svg-icon=fa:sort14 svg-class=cui-action__icon use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"      <span class=cui-action__action-label>{{'sort' | translate}}</span>\n"+
+"      \n"+
+"      <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=#sort-button pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-40px'}, 'any']\" attachment=\"top middle\" target-attachment=\"bottom middle\" ng-if=manageApplications.sortClicked style=width:171px>\n"+
+"        <div class=cui-popover__row>\n"+
+"          <span ng-click=\"manageApplications.updateSearch('alphabetic')\">{{'cui-alphabetically' | translate}}</span>\n"+
+"        </div>\n"+
+"        <div class=cui-popover__row>\n"+
+"          <span ng-click=\"manageApplications.updateSearch('date')\">{{'cui-by-date-added' | translate}}</span>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-action__action-container ng-click=\"manageApplications.refineClicked =! manageApplications.refineClicked\" id=refine-button off-click=\"manageApplications.refineClicked=false\">\n"+
+"      <cui-icon cui-svg-icon=fa:filter10 svg-class=cui-action__icon use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"      <span class=cui-action__action-label>{{'refine' | translate}}</span>\n"+
+"      \n"+
+"      <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=#refine-button pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-70px'}, 'any']\" ng-if=manageApplications.refineClicked style=width:214px>\n"+
+"        <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"          <span ng-click=\"manageApplications.updateSearch('status')\">{{'all' | translate}}</span>\n"+
+"          <span>({{manageApplications.popupCount}})</span>\n"+
+"        </div>\n"+
+"        <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"          <span ng-click=\"manageApplications.updateSearch('status','active')\">{{'active' | translate}}</span>\n"+
+"          <span>({{manageApplications.activeCount}})</span>\n"+
+"        </div>\n"+
+"        <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"          <span ng-click=\"manageApplications.updateSearch('status','suspended')\">{{'suspended' | translate}}</span>\n"+
+"          <span>({{manageApplications.suspendedCount}})</span>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-action__action-container ng-click=\"manageApplications.categoriesClicked =! manageApplications.categoriesClicked\" id=categories-button off-click=\"manageApplications.categoriesClicked=false\">\n"+
+"      <cui-icon cui-svg-icon=cui:categories svg-class=cui-action__icon use-class=cui-icon__ref viewbox=\"0 0 48 48\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"      <span class=cui-action__action-label>{{'categories' | translate}}</span>\n"+
+"      \n"+
+"      <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=#categories-button pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-70px'}, 'any']\" ng-if=manageApplications.categoriesClicked ng-click=\"manageApplications.categoriesClicked=false\" style=width:214px>\n"+
+"        <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"          <span ng-click=\"manageApplications.updateSearch('category')\">{{'all' | translate}}</span>\n"+
+"          <span>({{manageApplications.popupCount}})</span>\n"+
+"        </div>\n"+
+"        <div class=\"cui-popover__row cui-popover--row__flex\" ng-repeat=\"category in manageApplications.categories\">\n"+
+"          <span ng-click=\"manageApplications.updateSearch('category', category.name)\">{{category.name | cuiI18n}}</span>\n"+
+"          <span>({{category.count}})</span>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <svg ui-sref=applications.newRequest xmlns=http://www.w3.org/2000/svg class=\"cui-action__icon cui-action__icon--new\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 48\">\n"+
+"      <defs>\n"+
+"        <ellipse id=path-1 cx=20 cy=19.672 rx=20 ry=19.672 />\n"+
+"        <filter x=-50% y=-50% width=200% height=200% filterUnits=objectBoundingBox id=filter-2>\n"+
+"          <feOffset dy=3 in=SourceAlpha result=shadowOffsetOuter1 />\n"+
+"          <feGaussianBlur stdDeviation=2 in=shadowOffsetOuter1 result=shadowBlurOuter1 />\n"+
+"          <feColorMatrix values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.27 0\" in=shadowBlurOuter1 />\n"+
+"        </filter>\n"+
+"      </defs>\n"+
+"      <g id=new-with-shadow stroke=none stroke-width=1 fill=none fill-rule=evenodd>\n"+
+"        <g id=New-2 transform=\"translate(3.000000, 1.000000)\">\n"+
+"            <g id=Oval-73>\n"+
+"              <use fill=black fill-opacity=1 filter=url(#filter-2) xlink:href=#path-1></use>\n"+
+"              <use fill=currentColor fill-rule=evenodd xlink:href=#path-1></use>\n"+
+"            </g>\n"+
+"            <path d=\"M22.1371429,17.5349883 L22.1371429,11.8697421 C22.1371429,10.7562937 21.2419442,9.86229506 20.1376608,9.86229506 L19.8623392,9.86229506 C18.7484919,9.86229506 17.8628571,10.7610597 17.8628571,11.8697421 L17.8628571,17.5349883 L12.197611,17.5349883 C11.0841625,17.5349883 10.1901639,18.4301869 10.1901639,19.5344704 L10.1901639,19.8097919 C10.1901639,20.9236392 11.0889286,21.809274 12.197611,21.809274 L17.8628571,21.809274 L17.8628571,27.4745202 C17.8628571,28.5879686 18.7580558,29.4819672 19.8623392,29.4819672 L20.1376608,29.4819672 C21.2515081,29.4819672 22.1371429,28.5832026 22.1371429,27.4745202 L22.1371429,21.809274 L27.802389,21.809274 C28.9158375,21.809274 29.8098361,20.9140754 29.8098361,19.8097919 L29.8098361,19.5344704 C29.8098361,18.4206231 28.9110714,17.5349883 27.802389,17.5349883 L22.1371429,17.5349883 Z\" id=Rectangle-352 fill=#FFFFFF fill-rule=evenodd></path>\n"+
+"        </g>\n"+
+"      </g>\n"+
+"    </svg>\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n"+
+"<div class=\"cui-action cui-action--alt\">\n"+
+"  <div class=\"cui-input-button cui-input-button--alt-bg\" style=width:350px>\n"+
+"      <input class=cui-input-button__input ng-model=\"manageApplications.search['service.name']\" focus-if placeholder=\"{{'search-by-app-name' | translate}}\" on-enter=manageApplications.updateSearchByName>\n"+
+"      <button class=cui-input-button__button ng-click=manageApplications.updateSearchByName()>{{'search' | translate}}</button>\n"+
+"  </div>\n"+
+"</div>\n"+
+"<div class=cui-applications__main-container>\n"+
+"  <div ng-include=\"'app/common-templates/partials/loader-updating.html'\" ng-if=\"base.loader.for['manageApplications.apps']\"></div>\n"+
+"  <div class=cui-loading__container ng-if=\"base.loader.for['manageApplications.apps']\">\n"+
+"    <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"  </div>\n"+
+"  \n"+
+"  \n"+
+"  \n"+
+"  <div ng-if=\"!base.loader.for['manageApplications.apps']\" style=position:relative>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-loading__container ng-if=\"base.loader.for['manageApplications.reloadingApps']\">\n"+
+"      <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <p ng-if=\"manageApplications.list.length===0\">{{'cui-no-applications' | translate}}</p>\n"+
+"    <p class=cui-users__password-success style=\"color:red; margin:20px; text-align:center\" ng-if=\"base.apiError.for['manageApplications.apps']\">{{'error-generic'|translate}}</p>\n"+
+"\n"+
+"    <div class=\"cui-media cui-media--border cui-media--tr\" ng-repeat=\"application in manageApplications.list track by application.id\">\n"+
+"      <div class=cui-media__image-container>\n"+
+"        <a ng-href={{application.mangledUrl}} target=_blank><div class=cui-media__image cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5 cui-avatar-names=application.name cui-avatar-cuii18n-filter cui-avatar=application.iconUrl></div></a>\n"+
+"      </div>\n"+
+"      <div class=\"cui-media__body cui-media__body--full\">\n"+
+"        <div class=cui-media__title-container>\n"+
+"          \n"+
+"          \n"+
+"          <h3 class=cui-media__title ng-click=manageApplications.goToDetails(application)>{{ application.name | cuiI18n }}</h3>\n"+
+"        </div>\n"+
+"        <span class=cui-media__content> {{application.category | cuiI18n}}</span>\n"+
+"        <span class=cui-status ng-class=\" 'cui-status--'+application.grant.status \">{{ application.grant.status | lowercase |translate}}</span>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  <div class=cui-paginate__container ng-if=\"!base.loader.for['manageApplications.apps']\">\n"+
+"    <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"    <results-per-page class=cui-paginate__select ng-model=manageApplications.search.pageSize></results-per-page>\n"+
+"    <paginate class=cui-paginate results-per-page=manageApplications.search.pageSize count=manageApplications.count on-page-change=manageApplications.pageChange ng-model=manageApplications.search.page attach-rerender-to=\" manageApplications.reRenderPaginate\"></paginate>\n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/applications/myApplications/myApplications.html',
+"\n"+
+"<div class=code-info>The markup for this page can be found <a class=cui-link href=https://github.com/thirdwavellc/cui-idm-b2x/blob/master/app/modules/applications/myApplications/myApplications.html target=blank>here</a> and the javascript <a class=cui-link href=https://github.com/thirdwavellc/cui-idm-b2x/blob/master/app/modules/applications/myApplications/myApplications.ctrl.js target=blank>here</a>.</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-action>\n"+
+"  <nav class=cui-breadcrumb>\n"+
+"    <ul class=cui-breadcrumb__links>\n"+
+"    \n"+
+"      <li class=\"cui-breadcrumb__link cui-breadcrumb__link--current\">\n"+
+"        <a ui-sref=applications.myApplications>{{'my-applications' | translate}}</a>\n"+
+"      </li>\n"+
+"      <li class=cui-breadcrumb__link>\n"+
+"        <a ui-sref=applications.manageApplications>{{'manage-applications' | translate}}</a>\n"+
+"      </li>\n"+
+"    </ul>\n"+
+"  </nav>\n"+
+"  <cui-mobile-nav show-if=base.appMobileNav links=\"{\n"+
+"    'applications.myApplications':{stateParams:{},label:('my-applications' | translate)},\n"+
+"    'applications.manageApplications':{stateParams:{},label:('manage-applications' | translate)}\n"+
+"  }\">\n"+
+"</cui-mobile-nav>\n"+
+"  <div class=cui-action__actions>\n"+
+"    \n"+
+"    <svg ui-sref=applications.newRequest xmlns=http://www.w3.org/2000/svg class=\"cui-action__icon cui-action__icon--new\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 48\">\n"+
+"      <defs>\n"+
+"        <ellipse id=path-1 cx=20 cy=19.672 rx=20 ry=19.672 />\n"+
+"        <filter x=-50% y=-50% width=200% height=200% filterUnits=objectBoundingBox id=filter-2>\n"+
+"          <feOffset dy=3 in=SourceAlpha result=shadowOffsetOuter1 />\n"+
+"          <feGaussianBlur stdDeviation=2 in=shadowOffsetOuter1 result=shadowBlurOuter1 />\n"+
+"          <feColorMatrix values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.27 0\" in=shadowBlurOuter1 />\n"+
+"        </filter>\n"+
+"      </defs>\n"+
+"      <g id=new-with-shadow stroke=none stroke-width=1 fill=none fill-rule=evenodd>\n"+
+"        <g id=New-2 transform=\"translate(3.000000, 1.000000)\">\n"+
+"            <g id=Oval-73>\n"+
+"              <use fill=black fill-opacity=1 filter=url(#filter-2) xlink:href=#path-1></use>\n"+
+"              <use fill=currentColor fill-rule=evenodd xlink:href=#path-1></use>\n"+
+"            </g>\n"+
+"            <path d=\"M22.1371429,17.5349883 L22.1371429,11.8697421 C22.1371429,10.7562937 21.2419442,9.86229506 20.1376608,9.86229506 L19.8623392,9.86229506 C18.7484919,9.86229506 17.8628571,10.7610597 17.8628571,11.8697421 L17.8628571,17.5349883 L12.197611,17.5349883 C11.0841625,17.5349883 10.1901639,18.4301869 10.1901639,19.5344704 L10.1901639,19.8097919 C10.1901639,20.9236392 11.0889286,21.809274 12.197611,21.809274 L17.8628571,21.809274 L17.8628571,27.4745202 C17.8628571,28.5879686 18.7580558,29.4819672 19.8623392,29.4819672 L20.1376608,29.4819672 C21.2515081,29.4819672 22.1371429,28.5832026 22.1371429,27.4745202 L22.1371429,21.809274 L27.802389,21.809274 C28.9158375,21.809274 29.8098361,20.9140754 29.8098361,19.8097919 L29.8098361,19.5344704 C29.8098361,18.4206231 28.9110714,17.5349883 27.802389,17.5349883 L22.1371429,17.5349883 Z\" id=Rectangle-352 fill=#FFFFFF fill-rule=evenodd></path>\n"+
+"        </g>\n"+
+"      </g>\n"+
+"    </svg>\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"\n"+
+"\n"+
+"\n"+
+"\n"+
+"<div class=cui-action>\n"+
+"  <h3 class=cui-action__title>{{'cui-all-applications' | translate}}</h3>\n"+
+"  <div class=cui-action__actions>\n"+
+"    \n"+
+"    <div class=cui-action__action-container ng-click=\"myApplications.categoriesClicked =! myApplications.categoriesClicked\" id=categories-button off-click=\"myApplications.categoriesClicked=false\">\n"+
+"      <cui-icon cui-svg-icon=cui:categories svg-class=cui-action__icon use-class=cui-icon__ref viewbox=\"0 0 48 48\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"      <span class=cui-action__action-label>{{'categories' | translate}}</span>\n"+
+"      \n"+
+"      <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=#categories-button pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-70px'}, 'any']\" ng-if=myApplications.categoriesClicked ng-click=\"myApplications.categoriesClicked=false\" style=width:214px>\n"+
+"        <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"          <span ng-click=\"myApplications.updateSearch('category')\">{{'all' | translate}}</span>\n"+
+"          <span>({{myApplications.popupCount}})</span>\n"+
+"        </div>\n"+
+"        <div class=\"cui-popover__row cui-popover--row__flex\" ng-repeat=\"category in myApplications.categories\">\n"+
+"          <span ng-click=\"myApplications.updateSearch('category', category.name)\">{{category.name | cuiI18n}}</span>\n"+
+"          <span>({{category.count}})</span>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>  \n"+
+"</div>\n"+
+"\n"+
+"<div class=cui-applications__main-container>\n"+
+"  <div ng-include=\"'app/common-templates/partials/loader-updating.html'\" ng-if=\"base.loader.for['myApplications.apps']\"></div>\n"+
+"  <div class=cui-loading__container ng-if=\"base.loader.for['myApplications.apps']\">\n"+
+"  <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"  </div>\n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  <div class=cui-loading__container ng-if=\"base.loader.for['myApplications.reloadingApps']\">\n"+
+"    <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <p ng-if=\"myApplications.list.length===0\">{{'cui-no-applications' | translate}}</p>\n"+
+"  <p class=cui-users__password-success style=\"color:red; margin:20px; text-align:center\" ng-if=\"base.apiError.for['myApplications.apps']\">{{'error-generic'|translate}}</p>\n"+
+"  <div class=cui-applications__manage-apps>\n"+
+"    <div class=cui-tile ng-repeat=\"application in myApplications.viewList\" ng-class=\"{'last-item':($index+1)%5==0}\">\n"+
+"      <div style=height:100%>\n"+
+"        <div class=cui-tile__title>\n"+
+"        </div>\n"+
+"        <div class=cui-tile__body>\n"+
+"          <div class=cui-media__manage>\n"+
+"            <div class=cui-media__image-container>\n"+
+"              <a ng-href={{application.mangledUrl}} target=_blank><div class=cui-media__image cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5 cui-avatar-names=application.name cui-avatar-cuii18n-filter cui-avatar=application.iconUrl></div></a>\n"+
+"            </div>\n"+
+"            <div class=cui-media__title>{{application.name|cuiI18n}}</div>\n"+
+"          </div>\n"+
+"           \n"+
+"          \n"+
+"            <a class=\"cui-button cui-button--inverted\" ng-class=\"{'cui-button--error':!application.mangledUrl}\" ng-href={{application.mangledUrl}} target=_blank ng-if=application.mangledUrl>{{'launch'|translate}}</a>\n"+
+"            <a class=\"cui-button cui-button--inverted\" ng-class=\"{'cui-button--error':!application.urls[0].value}\" ng-href={{application.urls[0].value}} target=_blank ng-if=!application.mangledUrl>{{'launch'|translate}}</a>\n"+
+"            \n"+
+"          \n"+
+"        </div>     \n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-paginate__container ng-if=\"!base.loader.for['myApplications.apps']\">\n"+
+"    <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"    <results-per-page class=cui-paginate__select ng-model=myApplications.search.pageSize></results-per-page>\n"+
+"    <paginate class=cui-paginate results-per-page=myApplications.search.pageSize count=myApplications.count on-page-change=myApplications.pageChange ng-model=myApplications.search.page attach-rerender-to=\" myApplications.reRenderPaginate\"></paginate>\n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/applications/newRequestReview/applicationReview.html',
+"\n"+
+"<div class=code-info>Code for this page can be found <a class=cui-link href=https://github.com/thirdwavellc/cui-idm-b2x/tree/master/assets/app/applications/mew-request&review target=blank>here</a> and the layout styles <a href=https://github.com/thirdwavellc/cui-idm-b2x/tree/master/assets/scss/3-views/applications.scss class=cui-link target=blank>here</a></div>\n"+
+"\n"+
+"<ng-form name=reviewRequest novalidate ng-if=\"applicationReview.step!=2\">\n"+
+"<div class=\"class-toggle cui-modal\" ng-if=applicationReview.success toggled-class=cui-modal--hide ng-click=toggleClass()>\n"+
+"    <div class=cui-modal__pane>\n"+
+"        <div class=cui-modal__icon>\n"+
+"            <cui-icon cui-svg-icon=cui:check-with-border class=cui-modal__icon></cui-icon>\n"+
+"        </div>\n"+
+"        <span class=cui-modal__primary-message>{{'cui-success' | translate}}</span>\n"+
+"        <span class=cui-modal__secondary-message>{{'your-app-request-in-review' | translate}}</span>\n"+
+"    </div>\n"+
+"</div>\n"+
+"<div class=cui-applications__review>\n"+
+"    <div class=cui-action>\n"+
+"        <div class=cui-action__title ng-click=\"base.goBack('applications.search')\">&#60; {{'new-request' | translate}}</div>\n"+
+"        <div class=cui-action__actions>\n"+
+"\n"+
+"            \n"+
+"\n"+
+"            <svg ui-sref=applications.myApplications xmlns=http://www.w3.org/2000/svg class=\"cui-action__icon cui-action__icon--close\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 53\">\n"+
+"                <defs>\n"+
+"                  <ellipse id=path-1 cx=20 cy=19.672 rx=20 ry=19.672 />\n"+
+"                  <filter x=-50% y=-50% width=200% height=200% filterUnits=objectBoundingBox id=filter-2>\n"+
+"                    <feOffset dy=3 in=SourceAlpha result=shadowOffsetOuter1 />\n"+
+"                    <feGaussianBlur stdDeviation=2 in=shadowOffsetOuter1 result=shadowBlurOuter1 />\n"+
+"                    <feColorMatrix values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.27 0\" in=shadowBlurOuter1 />\n"+
+"                  </filter>\n"+
+"                </defs>\n"+
+"                <g id=close-with-shadow fill=none fill-rule=evenodd>\n"+
+"                    <g id=Oval-73 transform=\"translate(3 1)\">\n"+
+"                        <use fill=#000 filter=url(#filter-2) xlink:href=#path-1 />\n"+
+"                        <use fill=currentColor xlink:href=#path-1 />\n"+
+"                    </g>\n"+
+"                    <path d=\"M26.022 20.672l4.006-4.006c.788-.787.787-2.052.006-2.833l-.195-.195c-.788-.787-2.05-.778-2.834.006L23 17.65l-4.006-4.006c-.787-.788-2.052-.787-2.833-.006l-.194.195c-.788.787-.778 2.05.006 2.833l4.006 4.006-4.006 4.006c-.788.787-.787 2.053-.006 2.833l.195.196c.788.788 2.05.778 2.834-.006L23 23.695l4.006 4.005c.787.788 2.052.787 2.833.006l.194-.195c.788-.786.778-2.048-.006-2.832l-4.006-4.006z\" fill=#fff />\n"+
+"                </g>\n"+
+"            </svg>\n"+
+"        </div>\n"+
+"    </div>\n"+
+"\n"+
+"    <div class=cui-applications__main-container style=position:relative>\n"+
+"        <div class=cui-loading__container ng-if=applicationReview.attempting>\n"+
+"          <div class=\"cui-loading cui-loading--center\"></div>\n"+
+"        </div>\n"+
+"        \n"+
+"        \n"+
+"          <div class=cui-wizard__field-row>\n"+
+"            \n"+
+"            <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"              <label>{{'cui-email' | translate}}</label>\n"+
+"              \n"+
+"              <div class=cui-error ng-messages=reviewRequest.email.$error ng-if=reviewRequest.email.$dirty>\n"+
+"                <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"              </div>\n"+
+"              \n"+
+"                <div class=cui-error ng-if=\"reviewRequest.email.$error.email && reviewRequest.email.$dirty\">\n"+
+"                    <div class=cui-error__message>{{'cui-this-is-not-valid-email' | translate}}</div>\n"+
+"                </div>\n"+
+"              <input type=text name=email class=cui-input ng-required=true custom-error=applicationReview.customError.email ng-model=applicationReview.extendedData.email>\n"+
+"            </div>\n"+
+"        </div>\n"+
+"\n"+
+"            \n"+
+"        <div class=cui-wizard__field-row>\n"+
+"            <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"              <label>{{'protocol' | translate}}</label>\n"+
+"              <div class=cui-error ng-messages=reviewRequest.protocol.$error ng-if=reviewRequest.protocol.$dirty>\n"+
+"                <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"              </div>\n"+
+"              <input type=text ng-model=applicationReview.extendedData.protocol name=protocol class=cui-input ng-required=true>\n"+
+"            </div>\n"+
+"        </div>\n"+
+"        <div>\n"+
+"            <h3 class=\"h4 bold\">{{'requested-items' | translate}}:</h3>\n"+
+"            <div class=cui-applications__review-apps>\n"+
+"                <div class=cui-tile--headless ng-repeat=\"applicationGroup in applicationReview.appRequests\">\n"+
+"                    <div ng-repeat=\"application in applicationGroup | filter:applicationReview.search\">\n"+
+"                        <div class=cui-media>\n"+
+"                          <div class=\"cui-media__image-container cui-media__image-container__flex-start\">\n"+
+"                            <div class=cui-media__image cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5 cui-avatar-names=application.name cui-avatar-cuii18n-filter cui-avatar=application.iconUrl></div>\n"+
+"                          </div>\n"+
+"                          <div class=cui-media__body>\n"+
+"                            <h3 class=cui-media__title>{{application.name | cuiI18n}}</h3>\n"+
+"                            <div class=cui-applications__review-checkbox__wrapper ng-if=application.servicePackage.personTacEnabled>\n"+
+"                                <span class=\"cui-error h6\" ng-if=\"reviewRequest['checkbox'+application.id].$error.required&&(reviewRequest['checkbox'+application.id].$dirty||applicationReview.requestReasonRequired)\">{{'cui-tac-agree' | translate}}</span> \n"+
+"                                <div class=cui-applications__review-checkbox__flex>\n"+
+"                                    <span class=cui-checkbox_label__flex>{{'cui-accept'|translate}} <span class=cui-link ng-click=applicationReview.showTac(application)>{{'cui-tac'|translate}}</span> </span>  \n"+
+"                                    <span class=cui-checkbox__container>\n"+
+"                                        <input class=cui-checkbox name=\"{{'checkbox'+application.id}}\" type=checkbox ng-model=applicationReview.tacCheckbox[application.id] ng-required=true>\n"+
+"                                        <label class=cui-checkbox__label ng-click=\"applicationReview.tacCheckbox[application.id]=!applicationReview.tacCheckbox[application.id]\"></label>\n"+
+"                                    </span>\n"+
+"                                </div>\n"+
+"                            </div> \n"+
+"                            <h3 ng-if=application.bundledApps class=\"cui-media__title cui-media__title-margin__top\">{{'bundled-applications' | translate}}</h3>\n"+
+"                            <div ng-if=application.bundledApps ng-repeat=\"bundledApp in application.bundledApps\">\n"+
+"                                <span>{{bundledApp.name|cuiI18n}}</span>\n"+
+"                            </div> \n"+
+"                            <h3 ng-if=\"application.relatedApps&&application.relatedAppSelectedCount>0\" class=\"cui-media__title cui-media__title-margin__top\">{{'cui-selected' | translate}} {{'related-applications'|translate}}</h3>\n"+
+"                            <div ng-if=\"application.relatedApps&&application.relatedAppSelectedCount>0\" ng-repeat=\"relatedApp in application.relatedApps\">\n"+
+"                                <span ng-if=relatedApp.selected>{{relatedApp.name|cuiI18n}}</span>\n"+
+"                            </div>                              \n"+
+"                          </div>\n"+
+"                        </div>\n"+
+"                        \n"+
+"                        <div class=cui-applications__review-text-input>\n"+
+"                            <label class=cui-text-area__label>{{'request-reason' | translate}}</label>\n"+
+"                            <span class=\"cui-error h6\" ng-if=\"reviewRequest['text_area'+application.id].$error.required&&(reviewRequest['text_area'+application.id].$dirty||applicationReview.requestReasonRequired)\">{{'you-must-enter-a-reason' | translate}}</span>\n"+
+"                            <textarea name=\"{{'text_area'+application.id}}\" ng-required=application.servicePackage.requestReasonRequired class=cui-text-area ng-model=application.reason></textarea>\n"+
+"                        </div>\n"+
+"                    </div>\n"+
+"                </div>\n"+
+"            </div>\n"+
+"            <div class=cui-applications__submit-options>\n"+
+"                <a class=cui-link ng-click=\"base.goBack('applications.search')\">{{'cui-cancel' | translate}}</a>\n"+
+"                <button class=cui-button ng-class=\"{'cui-button--error' : !reviewRequest.$valid}\" ng-click=\"applicationReview.requestReasonRequired=true;reviewRequest.$valid&&applicationReview.submit()\">\n"+
+"                    <span ng-if=!applicationReview.error>{{'submit-request' | translate}}</span>\n"+
+"                    <span ng-if=\"applicationReview.error===true\">{{'cui-error-try-again' | translate}}</span>\n"+
+"                </button>\n"+
+"            </div>\n"+
+"            \n"+
+"\n"+
+"        </div>\n"+
+"    </div>\n"+
+"</div>\n"+
+"</ng-form>\n"+
+"\n"+
+"<div class=\"cui-applications__review cui-applications__main-container\" ng-if=\"applicationReview.step===2\">\n"+
+"    <cui-icon cui-svg-icon=fa:chevron20 svg-class=\"cui-icon cui-icon--light-grey chevron chevron-left\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    <div class=cursor__pointer style=padding-top:3px;color:black ng-click=\"applicationReview.step=1\" translate> {{'cui-printer-friendly-tac'}}</div>\n"+
+"    <div class=tac_wrapper>\n"+
+"    {{applicationReview.tacContent}}\n"+
+"    </div>\n"+
+"    <div class=cui-applications__submit-options>\n"+
+"        <a class=cui-link ng-click=\"applicationReview.step=1\">{{'cui-back-to-review' | translate}}</a>\n"+
+"    </div>\n"+
+"</div>");
+
+
+
+$templateCache.put('app/modules/applications/newRequestReview/newRequest.html',
+"\n"+
+"<div class=code-info>Code for this page can be found <a class=cui-link href=https://github.com/thirdwavellc/cui-idm-b2x/tree/master/assets/app/applications/new-request%26review target=blank>here</a> and the layout styles <a href=https://github.com/thirdwavellc/cui-idm-b2x/tree/master/assets/scss/3-views/applications.scss class=cui-link target=blank>here</a></div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-applications__new-request>\n"+
+"    <div class=cui-action>\n"+
+"        <div class=cui-action__title>{{'new-request'| translate}}</div>\n"+
+"        <div class=cui-action__actions>\n"+
+"\n"+
+"            \n"+
+"\n"+
+"            <svg ui-sref=applications.myApplications xmlns=http://www.w3.org/2000/svg class=\"cui-action__icon cui-action__icon--close\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"2 0 48 48\">\n"+
+"                <defs>\n"+
+"                    <ellipse id=path-1 cx=20 cy=19.672 rx=20 ry=19.672 />\n"+
+"                    <filter x=-50% y=-50% width=200% height=200% filterUnits=objectBoundingBox id=filter-2>\n"+
+"                        <feOffset dy=3 in=SourceAlpha result=shadowOffsetOuter1 />\n"+
+"                        <feGaussianBlur stdDeviation=2 in=shadowOffsetOuter1 result=shadowBlurOuter1 />\n"+
+"                        <feColorMatrix values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.27 0\" in=shadowBlurOuter1 />\n"+
+"                    </filter>\n"+
+"                </defs>\n"+
+"                <g id=close-with-shadow fill=none fill-rule=evenodd>\n"+
+"                    <g id=Oval-73 transform=\"translate(3 1)\">\n"+
+"                        <use fill=#000 filter=url(#filter-2) xlink:href=#path-1 />\n"+
+"                        <use fill=currentColor xlink:href=#path-1 />\n"+
+"                    </g>\n"+
+"                    <path d=\"M26.022 20.672l4.006-4.006c.788-.787.787-2.052.006-2.833l-.195-.195c-.788-.787-2.05-.778-2.834.006L23 17.65l-4.006-4.006c-.787-.788-2.052-.787-2.833-.006l-.194.195c-.788.787-.778 2.05.006 2.833l4.006 4.006-4.006 4.006c-.788.787-.787 2.053-.006 2.833l.195.196c.788.788 2.05.778 2.834-.006L23 23.695l4.006 4.005c.787.788 2.052.787 2.833.006l.194-.195c.788-.786.778-2.048-.006-2.832l-4.006-4.006z\" fill=#fff />\n"+
+"                </g>\n"+
+"            </svg>\n"+
+"        </div>\n"+
+"    </div>\n"+
+"    <div ng-if=\"newAppRequest.step==='selectUser'\">\n"+
+"        <div class=\"cui-action cui-action--alt\" disable-animate>\n"+
+"          <div class=\"cui-radio cui-radio--basic-ltr\">\n"+
+"              <input class=cui-radio__input type=radio name=radio-choice-basic-yes id=radio-choice-basic-yes ng-model=newAppRequest.requestBy value=yourself>\n"+
+"              <label class=cui-radio__label for=radio-choice-basic-yes><span></span>Request for yourself</label>\n"+
+"              <input class=cui-radio__input type=radio name=radio-choice-basic-yes id=radio-choice-basic-no ng-model=newAppRequest.requestBy value=others>\n"+
+"              <label class=cui-radio__label for=radio-choice-basic-no><span></span>Request for others</label>\n"+
+"          </div>&nbsp;\n"+
+"          <button class=cui-button style=max-width:150px ng-if=\"newAppRequest.requestBy==='yourself'\" ng-click=newAppRequest.userClick(base.user)>{{'cui-next'|translate|capitalize}}</button>\n"+
+"          \n"+
+"        </div>\n"+
+"          \n"+
+"        <section class=cui-organization__main-container ng-if=\"newAppRequest.requestBy==='others'\">\n"+
+"            \n"+
+"            <div class=cui-loading__container ng-if=\"base.loader.for['newAppRequest.userList']\">\n"+
+"              <div class=\"cui-loader cui-loader--content\" ng-include=\"'app/common-templates/partials/loader-content.html'\"></div>\n"+
+"            </div>\n"+
+"\n"+
+"            <cui-table-header headers=\"['cui-name', 'username', 'status']\" sorting=newAppRequest.sortBy sorting-callbacks=newAppRequest.sortingCallbacks>\n"+
+"            </cui-table-header>\n"+
+"\n"+
+"            <cui-table-row ng-repeat=\"user in newAppRequest.userList track by user.id\" ng-click=newAppRequest.userClick(user)>\n"+
+"              <li class=\"cui-flex-table__tr cui-flex-table__tr--c\">\n"+
+"                \n"+
+"                <div class=cui-flex-table__avatar-col>\n"+
+"                  <div class=cui-profile__user-avatar aria-hidden=true cui-avatar cui-avatar-names=\"[user.name.given, user.name.surname]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"                </div>\n"+
+"                <div class=cui-flex-table__mobile-stack>\n"+
+"                  \n"+
+"                  <div class=cui-flex-table__left><span class=cui-flex-table__title>{{user.name.given}} {{user.name.surname}}</span></div>\n"+
+"                  \n"+
+"                  <div class=cui-flex-table__middle><span class=cui-mobile-only>{{'username' | translate | lowercase}}: &nbsp;</span>{{user.username}}</div>\n"+
+"                  \n"+
+"                  <div class=cui-flex-table__right>\n"+
+"                    <span class=cui-mobile-only>{{'apps' | translate}} ({{user.appCount}}) &nbsp;</span>\n"+
+"                    <span ng-class=\"'cui-status--'+user.status\">{{user.status}}</span>\n"+
+"                  </div>\n"+
+"                </div>\n"+
+"              </li>\n"+
+"            </cui-table-row>\n"+
+"\n"+
+"            \n"+
+"            <div class=cui-paginate__container ng-if=\"!base.loader.for['newAppRequest.userList']\">\n"+
+"              <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"              <results-per-page class=cui-paginate__select ng-model=newAppRequest.searchParams.pageSize></results-per-page>\n"+
+"              <paginate class=cui-paginate results-per-page=newAppRequest.searchParams.pageSize count=newAppRequest.userCount on-page-change=newAppRequest.updateSearchParams ng-model=newAppRequest.searchParams.page attach-rerender-to=newAppRequest.reRenderPagination></paginate>\n"+
+"            </div>\n"+
+"\n"+
+"        </section>\n"+
+"    </div>\n"+
+"    <div ng-if=\"newAppRequest.step==='selectCategory'\">\n"+
+"    <div class=\"cui-action cui-action--alt\">\n"+
+"        <h3 class=cui-action__title>{{'select-applications'| translate}}</h3>\n"+
+"        <div class=cui-action__actions>\n"+
+"            <svg cui-icon ng-click=\"newAppRequest.requestPopover=!newAppRequest.requestPopover\" off-click=\"newAppRequest.requestPopover=false\" xmlns=http://www.w3.org/2000/svg id=cui-applications__requested-apps class=\"cui-icon cui-icon--folder\" ng-class=\"{'cui-action__icon--active': newAppRequest.numberOfRequests != 0}\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 40 33\">\n"+
+"              <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#folder></use>\n"+
+"            </svg>\n"+
+"            <sup class=cui-action__icon-counter ng-class=\"{'cui-action__icon-counter--active': newAppRequest.numberOfRequests != 0}\">{{newAppRequest.numberOfRequests}}</sup>\n"+
+"            \n"+
+"            <div cui-popover class=\"cui-action__popover cui-popover--positionless\" target=#cui-applications__requested-apps pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-70px'}, 'any']\" ng-if=newAppRequest.requestPopover>\n"+
+"                <span class=cui-action__popover-title>{{'collected-items-for-request'| translate}}</span>\n"+
+"                <div class=cui-action__popover-section>\n"+
+"                    <span ng-if=\"newAppRequest.appsBeingRequested.length === 0\">{{'no-selected-apps'| translate}}<br></span>\n"+
+"                    <ul ng-if=\"newAppRequest.appsBeingRequested.length > 0\">\n"+
+"                        <li ng-repeat=\"application in newAppRequest.appsBeingRequested\">{{application.name| cuiI18n}}</li>\n"+
+"                    </ul>\n"+
+"                </div>\n"+
+"                <span ng-if=\"newAppRequest.appsBeingRequested.length > 0\" class=cui-action__popover-button ui-sref=applications.reviewRequest>{{'submit-request'| translate}}</span>\n"+
+"            </div>\n"+
+"        </div>\n"+
+"    </div>\n"+
+"    <div class=cui-applications__main-container>\n"+
+"        <div>\n"+
+"            <div class=cui-applications__search-options>\n"+
+"                <div class=cui-input-button>\n"+
+"                    <input type=text class=cui-input-button__input ng-model=newAppRequest.search placeholder=\"{{'search-by-app-name'| translate}}\" on-enter=newAppRequest.searchCallback focus-if>\n"+
+"                    <button class=cui-input-button__button ui-sref=applications.search({name:newAppRequest.search})>{{'go'| translate}}</button>\n"+
+"                </div>\n"+
+"                <div class=cui-applications__center-text>{{'or'| translate}}</div>\n"+
+"                <a class=cui-link ui-sref=applications.search>{{'show-all'| translate}}</a>\n"+
+"            </div>\n"+
+"            <div style=position:relative>\n"+
+"                <div ng-if=!newAppRequest.loadingDone> \n"+
+"                    <div ng-include=\"'app/common-templates/partials/loader-content.html'\"></div>\n"+
+"                </div>\n"+
+"\n"+
+"\n"+
+"\n"+
+"                <div ng-repeat=\"category in newAppRequest.categories\" ng-if=newAppRequest.loadingDone>\n"+
+"                    <div class=cui-applications__categories ui-sref=\"applications.search({category:'{{ category.name | cuiI18n }}' })\">\n"+
+"                        <h4 class=cui-applications__category>{{ category.name | cuiI18n }}</h4>\n"+
+"                        <div>\n"+
+"                            <cui-icon cui-svg-icon=fa:chevron18 svg-class=\"cui-icon cui-icon--light-grey\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"                        </div>\n"+
+"                        \n"+
+"                    </div>\n"+
+"                </div>\n"+
+"            </div>\n"+
+"        </div>\n"+
+"    </div>\n"+
+"    <div>\n"+
+"</div>\n"+
+"</div></div>");
+
+
+
+$templateCache.put('app/modules/applications/pendingRequests/pendingRequests.html',
+"\n"+
+"<div class=code-info>The markup for this page can be found <a class=cui-link href=https://github.com/covisint/cui-idm-b2x/blob/master/app/modules/applications/pendingRequests/pendingRequests.html target=blank>here</a> and the javascript <a class=cui-link href=https://github.com/covisint/cui-idm-b2x/blob/master/app/modules/applications/pendingRequests/pendingRequests.ctrl.js target=blank>here</a>.</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-action>\n"+
+"  \n"+
+"  <div class=cui-action__title>{{'pending' | translate}} {{'requests' | translate}}</div>\n"+
+"  <div class=cui-action__actions>\n"+
+"    \n"+
+"    <div class=cui-action__action-container ng-click=\"pendingAppRequests.sortClicked =! pendingAppRequests.sortClicked\" id=sort-button off-click=\"pendingAppRequests.sortClicked=false\">\n"+
+"      <cui-icon cui-svg-icon=fa:sort14 svg-class=cui-action__icon use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"      <span class=cui-action__action-label>{{'sort' | translate}}</span>\n"+
+"      \n"+
+"      <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=#sort-button pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-40px'}, 'any']\" attachment=\"top middle\" target-attachment=\"bottom middle\" ng-if=pendingAppRequests.sortClicked style=width:171px>\n"+
+"        \n"+
+"        <div class=cui-popover__row>\n"+
+"          <span ng-click=\"pendingAppRequests.updateSearch('date')\">{{'date-submitted' | translate}}</span>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n"+
+"<div class=cui-applications__main-container>\n"+
+"  <div class=cui-applications__search-options>\n"+
+"      <div class=cui-input-button style=width:350px>\n"+
+"          <input type=text class=cui-input-button__input ng-model=pendingAppRequests.search.name placeholder=\"{{'search-by-app-name'| translate}}\" on-enter=pendingAppRequests.searchCallback focus-if>\n"+
+"          <button class=cui-input-button__button ng-click=\"pendingAppRequests.updateSearch('name',pendingAppRequests.search.name)\">{{'go'| translate}}</button>\n"+
+"      </div>\n"+
+"  </div>\n"+
+"  <div class=cui-loading__container ng-if=\"base.loader.for['pendingAppRequests.apps']\">\n"+
+"    <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"  </div>\n"+
+"  <p class=cui-error ng-if=\"!base.loader.for['pendingAppRequests.apps'] && base.apiError.for['pendingAppRequests.apps']\">{{'cui-pending-requests-error'|translate}} {{'cui-try-again'|translate}}\n"+
+"  </p>\n"+
+"    <div ng-if=\"!base.loader.for['pendingAppRequests.apps']\" style=\"position:relative; min-height:400px\">\n"+
+"    	\n"+
+"    	<p ng-if=\"!base.loader.for['pendingAppRequests.reloadingApps']&& pendingAppRequests.list.length===0 &&(pendingAppRequests.search.name===undefined || pendingAppRequests.search.name==='')\">{{'no-pending-apps' | translate}}</p>\n"+
+"      \n"+
+"      <p ng-if=\"!base.loader.for['pendingAppRequests.reloadingApps']&&pendingAppRequests.list.length===0 && (pendingAppRequests.search.name!==undefined && pendingAppRequests.search.name!=='')\">{{'no-requests-by-name' | translate}}</p>\n"+
+"    	\n"+
+"	    <div class=cui-loading__container ng-if=\"base.loader.for['pendingAppRequests.reloadingApps']\">\n"+
+"	      <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"	    </div>\n"+
+"    	<table class=\"cui-table cui-table--borderless\" ng-if=\"pendingAppRequests.list.length!==0\">\n"+
+"		  <thead>\n"+
+"		    <tr>\n"+
+"		      <th class=cui-media__title scope=col>{{'request-type'|translate}}</th>\n"+
+"		      <th class=cui-media__title scope=col>\n"+
+"		            {{'application'|translate}}</th>\n"+
+"		      <th class=cui-media__title scope=col>\n"+
+"		            {{'phase'|translate}}</th>\n"+
+"		        <th class=cui-media__title scope=col>\n"+
+"		            {{'date-submitted'|translate}}</th>\n"+
+"		    </tr>\n"+
+"		  </thead>\n"+
+"		  <tbody>\n"+
+"		    <tr class=cui-media--tr ng-repeat=\"appRequest in pendingAppRequests.list track by $index\">\n"+
+"		      <td data-label=\"{{'request-type'|translate}}\" scope=row>{{appRequest.requestType}}</td>\n"+
+"		      <td data-label=\"{{'request'|translate}}\">{{appRequest.name|cuiI18n}}</td>\n"+
+"		      <td data-label=\"{{'phase'|translate}}\" ng-bind=appRequest.currentPhase></td>\n"+
+"		      <td data-label=\"{{'date-submitted'|translate}}\">{{appRequest.requestedDate|date}}</td>\n"+
+"		    </tr>\n"+
+"		  </tbody>\n"+
+"		</table>\n"+
+"    </div>\n"+
+"    \n"+
+"\n"+
+"</div>");
+
+
+
+$templateCache.put('app/modules/applications/search/applicationSearch.html',
+"\n"+
+"<div class=code-info>Markup for this page can be found <a class=cui-link href=https://github.com/thirdwavellc/cui-idm-b2x/tree/master/assets/app/applications/search target=blank>here</a> and the layout styles <a href=https://github.com/thirdwavellc/cui-idm-b2x/tree/master/assets/scss/3-views/applications.scss class=cui-link target=blank>here</a></div>\n"+
+"\n"+
+"\n"+
+"<div class=\"cui-applications__search cui-applications__search-results\">\n"+
+"    <div class=cui-action>\n"+
+"        <div class=cui-action__title>{{'new-request' | translate}}</div>\n"+
+"        <div class=cui-action__actions>\n"+
+"\n"+
+"            \n"+
+"\n"+
+"            <svg ui-sref=applications.myApplications xmlns=http://www.w3.org/2000/svg class=\"cui-action__icon cui-action__icon--close\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"2 0 48 48\">\n"+
+"                <defs>\n"+
+"                  <ellipse id=path-1 cx=20 cy=19.672 rx=20 ry=19.672 />\n"+
+"                  <filter x=-50% y=-50% width=200% height=200% filterUnits=objectBoundingBox id=filter-2>\n"+
+"                    <feOffset dy=3 in=SourceAlpha result=shadowOffsetOuter1 />\n"+
+"                    <feGaussianBlur stdDeviation=2 in=shadowOffsetOuter1 result=shadowBlurOuter1 />\n"+
+"                    <feColorMatrix values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.27 0\" in=shadowBlurOuter1 />\n"+
+"                  </filter>\n"+
+"                </defs>\n"+
+"                <g id=close-with-shadow fill=none fill-rule=evenodd>\n"+
+"                    <g id=Oval-73 transform=\"translate(3 1)\">\n"+
+"                        <use fill=#000 filter=url(#filter-2) xlink:href=#path-1 />\n"+
+"                        <use fill=currentColor xlink:href=#path-1 />\n"+
+"                    </g>\n"+
+"                    <path d=\"M26.022 20.672l4.006-4.006c.788-.787.787-2.052.006-2.833l-.195-.195c-.788-.787-2.05-.778-2.834.006L23 17.65l-4.006-4.006c-.787-.788-2.052-.787-2.833-.006l-.194.195c-.788.787-.778 2.05.006 2.833l4.006 4.006-4.006 4.006c-.788.787-.787 2.053-.006 2.833l.195.196c.788.788 2.05.778 2.834-.006L23 23.695l4.006 4.005c.787.788 2.052.787 2.833.006l.194-.195c.788-.786.778-2.048-.006-2.832l-4.006-4.006z\" fill=#fff />\n"+
+"                </g>\n"+
+"            </svg>\n"+
+"        </div>\n"+
+"    </div>\n"+
+"    <div class=\"cui-action cui-action--alt\">\n"+
+"        <div class=\"cui-action__title cui-action__title-link\" ui-sref=applications.newRequest>&#60; {{'categories' | translate}}</div>\n"+
+"        <span class=cui-action__title ng-if=applicationSearch.search.category> {{applicationSearch.search.category}}</span>\n"+
+"        <div class=\"cui-input-button cui-input-button--alt-bg\">\n"+
+"            <input class=cui-input-button__input ng-model=applicationSearch.search.name focus-if placeholder=\"{{'filter-list' | translate}}\" on-enter=applicationSearch.updateSearch>\n"+
+"            <button class=cui-input-button__button ng-click=\"applicationSearch.updateSearch('name')\">{{'filter' | translate}}</button>\n"+
+"        </div>\n"+
+"        <div class=cui-action__actions>\n"+
+"            <svg cui-icon id=cui-applications__requested-apps ng-click=\"applicationSearch.requestPopover=!applicationSearch.requestPopover\" off-click=\"applicationSearch.requestPopover=false\" xmlns=http://www.w3.org/2000/svg id=cui-applications__requested-apps class=cui-icon--folder ng-class=\"{'cui-action__icon--active': applicationSearch.numberOfRequests != 0}\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 40 33\">\n"+
+"              <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#folder></use>\n"+
+"            </svg>\n"+
+"            <sup class=cui-action__icon-counter ng-class=\"{'cui-action__icon-counter--active': applicationSearch.numberOfRequests != 0}\">{{applicationSearch.numberOfRequests}}</sup>\n"+
+"\n"+
+"            <div cui-popover class=\"cui-action__popover cui-popover--positionless\" target=#cui-applications__requested-apps pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-70px'}, 'any']\" ng-if=applicationSearch.requestPopover>\n"+
+"              <span class=cui-action__popover-title>{{'collected-items-for-request' | translate}}</span>\n"+
+"              <div class=cui-action__popover-section>\n"+
+"                <span ng-if=\"applicationSearch.numberOfRequests === 0\">{{'no-selected-apps' | translate}}<br></span>\n"+
+"                <ul ng-if=\"applicationSearch.numberOfRequests > 0\">\n"+
+"                    <li ng-repeat=\"(applicationId,application) in applicationSearch.packageRequests\">{{application.name | cuiI18n}}</li>\n"+
+"                </ul>\n"+
+"              </div>\n"+
+"              <span ng-if=\"applicationSearch.numberOfRequests > 0\" class=cui-action__popover-button ui-sref=applications.reviewRequest>{{'submit-request' | translate}}</span>\n"+
+"            </div>\n"+
+"        </div>\n"+
+"    </div>\n"+
+"    <div class=cui-applications__main-container>\n"+
+"        <div class=cui-loading__container ng-if=!applicationSearch.doneReloading>\n"+
+"            <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"        </div>\n"+
+"        <p class=cui-users__password-success style=\"margin:20px; text-align:center\" ng-if=\"applicationSearch.viewList.length===0\">{{'no-apps-found' |translate}} <span ng-if=applicationSearch.search.name>{{'refine-search' |translate}}</span> </p>\n"+
+"        \n"+
+"\n"+
+"        <cui-expandable class=cui-expandable ng-repeat=\"application in applicationSearch.viewList track by application.id\" ng-class=\"application.expanded?'expanded':''\" ng-if=applicationSearch.doneReloading transition-speed=150>\n"+
+"            <cui-expandable-title class=\"cui-expandable__title cui-expandable__title--flex\">\n"+
+"                <div class=cui-applications__expandable-info ng-click=toggleExpand()>\n"+
+"                    <h3 class=cui-expandable__title-left>{{application.name | cuiI18n}}</h3>\n"+
+"                </div>\n"+
+"                <div class=cui-expandable__title-end>\n"+
+"                    <span class=cui-checkbox__container>\n"+
+"                        <input class=cui-checkbox type=checkbox ng-model=applicationSearch.appCheckbox[application.id]>\n"+
+"                        <label class=cui-checkbox__label ng-click=\"applicationSearch.appCheckbox[application.id]=!applicationSearch.appCheckbox[application.id]; applicationSearch.toggleRequest(application);applicationSearch.checkRelatedAndBundledApps(application)\"></label>\n"+
+"                    </span>\n"+
+"                </div>\n"+
+"                <svg cui-icon xmlns=http://www.w3.org/2000/svg class=\"cui-icon cui-icon--light-grey chevron\" ng-class=\"{'cui-hide__opacity': (!application.bundledApps || application.bundledApps.length===0) && (application.servicePackage.parent || (!application.relatedApps || application.relatedApps.length===0))}\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 216 146\" ng-click=toggleExpand()>\n"+
+"                  <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/font-awesome/font-awesome-out.svg#chevron18></use>\n"+
+"                </svg>\n"+
+"                \n"+
+"            </cui-expandable-title>\n"+
+"            <cui-expandable-body class=cui-expandable__body>\n"+
+"                <div class=cui-expandable__body-pane ng-if=\"(application.bundledApps && application.bundledApps.length!==0) || (!application.servicePackage.parent && (application.relatedApps && application.relatedApps.length!==0))\">\n"+
+"                    <span class=cui-expandable__body-close ng-click=collapse()>\n"+
+"                        <svg xmlns=http://www.w3.org/2000/svg class=cui-icon preserveAspectRatio=\"xMidYMid meet\" viewBox=\"2 0 48 48\">\n"+
+"                          <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#close-no-fill></use>\n"+
+"                        </svg>\n"+
+"                    </span>\n"+
+"                    <span ng-if=\"(!application.bundledApps || application.bundledApps.length===0) && (application.servicePackage.parent || (!application.relatedApps || application.relatedApps.length===0))\">{{'no-bundled-or-related' | translate}}</span>\n"+
+"                    <div class=cui-expandable__pane-col ng-if=\"application.bundledApps && application.bundledApps.length > 0\">\n"+
+"                        <h4 class=cui-expandable__pane-title>{{'bundled-applications' | translate}}</h4>\n"+
+"                        <div class=cui-expandable__pane-content>\n"+
+"                            <span class=cui-expandable__pane-content-item ng-repeat=\"bundledApp in application.bundledApps\">\n"+
+"                                {{bundledApp.name | cuiI18n}}\n"+
+"                            </span>\n"+
+"                        </div>\n"+
+"                    </div>\n"+
+"                    <div class=cui-expandable__pane-col ng-if=\"!application.servicePackage.parent && application.relatedApps && application.relatedApps.length > 0\">\n"+
+"                        <h4 class=cui-expandable__pane-title>{{'related-applications' | translate}}</h4>\n"+
+"                        <div class=cui-expandable__pane-content>\n"+
+"                            <span class=cui-expandable__pane-content-item ng-repeat=\"relatedApp in application.relatedApps\">\n"+
+"                                <span class=cui-checkbox_label__flex>{{relatedApp.name | cuiI18n}} </span>  \n"+
+"                                <span class=cui-checkbox__container>\n"+
+"                                    <input class=cui-checkbox type=checkbox ng-model=applicationSearch.appCheckbox[relatedApp.id]>\n"+
+"                                    <label class=cui-checkbox__label ng-click=\"applicationSearch.appCheckbox[relatedApp.id]=!applicationSearch.appCheckbox[relatedApp.id];applicationSearch.checkRelatedAppsBody(relatedApp,application)\"></label>\n"+
+"                                </span>\n"+
+"                            </span>\n"+
+"                        </div>\n"+
+"                    </div>\n"+
+"                </div>\n"+
+"            </cui-expandable-body>\n"+
+"        </cui-expandable>\n"+
+"\n"+
+"        \n"+
+"\n"+
+"        <div class=cui-paginate__container ng-if=applicationSearch.doneLoading>\n"+
+"                <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"                <results-per-page class=cui-paginate__select ng-model=applicationSearch.search.pageSize></results-per-page>\n"+
+"                <paginate class=cui-paginate results-per-page=applicationSearch.search.pageSize count=applicationSearch.count on-page-change=applicationSearch.pageChange ng-model=applicationSearch.search.page attach-rerender-to=\" applicationSearch.reRenderPaginate\"></paginate>\n"+
+"        </div>\n"+
+"\n"+
+"        \n"+
+"\n"+
+"        <div class=cui-applications__search-button>\n"+
+"            <button class=cui-button ng-class=\"{'cui-button--error' : applicationSearch.numberOfRequests===0}\" ng-click=\"applicationSearch.numberOfRequests != 0 && applicationSearch.saveRequestsAndCheckout()\">{{'review-request' | translate}}</button>\n"+
+"        </div>\n"+
+"\n"+
+"    </div>\n"+
+"</div>\n"+
+"\n");
+
+
+
+$templateCache.put('app/modules/common/auth/auth.html',
+"<div ui-view></div>");
+
+
+
+$templateCache.put('app/modules/misc/search/search.html',
+"\n"+
+"<main class=global-search>\n"+
+"    <section class=cui-action>\n"+
+"    <div class=cui-action__title>{{'search' | translate}}</div>\n"+
+"    </section>\n"+
+"    \n"+
+"    <div class=\"cui-action cui-action--alt\">\n"+
+"      <div class=\"cui-radio cui-radio--basic-ltr\" ng-if=base.accessToSecurityAndExchangeAdmins()>\n"+
+"          <input class=cui-radio__input type=radio name=radio-choice-basic-yes id=radio-choice-basic-yes ng-model=search.searchType value=people ng-change=search.searchNow(true)>\n"+
+"          <label class=cui-radio__label for=radio-choice-basic-yes><span></span>{{'people' | translate}}</label>\n"+
+"          <input class=cui-radio__input type=radio name=radio-choice-basic-yes id=radio-choice-basic-no ng-model=search.searchType value=organizations ng-change=search.searchNow(true)>\n"+
+"          <label class=cui-radio__label for=radio-choice-basic-no><span></span>{{'organizations' | translate}}</label>\n"+
+"      </div>&nbsp;\n"+
+"      <div class=\"cui-input-button cui-input-button--alt-bg\" style=width:350px>\n"+
+"          <input class=cui-input-button__input ng-model=search.searchterms focus-if placeholder=\"{{'search' | translate}}\" on-enter=search.searchNow>\n"+
+"          <button class=cui-input-button__button ng-click=search.searchNow(true)>{{'search' | translate}}</button>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"    <section class=cui-organization__main-container>\n"+
+"            \n"+
+"        <div class=cui-loading__container ng-if=\"base.loader.for['search.loading']\">\n"+
+"          <div class=\"cui-loader cui-loader--content\" ng-include=\"'app/common-templates/partials/loader-content.html'\"></div>\n"+
+"        </div>\n"+
+"        \n"+
+"        <p class=cui-users__password-success ng-if=search.noRecords>{{'no-records'|translate}} {{'refine-search' | translate}}</p>\n"+
+"        \n"+
+"        <p class=cui-users__password-success style=color:red ng-if=search.pageError>{{'error-generic' | translate}}</p>\n"+
+"        <div ng-if=\"!base.loader.for['search.loading'] && !search.pageError && !search.noRecords\">\n"+
+"            \n"+
+"            <section class=cui-action ng-if=\"1==2\">\n"+
+"                <h3 class=cui-sr-only>{{'org-dir-filters' | translate}}</h3>\n"+
+"                <div class=cui-loading__container ng-if=\"search.loading \">\n"+
+"                    <div class=\"cui-loader cui-loader--content\" ng-include=\" 'app/common-templates/partials/loader-content-header.html' \"></div>\n"+
+"                </div>\n"+
+"                <span class=\"cui-action__title cui-desktop-only\">{{search.organization.name | cuiI18n}}</span>\n"+
+"                <span class=\"cui-action__title cui-mobile-only\">{{search.orgPersonCount}} People</span>\n"+
+"                <div class=cui-action__actions>\n"+
+"                    \n"+
+"                    <div ng-show=\"1==2\" class=cui-action__action-container ng-click=\"search.sortClicked=!search.sortClicked \" id=\"sort-button \" off-click=\"search.sortClicked=false \">\n"+
+"                        <svg xmlns=\"http://www.w3.org/2000/svg \" class=cui-action__icon preserveAspectRatio=\"xMidYMid meet \" viewBox=\"0 0 216 146 \">\n"+
+"                            <use xlink:href=\"node_modules/@covisint/cui-icons/dist/font-awesome/font-awesome-out.svg#sort14 \"></use>\n"+
+"                        </svg>\n"+
+"                        <span class=cui-action__action-label>{{'sort' | translate}}</span>\n"+
+"                        \n"+
+"                        <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=\"#sort-button \" pointer-height=\"13 \" pointer-width=\"10 \" popover-positions=\"[{position: 'bottom',contentOffset: '-40px'}, 'any'] \" ng-if=\"search.sortClicked \" style=width:171px>\n"+
+"                            <div class=cui-popover__row>\n"+
+"                                <span ng-click=\"search.actionCallbacks.sort( 'person.name') \">{{'cui-alphabetically' | translate}}</span>\n"+
+"                            </div>\n"+
+"                            <div class=cui-popover__row>\n"+
+"                                <span ng-click=\"search.actionCallbacks.sort( 'person.username') \">{{'username' | translate}}</span>\n"+
+"                            </div>\n"+
+"                            <div class=cui-popover__row>\n"+
+"                                <span ng-click=\"search.actionCallbacks.sort( 'person.status') \">{{'status' | translate}}</span>\n"+
+"                            </div>\n"+
+"                        </div>\n"+
+"                    </div>\n"+
+"                    \n"+
+"                    <div ng-show=\"1==2 \" class=cui-action__action-container ng-click=\"search.refineClicked=!search.refineClicked \" id=\"refine-button \" off-click=\"search.refineClicked=false \">\n"+
+"                        <svg xmlns=\"http://www.w3.org/2000/svg \" class=cui-action__icon preserveAspectRatio=\"xMidYMid meet \" viewBox=\"0 0 216 146 \">\n"+
+"                            <use xlink:href=\"node_modules/@covisint/cui-icons/dist/font-awesome/font-awesome-out.svg#filter10 \"></use>\n"+
+"                        </svg>\n"+
+"                        <span class=cui-action__action-label>{{'refine' | translate}}</span>\n"+
+"                        \n"+
+"                        <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=\"#refine-button \" pointer-height=\"13 \" pointer-width=\"10 \" popover-positions=\"[{position: 'bottom',contentOffset: '-70px'}, 'any'] \" ng-if=\"search.refineClicked \" style=width:214px>\n"+
+"                            <div class=cui-popover__row ng-repeat=\"status in search.statusData \" ng-click=\"search.actionCallbacks.refine(status.value) \">\n"+
+"                                <span>{{status.value | translate}} ({{status.count}})</span>\n"+
+"                            </div>\n"+
+"                        </div>\n"+
+"                    </div>\n"+
+"                    \n"+
+"                    <div ng-show=\"1==2 \" class=cui-action__action-container ng-click=\"search.organizationsClicked=!search.organizationsClicked \" id=\"organizations-button \" off-click=\"search.organizationsClicked=false \">\n"+
+"                        <svg xmlns=\"http://www.w3.org/2000/svg \" class=cui-action__icon preserveAspectRatio=\"xMidYMid meet \" viewBox=\"0 0 216 146 \">\n"+
+"                            <use xlink:href=\"node_modules/@covisint/cui-icons/dist/font-awesome/font-awesome-out.svg#nine10 \"></use>\n"+
+"                        </svg>\n"+
+"                        <span class=cui-action__action-label>{{'organizations' | translate}}</span>\n"+
+"                        \n"+
+"                        <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=\"#organizations-button \" pointer-height=\"13 \" pointer-width=\"10 \" popover-positions=\"[{position: 'bottom',contentOffset: '-70px'}, 'any'] \" ng-if=\"search.organizationsClicked \" style=width:214px>\n"+
+"                            <div class=cui-popover__row ng-if=\"!orgs \">\n"+
+"                                <span>{{'cui-no-org-divisions' | translate}}!</span>\n"+
+"                            </div>\n"+
+"                            <div class=cui-popover__row ng-if=\"orgs \" ng-repeat=\"organization in orgs | orderBy: 'name' track by organization.id \">\n"+
+"                                <span ng-click=\"search.getOrgMembers(organization);search.organizationsClicked=false \">{{organization.name | cuiI18n}}</span>\n"+
+"                            </div>\n"+
+"                        </div>\n"+
+"                    </div>\n"+
+"                </div>\n"+
+"            </section>\n"+
+"            <section ng-if=\"search.searchType==='people'\">\n"+
+"                <h1>{{'people'|translate}}</h1>\n"+
+"                \n"+
+"                <cui-table-header headers=\"[ 'cui-name', 'username', 'status'] \" sorting=\"search.sortBy \" sorting-callbacks=\"search.sortingCallbacks \">\n"+
+"                </cui-table-header>\n"+
+"                <cui-table-row ng-repeat=\"user in search.users track by user.id \" ng-click=\"search.userClick(user) \">\n"+
+"                    <li class=\"cui-flex-table__tr cui-flex-table__tr--c\">\n"+
+"                        \n"+
+"                        <div class=cui-flex-table__avatar-col>\n"+
+"                            <div class=cui-profile__user-avatar aria-hidden=\"true \" cui-avatar cui-avatar-names=\"[user.name.given, user.name.surname] \" cui-avatar-color-class-prefix=\"cui-avatar__color \" cui-avatar-color-count=\"5 \"></div>\n"+
+"                        </div>\n"+
+"                        <div class=cui-flex-table__mobile-stack>\n"+
+"                            \n"+
+"                            <div class=cui-flex-table__left><span class=cui-flex-table__title>{{user.name.given}} {{user.name.surname}}</span></div>\n"+
+"                            \n"+
+"                            <div class=cui-flex-table__middle><span class=cui-mobile-only>{{'username' | translate | lowercase}}: &nbsp;</span>{{user.username}}</div>\n"+
+"                            \n"+
+"                            <div class=cui-flex-table__right>\n"+
+"                                <span class=cui-mobile-only>{{'apps' | translate}} ({{user.appCount}}) &nbsp;</span>\n"+
+"                                <span ng-class=\" 'cui-status--'+user.status \">{{user.status|lowercase|translate}}</span>\n"+
+"                            </div>\n"+
+"                        </div>\n"+
+"                    </li>\n"+
+"                </cui-table-row>\n"+
+"                \n"+
+"                <div class=cui-paginate__container>\n"+
+"                    <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"                    <results-per-page class=cui-paginate__select ng-model=\"search.searchParams.pageSize \"></results-per-page>\n"+
+"                    <paginate class=cui-paginate results-per-page=\"search.searchParams.pageSize \" count=search.personCount on-page-change=search.updateSearchParams ng-model=\"search.searchParams.page \" attach-rerender-to=\"search.reRenderPagination \"></paginate>\n"+
+"                </div>\n"+
+"            </section>\n"+
+"            <section ng-if=\"search.searchType==='organizations'\">\n"+
+"                <h1>{{'organizations'|translate}}</h1>\n"+
+"                \n"+
+"                <cui-table-header headers=\"[ 'cui-name','status'] \" sorting=\"search.sortBy \" sorting-callbacks=\"search.sortingCallbacks \">\n"+
+"                </cui-table-header>\n"+
+"                <cui-table-row ng-repeat=\"org in search.orgs track by org.id \" ng-click=\"search.orgClick(org) \">\n"+
+"                    <li class=\"cui-flex-table__tr cui-flex-table__tr--c\">\n"+
+"                        \n"+
+"                        <div class=cui-flex-table__avatar-col>\n"+
+"                            <div class=cui-profile__user-avatar aria-hidden=\"true \" cui-avatar cui-avatar-names=\"[org.name[0].text] \" cui-avatar-color-class-prefix=\"cui-avatar__color \" cui-avatar-color-count=\"5 \"></div>\n"+
+"                        </div>\n"+
+"                        <div class=cui-flex-table__mobile-stack>\n"+
+"                            \n"+
+"                            <div class=cui-flex-table__left><span class=cui-flex-table__title>{{org.name}}</span></div>\n"+
+"                            \n"+
+"                            <div class=cui-flex-table__right>\n"+
+"                                <span class=cui-mobile-only>{{'apps' | translate}} ({{org.appCount}}) &nbsp;</span>\n"+
+"                                <span ng-class=\" 'cui-status--'+user.status \">{{org.status}}</span>\n"+
+"                            </div>\n"+
+"                        </div>\n"+
+"                    </li>\n"+
+"                </cui-table-row>\n"+
+"                \n"+
+"                <div class=cui-paginate__container>\n"+
+"                    <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"                    <results-per-page class=cui-paginate__select ng-model=\"search.searchParams.pageSize \"></results-per-page>\n"+
+"                    <paginate class=cui-paginate results-per-page=\"search.searchParams.pageSize \" count=search.count on-page-change=\"search.updateSearchParams \" ng-model=\"search.searchParams.page \" attach-rerender-to=\"search.reRenderPagination \"></paginate>\n"+
+"                </div>\n"+
+"            </section>\n"+
+"        </div>\n"+
+"    </section>\n"+
+"</main>\n");
+
+
+
+$templateCache.put('app/modules/misc/status/status-404.html',
+"<div class=cui-tile>\n"+
+"	<div class=cui-tile__title>{{'cui-page-not-found' | translate}}</div>\n"+
+"	<div class=cui-tile__body>\n"+
+"		<div class=misc-body>\n"+
+"			<h1>{{'cui-page-not-found' | translate}}.</h1>\n"+
+"			<div class=cui-card__image-container>\n"+
+"				<cui-icon cui-svg-icon=cui:ask-file svg-class=cui-card__icon use-class=cui-card__icon x=0px y=0px width=88px height=88px viewbox=\"0 0 48 48\" enable-background=\"new 0 0 48 48\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"      </div>\n"+
+"			<p>{{'cui-page-not-found-content' | translate}}</p>\n"+
+"		</div>\n"+
+"		<button class=cui-card__button ui-sref=welcome>{{ 'cui-home' | translate }}</button>\n"+
+"	</div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/misc/status/status-loadError.html',
+"<div class=cui-tile>\n"+
+"	<div class=cui-tile__title>Error Loading Data</div>\n"+
+"	<div class=cui-tile__body>\n"+
+"		<div class=misc-body>\n"+
+"			<h1>Error Loading Data</h1>\n"+
+"			<div class=cui-card__image-container>\n"+
+"				<cui-icon cui-svg-icon=cui:warning svg-class=cui-card__icon use-class=cui-card__icon x=0px y=0px width=88px height=88px viewbox=\"0 0 48 48\" enable-background=\"new 0 0 48 48\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"      </div>\n"+
+"			<p>There was an issue loading the data for this page. Please try again.</p>\n"+
+"		</div>\n"+
+"		<button class=cui-card__button ui-sref=welcome>{{ 'cui-home' | translate }}</button>\n"+
+"	</div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/misc/status/status-notAuth.html',
+"<div class=cui-tile>\n"+
+"	<div class=cui-tile__title>{{'cui-access-denied' | translate}}</div>\n"+
+"	<div class=cui-tile__body>\n"+
+"		<div class=misc-body>\n"+
+"			<h1>{{'cui-access-denied' | translate}}.</h1>\n"+
+"			<div class=cui-card__image-container>\n"+
+"				<cui-icon cui-svg-icon=cui:not-authorized svg-class=cui-card__icon use-class=cui-card__icon x=0px y=0px width=88px height=88px viewbox=\"0 0 48 48\" enable-background=\"new 0 0 48 48\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"      </div>\n"+
+"			<p>{{'cui-access-denied-content' | translate}}</p>\n"+
+"		</div>\n"+
+"		<button class=cui-card__button ui-sref=welcome>{{ 'cui-home' | translate }}</button>\n"+
+"	</div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/misc/status/status-pendingStatus.html',
+"<div class=cui-tile>\n"+
+"	<div class=cui-tile__title>{{'cui-registration-status' | translate}}</div>\n"+
+"	<div class=cui-tile__body>\n"+
+"		<div class=misc-body>\n"+
+"			<h1>{{'cui-pending-status' | translate}}...</h1>\n"+
+"			<div class=cui-card__image-container>\n"+
+"				<cui-icon cui-svg-icon=cui:status-pending svg-class=cui-card__icon use-class=cui-card__icon x=0px y=0px width=88px height=88px viewbox=\"0 0 48 48\" enable-background=\"new 0 0 48 48\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"      </div>\n"+
+"			<p>{{'cui-pending-status-content' | translate}}</p>\n"+
+"			<p>{{'cui-thank-you' | translate}}!</p>\n"+
+"		</div>\n"+
+"		<button class=cui-card__button ui-sref=welcome>{{ 'cui-home' | translate }}</button>\n"+
+"	</div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/misc/status/status-success.html',
+"<div class=cui-tile>\n"+
+"	<div class=cui-tile__title>{{'cui-request-submitted' | translate}}</div>\n"+
+"	<div class=cui-tile__body>\n"+
+"		<div class=misc-body>\n"+
+"			<h1>{{'cui-success' | translate}}!</h1>\n"+
+"			<div class=cui-card__image-container>\n"+
+"				<cui-icon cui-svg-icon=cui:success svg-class=cui-card__icon use-class=cui-card__icon x=0px y=0px width=88px height=88px viewbox=\"0 0 48 48\" enable-background=\"new 0 0 48 48\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"      </div>\n"+
+"			<p>{{'cui-success-content' | translate}}</p>\n"+
+"			<p>{{'cui-check-your' | translate}} <a ui-sref=applications.myApplications>{{'cui-registration-status-lower' | translate}}</a>.</p>\n"+
+"		</div>\n"+
+"		<button class=cui-card__button ui-sref=welcome>{{ 'cui-home' | translate }}</button>\n"+
+"	</div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/misc/status/status.html',
+"<div ui-view></div>\n");
+
+
+
+$templateCache.put('app/modules/misc/welcome/welcome.html',
+"\n"+
+"\n"+
+"<div class=welcome-wrapper>\n"+
+"\n"+
+"    \n"+
+"    <div class=welcome-title>\n"+
+"        <h1>{{ 'welcome-title' | translate }}:</h1>\n"+
+"    </div>\n"+
+"\n"+
+"    <div class=cui-card__container>\n"+
+"        \n"+
+"        <div class=cui-card ng-if=false>\n"+
+"            <div class=cui-card__image-container>\n"+
+"                <div>\n"+
+"                    <cui-icon cui-svg-icon=cui:skyscraper svg-class=cui-card__icon use-class=cui-icon__ref viewbox=\"0 0 48 48\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"                </div>\n"+
+"            </div>\n"+
+"            <div class=cui-card__content>\n"+
+"                <p class=cui-card__content-header>{{ 'cui-new-TLO' | translate }}</p>\n"+
+"                <p>{{ 'cui-new-TLO-description' | translate }}</p>\n"+
+"            </div>\n"+
+"            <button class=cui-card__button ui-sref=registration.tlo>{{ 'cui-sign-up' | translate }}</button>\n"+
+"        </div>\n"+
+"\n"+
+"        \n"+
+"        <div class=cui-card ng-if=false>\n"+
+"            <div class=cui-card__image-container>\n"+
+"                <div>\n"+
+"                    <cui-icon cui-svg-icon=cui:division svg-class=cui-action__icon use-class=cui-icon__ref viewbox=\"0 0 48 48\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"                </div>\n"+
+"            </div>\n"+
+"            <div class=cui-card__content>\n"+
+"                <p class=cui-card__content-header id=newDivision-header>{{ 'cui-new-division' | translate }}</p>\n"+
+"                <p>{{ 'cui-new-division-description-start' | translate }} <a href=\"\" class=cui-link ng-click=\"welcome.divisionPopover = true\">{{ 'cui-security-administrator' | translate }}</a>* {{ 'cui-new-division-description-end' | translate }}</p>\n"+
+"            </div>\n"+
+"            <button class=cui-card__button ui-sref=registration.division>{{ 'cui-sign-up' | translate }}</button>\n"+
+"        </div>\n"+
+"\n"+
+"        \n"+
+"        <div class=cui-styeguide__popover-container ng-if=welcome.divisionPopover off-click=\"welcome.divisionPopover=false\" tether target=#newDivision-header attachment=\"top middle\" target-attachment=\"bottom middle\" offset=\"15px 145px\">\n"+
+"            <div class=\"cui-popover cui-popover--dark cui-popover--top cui-popover__new-division\">\n"+
+"                <p>{{ 'cui-welcome-popover' | translate }}</p>\n"+
+"                <p class=cui-popover_link><a href=\"\" ng-click=\"welcome.divisionPopover = false\">{{'cool-got-it'| translate}}!</a></p>\n"+
+"            </div>\n"+
+"        </div>\n"+
+"\n"+
+"        \n"+
+"        <div class=cui-card>\n"+
+"            <div class=cui-card__image-container>\n"+
+"                <div>\n"+
+"                    <cui-icon cui-svg-icon=cui:user svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 48\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"                </div>\n"+
+"            </div>\n"+
+"            <div class=cui-card__content>\n"+
+"                <p class=cui-card__content-header>{{ 'cui-new-user' | translate }}</p>\n"+
+"                <p>{{ 'cui-new-user-description' | translate }}</p>\n"+
+"            </div>\n"+
+"            <button class=cui-card__button ui-sref=registration.walkup>{{ 'cui-sign-up' | translate }}</button>\n"+
+"        </div>\n"+
+"    </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/applications/appRequest/newRequest/appRequest-newRequest.html',
+"<div class=cui-applications__new-request>\n"+
+"	\n"+
+"	\n"+
+"	<div class=cui-action>\n"+
+"		\n"+
+"		<div class=cui-action__title ui-sref=organization.applications({orgId:orgAppRequest.stateParamsOrgId})>&lt; {{'organization-applications' | translate}} &#8211; {{'new-request' | translate}}</div>\n"+
+"		\n"+
+"		<div class=cui-action__actions>\n"+
+"			<svg ui-sref=organization.applications({orgId:orgAppRequest.stateParamsOrgId}) xmlns=http://www.w3.org/2000/svg class=\"cui-action__icon cui-action__icon--close\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 53\">\n"+
+"				<use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#close></use>\n"+
+"			</svg>\n"+
+"		</div>\n"+
+"	</div>\n"+
+"\n"+
+"	\n"+
+"	<div class=\"cui-action cui-action--alt\">\n"+
+"		<h3 class=cui-action__title>{{'select-applications' | translate}}</h3>\n"+
+"		\n"+
+"		<div class=cui-action__actions>\n"+
+"			<svg ng-click=\"orgAppRequest.requestPopover=!orgAppRequest.requestPopover\" off-click=\"orgAppRequest.requestPopover=false\" xmlns=http://www.w3.org/2000/svg id=cui-applications__requested-apps class=\"cui-icon cui-icon--folder\" ng-class=\"{'cui-action__icon--active': orgAppRequest.numberOfOrgRequests != 0}\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 40 33\">\n"+
+"				<use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#folder></use>\n"+
+"			</svg>\n"+
+"			<sup class=cui-action__icon-counter ng-class=\"{'cui-action__icon-counter--active': orgAppRequest.numberOfOrgRequests != 0}\">{{orgAppRequest.numberOfOrgRequests}}</sup>\n"+
+"			\n"+
+"			<div tether class=cui-action__popover target=#cui-applications__requested-apps attachment=\"top middle\" targetattachment=\"bottom left\" offset=\"-20px 50px\" ng-if=orgAppRequest.requestPopover constraints=\"[{to:'scrollParent',attachment:'together',pin:['right']}]\">\n"+
+"				<span class=cui-action__popover-title>{{'collected-items-for-request' | translate}}</span>\n"+
+"				<div class=cui-action__popover-section>\n"+
+"					<span ng-if=\"orgAppRequest.orgAppsBeingRequested.length===0\">{{'no-selected-apps' | translate}}<br></span>\n"+
+"					<ul ng-if=\"orgAppRequest.orgAppsBeingRequested.length > 0\">\n"+
+"						<li ng-repeat=\"application in orgAppRequest.orgAppsBeingRequested\">{{application.name | cuiI18n}}</li>\n"+
+"					</ul>\n"+
+"				</div>\n"+
+"				<span ng-if=\"orgAppRequest.orgAppsBeingRequested.length > 0\" class=cui-action__popover-button>{{'submit-request' | translate}}</span>\n"+
+"			</div>\n"+
+"		</div>\n"+
+"	</div>\n"+
+"\n"+
+"	<div class=cui-applications__main-container>\n"+
+"		<div>\n"+
+"\n"+
+"			\n"+
+"			<div class=cui-applications__search-options>\n"+
+"				\n"+
+"				<div class=cui-input-button>\n"+
+"					<input type=text class=cui-input-button__input ng-model=orgAppRequest.search placeholder=\"{{'search-by-app-name' | translate}}\" on-enter=orgAppRequest.searchCallback focus-if>\n"+
+"					<button class=cui-input-button__button ui-sref=organization.search({orgId:orgAppRequest.stateParamsOrgId,name:orgAppRequest.search})>{{'go' | translate}}</button>\n"+
+"				</div>\n"+
+"				<div class=cui-applications__center-text>{{'or' | translate}}</div>\n"+
+"				\n"+
+"				<button class=\"cui-button cui-button--full-width\" ui-sref=organization.search()>{{'show-all' | translate}}</button>\n"+
+"			</div>\n"+
+"\n"+
+"			\n"+
+"			<div style=position:relative>\n"+
+"\n"+
+"				\n"+
+"				<div ng-if=base.loader.orgAppRequest.loading>\n"+
+"					<div class=cui-loading__container>\n"+
+"						<div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"					</div>\n"+
+"				</div>\n"+
+"\n"+
+"				\n"+
+"				<div ng-repeat=\"category in orgAppRequest.categories\" ng-if=!base.loader.orgAppRequest.loading>\n"+
+"					<div class=cui-applications__categories ui-sref=\"organization.search({orgId:orgAppRequest.stateParamsOrgId,category:'{{category.name | cuiI18n}}'})\">\n"+
+"						<h4 class=cui-applications__category>{{category.name | cuiI18n}}</h4>\n"+
+"						<svg xmlns=http://www.w3.org/2000/svg class=\"cui-icon cui-icon--light-grey\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 216 146\">\n"+
+"							<use xlink:href=node_modules/@covisint/cui-icons/dist/font-awesome/font-awesome-out.svg#chevron18></use>\n"+
+"						</svg>\n"+
+"					</div>\n"+
+"				</div>\n"+
+"			</div>\n"+
+"		</div>\n"+
+"	</div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/applications/appRequest/newRequestReview/appRequest-newRequestReview.html',
+"\n"+
+"<div class=code-info>Code for this page can be found <a class=cui-link href=https://github.com/thirdwavellc/cui-idm-b2x/tree/master/assets/app/applications/mew-request&review target=blank>here</a> and the layout styles <a href=https://github.com/thirdwavellc/cui-idm-b2x/tree/master/assets/scss/3-views/applications.scss class=cui-link target=blank>here</a></div>\n"+
+"\n"+
+"<ng-form name=reviewRequest novalidate ng-if=\"orgAppRequestReview.step!=2\">\n"+
+"<div class=\"class-toggle cui-modal\" ng-if=orgAppRequestReview.success toggled-class=cui-modal--hide ng-click=toggleClass()>\n"+
+"    <div class=cui-modal__pane>\n"+
+"        <div class=cui-modal__icon>\n"+
+"            <cui-icon cui-svg-icon=cui:check-with-border class=cui-modal__icon></cui-icon>\n"+
+"        </div>\n"+
+"        <span class=cui-modal__primary-message>{{'cui-success' | translate}}</span>\n"+
+"        <span class=cui-modal__secondary-message>{{'your-app-request-in-review' | translate}}</span>\n"+
+"    </div>\n"+
+"</div>\n"+
+"<div class=cui-applications__review>\n"+
+"    <div class=cui-action>\n"+
+"        \n"+
+"        <div class=cui-action__title ng-click=\"base.goBack('organization.search',{orgId:orgAppRequestReview.stateParamsOrgId})\">&lt; {{'organization-applications' | translate}} &#8211; {{'new-request' | translate}}</div>\n"+
+"        <div class=cui-action__actions>\n"+
+"\n"+
+"            \n"+
+"\n"+
+"            <svg ui-sref=organization.search({orgId:orgAppRequestReview.stateParamsOrgId}) xmlns=http://www.w3.org/2000/svg class=\"cui-action__icon cui-action__icon--close\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 53\">\n"+
+"                <defs>\n"+
+"                  <ellipse id=path-1 cx=20 cy=19.672 rx=20 ry=19.672 />\n"+
+"                  <filter x=-50% y=-50% width=200% height=200% filterUnits=objectBoundingBox id=filter-2>\n"+
+"                    <feOffset dy=3 in=SourceAlpha result=shadowOffsetOuter1 />\n"+
+"                    <feGaussianBlur stdDeviation=2 in=shadowOffsetOuter1 result=shadowBlurOuter1 />\n"+
+"                    <feColorMatrix values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.27 0\" in=shadowBlurOuter1 />\n"+
+"                  </filter>\n"+
+"                </defs>\n"+
+"                <g id=close-with-shadow fill=none fill-rule=evenodd>\n"+
+"                    <g id=Oval-73 transform=\"translate(3 1)\">\n"+
+"                        <use fill=#000 filter=url(#filter-2) xlink:href=#path-1 />\n"+
+"                        <use fill=currentColor xlink:href=#path-1 />\n"+
+"                    </g>\n"+
+"                    <path d=\"M26.022 20.672l4.006-4.006c.788-.787.787-2.052.006-2.833l-.195-.195c-.788-.787-2.05-.778-2.834.006L23 17.65l-4.006-4.006c-.787-.788-2.052-.787-2.833-.006l-.194.195c-.788.787-.778 2.05.006 2.833l4.006 4.006-4.006 4.006c-.788.787-.787 2.053-.006 2.833l.195.196c.788.788 2.05.778 2.834-.006L23 23.695l4.006 4.005c.787.788 2.052.787 2.833.006l.194-.195c.788-.786.778-2.048-.006-2.832l-4.006-4.006z\" fill=#fff />\n"+
+"                </g>\n"+
+"            </svg>\n"+
+"        </div>\n"+
+"    </div>\n"+
+"    <div class=cui-applications__main-container style=position:relative>\n"+
+"        <div class=cui-loading__container ng-if=orgAppRequestReview.attempting>\n"+
+"          <div class=\"cui-loading cui-loading--center\"></div>\n"+
+"        </div>\n"+
+"        <div>\n"+
+"            <h3 class=\"h4 bold\">{{'requested-items' | translate}}:</h3>\n"+
+"            <div class=cui-applications__review-apps>\n"+
+"                <div class=cui-tile--headless ng-repeat=\"applicationGroup in orgAppRequestReview.appRequests\">\n"+
+"                    <div ng-repeat=\"request in applicationGroup | filter:applicationReview.search\">\n"+
+"                        <div class=cui-media>\n"+
+"                          <div class=\"cui-media__image-container cui-media__image-container__flex-start\">\n"+
+"                            <div class=cui-media__image cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5 cui-avatar-names=request.name cui-avatar-cuii18n-filter cui-avatar=request.iconUrl></div>\n"+
+"                          </div>\n"+
+"                          <div class=cui-media__body>\n"+
+"                            <h3 class=cui-media__title>{{request.name | cuiI18n}}</h3>\n"+
+"                            <span class=cui-media__content>{{'owning-org' | translate}}: {{request.owningOrganization.name}}</span>\n"+
+"                            <div class=cui-applications__review-checkbox__wrapper ng-if=request.servicePackage.personTacEnabled>\n"+
+"                                <span class=\"cui-error h6\" ng-if=\"reviewRequest['checkbox'+request.id].$error.required&&(reviewRequest['checkbox'+request.id].$dirty||orgAppRequestReview.requestReasonRequired)\">{{'cui-tac-agree' | translate}}</span> \n"+
+"                                <div class=cui-applications__review-checkbox__flex>\n"+
+"                                    <span class=cui-checkbox_label__flex>{{'cui-accept'|translate}} <span class=cui-link ng-click=orgAppRequestReview.showTac(request)>{{'cui-tac'|translate}}</span> </span>  \n"+
+"                                    <span class=cui-checkbox__container>\n"+
+"                                        <input class=cui-checkbox name=\"{{'checkbox'+request.id}}\" type=checkbox ng-model=orgAppRequestReview.tacCheckbox[request.id] ng-required=true>\n"+
+"                                        <label class=cui-checkbox__label ng-click=\"orgAppRequestReview.tacCheckbox[request.id]=!orgAppRequestReview.tacCheckbox[request.id]\"></label>\n"+
+"                                    </span>\n"+
+"                                </div>\n"+
+"                            </div> \n"+
+"                            <h3 ng-if=request.bundledApps class=\"cui-media__title cui-media__title-margin__top\">{{'bundled-applications' | translate}}</h3>\n"+
+"                            <div ng-if=request.bundledApps ng-repeat=\"bundledApp in request.bundledApps\">\n"+
+"                                <span>{{bundledApp.name|cuiI18n}}</span>\n"+
+"                            </div> \n"+
+"                            <h3 ng-if=\"request.relatedApps&&request.relatedAppSelectedCount>0\" class=\"cui-media__title cui-media__title-margin__top\">{{'cui-selected' | translate}} {{'related-applications'|translate}}</h3>\n"+
+"                            <div ng-if=\"request.relatedApps&&request.relatedAppSelectedCount>0\" ng-repeat=\"relatedApp in request.relatedApps\">\n"+
+"                                <span ng-if=relatedApp.selected>{{relatedApp.name|cuiI18n}}</span>\n"+
+"                            </div>                              \n"+
+"                          </div>\n"+
+"                        </div>\n"+
+"                        \n"+
+"                        <div class=cui-applications__review-text-input>\n"+
+"                            <label class=cui-text-area__label>{{'request-reason' | translate}}</label>\n"+
+"                            <span class=\"cui-error h6\" ng-if=\"reviewRequest['text_area'+request.id].$error.required&&(reviewRequest['text_area'+request.id].$dirty||orgAppRequestReview.requestReasonRequired)\">{{'you-must-enter-a-reason' | translate}}</span>\n"+
+"                            <textarea name=\"{{'text_area'+request.id}}\" ng-required=request.servicePackage.requestReasonRequired class=cui-text-area ng-model=request._reason></textarea>\n"+
+"                        </div>\n"+
+"                    </div>\n"+
+"                </div>\n"+
+"            </div>\n"+
+"            <div class=cui-applications__submit-options>\n"+
+"                <a class=cui-link ng-click=\"base.goBack('organization.search',{orgId:orgAppRequestReview.stateParamsOrgId})\">{{'cui-cancel' | translate}}</a>\n"+
+"                <button class=cui-button ng-class=\"{'cui-button--error' : !reviewRequest.$valid}\" ng-click=\"orgAppRequestReview.requestReasonRequired=true;reviewRequest.$valid&&orgAppRequestReview.submit()\">\n"+
+"                    <span ng-if=!orgAppRequestReview.error>{{'submit-request' | translate}}</span>\n"+
+"                    <span ng-if=\"orgAppRequestReview.error===true\">{{'cui-error-try-again' | translate}}</span>\n"+
+"                </button>\n"+
+"            </div>\n"+
+"            \n"+
+"\n"+
+"        </div>\n"+
+"    </div>\n"+
+"</div>\n"+
+"</ng-form>\n"+
+"\n"+
+"<div class=\"cui-applications__review cui-applications__main-container\" ng-if=\"orgAppRequestReview.step===2\">\n"+
+"    <cui-icon cui-svg-icon=fa:chevron20 svg-class=\"cui-icon cui-icon--light-grey chevron chevron-left\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    <div class=cursor__pointer style=padding-top:3px;color:black ng-click=\"orgAppRequestReview.step=1\" translate> {{'cui-printer-friendly-tac'}}</div>\n"+
+"    <div class=tac_wrapper>\n"+
+"    {{orgAppRequestReview.tacContent}}\n"+
+"    </div>\n"+
+"    <div class=cui-applications__submit-options>\n"+
+"        <a class=cui-link ng-click=\"orgAppRequestReview.step=1\">{{'cui-back-to-review' | translate}}</a>\n"+
+"    </div>\n"+
+"</div>");
+
+
+
+$templateCache.put('app/modules/organization/applications/applicationDetails/organization-applicationDetails.html',
+"<div ui-sref=applications.orgApplications.applicationList ng-if=orgApplicationDetails.success class=\"class-toggle cui-modal\" toggled-class=cui-modal--hide ng-click=toggleClass()>\n"+
+"    <div class=cui-modal__pane>\n"+
+"        <div class=cui-modal__icon>\n"+
+"            <cui-icon cui-svg-icon=cui:check-with-border viewbox=\"-1 -1 48 48\" class=cui-modal__icon></cui-icon>\n"+
+"        </div>\n"+
+"        <span class=cui-modal__primary-message>{{'cui-success' | translate}}</span>\n"+
+"        <span class=cui-modal__secondary-message>{{'cui-org-app-suspend-success'|translate}}</span>\n"+
+"    </div>\n"+
+"</div>\n"+
+"\n"+
+"	\n"+
+"	\n"+
+"	<section class=cui-action>\n"+
+"		 	\n"+
+"	\n"+
+"    	<nav ng-include=\"'app/modules/organization/partials/breadcrumbs.html'\" onload=\"orgId=orgApplicationDetails.stateParamsOrgId\"></nav>\n"+
+"    	<nav ng-include=\"'app/modules/organization/partials/mobileNav.html'\"></nav>\n"+
+"    \n"+
+"    <div class=cui-action__actions>\n"+
+"	    \n"+
+"	    \n"+
+"	<svg ui-sref=organization.newRequest({orgId:orgApplicationDetails.stateParamsOrgId}) xmlns=http://www.w3.org/2000/svg class=\"cui-action__icon cui-action__icon--new\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 53\">\n"+
+"		<use xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#new></use>\n"+
+"	</svg>\n"+
+"	   \n"+
+"</div>\n"+
+"    </section>\n"+
+"    <div class=cui-action>\n"+
+"		\n"+
+"		<div class=cui-action__title ng-if=\"orgApplicationDetails.stateParamsOrgId==base.user.organization.id\" ui-sref=organization.applications({orgId:orgApplicationDetails.stateParamsOrgId})>&lt; {{'cui-back' | translate}}</div>\n"+
+"		<div class=cui-action__title ng-if=\"orgApplicationDetails.stateParamsOrgId!=base.user.organization.id\" ui-sref=organization.directory.orgDetails({orgId:orgApplicationDetails.stateParamsOrgId})>&lt; {{'cui-back' | translate}}</div>\n"+
+"	</div>\n"+
+"<div class=cui-loading__container ng-if=\"base.loader.for['orgApplicationDetails.app']\">\n"+
+"    <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div class=org-Application--top ng-if=\"!base.loader.for['orgApplicationDetails.app']\">\n"+
+"\n"+
+"	<div class=\"cui-media cui-media--centered\">\n"+
+"	\n"+
+"	<div class=cui-media__image-container>\n"+
+"  	<a target=_blank><div class=cui-media__image cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5 cui-avatar-names=orgApplicationDetails.application.name cui-avatar-cuii18n-filter cui-avatar=orgApplicationDetails.application.iconUrl></div></a>\n"+
+"	</div>\n"+
+"\n"+
+"	<div class=org-Application--top__mobile-stack>\n"+
+"		\n"+
+"		<p class=\"org-Application--text org-Application--name\">{{orgApplicationDetails.application.name | cuiI18n}}</p>\n"+
+"		\n"+
+"		<p class=org-Application--text>Granted: {{orgApplicationDetails.application.creation | date:base.appConfig.dateFormat}}</p>\n"+
+"	  \n"+
+"	  	<p class=\"org-application--text cui-media__content\" ng-if=\"orgApplicationDetails.application.grant.status==='active'\">{{orgApplicationDetails.application.grant.status|lowercase|translate}}\n"+
+"		  	<svg xmlns=http://www.w3.org/2000/svg class=cui-action__icon preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 216 146\">\n"+
+"		  		<use xlink:href=node_modules/@covisint/cui-icons/dist/font-awesome/font-awesome-out.svg#unlock3></use>\n"+
+"		  	</svg>\n"+
+"		</p>\n"+
+"		  \n"+
+"		  <p class=\"org-Application--text cui-media__content\" ng-if=\"orgApplicationDetails.application.grant.status==='locked'\">{{orgApplicationDetails.application.grant.status|lowercase|translate}}\n"+
+"		  	<svg xmlns=http://www.w3.org/2000/svg class=cui-action__icon preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 216 146\">\n"+
+"		    	<use xlink:href=node_modules/@covisint/cui-icons/dist/font-awesome/font-awesome-out.svg#lock24></use>\n"+
+"		    </svg>\n"+
+"		  </p>\n"+
+"	  </div>\n"+
+"	  <br>\n"+
+"	  \n"+
+"        <p class=cui-error ng-if=orgApplicationDetails.suspendError><b>{{'cui-error-try-again' | translate}}</b></p>\n"+
+"		<div class=org-Application--controls>\n"+
+"		  	\n"+
+"		  	<button ng-class=\"(orgApplicationDetails.showPopup==true)? 'cui-button cui-button--small':'cui-button cui-button--inverted'\" ng-click=\"orgApplicationDetails.showPopup=true\">{{'suspend-app' | translate}}</button>\n"+
+"		  	\n"+
+"		  	<button class=\"cui-button cui-button--inverted\" ng-click=orgApplicationDetails.newGrants()>{{'new-grants' | translate}}</button>\n"+
+"	  	</div>\n"+
+"	  	\n"+
+"	  <br>\n"+
+"     \n"+
+"    \n"+
+"	  	<cui-expandable-body class=\"cui-expandable__body cui-expandable__body--alt-bg-org-suspend\" ng-if=orgApplicationDetails.showPopup>\n"+
+"            \n"+
+"\n"+
+"                 <div class=cui-action__actions>\n"+
+"			\n"+
+"			<svg xmlns=http://www.w3.org/2000/svg class=\"cui-action__icon cui-action__icon--close\" ng-click=\"orgApplicationDetails.showPopup=false\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 53\">\n"+
+"				<use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#close></use>\n"+
+"			</svg>\n"+
+"		</div>\n"+
+"             \n"+
+"			\n"+
+"            <div class=cui-expandable__body-row>\n"+
+"            	<p>{{'cui-org-app-suspend-msg1'|translate}}</p>\n"+
+"            </div>\n"+
+"            <div class=cui-expandable__body-row>\n"+
+"            	<p>{{'cui-org-app-suspend-msg2'|translate}} <b>{{orgApplicationDetails.application.name | cuiI18n}}</b> {{'cui-from'|translate}} <b>{{orgApplicationDetails.organization.name}}</b> ?</p>\n"+
+"            </div>\n"+
+"            <div class=cui-expandable__body-row>\n"+
+"		        <table>\n"+
+"				  <tbody>\n"+
+"				    <tr>\n"+
+"				      <td scope=row><div class=\"cui-button cui-button--small\" ng-click=\"orgApplicationDetails.showPopup=false\">{{'cui-cancel' | translate}}\n"+
+"		        	 	</div></td>\n"+
+"				      <td><div class=\"cui-button cui-button--small\" ng-click=orgApplicationDetails.suspendApplication()>{{'yes'|translate}}, {{'suspend'|translate}}</div></td>\n"+
+"				    </tr>\n"+
+"				  </tbody>\n"+
+"				</table>\n"+
+"			 </div>\n"+
+"        </cui-expandable-body>\n"+
+"	</div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"\n"+
+"		\n"+
+"		\n"+
+"		\n"+
+"		\n"+
+"\n"+
+"\n"+
+"<div class=\"cui-applications__main-container cui-applications__main-container--full\">\n"+
+"      <div class=cui-applications__desktop-tabs>\n"+
+"\n"+
+"        \n"+
+"        <div class=\"cui-tile cui-applications__left\">\n"+
+"          <h4 class=\"cui-tile__title cui-applications__title\">{{'bundled-applications' | translate}}</h4>\n"+
+"          <div class=\"cui-tile__body cui-applications__details\">\n"+
+"            \n"+
+"            <div class=cui-applications__no-details ng-if=\"(!orgApplicationDetails.application.bundledApps || orgApplicationDetails.application.bundledApps.length==0)\">\n"+
+"              <p>{{'no-bundled-or-related' | translate}}</p>\n"+
+"            </div>\n"+
+"                        \n"+
+"              <div class=cui-applications__bundled-app ng-repeat=\"application in orgApplicationDetails.application.bundledApps\">\n"+
+"                <div class=cui-applications__related-app-col>\n"+
+"                  <a class=\"cui-link bold\" ng-click=orgApplicationDetails.goToDetails(application)>{{application.name | cuiI18n}}</a>\n"+
+"                  <span class=cui-media__content>{{ 'granted' | translate | lowercase}}: {{orgApplicationDetails.application.grant.instant | date:base.appConfig.dateFormat}}</span>\n"+
+"                </div>\n"+
+"                <div class=cui-media__status ng-class=\"'cui-status--'+nyApplicationDetails.application.grant.status\">{{orgApplicationDetails.application.grant.status | lowercase|translate}}</div>  \n"+
+"              </div>\n"+
+"            </div>\n"+
+"          </div>\n"+
+"\n"+
+"          \n"+
+"          <div class=\"cui-tile cui-applications__right\">\n"+
+"          	<h4 class=\"cui-tile__title cui-applications__title\">{{'related-applications' | translate}}</h4>\n"+
+"          	<div class=\"cui-tile__body cui-applications__details\">\n"+
+"          	\n"+
+"          	 <div class=cui-applications__no-details ng-if=\"(!orgApplicationDetails.application.relatedApps || orgApplicationDetails.application.relatedApps.length==0)\">\n"+
+"              <p>{{'no-bundled-or-related' | translate}}</p>\n"+
+"            </div>\n"+
+"                <div class=cui-applications__related-app ng-repeat=\"application in orgApplicationDetails.application.relatedApps\">\n"+
+"                  <div class=cui-applications__related-app-col>\n"+
+"                    <a class=\"cui-link bold\" ng-click=orgApplicationDetails.goToDetails(application) ng-if=application.status>{{application.name | cuiI18n}}</a> \n"+
+"                    <h5 class=bold ng-if=!application.status>{{application.name | cuiI18n}}</h5>\n"+
+"                    <span class=cui-media__content>{{ 'granted' | translate }}: {{orgApplicationDetails.application.grant.instant | date:base.appConfig.dateFormat}}</span> \n"+
+"                  </div>\n"+
+"                  <div class=\"cui-button cui-button--small-rounded\" ng-if=!application.status>{{'request' | translate}}</div>\n"+
+"                  <div class=cui-media__status ng-class=\"'cui-status--'+application.status\" ng-if=application.status>{{orgApplicationDetails.application.grant.status | lowercase|translate}}</div>  \n"+
+"                </div>\n"+
+"              </div>\n"+
+"                </div>\n"+
+"          </div>\n"+
+"</div>\n"+
+"        \n"+
+"\n"+
+"\n"+
+"<div class=\"org-Application--bundled-related mobile\">\n"+
+"	<div class=cui-tabs>\n"+
+"		<ul class=cui-tabs__nav>\n"+
+"			<li class=cui-tabs__tab-container>\n"+
+"				<a class=\"cui-tabs__tab cui-tabs__tab--active\" data-pane=tab1 ng-click=\"orgApplicationDetails.mobileTabs('bundled')\">{{'bundled-applications' | translate}}</a>\n"+
+"			</li>\n"+
+"			<li class=cui-tabs__tab-container>\n"+
+"				<a class=cui-tabs__tab data-pane=tab2 ng-click=\"orgApplicationDetails.mobileTabs('related')\">{{'related-applications' | translate}}</a>\n"+
+"			</li>\n"+
+"		</ul>\n"+
+"\n"+
+"		<div class=cui-tabs__content>\n"+
+"			<div id=tab1 class=\"cui-tabs__tab-pane cui-tabs__tab-pane--active\" ng-if=orgApplicationDetails.mobileTabs.bundled>\n"+
+"				<div class=\"org-Application--bundled-related__bundled cui-tile\">\n"+
+"					<p class=cui-tile__text ng-repeat=\"application in orgApplicationDetails.application.bundledApps\">\n"+
+"						<span>{{application.name | cuiI18n}} {{orgApplicationDetails.application.grant.status|lowercase|translate}}</span>\n"+
+"						<span class=active>{{'active' | translate}}</span>\n"+
+"					</p>\n"+
+"				</div>\n"+
+"			</div>\n"+
+"			<div id=tab2 class=\"cui-tabs__tab-pane cui-tabs__tab-pane--active\" ng-if=orgApplicationDetails.mobileTabs.related>\n"+
+"				<div class=\"org-Application--bundled-related__related cui-tile\">\n"+
+"					<p class=cui-tile__text ng-repeat=\"application in orgApplicationDetails.application.relatedApps\">\n"+
+"						<span>{{application.name | cuiI18n}}</span> \n"+
+"						<button class=cui-button ng-if=application.requestable ng-click=orgApplicationDetails.requestRelatedApp(application)>{{'request' | translate}}</button>\n"+
+"					</p>\n"+
+"				</div>\n"+
+"			</div>\n"+
+"		</div>\n"+
+"	</div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"\n"+
+"\n"+
+"	\n"+
+"	\n"+
+"\n"+
+"	    \n"+
+"\n"+
+"	      \n"+
+"	      \n"+
+"\n"+
+"	    \n"+
+"\n"+
+"	      \n"+
+"	      \n"+
+"\n"+
+"	    \n"+
+"\n"+
+"  			\n"+
+"  			\n"+
+"    		\n"+
+"    		\n"+
+"\n"+
+"		\n"+
+"		\n"+
+"		\n"+
+" \n"+
+"		\n"+
+"		\n"+
+"\n"+
+"					\n"+
+"					\n"+
+"\n"+
+"						\n"+
+"						\n"+
+"						\n"+
+"						\n"+
+"					\n"+
+"					\n"+
+"						\n"+
+"						\n"+
+"\n"+
+"		  	\n"+
+"		  	\n"+
+"			  		\n"+
+"			  	\n"+
+"\n"+
+"		  	\n"+
+"				\n"+
+"			  	\n"+
+"			  	\n"+
+"			\n"+
+"		  \n"+
+"		  	\n"+
+"		  	\n"+
+"\n"+
+"\n"+
+"		  \n"+
+"		 ");
+
+
+
+$templateCache.put('app/modules/organization/applications/organization-applications.html',
+"\n"+
+"<div class=code-info>Code for this page can be found <a class=cui-link href=https://github.com/thirdwavellc/cui-idm-b2x/tree/master/assets/app/applications/org-applications target=blank>here</a></div>\n"+
+"\n"+
+"\n"+
+"  \n"+
+"  <section class=cui-action>\n"+
+"    <nav ng-include=\"'app/modules/organization/partials/breadcrumbs.html'\" onload=\"orgId=organizationApplications.stateParamsOrgId\"></nav>\n"+
+"    <nav ng-if=!organizationApplications.loading ng-include=\"'app/modules/organization/partials/mobileNav.html'\" ng-init=\"orgName=organizationApplications.organization.name\"></nav>\n"+
+"  </section>\n"+
+"  \n"+
+"  <section class=cui-action>\n"+
+"    <h3 class=cui-sr-only>{{'org-dir-filters' | translate}}</h3>\n"+
+"    <div class=cui-loading__container ng-if=organizationApplications.loading>\n"+
+"      <div class=\"cui-loader cui-loader--content\" ng-include=\"'app/common-templates/partials/loader-content-header.html'\"></div>\n"+
+"    </div>\n"+
+"    <span class=\"cui-action__title cui-desktop-only\">{{organizationApplications.organization.name}}</span>\n"+
+"    <div class=\"cui-action cui-action--alt\">\n"+
+"      <div class=\"cui-input-button cui-input-button--alt-bg\" style=width:350px>\n"+
+"          <input class=cui-input-button__input ng-model=\"organizationApplications.search['name']\" focus-if placeholder=\"{{'search-by-app-name' | translate}}\" on-enter=organizationApplications.updateSearchByName>\n"+
+"          <button class=cui-input-button__button ng-click=organizationApplications.updateSearchByName()>{{'search' | translate}}</button>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-action__actions>\n"+
+"\n"+
+"    \n"+
+"    \n"+
+"      \n"+
+"     \n"+
+"\n"+
+"    \n"+
+"    <div class=cui-action__action-container ng-click=\"organizationApplications.refineClicked =! organizationApplications.refineClicked\" id=refine-button off-click=\"organizationApplications.refineClicked=false\">\n"+
+"      <svg xmlns=http://www.w3.org/2000/svg class=cui-action__icon preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 216 146\">\n"+
+"        <use xlink:href=node_modules/@covisint/cui-icons/dist/font-awesome/font-awesome-out.svg#filter10></use>\n"+
+"      </svg>\n"+
+"      <span class=cui-action__action-label>{{'refine' | translate}}</span>\n"+
+"      \n"+
+"      \n"+
+"        <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=#refine-button pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-70px'}, 'any']\" ng-if=organizationApplications.refineClicked style=width:214px>\n"+
+"         <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"            <span ng-click=\"organizationApplications.updateSearch('status')\">{{'all' | translate}}</span>\n"+
+"         </div>\n"+
+"          <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"            <span ng-click=\"organizationApplications.updateSearch('status','active')\">{{'active' | translate}}</span>\n"+
+"         </div>\n"+
+"          <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"            <span ng-click=\"organizationApplications.updateSearch('status','suspended')\">{{'suspended' | translate}}</span>\n"+
+"         </div>\n"+
+"          <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"            <span ng-click=\"organizationApplications.updateSearch('status','pending')\">{{'pending' | translate}}</span>\n"+
+"         </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-action__action-container ng-click=\"organizationApplications.categoriesClicked =! organizationApplications.categoriesClicked\" id=categories-button off-click=\"organizationApplications.categoriesClicked=false\">\n"+
+"      <svg xmlns=http://www.w3.org/2000/svg class=cui-action__icon preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 48\">\n"+
+"        <use xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#categories></use>\n"+
+"      </svg>\n"+
+"      <span class=cui-action__action-label>{{'categories' | translate}}</span>\n"+
+"      \n"+
+"      <div cui-popover class=\"cui-popover cui-popover--top cui-popover__categories-popover\" target=#categories-button pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom'}, 'any']\" ng-if=organizationApplications.categoriesClicked>\n"+
+"        <p ng-click=\"organizationApplications.updateSearch('category')\">{{'all' | translate}}</p>\n"+
+"        <div ng-repeat=\"category in organizationApplications.categories\">\n"+
+"          <p ng-click=\"organizationApplications.updateSearch('category',category.name)\">{{category.name | cuiI18n}}</p>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-action__action-container ui-sref=organization.requests.newOrgGrant({orgId:organizationApplications.stateParamsOrgId}) ng-if=base.canGrantAppToOrg()>\n"+
+"    <svg xmlns=http://www.w3.org/2000/svg class=cui-action__icon preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 216 146\" style=height:3em>\n"+
+"        <use xlink:href=node_modules/@covisint/cui-icons/dist/font-awesome/font-awesome-out.svg#plus26></use>\n"+
+"      </svg>\n"+
+"      <span class=cui-action__action-label>{{'new-grant' | translate}}</span>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div ng-if=\"organizationApplications.stateParamsOrgId==base.user.organization.id\" class=cui-action__action-container ui-sref=organization.newRequest()>\n"+
+"      <svg xmlns=http://www.w3.org/2000/svg class=cui-action__icon preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 216 146\" style=height:3em>\n"+
+"        <use xlink:href=node_modules/@covisint/cui-icons/dist/font-awesome/font-awesome-out.svg#plus26></use>\n"+
+"      </svg>\n"+
+"      <span class=cui-action__action-label>{{'request-app' | translate}}</span>\n"+
+"    </div>\n"+
+"    \n"+
+"  </div>\n"+
+"  </section>\n"+
+"\n"+
+"\n"+
+"<div class=cui-applications__main-container>\n"+
+"  \n"+
+"  <div class=cui-loading__container ng-if=organizationApplications.loading>\n"+
+"    <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"  </div>\n"+
+"\n"+
+"  <div ng-if=!organizationApplications.loading>\n"+
+"\n"+
+"    \n"+
+"    <p ng-if=\"organizationApplications.appList.length===0\">{{'cui-no-applications' | translate}}</p>\n"+
+"    <p class=cui-error ng-if=organizationApplications.loadingError>{{'error-generic' |translate}}</p>\n"+
+"    \n"+
+"    <div class=\"cui-media cui-media--border cui-media--tr\" ng-repeat=\"application in organizationApplications.appList\" ng-click=organizationApplications.goToDetails(application)>\n"+
+"      <div class=cui-media__image-container>\n"+
+"        <a ng-href={{application.mangledUrl}} target=_blank><div class=cui-media__image cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5 cui-avatar-names=application.name cui-avatar-cuii18n-filter cui-avatar=application.iconUrl></div></a>\n"+
+"      </div>\n"+
+"      <div class=\"cui-media__body cui-media__body--full\">\n"+
+"        <div class=cui-media__title-container>\n"+
+"          \n"+
+"          <h3 class=cui-media__title ng-bind=\"application.name | cuiI18n\"></h3>\n"+
+"        </div>\n"+
+"        <span class=cui-media__content ng-if=application.category> {{application.category | cuiI18n}}</span>\n"+
+"        <span class=cui-status ng-class=\"'cui-status--'+application.grant.status\" ng-bind=\"application.grant.status | lowercase\"></span>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-paginate__container ng-if=!organizationApplications.loading>\n"+
+"      <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"      <results-per-page class=cui-paginate__select ng-model=organizationApplications.search.pageSize></results-per-page>\n"+
+"      <paginate class=cui-paginate results-per-page=organizationApplications.search.pageSize count=organizationApplications.count on-page-change=organizationApplications.pageChange ng-model=organizationApplications.search.page attach-rerender-to=organizationApplications.reRenderPaginate></paginate>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/applications/search/orgApplications-search.html',
+"<div class=cui-applications__search>\n"+
+"  \n"+
+"  \n"+
+"  <div class=cui-action>\n"+
+"    \n"+
+"    <div class=cui-action__title ui-sref=organization.applications({orgId:orgAppSearch.stateParamsOrgId})>&lt; {{'organization-applications' | translate}} &#8211; {{'new-request' | translate}}</div>\n"+
+"    \n"+
+"    <div class=cui-action__actions>\n"+
+"      <svg xmlns=http://www.w3.org/2000/svg class=\"cui-action__icon cui-action__icon--close\" ui-sref=organization.applications({orgId:orgAppSearch.stateParamsOrgId}) preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 53\">\n"+
+"      	<use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#close></use>\n"+
+"      </svg>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=\"cui-action cui-action--alt\">\n"+
+"    \n"+
+"    <div class=cui-action__title ng-if=!orgAppSearch.search.category ui-sref=organization.newRequest()>&#60; {{'categories' | translate}}</div>\n"+
+"\n"+
+"    \n"+
+"    <span class=cui-action__title ng-if=orgAppSearch.search.category ui-sref=organization.newRequest()>&#60; {{orgAppSearch.search.category}}</span>\n"+
+"    <div class=\"cui-input-button cui-input-button--alt-bg\">\n"+
+"      <input class=cui-input-button__input ng-model=orgAppSearch.search.name focus-if placeholder=\"{{'filter-list' | translate}}\" on-enter=orgAppSearch.updateSearch>\n"+
+"      <button class=cui-input-button__button ng-click=\"orgAppSearch.updateSearch('name')\">{{'filter' | translate}}</button>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-action__actions>\n"+
+"      <svg ng-click=\"orgAppSearch.requestPopover=!orgAppSearch.requestPopover\" off-click=\"orgAppSearch.requestPopover=false\" xmlns=http://www.w3.org/2000/svg id=cui-applications__requested-apps class=cui-icon--folder ng-class=\"{'cui-action__icon--active': orgAppSearch.numberOfRequests != 0}\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 40 33\">\n"+
+"        <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#folder></use>\n"+
+"      </svg>\n"+
+"      <sup class=cui-action__icon-counter ng-class=\"{'cui-action__icon-counter--active': orgAppSearch.numberOfRequests != 0}\">{{orgAppSearch.numberOfRequests}}</sup>\n"+
+"      \n"+
+"      <div tether class=cui-action__popover target=#cui-applications__requested-apps attachment=\"top middle\" targetattachment=\"bottom left\" offset=\"-20px 50px\" ng-if=orgAppSearch.requestPopover>\n"+
+"        <span class=cui-action__popover-title>{{'collected-items-for-request' | translate}}</span>\n"+
+"        <div class=cui-action__popover-section>\n"+
+"          <span ng-if=\"orgAppSearch.numberOfRequests === 0\">{{'no-selected-apps' | translate}}<br></span>\n"+
+"          <ul ng-if=\"orgAppSearch.numberOfRequests > 0\">\n"+
+"            <li ng-repeat=\"(applicationId,application) in orgAppSearch.packageRequests\">{{application.name | cuiI18n}}</li>\n"+
+"          </ul>\n"+
+"        </div>\n"+
+"        <span ng-if=\"orgAppSearch.numberOfRequests > 0\" class=cui-action__popover-button ui-sref=\"\">{{'submit-request' | translate}}</span>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  <div class=cui-applications__main-container>\n"+
+"    \n"+
+"    <div class=cui-loading__container ng-if=\"base.loader.for['orgAppSearch.loading']\">\n"+
+"      <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <cui-expandable class=cui-expandable ng-repeat=\"application in orgAppSearch.viewList track by application.id\" ng-if=!base.loader.orgAppSearch.loading transition-speed=150>\n"+
+"      \n"+
+"      <cui-expandable-title class=\"cui-expandable__title cui-expandable__title--flex\">\n"+
+"        <div class=cui-applications__expandable-info ng-click=toggleExpand()>\n"+
+"          <h3 class=cui-expandable__title-left>{{application.name | cuiI18n}}</h3>\n"+
+"        </div>\n"+
+"        <div class=cui-expandable__title-end>\n"+
+"          <span class=cui-checkbox__container>\n"+
+"            <input class=cui-checkbox type=checkbox ng-model=orgAppSearch.appCheckbox[application.id]>\n"+
+"            <label class=cui-checkbox__label ng-click=\"orgAppSearch.appCheckbox[application.id]=!orgAppSearch.appCheckbox[application.id]; orgAppSearch.toggleRequest(application)\"></label>\n"+
+"          </span>\n"+
+"        </div>\n"+
+"      </cui-expandable-title>\n"+
+"      \n"+
+"      <cui-expandable-body class=cui-expandable__body>\n"+
+"        <div class=cui-expandable__body-pane>\n"+
+"          <span class=cui-expandable__body-close ng-click=collapse()>\n"+
+"            <svg xmlns=http://www.w3.org/2000/svg class=cui-icon preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 53\">\n"+
+"              <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#close-no-fill></use>\n"+
+"            </svg>\n"+
+"          </span>\n"+
+"          <span ng-if=\"(!application.bundledApps || application.bundledApps.length===0) && (!application.relatedApps || application.relatedApps.length===0)\">{{'no-bundled-or-related' | translate}}</span>\n"+
+"          <div class=cui-expandable__pane-col ng-if=\"application.bundledApps && application.bundledApps.length > 0\">\n"+
+"            <h4 class=cui-expandable__pane-title>{{'bundled-applications' | translate}}</h4>\n"+
+"            <div class=cui-expandable__pane-content>\n"+
+"              <span class=cui-expandable__pane-content-item ng-repeat=\"bundledApp in application.bundledApps\">\n"+
+"                {{bundledApp.name | cuiI18n}}\n"+
+"              </span>\n"+
+"            </div>\n"+
+"          </div>\n"+
+"          <div class=cui-expandable__pane-col ng-if=\"application.relatedApps && application.relatedApps.length > 0\">\n"+
+"            <h4 class=cui-expandable__pane-title>{{'related-applications' | translate}}</h4>\n"+
+"            <div class=cui-expandable__pane-content>\n"+
+"              <span class=cui-expandable__pane-content-item ng-repeat=\"relatedApp in application.relatedApps\">\n"+
+"                <span>{{relatedApp.name | cuiI18n}} </span>\n"+
+"                <span class=cui-checkbox__container>\n"+
+"                  <input class=cui-checkbox type=checkbox ng-model=orgAppSearch.appCheckbox[relatedApp.id]>\n"+
+"                  <label class=cui-checkbox__label ng-click=\"orgAppSearch.appCheckbox[relatedApp.id]=!orgAppSearch.appCheckbox[relatedApp.id]; orgAppSearch.checkRelatedAppsBody(relatedApp,application)\"></label>\n"+
+"                </span>\n"+
+"              </span>\n"+
+"            </div>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </cui-expandable-body>\n"+
+"    </cui-expandable>\n"+
+"\n"+
+"    \n"+
+"    <p ng-if=\"orgAppSearch.list.length===0\" align=center>{{'cui-no-details' | translate}}</p>\n"+
+"\n"+
+"  </div>\n"+
+"\n"+
+"  <div class=cui-paginate__container ng-if=\"!base.loader.for['orgAppSearch.loading']\">\n"+
+"    <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"    <results-per-page class=cui-paginate__select ng-model=orgAppSearch.search.pageSize></results-per-page>\n"+
+"    <paginate class=cui-paginate results-per-page=orgAppSearch.search.pageSize count=orgAppSearch.count on-page-change=orgAppSearch.pageChange ng-model=orgAppSearch.search.page attach-rerender-to=\" orgAppSearch.reRenderPaginate\"></paginate>\n"+
+"  </div>\n"+
+"  <div class=cui-applications__search-button>\n"+
+"    <button class=cui-button ng-class=\"{'cui-button--error' : orgAppSearch.numberOfRequests===0}\" ng-click=\"orgAppSearch.numberOfRequests != 0 && orgAppSearch.saveRequestsAndCheckout()\">{{'review-request' | translate}}</button>\n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/org-details/directory-orgDetails.html',
+"\n"+
+"<div class=code-info>The markup and javascript used to build this page can be found <a class=cui-link href=https://github.com/thirdwavellc/cui-idm-b2x/tree/master/app/modules/organization/directory target=blank>here</a>.</div>\n"+
+"\n"+
+"\n"+
+"<div class=\"cui-organization cui-organization__user-details\">\n"+
+"  \n"+
+"  <ng-include src=\"'app/modules/organization/directory/org-details/sections/headers/orgDetails-header.html'\" onload=\"orgId=orgDetails.prevState.params.orgId\"></ng-include>\n"+
+"\n"+
+"  <div class=cui-organization__details-container>\n"+
+"    \n"+
+"    <div class=cui-organization__details-col>\n"+
+"\n"+
+"      \n"+
+"      <div ng-include=\"'app/modules/organization/directory/org-details/sections/headers/orgDetails-header-left.html'\"></div>\n"+
+"\n"+
+"      \n"+
+"      <cui-resize-handler desktop show-if=orgDetails.profileDesktop ng-if=\"orgDetails.profileUsersSwitch==='profile'\">\n"+
+"        <div ui-view=profile></div>\n"+
+"      </cui-resize-handler>\n"+
+"\n"+
+"      \n"+
+"      <cui-resize-handler mobile show-if=orgDetails.profileMobile ng-if=\"orgDetails.mobileHandler==='profile'\">\n"+
+"        <div ui-view=profile></div>\n"+
+"      </cui-resize-handler>\n"+
+"\n"+
+"      \n"+
+"      <cui-resize-handler desktop show-if=orgDetails.usersDesktop ng-if=\"orgDetails.profileUsersSwitch==='users'\">\n"+
+"        <div ui-view=users></div>\n"+
+"      </cui-resize-handler>\n"+
+"\n"+
+"      \n"+
+"      <cui-resize-handler mobile show-if=orgDetails.usersMobile ng-if=\"orgDetails.mobileHandler==='users'\">\n"+
+"        <div ui-view=users></div>\n"+
+"      </cui-resize-handler>\n"+
+"\n"+
+"      \n"+
+"      <cui-resize-handler mobile show-if=orgDetails.applicationsMobile ng-if=\"orgDetails.mobileHandler==='apps'\">\n"+
+"        <div ui-view=applications></div>\n"+
+"      </cui-resize-handler>\n"+
+"\n"+
+"      \n"+
+"      <cui-resize-handler mobile show-if=orgDetails.hierarchyMobile ng-if=\"orgDetails.mobileHandler==='hierarchy'\">\n"+
+"        <div ui-view=hierarchy></div>\n"+
+"      </cui-resize-handler>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-organization__details-col>\n"+
+"\n"+
+"      \n"+
+"      <div ng-include=\"'app/modules/organization/directory/org-details/sections/headers/orgDetails-header-right.html'\"></div>\n"+
+"\n"+
+"      \n"+
+"      <cui-resize-handler desktop show-if=orgDetails.applicationsDesktop ng-if=\"orgDetails.appsHierarchySwitch==='apps'\">\n"+
+"        <div ui-view=applications></div>\n"+
+"      </cui-resize-handler>\n"+
+"\n"+
+"      \n"+
+"      <cui-resize-handler desktop show-if=orgDetails.hierarchyDesktop ng-if=\"orgDetails.appsHierarchySwitch==='hierarchy'\">\n"+
+"        <div ui-view=hierarchy></div>\n"+
+"      </cui-resize-handler>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/org-details/sections/applications/orgDetails-applications.html',
+" <div class=cui-loading__container--user-details ng-if=\"base.loader.for['orgDetailsApps.init']\">\n"+
+"  <div class=\"cui-loader cui-loader--content-sm\" ng-include=\"'app/common-templates/partials/loader-content-sm.html'\"></div>\n"+
+"</div>\n"+
+" \n"+
+"  <section class=cui-action ng-if=\"!base.loader.for['orgDetailsApps.init']\">\n"+
+"    <h3 class=cui-sr-only>{{'org-dir-filters' | translate}}</h3>\n"+
+"    <div class=cui-loading__container ng-if=orgDetailsApps.loading>\n"+
+"      <div class=\"cui-loader cui-loader--content\" ng-include=\"'app/common-templates/partials/loader-content-header.html'\"></div>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=\"cui-action cui-action--alt\">\n"+
+"      <div class=\"cui-input-button cui-input-button--alt-bg\" style=width:350px>\n"+
+"          <input class=cui-input-button__input ng-model=\"orgDetailsApps.search['name']\" focus-if placeholder=\"{{'search-by-app-name' | translate}}\" on-enter=orgDetailsApps.updateSearchByName>\n"+
+"          <button class=cui-input-button__button ng-click=orgDetailsApps.updateSearchByName()>{{'search' | translate}}</button>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-action__actions>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-action__action-container ng-click=\"orgDetailsApps.refineClicked =! orgDetailsApps.refineClicked\" id=refine-button-apps off-click=\"orgDetailsApps.refineClicked=false\">\n"+
+"      <svg xmlns=http://www.w3.org/2000/svg class=cui-action__icon preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 216 146\">\n"+
+"        <use xlink:href=node_modules/@covisint/cui-icons/dist/font-awesome/font-awesome-out.svg#filter10></use>\n"+
+"      </svg>\n"+
+"      <span class=cui-action__action-label>{{'refine' | translate}}</span>\n"+
+"      \n"+
+"      <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=#refine-button-apps pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-70px'}, 'any']\" ng-if=orgDetailsApps.refineClicked style=width:214px>\n"+
+"         <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"            <span ng-click=\"orgDetailsApps.updateSearch('status')\">{{'all' | translate}}</span>\n"+
+"         </div>\n"+
+"          <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"            <span ng-click=\"orgDetailsApps.updateSearch('status','active')\">{{'active' | translate}}</span>\n"+
+"         </div>\n"+
+"          <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"            <span ng-click=\"orgDetailsApps.updateSearch('status','suspended')\">{{'suspended' | translate}}</span>\n"+
+"         </div>\n"+
+"          <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"            <span ng-click=\"orgDetailsApps.updateSearch('status','pending')\">{{'pending' | translate}}</span>\n"+
+"         </div>\n"+
+"        \n"+
+"      </div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-action__action-container ng-click=\"orgDetailsApps.categoriesClicked =! orgDetailsApps.categoriesClicked\" id=categories-button off-click=\"orgDetailsApps.categoriesClicked=false\">\n"+
+"      <svg xmlns=http://www.w3.org/2000/svg class=cui-action__icon preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 48\">\n"+
+"        <use xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#categories></use>\n"+
+"      </svg>\n"+
+"      <span class=cui-action__action-label>{{'categories' | translate}}</span>\n"+
+"      \n"+
+"      <div cui-popover class=\"cui-popover cui-popover--top cui-popover__categories-popover\" target=#categories-button pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom'}, 'any']\" ng-if=orgDetailsApps.categoriesClicked>\n"+
+"        <p ng-click=\"orgDetailsApps.updateSearch('category')\">{{'all' | translate}}</p>\n"+
+"        <div ng-repeat=\"category in orgDetailsApps.categories\">\n"+
+"          <p ng-click=\"orgDetailsApps.updateSearch('category',category.name)\">{{category.name | cuiI18n}}</p>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"  </section>\n"+
+"\n"+
+"\n"+
+"<div class=cui-applications__main-container>\n"+
+"  \n"+
+"\n"+
+"\n"+
+"  <div ng-if=\"!base.loader.for['orgDetailsApps.init']\">\n"+
+"\n"+
+"    \n"+
+"    <p ng-if=\"orgDetailsApps.appList.length===0\">{{'cui-no-applications' | translate}}</p>\n"+
+"    <p class=cui-error ng-if=orgDetailsApps.loadingError>{{'error-generic' |translate}}</p>\n"+
+"    \n"+
+"    <div class=\"cui-media cui-media--border cui-media--tr\" ng-repeat=\"application in orgDetailsApps.appList\" ng-click=orgDetailsApps.goToDetails(application)>\n"+
+"      <div class=cui-media__image-container>\n"+
+"        <a ng-href={{application.mangledUrl}} target=_blank><div class=cui-media__image cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5 cui-avatar-names=application.name cui-avatar-cuii18n-filter cui-avatar=application.iconUrl></div></a>\n"+
+"      </div>\n"+
+"      <div class=\"cui-media__body cui-media__body--full\">\n"+
+"        <div class=cui-media__title-container>\n"+
+"          \n"+
+"          <h3 class=cui-media__title ng-bind=\"application.name | cuiI18n\"></h3>\n"+
+"        </div>\n"+
+"        <span class=cui-media__content ng-if=application.category> {{application.category | cuiI18n}}</span>\n"+
+"        <span class=cui-status ng-class=\"'cui-status--'+application.grant.status\" ng-bind=\"application.grant.status | lowercase\"></span>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-paginate__container ng-if=!orgDetailsApps.loading>\n"+
+"      <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"      <results-per-page class=cui-paginate__select ng-model=orgDetailsApps.search.pageSize></results-per-page>\n"+
+"      <paginate class=cui-paginate results-per-page=orgDetailsApps.search.pageSize count=orgDetailsApps.count on-page-change=orgDetailsApps.pageChange ng-model=orgDetailsApps.search.page attach-rerender-to=orgDetailsApps.reRenderPaginate></paginate>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/org-details/sections/headers/orgDetails-breadcrumb.html',
+"<ul class=cui-breadcrumb__links>\n"+
+"  <li class=\"cui-breadcrumb__link cui-breadcrumb__link--current\">\n"+
+"    <span class=cui-breadcrumb__mobile-link class=active><span class=cui-mobile-only>{{orgDetails.user.organization.realm}}\n"+
+"  </span></span></li>\n"+
+"  <div class=\"cui-popover cui-popover--menu cui-breadcrumb__popover cui-popover--top cui-popover__categories-popover\" tether target=#breadcrumb-button attachment=\"top left\" target-attachment=\"bottom left\" offset=\"-10px 0\" ng-if=orgDirectory.breadcrumbClicked>\n"+
+"    <li class=\"cui-breadcrumb__link cui-popover__row\">\n"+
+"      <a class=cui-breadcrumb__mobile-link ui-sref=organization.hierarchy({orgId:orgId})>{{'cui-org-hierarchy' | translate}}</a> \n"+
+"    </li>\n"+
+"    <li class=\"cui-breadcrumb__link cui-popover__row\">\n"+
+"      <a class=cui-breadcrumb__mobile-link ui-sref=organization.profile({orgId:orgId})>{{'cui-org-profile' | translate}}</a> \n"+
+"    </li> \n"+
+"    <li class=\"cui-breadcrumb__link cui-popover__row\">\n"+
+"      <a class=cui-breadcrumb__mobile-link ui-sref=organization.users({orgId:orgId})>{{'roles' | translate}}</a>\n"+
+"    </li>\n"+
+"  </div>\n"+
+"</ul>\n"+
+"\n"+
+"\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/org-details/sections/headers/orgDetails-header-left.html',
+"<div class=cui-organization__profile-left-header>\n"+
+"\n"+
+"  \n"+
+"  <div class=\"cui-organization__profile-header-item cui-desktop-only\" ng-click=\"orgDetails.profileUsersSwitch='profile'\" id=profile-button off-click=\"\">\n"+
+"    <div ng-class=\"{'cui-action__icon--active':orgDetails.profileUsersSwitch=='profile'}\">\n"+
+"      <cui-icon cui-svg-icon=fa:nine10 svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-action__action-label>{{'profile-upper' | translate}}</span>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=\"cui-organization__profile-header-item cui-desktop-only\" ng-click=\"orgDetails.profileUsersSwitch='users'\" id=users-button>\n"+
+"    <div ng-class=\"{'cui-action__icon--active':orgDetails.profileUsersSwitch=='users'}\">\n"+
+"      <cui-icon cui-svg-icon=cui:profile svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 -1 48 52\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-action__action-label>{{'users-upper' | translate}}</span>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=\"cui-organization__profile-header-item cui-mobile-only\" ng-click=\"orgDetails.mobileHandler='profile'\" id=profile-button>\n"+
+"    <div>\n"+
+"      <cui-icon cui-svg-icon=fa:nine10 ng-class=\"{ 'cui-action__icon--active':orgDetails.profileSwitch=='profile'}\" svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-action__action-label>{{'profile-upper' | translate}}</span>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=\"cui-organization__profile-header-item cui-mobile-only\" ng-click=\"orgDetails.mobileHandler='users'\" id=users-button>\n"+
+"    <div>\n"+
+"      <cui-icon cui-svg-icon=cui:profile ng-class=\"{ 'cui-action__icon--active':orgDetails.profileSwitch=='users'}\" svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 -1 48 52\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-action__action-label>{{'users-upper' | translate}}</span>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=\"cui-organization__profile-header-item cui-mobile-only\" id=applications-button ng-click=\"orgDetails.mobileHandler='apps'\">\n"+
+"    <div>\n"+
+"      <cui-icon cui-svg-icon=cui:applications_v2 ng-class=\"{ 'cui-action__icon--active':orgDetails.profileSwitch=='apps'}\" svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 50\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-action__action-label>{{'apps-upper' | translate}}</span>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=\"cui-organization__profile-header-item cui-mobile-only\" id=hierarchy-button ng-click=\"orgDetails.mobileHandler='hierarchy'\">\n"+
+"    <div>\n"+
+"      <cui-icon cui-svg-icon=cui:division ng-class=\"{ 'cui-action__icon--active':orgDetails.profileSwitch=='hierarchy'}\" svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 48\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-action__action-label>{{'hierarchy-upper' | translate}}</span>\n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/org-details/sections/headers/orgDetails-header-right.html',
+"<div class=\"cui-organization__profile-right-header cui-desktop-only\">\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-organization__profile-header-item id=applications-button ng-click=\"orgDetails.appsHierarchySwitch='apps'\">\n"+
+"    <div ng-class=\"{ 'cui-action__icon--active':orgDetails.appsHierarchySwitch=='apps'}\">\n"+
+"      <cui-icon cui-svg-icon=cui:applications_v2 svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 50\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-action__action-label>{{'apps-upper' | translate}}</span>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-organization__profile-header-item id=applications-button ng-click=\"orgDetails.appsHierarchySwitch='hierarchy'\">\n"+
+"    <div ng-class=\"{ 'cui-action__icon--active':orgDetails.appsHierarchySwitch=='hierarchy'}\">\n"+
+"      <cui-icon cui-svg-icon=cui:division svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 48\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-action__action-label>{{'hierarchy-upper' | translate}}</span>\n"+
+"  </div>\n"+
+"  \n"+
+"  <div class=cui-organization__profile-header-items--right ng-if=false>\n"+
+"    \n"+
+"    <div class=cui-organization__profile-header-item id=sort-button ng-click=\"orgDetails.sortClicked=!orgDetails.sortClicked\" off-click=\"orgDetails.sortClicked=false\" ng-if=orgDetails.appsHierarchySwitch>\n"+
+"      <div>\n"+
+"        <cui-icon cui-svg-icon=fa:sort14 svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"      </div>\n"+
+"      <span class=cui-action__action-label>{{'sort' | translate}}</span>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=\"cui-popover cui-popover--top cui-popover__sort-popover\" tether target=#sort-button attachment=\"top middle\" target-attachment=\"bottom middle\" offset=\"-10px 0\" ng-if=orgDetails.sortClicked>\n"+
+"      <p ng-click=\"\">{{'cui-alphabetically' | translate}}</p>\n"+
+"      <p ng-click=\"\">{{'cui-by-date-added' | translate}}</p>\n"+
+"    </div>\n"+
+"    \n"+
+"    \n"+
+"    <div class=cui-organization__profile-header-item id=categories-button ng-click=\"orgDetails.categoriesClicked=!orgDetails.categoriesClicked\" off-click=\"orgDetails.categoriesClicked=false\" ng-if=orgDetails.appsHierarchySwitch>\n"+
+"      <div>\n"+
+"        <cui-icon cui-svg-icon=cui:categories svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 48\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"      </div>\n"+
+"      <span class=cui-action__action-label>{{'categories' | translate}}</span>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=\"cui-popover cui-popover--top cui-popover__categories-popover\" tether target=#categories-button attachment=\"top middle\" target-attachment=\"bottom middle\" offset=\"-10px 0\" ng-if=orgDetails.categoriesClicked>\n"+
+"      <p ng-click=\"\">TODO!</p>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/org-details/sections/headers/orgDetails-header.html',
+"<div class=cui-action>\n"+
+"  <nav ng-include=\"'app/modules/organization/partials/breadcrumbs.html'\"></nav>\n"+
+"  \n"+
+"  <span class=\"cui-action__title cui-mobile-only\" ng-click=\"base.goBack('organization.directory.userList',orgDetails.prevState.params)\">&#60; {{'directory' | translate}}</span>\n"+
+"  <div class=cui-action__actions ng-include=\"'app/modules/organization/partials/invite-actions.html'\" ng-if=false></div>\n"+
+"</div>\n"+
+"\n"+
+"<div>\n"+
+"  \n"+
+"  <div class=cui-loading__container ng-if=\"base.loader.for['orgDetails.orgInfo']\">\n"+
+"    <div class=\"cui-loader cui-loader--content cui-loader--content-vert\" ng-include=\"'app/common-templates/partials/loader-content-vert.html'\"></div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-media--centered ng-if=\"!base.loader.for['orgDetails.orgInfo']\">\n"+
+"    <div class=cui-media__image-container>\n"+
+"      <div class=\"cui-profile__user-avatar cui-media__image\" cui-avatar cui-avatar-names=[orgDetails.organization.name] cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5 cui-avatar-email=orgDetails.organization.email></div>\n"+
+"    </div>\n"+
+"    <div class=cui-media__body>\n"+
+"      \n"+
+"      <h3 class=cui-media__title>{{orgDetails.organization.name}}</h3>\n"+
+"      \n"+
+"      <p class=cui-media__content>{{'cui-registered' | translate}}: {{orgDetails.organization.creation | date:base.appConfig.dateFormat}}</p>\n"+
+"      \n"+
+"      <div class=cui-media__content>\n"+
+"        <span class=cui-media__content--dark>{{'status' | translate}}:</span>\n"+
+"        <span class=cui-status ng-class=\" 'cui-status--'+orgDetails.organization.status \">{{orgDetails.organization.status}}</span>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  \n"+
+"  <div class=cui-media__button-container>\n"+
+"    \n"+
+"    \n"+
+"\n"+
+"\n"+
+"    \n"+
+"\n"+
+"      \n"+
+"\n"+
+"    \n"+
+"    \n"+
+"\n"+
+"    \n"+
+"     <button class=\"cui-button cui-button--inverted\" ng-if=base.canGrantAppToOrg() ng-disabled=\"orgDetails.organization.status!=='active'\" ui-sref=organization.requests.newOrgGrant({orgId:orgId}) ng-class=\"(orgDetails.organization.status!=='active')?'cui-button--error':''\">{{'new-grants' | translate}}</button>\n"+
+"\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<ng-include ng-if=orgDetails.suspend.begun src=\"'app/modules/organization/directory/org-details/sections/headers/partials/suspend-user.html'\">\n"+
+"</ng-include>\n"+
+"\n"+
+"\n"+
+"<ng-include ng-if=orgDetails.unsuspend.begun src=\"'app/modules/organization/directory/org-details/sections/headers/partials/unsuspend-user.html'\">\n"+
+"</ng-include>\n"+
+"<br>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/org-details/sections/headers/partials/suspend-user.html',
+"<div class=\"cui-users__address-container user-details__password-reset show-address\">\n"+
+"  {{'cui-suspend-confirm' | translate}}*\n"+
+"\n"+
+"  <div class=cui-server-error ng-if=\"base.apiError.for['userDetails.suspend']\">\n"+
+"    <div class=cui-server-error__container>\n"+
+"      <span>{{ 'suspend-error' | translate }}</span>\n"+
+"    </div>\n"+
+"    <svg xmlns=http://www.w3.org/2000/svg class=cui-server-error__close ng-click=\"base.apiError.for['userDetails.suspend'] = !base.apiError.for['userDetails.suspend']\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 53\" aria-label=\"{{'cui-close' | translate}}\">\n"+
+"      <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#close-no-fill></use>\n"+
+"    </svg>\n"+
+"  </div>\n"+
+"\n"+
+"  <textarea class=\"cui-text-area jlr-text-area--black-text\" ng-required=true style=\"margin: 20px\" ng-model=userDetails.user.suspendReason placeholder=\"{{'request-reason' | translate}}\"></textarea>\n"+
+"\n"+
+"<div class=cui-organization__submit-row disable-animate>\n"+
+"      <span ng-click=userDetails.suspend.cancel() class=cursor__pointer style=margin:5px>{{'cui-cancel' | translate}}</span>\n"+
+"      <button class=cui-button ng-class=\"{'cui-button--error' : userDetails.user.suspendReason.length==0}\" ng-if=\"!base.loader.for['userDetails.suspend'] && !base.apiError.for['userDetails.suspend'] && !userDetails.suspend.success\" ng-click=\"userDetails.user.suspendReason.length>0&&userDetails.suspend.confirm()\" style=margin:5px>{{'yes' | translate}}</button>\n"+
+"      <button class=cui-button ng-if=\"base.loader.for['userDetails.suspend']\">\n"+
+"        <div ng-include=\"'app/common-templates/partials/loader-updating.html'\"></div>\n"+
+"      </button>\n"+
+"      <button class=cui-button ng-class=\"{'cui-button--error' : userDetails.user.suspendReason.length==0}\" ng-if=\"!base.loader.for['userDetails.suspend'] && base.apiError.for['userDetails.suspend'] && !userDetails.suspend.success \" ng-click=\"userDetails.user.suspendReason.length>0&&userDetails.suspend.confirm()\">{{'cui-error-try-again' | translate}}</button>\n"+
+"      <button class=cui-button ng-class=\"{'cui-button--error' : userDetails.user.suspendReason.length==0}\" ng-if=\"!base.loader.for['userDetails.suspend'] && !base.apiError.for['userDetails.suspend'] && userDetails.suspend.success\">{{'cui-success' | translate}}</button>\n"+
+"    </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/org-details/sections/headers/partials/unsuspend-user.html',
+"<div class=\"cui-users__address-container user-details__password-reset show-address\">\n"+
+"  <p>{{'cui-unsuspend-confirm' | translate}}</p>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-server-error ng-if=\"base.apiError.for['userDetails.unsuspend']\">\n"+
+"    <div class=cui-server-error__container>\n"+
+"      <span>{{ 'unsuspend-error' | translate }}</span>\n"+
+"    </div>\n"+
+"    <svg xmlns=http://www.w3.org/2000/svg class=cui-server-error__close ng-click=\"base.apiError.for['userDetails.unsuspend'] = !base.apiError.for['userDetails.unsuspend']\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 53\" aria-label=\"{{'cui-close' | translate}}\">\n"+
+"      <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#close-no-fill></use>\n"+
+"    </svg>\n"+
+"  </div>\n"+
+"\n"+
+"  <textarea class=\"cui-text-area jlr-text-area--black-text\" style=\"width: 100%; margin-bottom: 20px\" ng-model=userDetails.user.unsuspendReason placeholder=\"{{'request-reason' | translate}}\"></textarea>\n"+
+"\n"+
+"  \n"+
+"    <div class=cui-organization__submit-row disable-animate>\n"+
+"      <span ng-click=userDetails.unsuspend.cancel() class=cursor__pointer style=margin:5px>{{'cui-cancel' | translate}}</span>\n"+
+"      <button class=cui-button ng-class=\"{'cui-button--error' : userDetails.user.unsuspendReason.length==0}\" ng-if=\"!base.loader.for['userDetails.unsuspend'] && !base.apiError.for['userDetails.unsuspend'] && !userDetails.unsuspend.success\" ng-click=\"userDetails.user.unsuspendReason.length>0&&userDetails.unsuspend.confirm()\" style=margin:5px>{{'yes' | translate}}</button>\n"+
+"      <button class=cui-button ng-if=\"base.loader.for['userDetails.unsuspend']\">\n"+
+"        <div ng-include=\"'app/common-templates/partials/loader-updating.html'\"></div>\n"+
+"      </button>\n"+
+"      <button class=cui-button ng-class=\"{'cui-button--error' : userDetails.user.unsuspendReason.length==0}\" ng-if=\"!base.loader.for['userDetails.unsuspend'] && base.apiError.for['userDetails.unsuspend'] && !userDetails.unsuspend.success\" ng-click=\"userDetails.user.unsuspendReason.length>0&&userDetails.unsuspend.confirm()\">{{'cui-error-try-again' | translate}}</button>\n"+
+"       <button class=cui-button ng-class=\"{'cui-button--error' : userDetails.user.unsuspendReason.length==0}\" ng-if=\"!base.loader.for['userDetails.unsuspend'] && !base.apiError.for['userDetails.unsuspend'] && userDetails.unsuspend.success\">{{'cui-success' | translate}}</button>\n"+
+"    </div>\n"+
+"</div>");
+
+
+
+$templateCache.put('app/modules/organization/directory/org-details/sections/hierarchy/orgDetails-hierarchy.html',
+"\n"+
+"<div class=cui-loading__container--user-details ng-if=\"base.loader.for['orgDetailsHierarchy.loading']\">\n"+
+"  <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"</div>\n"+
+"\n"+
+"<div ng-if=\"!base.loader.for['orgDetailsHierarchy.loading']\">\n"+
+"  \n"+
+"    <div class=cui-tree ng-if=orgDetailsHierarchy.organizationHierarchy cui-tree-alt=orgDetailsHierarchy.organizationHierarchy cui-tree-alt-leaf-display=\"(object.name | cuiI18n)\" cui-tree-alt-leaf-click-callback=orgDetailsHierarchy.goToOrgPrfile cui-tree-alt-toggle-expand-callback=orgDetailsHierarchy.toggleExpand></div>\n"+
+"\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/org-details/sections/profile/orgDetails-profile.html',
+"\n"+
+"<div class=cui-loading__container--user-details ng-if=\"base.loader.for['orgDetailsProfile.init']\">\n"+
+"  <div class=\"cui-loader cui-loader--content-sm\" ng-include=\"'app/common-templates/partials/loader-content-sm.html'\"></div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<p class=cui-users__password-success style=color:red ng-if=\"base.apiError.for['orgDetailsProfile.init']\">{{'error-generic' | translate}}</p>\n"+
+"<div class=org-details__container ng-if=\"!base.loader.for['orgDetailsProfile.init'] && orgDetailsProfile.organization\">\n"+
+"  <div class=cui-organization__row>\n"+
+"    <div class=cui-organization__info-block>\n"+
+"      <div class=cui-organization__admin-block-wrapper>\n"+
+"\n"+
+"        \n"+
+"        <div class=\"cui-field-val cui-field-val--stack cui-organization__admin-block cui-organization__admin-block__right\">\n"+
+"          <h4 class=cui-field-val__field>{{'cui-address' | translate}}: </h4>\n"+
+"          <span class=cui-field-val__val>{{orgDetailsProfile.organization.addresses[0].streets[0]}}</span>\n"+
+"          <span class=cui-field-val__val>{{orgDetailsProfile.organization.addresses[0].city}}</span>\n"+
+"          <span class=cui-field-val__val>{{orgDetailsProfile.organization.addresses[0].state}}, {{orgDetailsProfile.organization.addresses[0].postal}}</span>\n"+
+"          <span class=cui-field-val__val>{{orgDetailsProfile.organization.phones[0].number}}</span>\n"+
+"        </div>\n"+
+"\n"+
+"        \n"+
+"        <div class=\"cui-organization__admin-block cui-organization__admin-block__right\">\n"+
+"          <h4 class=cui-field-val__field>{{'cui-info' | translate}}:</h4>\n"+
+"          <div class=cui-field-val ng-if=orgDetailsProfile.organization.url>\n"+
+"            <span class=cui-field-val__field>{{'url' | translate}}: </span>\n"+
+"            <span class=cui-field-val__val><a class=cui-link ng-href={{orgDetailsProfile.organization.url}}>{{orgDetailsProfile.organization.url}}</a></span>\n"+
+"          </div>\n"+
+"          <div class=cui-field-val ng-if=orgDetailsProfile.passwordPolicy>\n"+
+"            <span class=cui-field-val__field>{{'cui-password-policy' | translate}}: </span>\n"+
+"            <span class=cui-field-val__val>{{orgDetailsProfile.passwordPolicy.name}}</span>\n"+
+"          </div>\n"+
+"          <div class=cui-field-val ng-if=orgDetailsProfile.authenticationPolicy>\n"+
+"            <span class=cui-field-val__field>{{'cui-authentication-policy' | translate}}: </span>\n"+
+"            <span class=cui-field-val__val>{{orgDetailsProfile.authenticationPolicy.name}}</span>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"\n"+
+"        \n"+
+"        <div class=\"cui-organization__admin-block cui-organization__admin-block__right\" ng-if=orgDetailsProfile.organization.attributes>\n"+
+"          <h4 class=cui-field-val__field>{{'cui-more-information' | translate}}:</h4>\n"+
+"          <div class=cui-field-val ng-repeat=\" attribute in orgDetailsProfile.organization.attributes\">\n"+
+"            <span class=cui-field-val__field>{{attribute.name}}: </span>\n"+
+"            <span class=cui-field-val__val>{{attribute.value}}</span>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"        \n"+
+"        \n"+
+"        <h4 class=cui-field-val__field ng-if=\"orgDetailsProfile.securityAdmins&&orgDetailsProfile.securityAdmins.length!==0\">{{'cui-security-admin' | translate}}</h4>\n"+
+"        <div class=cui-organization__admin-block ng-repeat=\"admin in orgDetailsProfile.securityAdmins track by admin.id\">\n"+
+"          \n"+
+"          <div class=cui-field-val>\n"+
+"            <span class=cui-field-val__field>{{'cui-name' | translate}}: </span>\n"+
+"            <span class=cui-field-val__val>{{admin.name.given}} {{admin.name.surname}}</span>\n"+
+"          </div>\n"+
+"          \n"+
+"          <div class=cui-field-val>\n"+
+"            <span class=cui-field-val__field>{{'username' | translate}}: </span>\n"+
+"            <span class=cui-field-val__val>{{admin.username}}</span>\n"+
+"          </div>\n"+
+"          \n"+
+"          <div class=cui-field-val>\n"+
+"            <span class=cui-field-val__field>{{'title' | translate}}: </span>\n"+
+"            <span class=cui-field-val__val>{{admin.title}}</span>\n"+
+"          </div>\n"+
+"          \n"+
+"          <div class=cui-field-val>\n"+
+"            <span class=cui-field-val__field>{{'cui-phone' | translate}}: </span>\n"+
+"            <span class=cui-field-val__val>{{admin.phones[0].number}}</span>\n"+
+"          </div>\n"+
+"          \n"+
+"          <div class=cui-field-val>\n"+
+"            <span class=cui-field-val__field>{{'cui-email' | translate}}: </span>\n"+
+"            <span class=cui-field-val__val><a class=cui-link href=mailto:{{admin.email}}>{{admin.email}}</a></span>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/org-details/sections/profile/sections-profile/address.html',
+"<ng-form name=address>\n"+
+"  <div class=cui-users__field>\n"+
+"    <div class=cui-users__address-container class-toggle toggled-class=show-address>\n"+
+"      <div class=cui-users__field>\n"+
+"        <span class=cui-field-val__field>{{'cui-address' | translate}}</span>\n"+
+"        <span class=cui-link href=\"\" ng-if=!toggled ng-click=userDetailsProfile.toggleAllOff();toggleOn()>{{'cui-edit' | translate}}</span>\n"+
+"        <div ng-if=toggled ng-click=toggleOff()>\n"+
+"            <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 53\" preserveaspectratio=\"xMidYMid meet\" aria-label=\"{{'cui-close' | translate}}\"></cui-icon>\n"+
+"        </div>\n"+
+"        \n"+
+"      </div>\n"+
+"      \n"+
+"      <div ng-if=!toggled>\n"+
+"        <div class=cui-field-val__val>{{userDetailsProfile.user.addresses[0].streets[0]}} </div>\n"+
+"        <div class=cui-field-val__val ng-if=userDetailsProfile.user.addresses[0].streets[1]>{{userDetailsProfile.user.addresses[0].streets[1]}}</div>\n"+
+"        <div class=cui-field-val__val>{{userDetailsProfile.user.addresses[0].city}}</div>\n"+
+"        <div class=cui-field-val__val>{{userDetailsProfile.user.addresses[0].state}}<span ng-if=\"userDetailsProfile.user.addresses[0].state && userDetailsProfile.user.addresses[0].postal\">, </span>{{userDetailsProfile.user.addresses[0].postal}}</div>\n"+
+"        <div class=cui-field-val__val>{{base.countries.getCountryByCode(userDetailsProfile.user.addresses[0].country).name}}</div>\n"+
+"      </div>\n"+
+"      \n"+
+"      <div ng-if=toggled ng-init=\"userDetailsProfile.pushToggleOff({'name':'address','function':toggleOff})\">\n"+
+"        \n"+
+"        <label for=\"{{'cui-street-address' | translate}}\">{{'cui-street-address' | translate}}</label>\n"+
+"        <input type=text name=\"{{'cui-street-address' | translate}}\" class=cui-input ng-model=userDetailsProfile.tempUser.addresses[0].streets[0]>\n"+
+"        \n"+
+"        <label for=\"{{'cui-address-2' | translate}}\">{{'cui-address-2' | translate}}</label>\n"+
+"        <input type=text name=\"{{'cui-address-2' | translate}}\" ng-model=userDetailsProfile.tempUser.addresses[0].streets[1] class=cui-input>\n"+
+"        \n"+
+"        <label for=\"{{'cui-city' | translate}}\">{{'cui-city' | translate}}</label>\n"+
+"        <input type=text name=\"{{'cui-city' | translate}}\" class=cui-input ng-model=userDetailsProfile.tempUser.addresses[0].city>\n"+
+"        \n"+
+"        <div class=cui-form__field-row>\n"+
+"          <div class=\"cui-form__field-container cui-form__field-container--half\">\n"+
+"            <label for=\"{{'cui-state' | translate}}\">{{'cui-state' | translate}}</label>\n"+
+"            <input type=text name=\"{{'cui-state' | translate}}\" class=cui-input ng-model=userDetailsProfile.tempUser.addresses[0].state>\n"+
+"          </div>\n"+
+"          \n"+
+"          <div class=\"cui-form__field-container cui-form__field-container--half\">\n"+
+"            <label for=\"{{'cui-zip' | translate}}\">{{'cui-zip' | translate}}</label>\n"+
+"            <input type=text name=\"{{'cui-zip' | translate}}\" class=cui-input ng-model=userDetailsProfile.tempUser.addresses[0].postal>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=cui-wizard__field-container>\n"+
+"          <label for=country>{{\"cui-country\" | translate}}</label>\n"+
+"          <div class=cui-error ng-messages=user.country.$error ng-if=user.country.$touched>\n"+
+"            <div ng-messages-include=app/angular-templates/messages.html></div>\n"+
+"          </div>\n"+
+"          <div auto-complete input-name=country pause=100 selected-object=userDetailsProfile.userCountry initial-value=base.countries.getCountryByCode(userDetailsProfile.tempUser.addresses[0].country) local-data=base.countries.list search-fields=name title-field=name input-class=cui-input match-class=highlight auto-match=true></div>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=cui-users__address-submit>\n"+
+"          <a class=\"cui-link cui-form__cancel\" href=\"\" ng-click=\"userDetailsProfile.resetTempObject(userDetailsProfile.user, userDetailsProfile.tempUser); toggleOff()\">{{'cui-cancel' | translate}}</a>\n"+
+"          <button class=cui-button ng-click=\"userDetailsProfile.updatePerson('address',toggleOff);\">\n"+
+"            <span ng-if=\"!userDetailsProfile.address || !userDetailsProfile.address.submitting\">{{'cui-update' | translate}}</span>\n"+
+"            <div class=cui-loading--medium-ctr ng-if=userDetailsProfile.address.submitting></div>\n"+
+"            <span ng-if=userDetailsProfile.address.error>{{'cui-error-try-again'| translate}}</span>\n"+
+"          </button>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/org-details/sections/profile/sections-profile/basic-info.html',
+"<ng-form name=basicInfo>\n"+
+"  <div class=cui-users__field>\n"+
+"    <div class=cui-users__address-container class-toggle toggled-class=show-address>\n"+
+"      <div class=cui-users__field>\n"+
+"        <span class=cui-field-val__field>{{'basic-info' | translate}}</span>\n"+
+"        <span class=cui-link href=\"\" ng-if=!toggled ng-click=userDetailsProfile.toggleAllOff();toggleOn()>{{'cui-edit' | translate}}</span>\n"+
+"        <div ng-if=toggled ng-click=toggleOff()>\n"+
+"            <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 53\" preserveaspectratio=\"xMidYMid meet\" aria-label=\"{{'cui-close' | translate}}\"></cui-icon>\n"+
+"        </div>\n"+
+"        \n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=!toggled>\n"+
+"        <div class=cui-field-val>\n"+
+"          <span class=cui-field-val__field>{{'cui-org' | translate}}:</span>\n"+
+"          <span class=cui-field-val__val>{{userDetailsProfile.organization.name}}</span>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=cui-field-val>\n"+
+"          <span class=cui-field-val__field>{{'cui-name' | translate}}:</span>\n"+
+"          <span class=cui-field-val__val>{{userDetailsProfile.user.name.given}} {{userDetailsProfile.user.name.surname}}</span>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=cui-field-val>\n"+
+"          <span class=cui-field-val__field>{{'cui-email' | translate}}:</span>\n"+
+"          <span class=cui-field-val__val>{{userDetailsProfile.user.email}} </span>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=toggled ng-init=\"userDetailsProfile.pushToggleOff({'name':'basicInfo','function':toggleOff})\">\n"+
+"        \n"+
+"        <label for=firstName>{{'cui-first-name' | translate}}</label>\n"+
+"        <div class=cui-error ng-messages=basicInfo.firstName.$error>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"        <input type=text name=firstName class=cui-input ng-model=userDetailsProfile.tempUser.name.given ng-required=true focus-if=toggled>\n"+
+"        \n"+
+"        <label for=lastName>{{'cui-last-name' | translate}}</label>\n"+
+"        <div class=cui-error ng-messages=basicInfo.lastName.$error>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"        <input type=text name=lastName class=cui-input ng-model=userDetailsProfile.tempUser.name.surname ng-required=true>\n"+
+"        \n"+
+"        <label for=email>{{'cui-email' | translate}}</label>\n"+
+"        <div class=cui-error ng-messages=basicInfo.email.$error>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"        <input type=email name=email class=cui-input ng-model=userDetailsProfile.tempUser.email ng-required=true>\n"+
+"        \n"+
+"        <div class=cui-users__address-submit>\n"+
+"          <a class=\"cui-link cui-form__cancel\" href=\"\" ng-click=toggleOff()>{{'cui-cancel' | translate}}</a>\n"+
+"          <button class=cui-button ng-click=\"basicInfo.$valid && userDetailsProfile.updatePerson('basicInfo',toggleOff);\" ng-class=\"{'cui-button--error':!basicInfo.$valid}\">\n"+
+"            <span ng-if=\"!userDetailsProfile.basicInfo || !userDetailsProfile.basicInfo.submitting\">{{'cui-update' | translate}}</span>\n"+
+"            <div class=cui-loading--medium-ctr ng-if=userDetailsProfile.basicInfo.submitting></div>\n"+
+"            <span ng-if=userDetailsProfile.basicInfo.error>{{'cui-error-try-again'| translate}}</span>\n"+
+"          </button>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/org-details/sections/profile/sections-profile/challenge-questions.html',
+"<ng-form name=challengeQuestions>\n"+
+"  <div class=cui-users__field>\n"+
+"    <div class=cui-users__address-container class-toggle toggled-class=show-address>\n"+
+"      <div class=cui-users__field>\n"+
+"        <span class=cui-field-val__field>{{'challenge-questions' | translate}}</span>\n"+
+"        <span class=cui-link href=\"\" ng-if=!toggled ng-click=userDetailsProfile.toggleAllOff();toggleOn()>{{'cui-edit' | translate}}</span>\n"+
+"        <div ng-if=toggled ng-click=toggleOff()>\n"+
+"            <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 53\" preserveaspectratio=\"xMidYMid meet\" aria-label=\"{{'cui-close' | translate}}\"></cui-icon>\n"+
+"        </div>\n"+
+"        \n"+
+"      </div>\n"+
+"      <div ng-if=!toggled>\n"+
+"        <div ng-repeat=\"question in userDetailsProfile.challengeQuestionsTexts\">\n"+
+"          <span class=cui-field-val__field>{{$index+1}}:</span>\n"+
+"          <span class=cui-field-val__val>{{question}}</span>\n"+
+"          <br>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=toggled ng-init=\"userDetailsProfile.pushToggleOff({'name':'challengeQuestions','function':toggleOff})\">\n"+
+"        <div ng-repeat=\"question in userDetailsProfile.tempUserSecurityQuestions.questions\">\n"+
+"          <b>{{'cui-challenge-question' | translate}} {{$index+1}}</b>\n"+
+"          <select class=\"cui-input cui-input--full cui-select\" ng-model=question.question.id ng-options=\"question.id as (question.question | cuiI18n) for question in userDetailsProfile['allChallengeQuestions' + $index]\"></select>\n"+
+"          {{'cui-answer' | translate}}\n"+
+"          <div class=cui-error ng-messages=\"challengeQuestions['answer' + $index].$error\">\n"+
+"            <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"          </div>\n"+
+"          <input type=text ng-model=question.answer class=cui-input ng-class=\"{'cui-input--error':!challengeQuestions['answer'+$index].$valid}\" name=answer{{$index}} ng-change=userDetailsProfile.checkIfRepeatedSecurityAnswer(userDetailsProfile.tempUserSecurityQuestions.questions,challengeQuestions) ng-required=true>\n"+
+"          <br><br>\n"+
+"        </div>\n"+
+"\n"+
+"        \n"+
+"        <div class=cui-users__address-submit>\n"+
+"          <a class=\"cui-link cui-form__cancel\" href=\"\" ng-click=toggleOff()>{{'cui-cancel' | translate}}</a>\n"+
+"          <button class=cui-button ng-click=\"userDetailsProfile.saveChallengeQuestions('challengeQuestions',toggleOff);\" ng-class=\"{'cui-button--error':!challengeQuestions.$valid}\">\n"+
+"            <span ng-if=\"( !userDetailsProfile.challengeQuestions || !userDetailsProfile.challengeQuestions.submitting ) && !userDetailsProfile.challengeQuestions.error\">{{'cui-update' | translate}}</span>\n"+
+"            <div class=cui-loading--medium-ctr ng-if=userDetailsProfile.challengeQuestions.submitting></div>\n"+
+"            <span ng-if=userDetailsProfile.challengeQuestions.error>{{'cui-error-try-again'| translate}}</span>\n"+
+"          </button>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/org-details/sections/profile/sections-profile/password.html',
+"<ng-form name=password>\n"+
+"  <div class=cui-users__field>\n"+
+"    <div class=cui-users__address-container class-toggle toggled-class=show-address>\n"+
+"      <div class=cui-users__field>\n"+
+"        <span class=cui-field-val__field>{{'password-reset' | translate}}</span>\n"+
+"        <span class=cui-link href=\"\" ng-if=!toggled ng-click=userDetailsProfile.toggleAllOff();toggleOn()>{{'cui-edit' | translate}}</span>\n"+
+"        <div ng-if=toggled ng-click=userDetailsProfile.resetPasswordFields();toggleOff()>\n"+
+"            <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 53\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"        </div>\n"+
+"        \n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=toggled ng-init=\"userDetailsProfile.pushToggleOff({'name':'password','function':toggleOff})\">\n"+
+"\n"+
+"        \n"+
+"        <label for=currentPassword>{{'current-password' | translate}}</label>\n"+
+"        <div class=cui-error ng-messages=password.currentPassword.$error ng-if=password.currentPassword.$touched>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"        <input type=password name=currentPassword class=cui-input ng-model=userDetailsProfile.userPasswordAccount.currentPassword ng-required=true focus-if=toggled>\n"+
+"\n"+
+"        \n"+
+"        <div class=cui-input__password-holder>\n"+
+"          <label for=newPassword>{{'cui-enter-new-password' | translate}}: </label>\n"+
+"          <input class=cui-input name=newPassword type=password ng-model=userDetailsProfile.userPasswordAccount.password ng-required=true ng-class=\"{'cui-input--error': password.newPassword.$touched && password.newPassword.$invalid}\" password-validation=userDetailsProfile.passwordRules>\n"+
+"          \n"+
+"          <div password-popover ng-messages=password.newPassword.$error ng-messages-multiple ng-if=password.newPassword.$invalid class=cui-error__password>\n"+
+"            <div ng-messages-include=app/common-templates/password-validation.html></div>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"\n"+
+"        \n"+
+"        <label for=newPasswordRe>{{'cui-re-enter-new-password' | translate}}: </label>\n"+
+"        <div class=cui-error ng-if=\"password.newPasswordRe.$touched && password.newPasswordRe.$error.match\">\n"+
+"          <div class=cui-error__message>{{'password-mismatch' | translate}}</div>\n"+
+"        </div>\n"+
+"        <input class=\"cui-input cui-field-val__val\" type=password ng-model=userDetailsProfile.passwordRe name=newPasswordRe match=userDetailsProfile.userPasswordAccount.password>\n"+
+"\n"+
+"        \n"+
+"        <div class=cui-users__address-submit>\n"+
+"          <a class=\"cui-link cui-form__cancel\" href=\"\" ng-click=userDetailsProfile.resetPasswordFields();toggleOff()>{{'cui-cancel' | translate}}</a>\n"+
+"          <button class=cui-button ng-click=\"password.$valid && userDetailsProfile.updatePassword('password',toggleOff);\" ng-class=\"{'cui-button--error':!password.$valid}\">\n"+
+"            <span ng-if=\"(!userDetailsProfile.password || !userDetailsProfile.password.submitting) && !userDetailsProfile.password.error\">{{'cui-update' | translate}}</span>\n"+
+"            <div class=cui-loading--medium-ctr ng-if=userDetailsProfile.password.submitting></div>\n"+
+"            <span ng-if=userDetailsProfile.password.error>{{'cui-error-try-again'| translate}}</span>\n"+
+"          </button>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/org-details/sections/profile/sections-profile/phone-fax.html',
+"<ng-form name=phoneFax>\n"+
+"  <div class=cui-users__field>\n"+
+"    <div class=cui-users__address-container class-toggle toggled-class=show-address>\n"+
+"      <div class=cui-users__field>\n"+
+"        <span class=cui-field-val__field>{{'cui-phone-fax' | translate}}</span>\n"+
+"        <span class=cui-link href=\"\" ng-if=!toggled ng-click=userDetailsProfile.toggleAllOff();toggleOn()>{{'cui-edit' | translate}}</span>\n"+
+"        <div ng-if=toggled ng-click=toggleOff()>\n"+
+"            <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 53\" preserveaspectratio=\"xMidYMid meet\" aria-label=\"{{'cui-close' | translate}}\"></cui-icon>\n"+
+"        </div>\n"+
+"        \n"+
+"      </div>\n"+
+"\n"+
+"      <div ng-if=!toggled ng-repeat=\"phone in userDetailsProfile.user.phones\">\n"+
+"        <span class=cui-field-val__field>{{phone.type}}:</span>\n"+
+"        <span class=cui-field-val__val>{{phone.number}}</span>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=toggled>\n"+
+"        \n"+
+"        <div ng-repeat=\"phone in userDetailsProfile.tempUser.phones\">\n"+
+"          <label>{{phone.type}}</label>\n"+
+"          <div ng-messages=\"phoneFax['phone'+$index].$error\" class=cui-error>\n"+
+"            <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"          </div>\n"+
+"          <input class=cui-input type=text ng-model=phone.number name=phone{{$index}} ng-required=true>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=cui-users__address-submit>\n"+
+"          <a class=\"cui-link cui-form__cancel\" href=\"\" ng-click=toggleOff()>{{'cui-cancel' | translate}}</a>\n"+
+"          <button class=cui-button ng-click=\"phoneFax.$valid && userDetailsProfile.updatePerson('phoneFax',toggleOff);\" ng-class=\"{'cui-button--error':!phoneFax.$valid}\">\n"+
+"            <span ng-if=\"!userDetailsProfile.phoneFax || !userDetailsProfile.phoneFax.submitting\">{{'cui-update' | translate}}</span>\n"+
+"            <div class=cui-loading--medium-ctr ng-if=userDetailsProfile.phoneFax.submitting></div>\n"+
+"            <span ng-if=userDetailsProfile.phoneFax.error>{{'cui-error-try-again'| translate}}</span>\n"+
+"          </button>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/org-details/sections/profile/sections-profile/timezone-language.html',
+"<ng-form name=timezoneLanguage>\n"+
+"  <div class=cui-users__field>\n"+
+"    <div class=cui-users__address-container class-toggle toggled-class=show-address>\n"+
+"      <div class=cui-users__field>\n"+
+"        <span class=cui-field-val__field>{{'timezone-and-language' | translate}}</span>\n"+
+"        <span class=cui-link href=\"\" ng-if=!toggled ng-click=userDetailsProfile.toggleAllOff();toggleOn()>{{'cui-edit' | translate}}</span>\n"+
+"        <div ng-if=toggled ng-click=toggleOff()>\n"+
+"            <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 53\" preserveaspectratio=\"xMidYMid meet\" aria-label=\"{{'cui-close' | translate}}\"></cui-icon>\n"+
+"        </div>\n"+
+"        \n"+
+"      </div>\n"+
+"      <div ng-if=!toggled>\n"+
+"        <span class=cui-field-val__field>{{'cui-timezone' | translate}}:</span>\n"+
+"        <span class=cui-field-val__val>{{userDetailsProfile.timezoneById(userDetailsProfile.user.timezone)}}</span><br>\n"+
+"        <span class=cui-field-val__field>{{'cui-language' | translate}}:</span>\n"+
+"        <span class=cui-field-val__val>{{base.languages[userDetailsProfile.user.language]}}</span>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=toggled ng-init=\"userDetailsProfile.pushToggleOff({'name':'timezoneLangauge','function':toggleOff})\">\n"+
+"        \n"+
+"        <label for=timezone>{{'cui-timezone' | translate}}</label>\n"+
+"        <select class=\"cui-input cui-select\" ng-model=userDetailsProfile.tempUser.timezone ng-options=\"timezone.id as timezone.name for timezone in base.timezones\"></select>\n"+
+"        \n"+
+"        <label for=language>{{'cui-language' | translate}}</label>\n"+
+"        <select class=\"cui-input cui-select\" ng-model=userDetailsProfile.tempUser.language ng-options=\"languageCode as languageName for (languageCode,languageName) in base.languages\"></select>\n"+
+"        \n"+
+"        <div class=cui-users__address-submit>\n"+
+"          <a class=\"cui-link cui-form__cancel\" href=\"\" ng-click=toggleOff()>{{'cui-cancel' | translate}}</a>\n"+
+"          <button class=cui-button ng-click=\"userDetailsProfile.updatePerson('timezoneLanguage',toggleOff);\">\n"+
+"            <span ng-if=\"!userDetailsProfile.timezoneLanguage || !userDetailsProfile.timezoneLanguage.submitting\">{{'cui-update' | translate}}</span>\n"+
+"            <div class=cui-loading--medium-ctr ng-if=userDetailsProfile.timezoneLanguage.submitting></div>\n"+
+"            <span ng-if=userDetailsProfile.timezoneLanguage.error>{{'cui-error-try-again'| translate}}</span>\n"+
+"          </button>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/org-details/sections/users/orgDetails-users.html',
+"<main class=\"cui-organization cui-organization-dir\">\n"+
+"  \n"+
+"  \n"+
+"  <section class=cui-action ng-if=!orgDetailsUsers.loading>\n"+
+"    <h3 class=cui-sr-only>{{'org-dir-filters' | translate}}</h3>\n"+
+"    <div class=cui-loading__container ng-if=orgDetailsUsers.loading>\n"+
+"      <div class=\"cui-loader cui-loader--content\" ng-include=\"'app/common-templates/partials/loader-content-header.html'\"></div>\n"+
+"    </div>\n"+
+"   \n"+
+"    <span class=\"cui-action__title cui-mobile-only\">{{orgDetailsUsers.orgPersonCount}} People</span>\n"+
+"    <div class=\"cui-input-button cui-input-button--alt-bg\">\n"+
+"      <input class=cui-input-button__input ng-model=orgDetailsUsers.search.fullName focus-if placeholder=\"{{'cui-search-user-name' | translate}}\" on-enter=orgDetailsUsers.updateSearchByName>\n"+
+"      <button class=cui-input-button__button ng-click=\"orgDetailsUsers.updateSearchByName('name')\">{{'search' | translate}}</button>\n"+
+"    </div>\n"+
+"    <div class=cui-action__actions>\n"+
+"      \n"+
+"      <div class=cui-action__action-container ng-click=\"orgDetailsUsers.refineClicked=!orgDetailsUsers.refineClicked\" id=refine-button-users off-click=\"orgDetailsUsers.refineClicked=false\">\n"+
+"        <cui-icon cui-svg-icon=fa:filter10 svg-class=cui-action__icon use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"        <span class=cui-action__action-label>{{'refine' | translate}}</span>\n"+
+"        \n"+
+"        <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=#refine-button-users pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-70px'}, 'any']\" ng-if=orgDetailsUsers.refineClicked style=width:214px>\n"+
+"          <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"            <span ng-click=\"orgDetailsUsers.actionCallbacks.refine('all')\">{{'all' | translate}}</span>\n"+
+"          </div>\n"+
+"          <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"            <span ng-click=\"orgDetailsUsers.actionCallbacks.refine('active')\">{{'active' | translate}}</span>\n"+
+"          </div>\n"+
+"          <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"            <span ng-click=\"orgDetailsUsers.actionCallbacks.refine('pending')\">{{'pending' | translate}}</span>\n"+
+"          </div>\n"+
+"          <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"            <span ng-click=\"orgDetailsUsers.actionCallbacks.refine('locked')\">{{'locked' | translate}}</span>\n"+
+"          </div>\n"+
+"          <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"            <span ng-click=\"orgDetailsUsers.actionCallbacks.refine('suspended')\">{{'suspended' | translate}}</span>\n"+
+"            \n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-show=\"1==2\" class=cui-action__action-container ng-click=\"orgDetailsUsers.sortClicked=!orgDetailsUsers.sortClicked\" id=sort-button off-click=\"orgDetailsUsers.sortClicked=false\">\n"+
+"        <svg xmlns=http://www.w3.org/2000/svg class=cui-action__icon preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 216 146\">\n"+
+"          <use xlink:href=node_modules/@covisint/cui-icons/dist/font-awesome/font-awesome-out.svg#sort14></use>\n"+
+"        </svg>\n"+
+"        <span class=cui-action__action-label>{{'sort' | translate}}</span>\n"+
+"        \n"+
+"        <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=#sort-button pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-40px'}, 'any']\" ng-if=orgDetailsUsers.sortClicked style=width:171px>\n"+
+"          <div class=cui-popover__row>\n"+
+"            <span ng-click=\"orgDetailsUsers.actionCallbacks.sort('name')\">{{'cui-alphabetically' | translate}}</span>\n"+
+"          </div>\n"+
+"          <div class=cui-popover__row>\n"+
+"            <span ng-click=\"orgDetailsUsers.actionCallbacks.sort('username')\">{{'username' | translate}}</span>  \n"+
+"          </div>\n"+
+"          <div class=cui-popover__row>\n"+
+"            <span ng-click=\"orgDetailsUsers.actionCallbacks.sort('status')\">{{'status' | translate}}</span>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </section>\n"+
+"\n"+
+"  \n"+
+"  <section class=cui-organization__main-container>\n"+
+"    <h3 class=cui-sr-only>{{'org-dir-list'}}</h3>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-loading__container ng-if=\"base.loader.for['orgDetailsUsers.userList']\">\n"+
+"      <div class=\"cui-loader cui-loader--content\" ng-include=\"'app/common-templates/partials/loader-content.html'\"></div>\n"+
+"    </div>\n"+
+"\n"+
+"    <cui-table-header headers=\"['cui-name', 'username', 'status']\" sorting=orgDetailsUsers.sortBy sorting-callbacks=orgDetailsUsers.sortingCallbacks>\n"+
+"      </cui-table-header>\n"+
+"      <p ng-if=\"orgDetailsUsers.userList.length===0\">{{'cui-no-details' | translate}}</p>\n"+
+"\n"+
+"    <cui-table-row ng-repeat=\"user in orgDetailsUsers.userList track by user.id\" ng-click=orgDetailsUsers.userClick(user)>\n"+
+"      <li class=\"cui-flex-table__tr cui-flex-table__tr--c\">\n"+
+"        \n"+
+"        <div class=cui-flex-table__avatar-col>\n"+
+"          <div class=cui-profile__user-avatar aria-hidden=true cui-avatar cui-avatar-names=\"[user.name.given, user.name.surname]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"        </div>\n"+
+"        <div class=cui-flex-table__mobile-stack>\n"+
+"          \n"+
+"          <div class=cui-flex-table__left><span class=cui-flex-table__title>{{user.name.given}} {{user.name.surname}}</span></div>\n"+
+"          \n"+
+"          <div class=cui-flex-table__middle><span class=cui-mobile-only>{{'username' | translate | lowercase}}: &nbsp;</span>{{user.username}}</div>\n"+
+"          \n"+
+"          <div class=cui-flex-table__right>\n"+
+"            <span class=cui-mobile-only>{{'apps' | translate}} ({{user.appCount}}) &nbsp;</span>\n"+
+"            <span ng-class=\"'cui-status--'+user.status\">{{user.status}}</span>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </li>\n"+
+"    </cui-table-row>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-paginate__container>\n"+
+"      <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"      <results-per-page class=cui-paginate__select ng-model=orgDetailsUsers.search.pageSize></results-per-page>\n"+
+"      <paginate class=cui-paginate results-per-page=orgDetailsUsers.search.pageSize count=orgDetailsUsers.userCount on-page-change=orgDetailsUsers.updateSearchParams ng-model=orgDetailsUsers.search.page attach-rerender-to=orgDetailsUsers.reRenderPagination></paginate>\n"+
+"    </div>\n"+
+"\n"+
+"  </section>\n"+
+"</main>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-app-details/directory-userAppDetails.html',
+"\n"+
+"<div class=code-info>Code for this page can be found <a class=cui-link href=https://github.com/covisint/cui-idm-b2x/tree/master/app/modules/applications/myApplications target=blank>here</a></div>\n"+
+"  \n"+
+"<div class=\"cui-applications__app-details cui-organization__user-details\">\n"+
+"\n"+
+"\n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  <div class=cui-action>\n"+
+"    <span class=cui-action__title ng-click=\"base.goBack('organization.directory.userDetails',userAppDetails.prevState.params)\">&#60; {{'user-details' | translate}}</span>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div>\n"+
+"    \n"+
+"    <div class=cui-loading__container ng-if=\"base.loader.for['userAppDetails.app']||base.loader.for['userAppDetails.claims']||base.loader.for['userAppDetails.relatedApps']\">\n"+
+"      <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"    </div>\n"+
+"\n"+
+"    <div ng-if=\"!base.loader.for['userAppDetails.app']\">\n"+
+"      <div ng-include=\"'app/modules/organization/directory/user-app-details/sections/header-main.html'\"></div>\n"+
+"\n"+
+"      <div class=user-app-details__container>\n"+
+"        \n"+
+"        <div class=\"cui-tabs class-toggle\">\n"+
+"          <ul class=cui-tabs__nav ng-if=\"userAppDetails.relatedApps.length!==0\">\n"+
+"            <li class=cui-tabs__tab-container><a class=cui-tabs__tab data-pane=tab1 ng-class=\"{'cui-tabs__tab--active':!userAppDetails.inClaims}\" ng-click=\"userAppDetails.inClaims=false\">{{'bundled-applications' | translate}}</a></li>\n"+
+"            <li class=cui-tabs__tab-container><a class=cui-tabs__tab data-pane=tab2 ng-class=\"{'cui-tabs__tab--active':userAppDetails.inClaims}\" ng-click=\"userAppDetails.inClaims=true\">{{'related-applications' | translate}}</a></li>\n"+
+"          </ul>\n"+
+"          <div class=cui-tabs__content>\n"+
+"            \n"+
+"            <div id=tab1 class=cui-tabs__tab-pane ng-class=\"{'cui-tabs__tab-pane--active':!userAppDetails.inClaims}\">\n"+
+"              <div class=cui-applications__details>\n"+
+"                \n"+
+"                <div ng-if=\"(!userAppDetails.app.bundledApps || userAppDetails.app.bundledApps.length===0)\">\n"+
+"                  <p>{{'no-bundled' | translate}}</p>\n"+
+"                </div>\n"+
+"                \n"+
+"                <div ng-if=\"userAppDetails.app.bundledApps && userAppDetails.app.bundledApps.length!==0\">\n"+
+"                  <h4 class=\"h6 bold\">{{'bundled-applications' | translate}}</h4>\n"+
+"                  <div class=cui-media ng-repeat=\"application in userAppDetails.app.bundledApps\">\n"+
+"                    <div class=cui-media__body>\n"+
+"                      <a class=cui-media__link ng-click=userAppDetails.goToDetails(application)>{{application.name | cuiI18n}}</a>\n"+
+"                      <span class=cui-media__content>{{ 'granted' | translate }}: {{userAppDetails.app.grant.instant | date:base.appConfig.dateFormat}}</span>\n"+
+"                    </div>\n"+
+"                    <span class=cui-media__status ng-class=\"'cui-status--'+userAppDetails.app.grant.status\">{{application.status | lowercase}}</span>  \n"+
+"                  </div>\n"+
+"                </div>\n"+
+"              </div>\n"+
+"            </div>\n"+
+"\n"+
+"            \n"+
+"            <div id=tab2 class=cui-tabs__tab-pane ng-class=\"{'cui-tabs__tab-pane--active':userAppDetails.inClaims}\" ng-if=\"userAppDetails.relatedApps.length>0\">\n"+
+"              \n"+
+"              <div ng-if=\"userAppDetails.relatedApps.length!==0\">\n"+
+"                <h4 class=\"h6 bold\">{{'related-applications' | translate}}</h4>\n"+
+"                <div class=cui-applications__related-apps ng-repeat=\"application in userAppDetails.relatedApps\">\n"+
+"                  <div class=cui-applications__related-app-col>\n"+
+"                    <a class=cui-media__link ng-click=userAppDetails.goToDetails(application) ng-if=application.grant>{{application.name | cuiI18n}}</a> \n"+
+"                    <span class=cui-media__content ng-if=!application.grant>{{application.name | cuiI18n}}</span>\n"+
+"                    <span class=cui-media__content ng-if=application.grant>{{ 'granted' | translate }}: {{application.grant.instant| date:base.appConfig.dateFormat}}</span> \n"+
+"                    <span class=cui-button ng-if=!application.grant>{{'request' | translate}}</span>\n"+
+"                  </div>\n"+
+"                  <span class=cui-media__status ng-class=\"'cui-status--'+application.status\" ng-if=application.status>{{application.grant.status | lowercase}}</span>  \n"+
+"                </div>\n"+
+"              </div>\n"+
+"            </div>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"\n"+
+"        \n"+
+"        <div class=cui-applications__desktop-tabs>\n"+
+"\n"+
+"          \n"+
+"          <div class=\"cui-tile cui-applications__left\">\n"+
+"            <h4 class=\"cui-tile__title cui-applications__title\">{{'bundled-applications' | translate}}</h4>\n"+
+"            <div class=\"cui-tile__body cui-applications__details\">\n"+
+"              \n"+
+"              <div class=cui-applications__no-details ng-if=\"(!userAppDetails.app.bundledApps || userAppDetails.app.bundledApps.length===0)\">\n"+
+"                <p>{{'no-bundled' | translate}}</p>\n"+
+"              </div>\n"+
+"              \n"+
+"              <div class=cui-applications__bundled-apps ng-if=\"userAppDetails.app.bundledApps && userAppDetails.app.bundledApps.length!==0\">\n"+
+"                \n"+
+"                <div class=cui-applications__bundled-app ng-repeat=\"application in userAppDetails.app.bundledApps\">\n"+
+"                  <div class=cui-applications__related-app-col>\n"+
+"                    <a class=\"cui-link bold\" ng-click=userAppDetails.goToDetails(application)>{{application.name | cuiI18n}}</a>\n"+
+"                    <span class=cui-media__content>{{ 'granted' | translate | lowercase}}: {{userAppDetails.app.grant.instant | date:base.appConfig.dateFormat}}</span>\n"+
+"                  </div>\n"+
+"                  <div class=cui-media__status ng-class=\"'cui-status--'+userAppDetails.app.grant.status\">{{userAppDetails.app.grant.status |lowercase}}</div>  \n"+
+"                </div>\n"+
+"              </div>\n"+
+"            </div>\n"+
+"            <br>\n"+
+"          </div>\n"+
+"\n"+
+"            \n"+
+"            <div class=\"cui-tile cui-applications__right\" ng-if=\"userAppDetails.relatedApps&&userAppDetails.relatedApps.length!==0\">\n"+
+"              <h4 class=\"cui-tile__title cui-applications__title\" ng-if=\"userAppDetails.relatedApps.length!==0\">{{'related-applications' | translate}}</h4>\n"+
+"              <div class=\"cui-tile__body cui-applications__details\" ng-if=\"userAppDetails.relatedApps.length!==0\">\n"+
+"                \n"+
+"                <div class=cui-applications__related-apps>\n"+
+"                \n"+
+"                  <div class=cui-applications__related-app ng-repeat=\"application in userAppDetails.relatedApps\">\n"+
+"                    <div class=cui-applications__related-app-col>\n"+
+"                      <a class=\"cui-link bold\" ng-click=userAppDetails.goToDetails(application) ng-if=application.grant>{{application.name | cuiI18n}}</a> \n"+
+"                      <h5 class=bold ng-if=!application.grant>{{application.name | cuiI18n}}</h5>\n"+
+"                      <span class=cui-media__content ng-if=application.grant>{{ 'granted' | translate }}: {{application.grant.instant | date:base.appConfig.dateFormat}}</span> \n"+
+"                    </div>\n"+
+"                    <div class=\"cui-button cui-button--small-rounded\" ng-if=!application.grant>{{'request' | translate}}</div>\n"+
+"                    <div class=cui-media__status ng-class=\"'cui-status--'+application.status\" ng-if=application.grant>{{application.grant.status | lowercase}}</div>  \n"+
+"                  </div>\n"+
+"                </div>\n"+
+"              </div>\n"+
+"            </div>\n"+
+"\n"+
+"        </div>\n"+
+"      </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-app-details/sections/header-main.html',
+"\n"+
+"<div class=\"cui-media cui-media--centered\">\n"+
+"  \n"+
+"  <div class=cui-media__image-container>\n"+
+"    <a ng-href={{userAppDetails.app.mangledUrl}} target=_blank>\n"+
+"      <div class=cui-media__image cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5 cui-avatar-names=userAppDetails.app.name cui-avatar-cuii18n-filter cui-avatar=userAppDetails.app.iconUrl></div>\n"+
+"    </a>\n"+
+"  </div>\n"+
+"  \n"+
+"  <div class=cui-media__body>\n"+
+"    <h3 class=cui-media__title>{{userAppDetails.app.name | cuiI18n|capitalize}}</h3>\n"+
+"    <span class=cui-media__content>{{ 'granted' | translate }}: {{userAppDetails.app.grant.instant | date:base.appConfig.dateFormat}}</span>\n"+
+"    \n"+
+"    <div class=cui-media__content><span class=cui-media__content--dark>{{'status' | translate}}:</span>  <span ng-class=\"'cui-status--'+userAppDetails.app.grant.status\">{{userAppDetails.app.grant.status | lowercase}}</span></div>\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n"+
+"<div class=cui-media__button-container disable-animate>\n"+
+"  <button class=\"cui-button cui-button--inverted\" ng-if=\"userAppDetails.app.grant.status=='active'\" ng-click=\"userAppDetails.toggleDropDown('suspend')\">{{'suspend-app' | translate}}</button>\n"+
+"  <button class=\"cui-button cui-button--inverted\" ng-if=\"userAppDetails.app.grant.status=='suspended'\" ng-click=\"userAppDetails.toggleDropDown('unsuspend')\">{{'unsuspend-app' | translate}}</button>\n"+
+"  <button class=\"cui-button cui-button--inverted\" ng-if=\"userAppDetails.app.grant.status=='suspended'&&!base.loader.for['userAppDetails.remove']\" ng-click=\"userAppDetails.toggleDropDown('remove'); userAppDetails.removeApp()\">\n"+
+"    <span ng-if=\"!base.apiError.for['userAppDetails.remove']\">{{'remove-app' | translate}}</span>\n"+
+"    <span ng-if=\"base.apiError.for['userAppDetails.remove']\">{{'cui-error-try-again' | translate}}</span>\n"+
+"  </button>\n"+
+"  <button class=\"cui-button cui-button--inverted\" ng-if=\"userAppDetails.app.grant.status=='suspended'&&base.loader.for['userAppDetails.remove']\"><div ng-include=\"'app/common-templates/partials/loader-updating.html'\"></div>\n"+
+"  </button>\n"+
+"  <button class=\"cui-button cui-button--inverted\" ng-if=\"userAppDetails.packageClaims.length!==0\" ng-click=\"userAppDetails.toggleDropDown('claims')\">{{'modify-claims' | translate}}</button>\n"+
+"  \n"+
+"</div>\n"+
+"<div ng-include=\"'app/modules/organization/directory/user-app-details/sections/modify-claims.html'\"></div>\n"+
+"<div ng-include=\"'app/modules/organization/directory/user-app-details/sections/suspend-body.html'\"></div>\n"+
+"<div ng-include=\"'app/modules/organization/directory/user-app-details/sections/unsuspend-body.html'\"></div>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-app-details/sections/modify-claims.html',
+"<div class=\"cui-expandable__body cui-expandable__body--alt-bg\" ng-if=userAppDetails.dropDown.claims>\n"+
+"  \n"+
+"  <div class=cui-expandable__body-col>\n"+
+"    <div class=cui-expandable__body-header>{{'claims' | translate}}:</div>\n"+
+"    <p ng-if=\"userAppDetails.packageClaims.length===0\">{{'cui-package-no-claims' | translate}}.</p>\n"+
+"    <div ng-if=\"userAppDetails.packageClaims.length>0\" ng-repeat=\"claim in userAppDetails.packageClaims\">\n"+
+"      <h3 class=bold>{{claim.name | cuiI18n}}</h3>\n"+
+"      <ul class=cui-checkbox__group>\n"+
+"        <div class=cui-checkbox__group ng-repeat=\"claimValue in claim.claimValues\">\n"+
+"          <li class=cui-checkbox__container>\n"+
+"            <input class=cui-checkbox type=checkbox ng-model=userAppDetails.claimSelection[claim.claimId][claimValue.claimValueId] id=\"{{claimValue.name | cuiI18n}}\">\n"+
+"            <label class=cui-checkbox__label for=\"{{claimValue.name | cuiI18n}}\">{{claimValue.name | cuiI18n}}</label>\n"+
+"          </li>\n"+
+"        </div>\n"+
+"      </ul>\n"+
+"      \n"+
+"    </div>\n"+
+"  </div>\n"+
+"  <div class=cui-organization__submit-row disable-animate>\n"+
+"    <span ng-click=\"userAppDetails.dropDown.claims=false\" class=cursor__pointer style=margin:5px>{{'cui-cancel' | translate}}</span>\n"+
+"    <button class=cui-button ng-if=\"!base.loader.for['userAppDetails.modifyClaims'] && !base.apiError.for['userAppDetails.modifyClaims'] && !userAppDetails.modifyClaimsSuccess\" ng-click=userAppDetails.modifyClaims() style=margin:5px>{{'cui-update' | translate}}</button>\n"+
+"    <button class=cui-button ng-if=\"base.loader.for['userAppDetails.modifyClaims']\">\n"+
+"      <div ng-include=\"'app/common-templates/partials/loader-updating.html'\"></div>\n"+
+"    </button>\n"+
+"    <button class=cui-button ng-if=\"!base.loader.for['userAppDetails.modifyClaims'] && base.apiError.for['userAppDetails.modifyClaims']\" ng-click=userAppDetails.modifyClaims()>{{'cui-error-try-again' | translate}}</button>\n"+
+"    <button class=cui-button ng-if=\"!base.loader.for['userAppDetails.modifyClaims'] && userAppDetails.modifyClaimsSuccess\">{{'cui-success' | translate}}</button>\n"+
+"  </div>\n"+
+"</div>");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-app-details/sections/suspend-body.html',
+"<div class=\"cui-expandable__body cui-expandable__body--alt-bg\" ng-if=userAppDetails.dropDown.suspend>\n"+
+"  <ng-form name=suspendApp novalidate>\n"+
+"    <p>{{'cui-suspend-confirm' |translate}}</p>\n"+
+"    <div class=cui-applications__review-text-input>\n"+
+"      <p class=\"cui-error h6\" ng-if=suspendApp.reason.$error.required&&suspendApp.reason.$dirty>{{'cui-this-field-is-required' | translate}}</p>\n"+
+"      <textarea name=reason class=cui-text-area ng-required=true ng-model=userAppDetails.suspendReason placeholder=\"{{'reason'|translate}}({{'required'|translate}})\"></textarea>\n"+
+"    </div>\n"+
+"    <div class=cui-organization__submit-row disable-animate>\n"+
+"      <span ng-click=\"userAppDetails.dropDown.suspend=false\" class=cursor__pointer style=margin:5px>{{'cui-cancel' | translate}}</span>\n"+
+"      <button class=cui-button ng-class=\"{'cui-button--error' : !suspendApp.$valid}\" ng-if=\"!base.loader.for['userAppDetails.suspend'] && !base.apiError.for['userAppDetails.suspend']\" ng-click=suspendApp.$valid&&userAppDetails.suspendApp() style=margin:5px>{{'suspend' | translate}}</button>\n"+
+"      <button class=cui-button ng-if=\"base.loader.for['userAppDetails.suspend']\">\n"+
+"        <div ng-include=\"'app/common-templates/partials/loader-updating.html'\"></div>\n"+
+"      </button>\n"+
+"      <button class=cui-button ng-class=\"{'cui-button--error' : !suspendApp.$valid}\" ng-if=\"!base.loader.for['userAppDetails.suspend'] && base.apiError.for['userAppDetails.suspend']\" ng-click=suspendApp.$valid&&userAppDetails.suspendApp()>{{'cui-error-try-again' | translate}}</button>\n"+
+"    </div>\n"+
+"  </ng-form>\n"+
+"</div>");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-app-details/sections/unsuspend-body.html',
+"<div class=\"cui-expandable__body cui-expandable__body--alt-bg\" ng-if=userAppDetails.dropDown.unsuspend>\n"+
+"  <ng-form name=unsuspendApp novalidate>\n"+
+"    <p>{{'cui-unsuspend-confirm' |translate}}</p>\n"+
+"    <div class=cui-applications__review-text-input>\n"+
+"      <p class=\"cui-error h6\" ng-if=unsuspendApp.reason.$error.required&&unsuspendApp.reason.$dirty>{{'cui-this-field-is-required' | translate}}</p>\n"+
+"      <textarea name=reason class=cui-text-area ng-required=true ng-model=userAppDetails.unsuspendReason placeholder=\"{{'reason'|translate}}({{'required'|translate}})\"></textarea>\n"+
+"    </div>\n"+
+"    <div class=cui-organization__submit-row disable-animate>\n"+
+"      <span ng-click=\"userAppDetails.dropDown.unsuspend=false\" class=cursor__pointer style=margin:5px>{{'cui-cancel' | translate}}</span>\n"+
+"      <button class=cui-button ng-class=\"{'cui-button--error' : !unsuspendApp.$valid}\" ng-if=\"!base.loader.for['userAppDetails.unsuspend'] && !base.apiError.for['userAppDetails.unsuspend'] &&!userAppDetails.unsuspendAppSuccess\" ng-click=unsuspendApp.$valid&&userAppDetails.unsuspendApp() style=margin:5px>{{'unsuspend' | translate}}</button>\n"+
+"      <button class=cui-button ng-if=\"base.loader.for['userAppDetails.unsuspend']\">\n"+
+"        <div ng-include=\"'app/common-templates/partials/loader-updating.html'\"></div>\n"+
+"      </button>\n"+
+"      <button class=cui-button ng-class=\"{'cui-button--error' : !unsuspendApp.$valid}\" ng-if=\"!base.loader.for['userAppDetails.unsuspend'] && base.apiError.for['userAppDetails.unsuspend']\" ng-click=unsuspendApp.$valid&&userAppDetails.unsuspendApp()>{{'cui-error-try-again' | translate}}</button>\n"+
+"      <button class=cui-button ng-if=\"!base.loader.for['userAppDetails.unsuspend'] && userAppDetails.unsuspendAppSuccess\">{{'cui-success' | translate}}</button>\n"+
+"    </div>\n"+
+"  </ng-form>\n"+
+"</div>");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-details/directory-userDetails.html',
+"\n"+
+"<div class=code-info>The markup and javascript used to build this page can be found <a class=cui-link href=https://github.com/thirdwavellc/cui-idm-b2x/tree/master/app/modules/organization/directory target=blank>here</a>.</div>\n"+
+"\n"+
+"\n"+
+"<div class=\"cui-organization cui-organization__user-details\">\n"+
+"  \n"+
+"  <ng-include src=\"'app/modules/organization/directory/user-details/sections/headers/userDetails-header.html'\" onload=\"orgId=userDetails.prevState.params.orgId ; label='user-details'\"></ng-include>\n"+
+"\n"+
+"  <div class=cui-organization__details-container>\n"+
+"    \n"+
+"    <div class=cui-organization__details-col>\n"+
+"\n"+
+"      \n"+
+"      <div ng-include=\"'app/modules/organization/directory/user-details/sections/headers/userDetails-header-left.html'\"></div>\n"+
+"\n"+
+"      \n"+
+"      <cui-resize-handler desktop show-if=userDetails.profileDesktop ng-if=\"userDetails.profileRolesSwitch==='profile'\">\n"+
+"        <div ui-view=profile></div>\n"+
+"      </cui-resize-handler>\n"+
+"\n"+
+"      \n"+
+"      <cui-resize-handler mobile show-if=userDetails.profileMobile ng-if=\"userDetails.mobileHandler==='profile'\">\n"+
+"        <div ui-view=profile></div>\n"+
+"      </cui-resize-handler>\n"+
+"\n"+
+"      \n"+
+"      <cui-resize-handler desktop show-if=userDetails.rolesDesktop ng-if=\"userDetails.profileRolesSwitch==='roles'\">\n"+
+"        <div ui-view=roles></div>\n"+
+"      </cui-resize-handler>\n"+
+"\n"+
+"      \n"+
+"      <cui-resize-handler mobile show-if=userDetails.rolesMobile ng-if=\"userDetails.mobileHandler==='roles'\">\n"+
+"        <div ui-view=roles></div>\n"+
+"      </cui-resize-handler>\n"+
+"\n"+
+"      \n"+
+"      <cui-resize-handler mobile show-if=userDetails.applicationsMobile ng-if=\"userDetails.mobileHandler==='apps'\">\n"+
+"        <div ui-view=applications></div>\n"+
+"      </cui-resize-handler>\n"+
+"\n"+
+"      \n"+
+"      <cui-resize-handler mobile show-if=userDetails.historyMobile ng-if=\"userDetails.mobileHandler==='history'\">\n"+
+"        <div ui-view=history></div>\n"+
+"      </cui-resize-handler>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-organization__details-col>\n"+
+"\n"+
+"      \n"+
+"      <div ng-include=\"'app/modules/organization/directory/user-details/sections/headers/userDetails-header-right.html'\"></div>\n"+
+"\n"+
+"      \n"+
+"      <cui-resize-handler desktop show-if=userDetails.applicationsDesktop ng-if=\"userDetails.appsHistorySwitch==='apps'\">\n"+
+"        <div ui-view=applications></div>\n"+
+"      </cui-resize-handler>\n"+
+"\n"+
+"      \n"+
+"      <cui-resize-handler desktop show-if=userDetails.historyDesktop ng-if=\"userDetails.appsHistorySwitch==='history'\">\n"+
+"        <div ui-view=history></div>\n"+
+"      </cui-resize-handler>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-details/sections/applications/userDetails-applications.html',
+"\n"+
+"<div class=cui-loading__container--user-details ng-if=userDetailsApps.loading>\n"+
+"  <div class=\"cui-loader cui-loader--content-sm\" ng-include=\"'app/common-templates/partials/loader-content-sm.html'\"></div>\n"+
+"</div>\n"+
+"\n"+
+"<div ng-if=!userDetailsApps.loading>\n"+
+"  <div style=position:relative>\n"+
+"\n"+
+"  	\n"+
+"  	<div ng-if=\"userDetailsApps.appList.length===0\">\n"+
+"			<p>{{'cui-user-no-apps'|translate}}!</p>\n"+
+"  	</div>\n"+
+"\n"+
+"  	\n"+
+"  	<ul ng-if=\"userDetailsApps.appList.length!==0\">\n"+
+"	    <li class=\"cui-flex-table__tr cui-flex-table__tr--b\" ng-repeat=\"application in userDetailsApps.appList track by $index\">\n"+
+"	    	\n"+
+"	      <div class=cui-flex-table__avatar-col>\n"+
+"	        <a ng-href={{application.mangledUrl}} target=_blank><div class=cui-media__image cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5 cui-avatar-names=application.name cui-avatar-cuii18n-filter cui-avatar></div></a>\n"+
+"	      </div>\n"+
+"\n"+
+"				\n"+
+"        <div class=cui-flex-table__left--stacked>\n"+
+"          <h3 class=cui-flex-table__title ng-click=userDetailsApps.goToDetails(application)>{{application.name | cuiI18n}}</h3>\n"+
+"          <span ng-if=\"application.grant.status!=='pending'\" class=cui-flex-table__subtitle-info>{{ 'granted' | translate }}: {{application.grant.instant | date:base.appConfig.dateFormat}}</span>\n"+
+"          <span class=\"cui-status cui-mobile-only\" ng-class=\" 'cui-status--'+application.grant.status \">{{application.grant.status | lowercase}}</span>\n"+
+"        </div>\n"+
+"        <div class=\"cui-flex-table__middle cui-desktop-only\">\n"+
+"          <span class=cui-media__content> {{application.category | cuiI18n}}</span>\n"+
+"        </div>\n"+
+"        <div class=\"cui-flex-table__right cui-flex-table__right--stacked\">\n"+
+"          <span class=\"cui-status cui-desktop-only\" ng-class=\" 'cui-status--'+application.grant.status \">{{application.grant.status | lowercase}}</span>\n"+
+"          <span class=cui-flex-table__review ng-if=\"application.grant.status==='pending'\" ui-sref=organization.requests.pendingRequests({userId:userDetails.user.id,orgId:userDetails.user.organization.id})>{{'cui-review' | translate}}</span>\n"+
+"        </div>\n"+
+"	    </li>\n"+
+"	  </ul>\n"+
+"</div>\n"+
+"</div>");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-details/sections/headers/partials/specify-password.html',
+"\n"+
+"<div class=\"cui-users__address-container user-details__password-reset show-address\" ng-if=userDetails.specifyPassword.begun>\n"+
+"  <div class=cui-users__field>\n"+
+"    <span class=cui-field-val__field>{{'specify-password' | translate}}</span>\n"+
+"    <svg xmlns=http://www.w3.org/2000/svg class=cui-action__icon ng-click=userDetails.specifyPassword.cancel() preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 53\" aria-label=\"{{'cui-close' | translate}}\">\n"+
+"      <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#close-no-fill></use>\n"+
+"    </svg>\n"+
+"  </div>\n"+
+"\n"+
+"  <ng-form name=password>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-input__password-holder ng-init=\"userDetails.specifyPassword.form = password\">\n"+
+"      <label for=newPassword>{{'cui-enter-new-password' | translate}}:</label>\n"+
+"      <input id=password-input class=cui-input name=newPassword type=password ng-model=userDetails.specifyPassword.newPassword ng-required=true ng-class=\"{'cui-input--error': password.newPassword.$touched && password.newPassword.$invalid}\" password-validation=userDetails.passwordPolicy.rules ng-focus=\"userDetails.specifyPassword.rulesPopover=true\" ng-blur=\"userDetails.specifyPassword.rulesPopover=false\" ng-change=\"userDetails.specifyPassword.validate(userDetails.specifyPassword.newPassword, password, 'newPassword')\">\n"+
+"      \n"+
+"      <div cui-popover target=#password-input popover-positions=\"[{position:'right'},{position:'bottom'}]\" ng-if=userDetails.specifyPassword.rulesPopover>\n"+
+"        \n"+
+"          \n"+
+"     \n"+
+"            <div password-popover ng-messages=password.newPassword.$error ng-messages-multiple class=cui-error__password>\n"+
+"            \n"+
+"            <div ng-messages-include=app/common-templates/password-validation-history/password-validation-top.html></div>\n"+
+"            \n"+
+"            <div class=cui-error__message ng-if=!userDetails.validNewPasswordDisallowed>\n"+
+"              <br>\n"+
+"              <span translate=disallowed-password-rule></span>\n"+
+"            </div><br>\n"+
+"            \n"+
+"            <div class=cui-error__message>\n"+
+"              <div class=cui-error__status ng-class=\"{'cui-error__status--pass': userDetails.specifyPassword.validNewPassword}\"></div>\n"+
+"              <span translate=cui-password-history-rule translate-value-number-of-passwords={{userDetails.numberOfPasswords}}></span>\n"+
+"            </div><br>\n"+
+"            \n"+
+"            <div ng-messages-include=app/common-templates/password-validation-history/password-validation-bottom.html></div>\n"+
+"          </div>\n"+
+"      </div>\n"+
+"\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"\n"+
+"      <label for=newPasswordRe>{{'cui-re-enter-new-password' | translate}}:</label>\n"+
+"      <div class=cui-error ng-if=\"password.newPasswordRe.$touched && password.newPasswordRe.$error.match\">\n"+
+"        <div class=cui-error__message>{{'password-mismatch' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input class=cui-input type=password ng-model=userDetails.specifyPassword.newPasswordConfirm name=newPasswordRe match=userDetails.specifyPassword.newPassword>\n"+
+"      <div class=cui-error style=\"text-align: right\" ng-if=userDetails.lifetimeError>\n"+
+"        <div class=cui-error__message>{{'cannot-change-password'| translate}}</div>\n"+
+"      </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-server-error ng-if=\"base.apiError.for['userDetails.specifyPassword']\">\n"+
+"      <div class=cui-server-error__container>\n"+
+"        <svg xmlns=http://www.w3.org/2000/svg class=cui-server-error__close ng-click=userDetails.specifyPassword.reset() preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 53\" aria-label=\"{{'cui-close' | translate}}\">\n"+
+"          <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#close-no-fill></use>\n"+
+"        </svg>\n"+
+"        <span>{{'cui-error-try-again' | translate}}</span>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <cui-button loading-if=\"base.loader.for['userDetails.specifyPassword']\" success-if=userDetails.specifyPassword.success button-click=userDetails.specifyPassword.confirm()>\n"+
+"      <button class=cui-button ng-class=\"{'cui-button--error': password.$invalid}\" ng-disabled=password.$invalid>\n"+
+"        {{'specify-password' | translate}}\n"+
+"      </button>\n"+
+"    </cui-button>\n"+
+"\n"+
+"  </ng-form>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-details/sections/headers/partials/suspend-user.html',
+"<div class=\"cui-users__address-container user-details__password-reset show-address\">\n"+
+"  {{'cui-suspend-confirm' | translate}}*\n"+
+"\n"+
+"  <div class=cui-server-error ng-if=\"base.apiError.for['userDetails.suspend']\">\n"+
+"    <div class=cui-server-error__container>\n"+
+"      <span>{{ 'suspend-error' | translate }}</span>\n"+
+"    </div>\n"+
+"    <svg xmlns=http://www.w3.org/2000/svg class=cui-server-error__close ng-click=\"base.apiError.for['userDetails.suspend'] = !base.apiError.for['userDetails.suspend']\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 53\" aria-label=\"{{'cui-close' | translate}}\">\n"+
+"      <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#close-no-fill></use>\n"+
+"    </svg>\n"+
+"  </div>\n"+
+"\n"+
+"  <textarea class=\"cui-text-area jlr-text-area--black-text\" ng-required=true style=\"margin: 20px\" ng-model=userDetails.user.suspendReason placeholder=\"{{'request-reason' | translate}}\"></textarea>\n"+
+"\n"+
+"<div class=cui-organization__submit-row disable-animate>\n"+
+"      <span ng-click=userDetails.suspend.cancel() class=cursor__pointer style=margin:5px>{{'cui-cancel' | translate}}</span>\n"+
+"      <button class=cui-button ng-class=\"{'cui-button--error' : userDetails.user.suspendReason.length==0}\" ng-if=\"!base.loader.for['userDetails.suspend'] && !base.apiError.for['userDetails.suspend'] && !userDetails.suspend.success\" ng-click=\"userDetails.user.suspendReason.length>0&&userDetails.suspend.confirm()\" style=margin:5px>{{'yes' | translate}}</button>\n"+
+"      <button class=cui-button ng-if=\"base.loader.for['userDetails.suspend']\">\n"+
+"        <div ng-include=\"'app/common-templates/partials/loader-updating.html'\"></div>\n"+
+"      </button>\n"+
+"      <button class=cui-button ng-class=\"{'cui-button--error' : userDetails.user.suspendReason.length==0}\" ng-if=\"!base.loader.for['userDetails.suspend'] && base.apiError.for['userDetails.suspend'] && !userDetails.suspend.success \" ng-click=\"userDetails.user.suspendReason.length>0&&userDetails.suspend.confirm()\">{{'cui-error-try-again' | translate}}</button>\n"+
+"      <button class=cui-button ng-class=\"{'cui-button--error' : userDetails.user.suspendReason.length==0}\" ng-if=\"!base.loader.for['userDetails.suspend'] && !base.apiError.for['userDetails.suspend'] && userDetails.suspend.success\">{{'cui-success' | translate}}</button>\n"+
+"    </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-details/sections/headers/partials/unsuspend-user.html',
+"<div class=\"cui-users__address-container user-details__password-reset show-address\">\n"+
+"  <p>{{'cui-unsuspend-confirm' | translate}}</p>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-server-error ng-if=\"base.apiError.for['userDetails.unsuspend']\">\n"+
+"    <div class=cui-server-error__container>\n"+
+"      <span>{{ 'unsuspend-error' | translate }}</span>\n"+
+"    </div>\n"+
+"    <svg xmlns=http://www.w3.org/2000/svg class=cui-server-error__close ng-click=\"base.apiError.for['userDetails.unsuspend'] = !base.apiError.for['userDetails.unsuspend']\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 53\" aria-label=\"{{'cui-close' | translate}}\">\n"+
+"      <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#close-no-fill></use>\n"+
+"    </svg>\n"+
+"  </div>\n"+
+"\n"+
+"  <textarea class=\"cui-text-area jlr-text-area--black-text\" style=\"width: 100%; margin-bottom: 20px\" ng-model=userDetails.user.unsuspendReason placeholder=\"{{'request-reason' | translate}}\"></textarea>\n"+
+"\n"+
+"  \n"+
+"    <div class=cui-organization__submit-row disable-animate>\n"+
+"      <span ng-click=userDetails.unsuspend.cancel() class=cursor__pointer style=margin:5px>{{'cui-cancel' | translate}}</span>\n"+
+"      <button class=cui-button ng-class=\"{'cui-button--error' : userDetails.user.unsuspendReason.length==0}\" ng-if=\"!base.loader.for['userDetails.unsuspend'] && !base.apiError.for['userDetails.unsuspend'] && !userDetails.unsuspend.success\" ng-click=\"userDetails.user.unsuspendReason.length>0&&userDetails.unsuspend.confirm()\" style=margin:5px>{{'yes' | translate}}</button>\n"+
+"      <button class=cui-button ng-if=\"base.loader.for['userDetails.unsuspend']\">\n"+
+"        <div ng-include=\"'app/common-templates/partials/loader-updating.html'\"></div>\n"+
+"      </button>\n"+
+"      <button class=cui-button ng-class=\"{'cui-button--error' : userDetails.user.unsuspendReason.length==0}\" ng-if=\"!base.loader.for['userDetails.unsuspend'] && base.apiError.for['userDetails.unsuspend'] && !userDetails.unsuspend.success\" ng-click=\"userDetails.user.unsuspendReason.length>0&&userDetails.unsuspend.confirm()\">{{'cui-error-try-again' | translate}}</button>\n"+
+"       <button class=cui-button ng-class=\"{'cui-button--error' : userDetails.user.unsuspendReason.length==0}\" ng-if=\"!base.loader.for['userDetails.unsuspend'] && !base.apiError.for['userDetails.unsuspend'] && userDetails.unsuspend.success\">{{'cui-success' | translate}}</button>\n"+
+"    </div>\n"+
+"</div>");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-details/sections/headers/userDetails-breadcrumb.html',
+"<ul class=cui-breadcrumb__links>\n"+
+"  <li class=\"cui-breadcrumb__link cui-breadcrumb__link--current\">\n"+
+"    <span class=cui-breadcrumb__mobile-link class=active><span class=cui-mobile-only>{{userDetails.user.organization.realm}}\n"+
+"  </span></span></li>\n"+
+"  <div class=\"cui-popover cui-popover--menu cui-breadcrumb__popover cui-popover--top cui-popover__categories-popover\" tether target=#breadcrumb-button attachment=\"top left\" target-attachment=\"bottom left\" offset=\"-10px 0\" ng-if=orgDirectory.breadcrumbClicked>\n"+
+"    <li class=\"cui-breadcrumb__link cui-popover__row\">\n"+
+"      <a class=cui-breadcrumb__mobile-link ui-sref=organization.hierarchy({orgId:orgId})>{{'cui-org-hierarchy' | translate}}</a> \n"+
+"    </li>\n"+
+"    <li class=\"cui-breadcrumb__link cui-popover__row\">\n"+
+"      <a class=cui-breadcrumb__mobile-link ui-sref=organization.profile({orgId:orgId})>{{'cui-org-profile' | translate}}</a> \n"+
+"    </li> \n"+
+"    <li class=\"cui-breadcrumb__link cui-popover__row\">\n"+
+"      <a class=cui-breadcrumb__mobile-link ui-sref=organization.roles({orgId:orgId})>{{'roles' | translate}}</a>\n"+
+"    </li>\n"+
+"  </div>\n"+
+"</ul>\n"+
+"\n"+
+"\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-details/sections/headers/userDetails-header-left.html',
+"<div class=cui-organization__profile-left-header>\n"+
+"\n"+
+"  \n"+
+"  <div class=\"cui-organization__profile-header-item cui-desktop-only\" ng-click=\"userDetails.profileRolesSwitch='profile'\" id=profile-button off-click=\"\">\n"+
+"    <div ng-class=\"{'cui-action__icon--active':userDetails.profileRolesSwitch=='profile'}\">\n"+
+"      <cui-icon cui-svg-icon=cui:profile svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 -1 48 52\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-action__action-label>{{'profile-upper' | translate}}</span>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=\"cui-organization__profile-header-item cui-desktop-only\" ng-click=\"userDetails.profileRolesSwitch='roles'\" id=roles-button>\n"+
+"    <div ng-class=\"{'cui-action__icon--active':userDetails.profileRolesSwitch=='roles'}\">\n"+
+"      <cui-icon cui-svg-icon=cui:roles svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 48\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-action__action-label>{{'roles-upper' | translate}}</span>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=\"cui-organization__profile-header-item cui-mobile-only\" ng-click=\"userDetails.mobileHandler='profile'\" id=profile-button>\n"+
+"    <div>\n"+
+"      <cui-icon cui-svg-icon=cui:profile ng-class=\"{ 'cui-action__icon--active':userDetails.profileSwitch=='profile'}\" svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 -1 48 52\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-action__action-label>{{'profile-upper' | translate}}</span>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=\"cui-organization__profile-header-item cui-mobile-only\" ng-click=\"userDetails.mobileHandler='roles'\" id=roles-button>\n"+
+"    <div>\n"+
+"      <cui-icon cui-svg-icon=cui:roles ng-class=\"{ 'cui-action__icon--active':userDetails.profileSwitch=='roles'}\" svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 48\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-action__action-label>{{'roles-upper' | translate}}</span>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=\"cui-organization__profile-header-item cui-mobile-only\" id=applications-button ng-click=\"userDetails.mobileHandler='apps'\">\n"+
+"    <div>\n"+
+"      <cui-icon cui-svg-icon=cui:applications_v2 ng-class=\"{ 'cui-action__icon--active':userDetails.profileSwitch=='apps'}\" svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 50\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-action__action-label>{{'apps-upper' | translate}}</span>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=\"cui-organization__profile-header-item cui-mobile-only\" id=applications-button ng-click=\"userDetails.mobileHandler='history'\" ng-if=false>\n"+
+"    <div>\n"+
+"      <cui-icon cui-svg-icon=cui:history ng-class=\"{ 'cui-action__icon--active':userDetails.profileSwitch=='history'}\" svg-class=\"cui-action__icon cui-action__icon--history\" use-class=cui-card__icon viewbox=\"0 0 48 52\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-action__action-label>{{'history-upper' | translate}}</span>\n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-details/sections/headers/userDetails-header-right.html',
+"<div class=\"cui-organization__profile-right-header cui-desktop-only\">\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-organization__profile-header-item id=applications-button ng-click=\"userDetails.appsHistorySwitch='apps'\">\n"+
+"    <div ng-class=\"{ 'cui-action__icon--active':userDetails.appsHistorySwitch=='apps'}\">\n"+
+"      <cui-icon cui-svg-icon=cui:applications_v2 svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 50\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-action__action-label>{{'apps-upper' | translate}}</span>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-organization__profile-header-item id=applications-button ng-click=\"userDetails.appsHistorySwitch='history'\" ng-if=false>\n"+
+"    <div ng-class=\"{ 'cui-action__icon--active':userDetails.appsHistorySwitch=='history'}\">\n"+
+"      <cui-icon cui-svg-icon=cui:history svg-class=\"cui-action__icon cui-action__icon--history\" use-class=cui-card__icon viewbox=\"0 0 48 52\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-action__action-label>{{'history-upper' | translate}}</span>\n"+
+"  </div>\n"+
+"  \n"+
+"  <div class=cui-organization__profile-header-items--right ng-if=false>\n"+
+"    \n"+
+"    <div class=cui-organization__profile-header-item id=sort-button ng-click=\"userDetails.sortClicked=!userDetails.sortClicked\" off-click=\"userDetails.sortClicked=false\" ng-if=userDetails.appsHistorySwitch>\n"+
+"      <div>\n"+
+"        <cui-icon cui-svg-icon=fa:sort14 svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"      </div>\n"+
+"      <span class=cui-action__action-label>{{'sort' | translate}}</span>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=\"cui-popover cui-popover--top cui-popover__sort-popover\" tether target=#sort-button attachment=\"top middle\" target-attachment=\"bottom middle\" offset=\"-10px 0\" ng-if=userDetails.sortClicked>\n"+
+"      <p ng-click=\"\">{{'cui-alphabetically' | translate}}</p>\n"+
+"      <p ng-click=\"\">{{'cui-by-date-added' | translate}}</p>\n"+
+"    </div>\n"+
+"    \n"+
+"    \n"+
+"    <div class=cui-organization__profile-header-item id=categories-button ng-click=\"userDetails.categoriesClicked=!userDetails.categoriesClicked\" off-click=\"userDetails.categoriesClicked=false\" ng-if=userDetails.appsHistorySwitch>\n"+
+"      <div>\n"+
+"        <cui-icon cui-svg-icon=cui:categories svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 48\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"      </div>\n"+
+"      <span class=cui-action__action-label>{{'categories' | translate}}</span>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=\"cui-popover cui-popover--top cui-popover__categories-popover\" tether target=#categories-button attachment=\"top middle\" target-attachment=\"bottom middle\" offset=\"-10px 0\" ng-if=userDetails.categoriesClicked>\n"+
+"      <p ng-click=\"\">TODO!</p>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-details/sections/headers/userDetails-header.html',
+"<div class=cui-action>\n"+
+"  <nav ng-include=\"'app/modules/organization/partials/breadcrumbs.html'\"></nav>\n"+
+"  \n"+
+"  <nav ng-include=\"'app/modules/organization/partials/mobileNav.html'\"></nav>\n"+
+"  \n"+
+"  <div class=cui-action__actions ng-include=\"'app/modules/organization/partials/invite-actions.html'\" ng-if=false></div>\n"+
+"</div>\n"+
+"    \n"+
+"    <div class=cui-action__title ng-if=\"userDetails.stateParamsOrgId==base.user.organization.id\" ui-sref=organization.directory.userList({orgId:userDetails.stateParamsOrgId})>&lt; {{'cui-back' | translate}}</div>\n"+
+"    <div class=cui-action__title ng-if=\"userDetails.stateParamsOrgId!=base.user.organization.id\" ui-sref=organization.directory.orgDetails({orgId:userDetails.stateParamsOrgId})>&lt; {{'cui-back' | translate}}</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-loading__container ng-if=\"base.loader.for['userDetails.userInfo']\">\n"+
+"  <div class=\"cui-loader cui-loader--content cui-loader--content-vert\" ng-include=\"'app/common-templates/partials/loader-content-vert.html'\"></div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-media--centered>\n"+
+"  <div class=cui-media__image-container ng-if=\"!base.loader.for['userDetails.userInfo']\">\n"+
+"    <div class=\"cui-profile__user-avatar cui-media__image\" cui-avatar cui-avatar-names=\"[userDetails.user.name.given, userDetails.user.name.surname]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5 cui-avatar-email=userDetails.user.email></div>\n"+
+"  </div>\n"+
+"  <div class=cui-media__body ng-if=!userDetails.loading>\n"+
+"    \n"+
+"    <h3 class=cui-media__title>{{userDetails.user.name.given}} {{userDetails.user.name.surname}}</h3>\n"+
+"    \n"+
+"    <p class=\"cui-media__content cui-media__content--bold\">{{'userID' | translate}}: {{userDetails.user.username}}</p>\n"+
+"    \n"+
+"    <p class=cui-media__content>{{'cui-registered' | translate}}: {{userDetails.user.creation | date:base.appConfig.dateFormat}}</p>\n"+
+"    \n"+
+"    <div class=cui-media__content>\n"+
+"      <span class=cui-media__content--dark>{{'status' | translate}}:</span>\n"+
+"      <span class=cui-status ng-class=\" 'cui-status--'+userDetails.user.status \">{{userDetails.user.status}}</span>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"\n"+
+"<div class=cui-media__button-container>\n"+
+"  \n"+
+"  <button class=\"cui-button cui-button--inverted\" ng-click=userDetails.suspend(userDetails.user.id) ng-if=\"userDetails.user.status==='active'\" cui-access=\"{requiredEntitlements:['Suspend User']}\" user-entitlements=base.user.entitlements>\n"+
+"          {{'suspend' | translate}}\n"+
+"  </button>\n"+
+"\n"+
+"\n"+
+"  \n"+
+"\n"+
+"  <cui-button disable-animate ng-if=\"userDetails.passwordAccount.locked&&(userDetails.user.status==='active'||userDetails.user.status==='locked')\" loading-if=\"base.loader.for['userDetails.unlockUser']\" success-if=userDetails.unlockUserSuccess error-if=\"base.apiError.for['userDetails.unlockUser']\" button-click=userDetails.unlockUser() loading-message=\"{{'cui-button-loading-text'|translate}}\" error-message=\"{{'cui-error-try-again'|translate}}\">\n"+
+"      <button class=\"cui-button cui-button--inverted\">\n"+
+"        {{'cui-unlock' | translate}}\n"+
+"      </button>\n"+
+"    </cui-button>\n"+
+"\n"+
+"  \n"+
+"  <button class=\"cui-button cui-button--inverted\" ng-click=userDetails.unsuspend(userDetails.user.id) ng-if=\"userDetails.user.status==='suspended'\" cui-access=\"{requiredEntitlements:['Suspend User']}\" user-entitlements=base.user.entitlements>\n"+
+"          {{'unsuspend' | translate}}\n"+
+"  </button>\n"+
+"\n"+
+"  \n"+
+"  <button class=\"cui-button cui-button--inverted\" id=password-reset ng-click=userDetails.specifyPassword() cui-access=\"{requiredEntitlements:['Specify User Password']}\" user-entitlements=base.user.entitlements>\n"+
+"          {{'specify-password' | translate}}\n"+
+"  </button>\n"+
+"\n"+
+"  \n"+
+"  <button class=\"cui-button cui-button--inverted\" id=password-specify ng-click=userDetails.resetPassword()>\n"+
+"          {{'password-reset' | translate}}\n"+
+"  </button>\n"+
+"\n"+
+"  \n"+
+"   <button class=\"cui-button cui-button--inverted\" ng-if=base.canGrantAppToUser() ng-disabled=\"userDetails.user.status!=='active'\" ui-sref=organization.requests.newGrant({userId:userDetails.user.id,orgId:orgId}) ng-class=\"(userDetails.user.status!=='active')?'cui-button--error':''\">{{'new-grants' | translate}}</button>\n"+
+"\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<ng-include ng-if=userDetails.suspend.begun src=\"'app/modules/organization/directory/user-details/sections/headers/partials/suspend-user.html'\">\n"+
+"</ng-include>\n"+
+"\n"+
+"\n"+
+"<ng-include ng-if=userDetails.unsuspend.begun src=\"'app/modules/organization/directory/user-details/sections/headers/partials/unsuspend-user.html'\">\n"+
+"</ng-include>\n"+
+"\n"+
+"\n"+
+"<ng-include ng-if=userDetails.specifyPassword.begun src=\"'app/modules/organization/directory/user-details/sections/headers/partials/specify-password.html'\">\n"+
+"</ng-include>\n"+
+"<br>\n"+
+"<cui-expandable-body class=\"cui-expandable__body cui-expandable__body--alt-bg-org-suspend\" ng-if=userDetails.resetPassword.begun>\n"+
+"\n"+
+"<div class=cui-action__actions>\n"+
+"      \n"+
+"      <svg xmlns=http://www.w3.org/2000/svg class=\"cui-action__icon cui-action__icon--close\" ng-click=\"userDetails.resetPassword.begun=false\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 53\">\n"+
+"        <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#close></use>\n"+
+"      </svg>\n"+
+"    </div>\n"+
+"    <div class=cui-expandable__body-row>\n"+
+"      <p>{{'cui-pwd-reset-msg1'|translate}}  <b>{{userDetails.resetPasswordValue.password}}</b> </p>\n"+
+"    </div>\n"+
+"      <div class=cui-expandable__body-row>\n"+
+"      <p>{{'cui-pwd-reset-msg2'|translate}}</p>\n"+
+"    </div>\n"+
+"</cui-expandable-body>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-details/sections/history/userDetails-history.html',
+"\n"+
+"<div class=cui-loading__container--user-details ng-if=userDetailsHistory.loading>\n"+
+"  <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"</div>\n"+
+"\n"+
+"<div ng-if=!userDetailsHistory.loading>\n"+
+"	\n"+
+"	<div>\n"+
+"		\n"+
+"		<div>\n"+
+"			<h3>{{'cui-user-status-history'|translate}}</h3>\n"+
+"		</div>\n"+
+"		\n"+
+"		<p ng-if=\"userDetailsHistory.personStatusHistory.length===0\">{{'cui-no-status-history'|translate}}</p>\n"+
+"		<div ng-repeat=\"status in userDetailsHistory.personStatusHistory\">\n"+
+"			<p>{{status}}</p>\n"+
+"		</div>\n"+
+"	<div>\n"+
+"\n"+
+"	\n"+
+"	<div>\n"+
+"		\n"+
+"		<div class=cui-action>\n"+
+"		<span class=cui-action__title>{{'cui-app-history'|translate}}</span>\n"+
+"  		<div class=cui-action__actions>\n"+
+"    		\n"+
+"    		<div class=cui-action__action-container id=sort-button ng-click=\"userDetailsHistory.sortClicked=!userDetailsHistory.sortClicked\" off-click=\"userDetailsHistory.sortClicked=false\">\n"+
+"          <div>\n"+
+"            <cui-icon cui-svg-icon=fa:sort14 svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"          </div>\n"+
+"      		\n"+
+"      		<span class=cui-action__action-label>{{'sort'|translate}}</span>\n"+
+"      		\n"+
+"      		<div class=\"cui-popover cui-popover--top cui-popover__sort-popover\" tether target=#sort-button attachment=\"top middle\" target-attachment=\"bottom middle\" offset=\"-10px 0\" ng-if=userDetailsHistory.sortClicked>\n"+
+"        		<p>{{'cui-alphabetically' | translate}}</p>\n"+
+"        		<p>{{'cui-by-date-added' | translate}}</p>\n"+
+"      		</div>\n"+
+"    		</div>\n"+
+"    		\n"+
+"    		<div class=cui-action__action-container id=refine-button ng-click=\"userDetailsHistory.refineClicked=!userDetailsHistory.refineClicked\" off-click=\"userDetailsHistory.refineClicked=false\">\n"+
+"                    \n"+
+"          <div>\n"+
+"            <cui-icon cui-svg-icon=fa:filter10 svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"          </div>\n"+
+"					\n"+
+"      		<span class=cui-action__action-label>{{'refine'|translate}}</span>\n"+
+"      		\n"+
+"      		<div class=\"cui-popover cui-popover--top cui-popover__sort-popover\" tether target=#refine-button attachment=\"top middle\" target-attachment=\"bottom middle\" offset=\"-10px 0\" ng-if=userDetailsHistory.refineClicked>\n"+
+"        		<p>TODO: REFINE</p>\n"+
+"      		</div>\n"+
+"    		</div>\n"+
+"  		</div>\n"+
+"		</div>\n"+
+"		\n"+
+"		<div>\n"+
+"			<p>API Blocker: Application History List</p>\n"+
+"		</div>\n"+
+"	</div>\n"+
+"</div>\n"+
+"</div></div>");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-details/sections/profile/sections-profile/address.html',
+"<ng-form name=address>\n"+
+"  <div class=cui-users__field>\n"+
+"    <div class=cui-users__address-container class-toggle toggled-class=show-address>\n"+
+"      <div class=cui-users__field>\n"+
+"        <span class=cui-field-val__field>{{'cui-address' | translate}}</span>\n"+
+"        <span class=cui-link href=\"\" ng-if=!toggled ng-click=userDetailsProfile.toggleAllOff();toggleOn()>{{'cui-edit' | translate}}</span>\n"+
+"        <div ng-if=toggled ng-click=toggleOff()>\n"+
+"            <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 53\" preserveaspectratio=\"xMidYMid meet\" aria-label=\"{{'cui-close' | translate}}\"></cui-icon>\n"+
+"        </div>\n"+
+"        \n"+
+"      </div>\n"+
+"      \n"+
+"      <div ng-if=!toggled>\n"+
+"        <div class=cui-field-val__val>{{userDetailsProfile.user.addresses[0].streets[0]}} </div>\n"+
+"        <div class=cui-field-val__val ng-if=userDetailsProfile.user.addresses[0].streets[1]>{{userDetailsProfile.user.addresses[0].streets[1]}}</div>\n"+
+"        <div class=cui-field-val__val>{{userDetailsProfile.user.addresses[0].city}}</div>\n"+
+"        <div class=cui-field-val__val>{{userDetailsProfile.user.addresses[0].state}}<span ng-if=\"userDetailsProfile.user.addresses[0].state && userDetailsProfile.user.addresses[0].postal\">, </span>{{userDetailsProfile.user.addresses[0].postal}}</div>\n"+
+"        <div class=cui-field-val__val>{{base.countries.getCountryByCode(userDetailsProfile.user.addresses[0].country).name}}</div>\n"+
+"      </div>\n"+
+"      \n"+
+"      <div ng-if=toggled ng-init=\"userDetailsProfile.pushToggleOff({'name':'address','function':toggleOff})\">\n"+
+"        \n"+
+"        <label for=\"{{'cui-street-address' | translate}}\">{{'cui-street-address' | translate}}</label>\n"+
+"        <input type=text name=\"{{'cui-street-address' | translate}}\" class=cui-input ng-model=userDetailsProfile.tempUser.addresses[0].streets[0]>\n"+
+"        \n"+
+"        <label for=\"{{'cui-address-2' | translate}}\">{{'cui-address-2' | translate}}</label>\n"+
+"        <input type=text name=\"{{'cui-address-2' | translate}}\" ng-model=userDetailsProfile.tempUser.addresses[0].streets[1] class=cui-input>\n"+
+"        \n"+
+"        <label for=\"{{'cui-city' | translate}}\">{{'cui-city' | translate}}</label>\n"+
+"        <input type=text name=\"{{'cui-city' | translate}}\" class=cui-input ng-model=userDetailsProfile.tempUser.addresses[0].city>\n"+
+"        \n"+
+"        <div class=cui-form__field-row>\n"+
+"          <div class=\"cui-form__field-container cui-form__field-container--half\">\n"+
+"            <label for=\"{{'cui-state' | translate}}\">{{'cui-state' | translate}}</label>\n"+
+"            <input type=text name=\"{{'cui-state' | translate}}\" class=cui-input ng-model=userDetailsProfile.tempUser.addresses[0].state>\n"+
+"          </div>\n"+
+"          \n"+
+"          <div class=\"cui-form__field-container cui-form__field-container--half\">\n"+
+"            <label for=\"{{'cui-zip' | translate}}\">{{'cui-zip' | translate}}</label>\n"+
+"            <input type=text name=\"{{'cui-zip' | translate}}\" class=cui-input ng-model=userDetailsProfile.tempUser.addresses[0].postal>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=cui-wizard__field-container>\n"+
+"          <label for=country>{{\"cui-country\" | translate}}</label>\n"+
+"          <div class=cui-error ng-messages=user.country.$error ng-if=user.country.$touched>\n"+
+"            <div ng-messages-include=app/angular-templates/messages.html></div>\n"+
+"          </div>\n"+
+"          <div auto-complete input-name=country pause=100 selected-object=userDetailsProfile.userCountry initial-value=base.countries.getCountryByCode(userDetailsProfile.tempUser.addresses[0].country) local-data=base.countries.list search-fields=name title-field=name input-class=cui-input match-class=highlight auto-match=true></div>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=cui-users__address-submit>\n"+
+"          <a class=\"cui-link cui-form__cancel\" href=\"\" ng-click=\"userDetailsProfile.resetTempObject(userDetailsProfile.user, userDetailsProfile.tempUser); toggleOff()\">{{'cui-cancel' | translate}}</a>\n"+
+"          <button class=cui-button ng-click=\"userDetailsProfile.updatePerson('address',toggleOff);\">\n"+
+"            <span ng-if=\"!userDetailsProfile.address || !userDetailsProfile.address.submitting\">{{'cui-update' | translate}}</span>\n"+
+"            <div class=cui-loading--medium-ctr ng-if=userDetailsProfile.address.submitting></div>\n"+
+"            <span ng-if=userDetailsProfile.address.error>{{'cui-error-try-again'| translate}}</span>\n"+
+"          </button>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-details/sections/profile/sections-profile/basic-info.html',
+"<ng-form name=basicInfo>\n"+
+"  <div class=cui-users__field>\n"+
+"    <div class=cui-users__address-container class-toggle toggled-class=show-address>\n"+
+"      <div class=cui-users__field>\n"+
+"        <span class=cui-field-val__field>{{'basic-info' | translate}}</span>\n"+
+"        <span class=cui-link href=\"\" ng-if=!toggled ng-click=userDetailsProfile.toggleAllOff();toggleOn()>{{'cui-edit' | translate}}</span>\n"+
+"        <div ng-if=toggled ng-click=toggleOff()>\n"+
+"            <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 53\" preserveaspectratio=\"xMidYMid meet\" aria-label=\"{{'cui-close' | translate}}\"></cui-icon>\n"+
+"        </div>\n"+
+"        \n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=!toggled>\n"+
+"        <div class=cui-field-val>\n"+
+"          <span class=cui-field-val__field>{{'cui-org' | translate}}:</span>\n"+
+"          <span class=cui-field-val__val>{{userDetailsProfile.organization.name}}</span>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=cui-field-val>\n"+
+"          <span class=cui-field-val__field>{{'cui-name' | translate}}:</span>\n"+
+"          <span class=cui-field-val__val>{{userDetailsProfile.user.name.given}} {{userDetailsProfile.user.name.surname}}</span>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=cui-field-val>\n"+
+"          <span class=cui-field-val__field>{{'cui-email' | translate}}:</span>\n"+
+"          <span class=cui-field-val__val>{{userDetailsProfile.user.email}} </span>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=toggled ng-init=\"userDetailsProfile.pushToggleOff({'name':'basicInfo','function':toggleOff})\">\n"+
+"        \n"+
+"        <label for=firstName>{{'cui-first-name' | translate}}</label>\n"+
+"        <div class=cui-error ng-messages=basicInfo.firstName.$error>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"        <input type=text name=firstName class=cui-input ng-model=userDetailsProfile.tempUser.name.given ng-required=true focus-if=toggled>\n"+
+"        \n"+
+"        <label for=lastName>{{'cui-last-name' | translate}}</label>\n"+
+"        <div class=cui-error ng-messages=basicInfo.lastName.$error>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"        <input type=text name=lastName class=cui-input ng-model=userDetailsProfile.tempUser.name.surname ng-required=true>\n"+
+"        \n"+
+"        <label for=email>{{'cui-email' | translate}}</label>\n"+
+"        <div class=cui-error ng-messages=basicInfo.email.$error>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"        <input type=email name=email class=cui-input ng-model=userDetailsProfile.tempUser.email ng-required=true>\n"+
+"        \n"+
+"        <div class=cui-users__address-submit>\n"+
+"          <a class=\"cui-link cui-form__cancel\" href=\"\" ng-click=toggleOff()>{{'cui-cancel' | translate}}</a>\n"+
+"          <button class=cui-button ng-click=\"basicInfo.$valid && userDetailsProfile.updatePerson('basicInfo',toggleOff);\" ng-class=\"{'cui-button--error':!basicInfo.$valid}\">\n"+
+"            <span ng-if=\"!userDetailsProfile.basicInfo || !userDetailsProfile.basicInfo.submitting\">{{'cui-update' | translate}}</span>\n"+
+"            <div class=cui-loading--medium-ctr ng-if=userDetailsProfile.basicInfo.submitting></div>\n"+
+"            <span ng-if=userDetailsProfile.basicInfo.error>{{'cui-error-try-again'| translate}}</span>\n"+
+"          </button>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-details/sections/profile/sections-profile/challenge-questions.html',
+"<ng-form name=challengeQuestions>\n"+
+"  <div class=cui-users__field>\n"+
+"    <div class=cui-users__address-container class-toggle toggled-class=show-address>\n"+
+"      <div class=cui-users__field>\n"+
+"        <span class=cui-field-val__field>{{'challenge-questions' | translate}}</span>\n"+
+"        <span class=cui-link href=\"\" ng-if=!toggled ng-click=userDetailsProfile.toggleAllOff();toggleOn()>{{'cui-edit' | translate}}</span>\n"+
+"        <div ng-if=toggled ng-click=toggleOff()>\n"+
+"            <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 53\" preserveaspectratio=\"xMidYMid meet\" aria-label=\"{{'cui-close' | translate}}\"></cui-icon>\n"+
+"        </div>\n"+
+"        \n"+
+"      </div>\n"+
+"      <div ng-if=!toggled>\n"+
+"        <div ng-repeat=\"question in userDetailsProfile.challengeQuestionsTexts\">\n"+
+"          <span class=cui-field-val__field>{{$index+1}}:</span>\n"+
+"          <span class=cui-field-val__val>{{question}}</span>\n"+
+"          <br>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=toggled ng-init=\"userDetailsProfile.pushToggleOff({'name':'challengeQuestions','function':toggleOff})\">\n"+
+"        <div ng-repeat=\"question in userDetailsProfile.tempUserSecurityQuestions.questions\">\n"+
+"          <b>{{'cui-challenge-question' | translate}} {{$index+1}}</b>\n"+
+"          <select class=\"cui-input cui-input--full cui-select\" ng-model=question.question.id ng-options=\"question.id as (question.question | cuiI18n) for question in userDetailsProfile['allChallengeQuestions' + $index]\"></select>\n"+
+"          {{'cui-answer' | translate}}\n"+
+"          <div class=cui-error ng-messages=\"challengeQuestions['answer' + $index].$error\">\n"+
+"            <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"          </div>\n"+
+"          <input type=text ng-model=question.answer class=cui-input ng-class=\"{'cui-input--error':!challengeQuestions['answer'+$index].$valid}\" name=answer{{$index}} ng-change=userDetailsProfile.checkIfRepeatedSecurityAnswer(userDetailsProfile.tempUserSecurityQuestions.questions,challengeQuestions) ng-required=true>\n"+
+"          <br><br>\n"+
+"        </div>\n"+
+"\n"+
+"        \n"+
+"        <div class=cui-users__address-submit>\n"+
+"          <a class=\"cui-link cui-form__cancel\" href=\"\" ng-click=toggleOff()>{{'cui-cancel' | translate}}</a>\n"+
+"          <button class=cui-button ng-click=\"userDetailsProfile.saveChallengeQuestions('challengeQuestions',toggleOff);\" ng-class=\"{'cui-button--error':!challengeQuestions.$valid}\">\n"+
+"            <span ng-if=\"( !userDetailsProfile.challengeQuestions || !userDetailsProfile.challengeQuestions.submitting ) && !userDetailsProfile.challengeQuestions.error\">{{'cui-update' | translate}}</span>\n"+
+"            <div class=cui-loading--medium-ctr ng-if=userDetailsProfile.challengeQuestions.submitting></div>\n"+
+"            <span ng-if=userDetailsProfile.challengeQuestions.error>{{'cui-error-try-again'| translate}}</span>\n"+
+"          </button>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-details/sections/profile/sections-profile/password.html',
+"<ng-form name=password>\n"+
+"  <div class=cui-users__field>\n"+
+"    <div class=cui-users__address-container class-toggle toggled-class=show-address>\n"+
+"      <div class=cui-users__field>\n"+
+"        <span class=cui-field-val__field>{{'password-reset' | translate}}</span>\n"+
+"        <span class=cui-link href=\"\" ng-if=!toggled ng-click=userDetailsProfile.toggleAllOff();toggleOn()>{{'cui-edit' | translate}}</span>\n"+
+"        <div ng-if=toggled ng-click=userDetailsProfile.resetPasswordFields();toggleOff()>\n"+
+"            <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 53\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"        </div>\n"+
+"        \n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=toggled ng-init=\"userDetailsProfile.pushToggleOff({'name':'password','function':toggleOff})\">\n"+
+"\n"+
+"        \n"+
+"        <label for=currentPassword>{{'current-password' | translate}}</label>\n"+
+"        <div class=cui-error ng-messages=password.currentPassword.$error ng-if=password.currentPassword.$touched>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"        <input type=password name=currentPassword class=cui-input ng-model=userDetailsProfile.userPasswordAccount.currentPassword ng-required=true focus-if=toggled>\n"+
+"\n"+
+"        \n"+
+"        <div class=cui-input__password-holder>\n"+
+"          <label for=newPassword>{{'cui-enter-new-password' | translate}}: </label>\n"+
+"          <input class=cui-input name=newPassword type=password ng-model=userDetailsProfile.userPasswordAccount.password ng-required=true ng-class=\"{'cui-input--error': password.newPassword.$touched && password.newPassword.$invalid}\" password-validation=userDetailsProfile.passwordRules>\n"+
+"          \n"+
+"          <div password-popover ng-messages=password.newPassword.$error ng-messages-multiple ng-if=password.newPassword.$invalid class=cui-error__password>\n"+
+"            <div ng-messages-include=app/common-templates/password-validation.html></div>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"\n"+
+"        \n"+
+"        <label for=newPasswordRe>{{'cui-re-enter-new-password' | translate}}: </label>\n"+
+"        <div class=cui-error ng-if=\"password.newPasswordRe.$touched && password.newPasswordRe.$error.match\">\n"+
+"          <div class=cui-error__message>{{'password-mismatch' | translate}}</div>\n"+
+"        </div>\n"+
+"        <input class=\"cui-input cui-field-val__val\" type=password ng-model=userDetailsProfile.passwordRe name=newPasswordRe match=userDetailsProfile.userPasswordAccount.password>\n"+
+"\n"+
+"        \n"+
+"        <div class=cui-users__address-submit>\n"+
+"          <a class=\"cui-link cui-form__cancel\" href=\"\" ng-click=userDetailsProfile.resetPasswordFields();toggleOff()>{{'cui-cancel' | translate}}</a>\n"+
+"          <button class=cui-button ng-click=\"password.$valid && userDetailsProfile.updatePassword('password',toggleOff);\" ng-class=\"{'cui-button--error':!password.$valid}\">\n"+
+"            <span ng-if=\"(!userDetailsProfile.password || !userDetailsProfile.password.submitting) && !userDetailsProfile.password.error\">{{'cui-update' | translate}}</span>\n"+
+"            <div class=cui-loading--medium-ctr ng-if=userDetailsProfile.password.submitting></div>\n"+
+"            <span ng-if=userDetailsProfile.password.error>{{'cui-error-try-again'| translate}}</span>\n"+
+"          </button>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-details/sections/profile/sections-profile/phone-fax.html',
+"<ng-form name=phoneFax>\n"+
+"  <div class=cui-users__field>\n"+
+"    <div class=cui-users__address-container class-toggle toggled-class=show-address>\n"+
+"      <div class=cui-users__field>\n"+
+"        <span class=cui-field-val__field>{{'cui-phone-fax' | translate}}</span>\n"+
+"        <span class=cui-link href=\"\" ng-if=!toggled ng-click=userDetailsProfile.toggleAllOff();toggleOn()>{{'cui-edit' | translate}}</span>\n"+
+"        <div ng-if=toggled ng-click=toggleOff()>\n"+
+"            <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 53\" preserveaspectratio=\"xMidYMid meet\" aria-label=\"{{'cui-close' | translate}}\"></cui-icon>\n"+
+"        </div>\n"+
+"        \n"+
+"      </div>\n"+
+"\n"+
+"      <div ng-if=!toggled ng-repeat=\"phone in userDetailsProfile.user.phones\">\n"+
+"        <span class=cui-field-val__field>{{phone.type}}:</span>\n"+
+"        <span class=cui-field-val__val>{{phone.number}}</span>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=toggled>\n"+
+"        \n"+
+"        <div ng-repeat=\"phone in userDetailsProfile.tempUser.phones\">\n"+
+"          <label>{{phone.type}}</label>\n"+
+"          <div ng-messages=\"phoneFax['phone'+$index].$error\" class=cui-error>\n"+
+"            <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"          </div>\n"+
+"          <input class=cui-input type=text ng-model=phone.number name=phone{{$index}} ng-required=true>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=cui-users__address-submit>\n"+
+"          <a class=\"cui-link cui-form__cancel\" href=\"\" ng-click=toggleOff()>{{'cui-cancel' | translate}}</a>\n"+
+"          <button class=cui-button ng-click=\"phoneFax.$valid && userDetailsProfile.updatePerson('phoneFax',toggleOff);\" ng-class=\"{'cui-button--error':!phoneFax.$valid}\">\n"+
+"            <span ng-if=\"!userDetailsProfile.phoneFax || !userDetailsProfile.phoneFax.submitting\">{{'cui-update' | translate}}</span>\n"+
+"            <div class=cui-loading--medium-ctr ng-if=userDetailsProfile.phoneFax.submitting></div>\n"+
+"            <span ng-if=userDetailsProfile.phoneFax.error>{{'cui-error-try-again'| translate}}</span>\n"+
+"          </button>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-details/sections/profile/sections-profile/timezone-language.html',
+"<ng-form name=timezoneLanguage>\n"+
+"  <div class=cui-users__field>\n"+
+"    <div class=cui-users__address-container class-toggle toggled-class=show-address>\n"+
+"      <div class=cui-users__field>\n"+
+"        <span class=cui-field-val__field>{{'timezone-and-language' | translate}}</span>\n"+
+"        <span class=cui-link href=\"\" ng-if=!toggled ng-click=userDetailsProfile.toggleAllOff();toggleOn()>{{'cui-edit' | translate}}</span>\n"+
+"        <div ng-if=toggled ng-click=toggleOff()>\n"+
+"            <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-action__icon use-class=cui-card__icon viewbox=\"0 0 48 53\" preserveaspectratio=\"xMidYMid meet\" aria-label=\"{{'cui-close' | translate}}\"></cui-icon>\n"+
+"        </div>\n"+
+"        \n"+
+"      </div>\n"+
+"      <div ng-if=!toggled>\n"+
+"        <span class=cui-field-val__field>{{'cui-timezone' | translate}}:</span>\n"+
+"        <span class=cui-field-val__val>{{userDetailsProfile.timezoneById(userDetailsProfile.user.timezone)}}</span><br>\n"+
+"        <span class=cui-field-val__field>{{'cui-language' | translate}}:</span>\n"+
+"        <span class=cui-field-val__val>{{base.languages[userDetailsProfile.user.language]}}</span>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=toggled ng-init=\"userDetailsProfile.pushToggleOff({'name':'timezoneLangauge','function':toggleOff})\">\n"+
+"        \n"+
+"        <label for=timezone>{{'cui-timezone' | translate}}</label>\n"+
+"        <select class=\"cui-input cui-select\" ng-model=userDetailsProfile.tempUser.timezone ng-options=\"timezone.id as timezone.name for timezone in base.timezones\"></select>\n"+
+"        \n"+
+"        <label for=language>{{'cui-language' | translate}}</label>\n"+
+"        <select class=\"cui-input cui-select\" ng-model=userDetailsProfile.tempUser.language ng-options=\"languageCode as languageName for (languageCode,languageName) in base.languages\"></select>\n"+
+"        \n"+
+"        <div class=cui-users__address-submit>\n"+
+"          <a class=\"cui-link cui-form__cancel\" href=\"\" ng-click=toggleOff()>{{'cui-cancel' | translate}}</a>\n"+
+"          <button class=cui-button ng-click=\"userDetailsProfile.updatePerson('timezoneLanguage',toggleOff);\">\n"+
+"            <span ng-if=\"!userDetailsProfile.timezoneLanguage || !userDetailsProfile.timezoneLanguage.submitting\">{{'cui-update' | translate}}</span>\n"+
+"            <div class=cui-loading--medium-ctr ng-if=userDetailsProfile.timezoneLanguage.submitting></div>\n"+
+"            <span ng-if=userDetailsProfile.timezoneLanguage.error>{{'cui-error-try-again'| translate}}</span>\n"+
+"          </button>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-details/sections/profile/userDetails-profile.html',
+"\n"+
+"<div class=cui-loading__container--user-details ng-if=\"base.loader.for['userDetailsProfile.initProfile']\">\n"+
+"  <div class=\"cui-loader cui-loader--content-sm\" ng-include=\"'app/common-templates/partials/loader-content-sm.html'\"></div>\n"+
+"</div>\n"+
+"\n"+
+"<ng-form name=edit novalidate ng-if=\"!base.loader.for['userDetailsProfile.initProfile']\">\n"+
+"	\n"+
+"  <div class=cui-users__info-block ng-if=userDetailsProfile.user>\n"+
+"    <div ng-include=\"'app/modules/organization/directory/user-details/sections/profile/sections-profile/basic-info.html'\"></div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-users__info-block ng-if=userDetailsProfile.passwordRules>\n"+
+"    <div ng-include=\"'app/modules/organization/directory/user-details/sections/profile/sections-profile/password.html'\"></div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-users__info-block ng-if=\"userDetailsProfile.userSecurityQuestions && userDetailsProfile.allSecurityQuestions\">\n"+
+"    <div ng-include=\"'app/modules/organization/directory/user-details/sections/profile/sections-profile/challenge-questions.html'\"></div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-users__info-block ng-if=userDetailsProfile.user>\n"+
+"    <div ng-include=\"'app/modules/organization/directory/user-details/sections/profile/sections-profile/address.html'\"></div>\n"+
+"  </div>\n"+
+"\n"+
+"	\n"+
+"  <div class=cui-users__info-block ng-if=userDetailsProfile.user>\n"+
+"    <div ng-include=\"'app/modules/organization/directory/user-details/sections/profile/sections-profile/phone-fax.html'\"></div>\n"+
+"  </div>\n"+
+"\n"+
+"	\n"+
+"  <div class=cui-users__info-block ng-if=userDetailsProfile.user>\n"+
+"    <div ng-include=\"'app/modules/organization/directory/user-details/sections/profile/sections-profile/timezone-language.html'\"></div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-details/sections/roles/userDetails-roles.html',
+"\n"+
+"<div class=cui-loading__container--user-details ng-if=userDetailsRoles.loading>\n"+
+"  <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"</div>\n"+
+"<div class=\"class-toggle cui-modal\" ng-if=userDetailsRoles.success toggled-class=cui-modal--hide ng-click=toggleClass()>\n"+
+"    <div class=cui-modal__pane>\n"+
+"        <div class=cui-modal__icon>\n"+
+"            <cui-icon cui-svg-icon=cui:check-with-border class=cui-modal__icon></cui-icon>\n"+
+"        </div>\n"+
+"        <span class=cui-modal__primary-message>{{'cui-success' | translate}}</span>\n"+
+"        <span class=cui-modal__secondary-message>{{'your-assign-role-success' | translate}}</span>\n"+
+"    </div>\n"+
+"</div>\n"+
+"\n"+
+"<div ng-if=!userDetailsRoles.loading>\n"+
+"	\n"+
+"	<div class=cui-users__profile-info>\n"+
+"		\n"+
+"		<div class=cui-action>\n"+
+"			<div class=cui-action__title>{{'cui-assigned-roles'|translate}}</div>\n"+
+"		</div>\n"+
+"		\n"+
+"		<div ng-repeat=\"role in userDetailsRoles.assignedRoles | orderBy:'name' track by role.roleId\">\n"+
+"			<p ng-if=\"userDetailsRoles.assignedRoles.length===0\">{{'cui-no-roles-assigned'|translate}}</p>\n"+
+"			<span>{{role.name}}</span>\n"+
+"		</div>\n"+
+"	</div>\n"+
+"	        \n"+
+"        <div class=cui-users__profile-info>\n"+
+"            <div class=cui-action>\n"+
+"                <div class=cui-action__title>{{'cui-available-roles'|translate}}</div>\n"+
+"            </div>\n"+
+"            \n"+
+"            <div class=cui-media__content ng-if=\"userDetailsRoles.rolesGrantable.length===0&&!userDetailsRoles.grantedHistoryError\">{{'cui-no-details'|translate}}</div>\n"+
+"            <p class=cui-users__password-success style=color:red ng-if=userDetailsRoles.grantedHistoryError><b>{{'error-generic'|translate}}</b></p>\n"+
+"      \n"+
+"        <cui-expandable class=cui-expandable ng-repeat=\"roles in userDetailsRoles.rolesGrantable\" ng-class=\"application.expanded?'expanded':''\" transition-speed=150>\n"+
+"            <cui-expandable-title class=\"cui-expandable__title cui-expandable__title--flex\">\n"+
+"               \n"+
+"                <span class=cui-checkbox__container>\n"+
+"                    <input class=cui-checkbox type=checkbox id=\"{{'checkbox-'+roles.roleId}}\" ng-model=userDetailsRoles.appCheckbox[roles.roleId]>\n"+
+"                    <label for=\"{{'checkbox-'+roles.roleId}}\" class=cui-checkbox__label ng-click=userDetailsRoles.checkrequest(roles.roleId)></label>\n"+
+"                </span>\n"+
+"                \n"+
+"                <div class=cui-applications__expandable-info ng-click=toggleExpand()>\n"+
+"                    <h3 class=cui-expandable__title-left>{{roles.name}}</h3>\n"+
+"                </div>\n"+
+"                <svg cui-icon xmlns=http://www.w3.org/2000/svg class=\"cui-icon cui-icon--light-grey chevron\" ng-class=cui-hide__opacity preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 216 146\" ng-click=toggleExpand()>\n"+
+"                  <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/font-awesome/font-awesome-out.svg#chevron18></use>\n"+
+"                </svg>\n"+
+"            </cui-expandable-title>\n"+
+"            <cui-expandable-body class=cui-expandable__body>\n"+
+"                <div class=cui-expandable__body-pane>\n"+
+"                    <span class=cui-expandable__body-close ng-click=collapse()>\n"+
+"                        <svg xmlns=http://www.w3.org/2000/svg class=cui-icon preserveAspectRatio=\"xMidYMid meet\" viewBox=\"2 0 48 48\">\n"+
+"                          <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#close-no-fill></use>\n"+
+"                        </svg>\n"+
+"                    </span>\n"+
+"                    <div class=cui-expandable__pane-col ng-if=\"roles.privileges && roles.privileges.length > 0\">\n"+
+"                        <h4 class=cui-expandable__pane-title>{{'privileges' | translate}}:</h4>\n"+
+"                        <span ng-if=\"(!roles.privileges || roles.privileges.length===0)\">{{'cui-no-details' | translate}}</span>\n"+
+"                        <div class=cui-expandable__pane-content>\n"+
+"                            <span class=cui-expandable__pane-content-item ng-repeat=\"privileges in roles.privileges\">\n"+
+"                                {{privileges.privilegeName}}\n"+
+"                            </span>\n"+
+"                        </div>\n"+
+"                    </div>\n"+
+"                </div>\n"+
+"            </cui-expandable-body>\n"+
+"        </cui-expandable>\n"+
+"            <div class=cui-applications__submit-options ng-if=\"userDetailsRoles.rolesGrantable.length>0&&!userDetailsRoles.grantedHistoryError\">\n"+
+"                <button class=cui-button ng-class=\"{'cui-button--error' : !userDetailsRoles.appCheckboxValid }\" ng-click=userDetailsRoles.appCheckboxValid&&userDetailsRoles.assignRoles()>\n"+
+"                    <span ng-if=!userDetailsRoles.rolessubmitError>{{'submit-request' | translate}}</span>\n"+
+"                    <span ng-if=\"userDetailsRoles.rolessubmitError===true\">{{'cui-error-try-again' | translate}}</span>\n"+
+"                </button>\n"+
+"            </div>\n"+
+"        </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/directory/user-list/directory-userList.html',
+"\n"+
+"<div class=code-info>The markup and javascript used to build this page can be found <a class=cui-link href=https://github.com/thirdwavellc/cui-idm-b2x/tree/master/app/modules/organization/directory target=blank>here</a>.</div>\n"+
+"\n"+
+"\n"+
+"<main class=\"cui-organization cui-organization-dir\">\n"+
+"  <h2 class=cui-sr-only>{{'organization-directory' | translate}}</h2>\n"+
+"\n"+
+"  \n"+
+"  <section class=cui-action>\n"+
+"    <h3 class=cui-sr-only>{{'org-nav-invite-links' | translate}}</h3>\n"+
+"    <nav ng-include=\"'app/modules/organization/partials/breadcrumbs.html'\" onload=\"orgId=orgDirectory.stateParamsOrgId\"></nav>\n"+
+"    <nav ng-if=\"!base.loader.for['orgDirectory.userList']\" ng-include=\"'app/modules/organization/partials/mobileNav.html'\" ng-init=\"orgName=orgDirectory.organization.name\"></nav>\n"+
+"  </section>\n"+
+"\n"+
+"  \n"+
+"  <section class=cui-action ng-if=!orgDirectory.loading>\n"+
+"    <h3 class=cui-sr-only>{{'org-dir-filters' | translate}}</h3>\n"+
+"    <div class=cui-loading__container ng-if=orgDirectory.loading>\n"+
+"      <div class=\"cui-loader cui-loader--content\" ng-include=\"'app/common-templates/partials/loader-content-header.html'\"></div>\n"+
+"    </div>\n"+
+"    <span class=\"cui-action__title cui-desktop-only\">{{orgDirectory.organization.name}}</span>\n"+
+"    <span class=\"cui-action__title cui-mobile-only\">{{orgDirectory.orgPersonCount}} People</span>\n"+
+"    <div class=\"cui-input-button cui-input-button--alt-bg\">\n"+
+"      <input class=cui-input-button__input ng-model=orgDirectory.search.fullName focus-if placeholder=\"{{'cui-search-user-name' | translate}}\" on-enter=orgDirectory.updateSearchByName>\n"+
+"      <button class=cui-input-button__button ng-click=\"orgDirectory.updateSearchByName('name')\">{{'search' | translate}}</button>\n"+
+"    </div>\n"+
+"    <div class=cui-action__actions>\n"+
+"      \n"+
+"      <div class=cui-action__action-container ng-click=\"orgDirectory.refineClicked=!orgDirectory.refineClicked\" id=refine-button off-click=\"orgDirectory.refineClicked=false\">\n"+
+"        <cui-icon cui-svg-icon=fa:filter10 svg-class=cui-action__icon use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"        <span class=cui-action__action-label>{{'refine' | translate}}</span>\n"+
+"        \n"+
+"        <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=#refine-button pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-70px'}, 'any']\" ng-if=orgDirectory.refineClicked style=width:214px>\n"+
+"          <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"            <span ng-click=\"orgDirectory.actionCallbacks.refine('all')\">{{'all' | translate}}</span>\n"+
+"          </div>\n"+
+"          <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"            <span ng-click=\"orgDirectory.actionCallbacks.refine('active')\">{{'active' | translate}}</span>\n"+
+"          </div>\n"+
+"          <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"            <span ng-click=\"orgDirectory.actionCallbacks.refine('pending')\">{{'pending' | translate}}</span>\n"+
+"          </div>\n"+
+"          <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"            <span ng-click=\"orgDirectory.actionCallbacks.refine('locked')\">{{'locked' | translate}}</span>\n"+
+"          </div>\n"+
+"          <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"            <span ng-click=\"orgDirectory.actionCallbacks.refine('suspended')\">{{'suspended' | translate}}</span>\n"+
+"            \n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-show=\"1==1\" class=cui-action__action-container ng-click=\"orgDirectory.sortClicked=!orgDirectory.sortClicked\" id=sort-button off-click=\"orgDirectory.sortClicked=false\">\n"+
+"        <svg xmlns=http://www.w3.org/2000/svg class=cui-action__icon preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 216 146\">\n"+
+"          <use xlink:href=node_modules/@covisint/cui-icons/dist/font-awesome/font-awesome-out.svg#sort14></use>\n"+
+"        </svg>\n"+
+"        <span class=cui-action__action-label>{{'sort' | translate}}</span>\n"+
+"        \n"+
+"        <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=#sort-button pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-40px'}, 'any']\" ng-if=orgDirectory.sortClicked style=width:171px>\n"+
+"          <div class=cui-popover__row>\n"+
+"            <span ng-click=\"orgDirectory.actionCallbacks.sort('name')\">{{'cui-alphabetically' | translate}}</span>\n"+
+"          </div>\n"+
+"          \n"+
+"          \n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      \n"+
+"        \n"+
+"        \n"+
+"\n"+
+"      \n"+
+"\n"+
+"      \n"+
+"        \n"+
+"        \n"+
+"    </div>\n"+
+"  </section>\n"+
+"\n"+
+"  \n"+
+"  <section class=cui-organization__main-container>\n"+
+"    <h3 class=cui-sr-only>{{'org-dir-list'}}</h3>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-loading__container ng-if=\"base.loader.for['orgDirectory.userList']\">\n"+
+"      <div class=\"cui-loader cui-loader--content\" ng-include=\"'app/common-templates/partials/loader-content.html'\"></div>\n"+
+"    </div>\n"+
+"\n"+
+"    <cui-table-header headers=\"['cui-name', 'username', 'status']\" sorting=orgDirectory.sortBy sorting-callbacks=orgDirectory.sortingCallbacks>\n"+
+"      </cui-table-header>\n"+
+"\n"+
+"    <cui-table-row ng-repeat=\"user in orgDirectory.userList track by user.id\" ng-click=orgDirectory.userClick(user)>\n"+
+"      <li class=\"cui-flex-table__tr cui-flex-table__tr--c\">\n"+
+"        \n"+
+"        <div class=cui-flex-table__avatar-col>\n"+
+"          <div class=cui-profile__user-avatar aria-hidden=true cui-avatar cui-avatar-names=\"[user.name.given, user.name.surname]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"        </div>\n"+
+"        <div class=cui-flex-table__mobile-stack>\n"+
+"          \n"+
+"          <div class=cui-flex-table__left><span class=cui-flex-table__title>{{user.name.given}} {{user.name.surname}}</span></div>\n"+
+"          \n"+
+"          <div class=cui-flex-table__middle><span class=cui-mobile-only>{{'username' | translate | lowercase}}: &nbsp;</span>{{user.username}}</div>\n"+
+"          \n"+
+"          <div class=cui-flex-table__right>\n"+
+"            <span class=cui-mobile-only>{{'apps' | translate}} ({{user.appCount}}) &nbsp;</span>\n"+
+"            <span ng-class=\"'cui-status--'+user.status\">{{user.status}}</span>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </li>\n"+
+"    </cui-table-row>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-paginate__container>\n"+
+"      <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"      <results-per-page class=cui-paginate__select ng-model=orgDirectory.search.pageSize></results-per-page>\n"+
+"      <paginate class=cui-paginate results-per-page=orgDirectory.search.pageSize count=orgDirectory.userCount on-page-change=orgDirectory.updateSearchParams ng-model=orgDirectory.search.page attach-rerender-to=orgDirectory.reRenderPagination></paginate>\n"+
+"    </div>\n"+
+"\n"+
+"  </section>\n"+
+"</main>\n");
+
+
+
+$templateCache.put('app/modules/organization/hierarchy/organization-hierarchy.html',
+"\n"+
+"<div class=code-info>The markup and javascript used to build this page can be found <a class=cui-link href=https://github.com/thirdwavellc/cui-idm-b2x/tree/master/app/modules/organization/hierarchy target=blank>here</a>.</div>\n"+
+"\n"+
+"\n"+
+"<div class=\"cui-organization cui-organization-dir\">\n"+
+"\n"+
+"  \n"+
+"  <section class=cui-action>\n"+
+"    <nav ng-include=\"'app/modules/organization/partials/breadcrumbs.html'\" onload=\"orgId=orgHierarchy.stateParamsOrgId\"></nav>\n"+
+"    <nav ng-if=\"!base.loader.for['orgHierarchy.loading']\" ng-include=\"'app/modules/organization/partials/mobileNav.html'\" ng-init=\"orgName=orgHierarchy.organizationHierarchy[0].name[0].text\"></nav>\n"+
+"    \n"+
+"  </section>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-organization__main-container>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-loading__container ng-if=\"base.loader.for['orgHierarchy.loading']\">\n"+
+"      <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <h3 class=cui-organization__page-title ng-if=\"base.user.organization.id!=orgHierarchy.organizationHierarchy[0].id\" ui-sref=organization.profile({orgId:base.user.organization.id})>&lt; {{base.user.organization.name}}</h3>\n"+
+"\n"+
+"    \n"+
+"    \n"+
+"    <div disable-animate class=cui-link ng-if=!orgHierarchy.expanded ng-click=orgHierarchy.toggleAll(orgHierarchy.expanded)>{{'expand-all'|translate}}</div>\n"+
+"    <div disable-animate class=cui-link ng-if=orgHierarchy.expanded ng-click=orgHierarchy.toggleAll(orgHierarchy.expanded)>{{'collapse-all'|translate}}</div>\n"+
+"    <div class=cui-tree ng-if=orgHierarchy.organizationHierarchy cui-tree-alt=orgHierarchy.organizationHierarchy cui-tree-alt-leaf-display=\"(object.name | cuiI18n)\" cui-tree-alt-leaf-click-callback=orgHierarchy.goToOrgPrfile cui-tree-alt-toggle-expand-callback=orgHierarchy.toggleExpand></div>\n"+
+"    \n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/invitation/division/division.html',
+"  <div class=\"class-toggle cui-modal\" ng-if=division.success toggled-class=cui-modal--hide ng-click=toggleClass()>\n"+
+"    <div class=cui-modal__pane>\n"+
+"        <div class=cui-modal__icon>\n"+
+"            <cui-icon cui-svg-icon=cui:check-with-border class=cui-modal__icon></cui-icon>\n"+
+"        </div>\n"+
+"        <span class=cui-modal__primary-message>{{'cui-success' | translate}}</span>\n"+
+"        <span class=cui-modal__secondary-message>{{'cui-invite-division-success' | translate}}</span>\n"+
+"    </div>\n"+
+"</div>\n"+
+"<ng-form name=edit novalidate>\n"+
+"  <div class=cui-users__edit> \n"+
+"\n"+
+"    <div class=cui-users__main-container>\n"+
+"      \n"+
+"      <div class=cui-loading__container ng-if=division.loader>\n"+
+"        <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"      </div>\n"+
+"      <span class=cui-field-val__field>{{'cui-invite-division'|translate}} </span>\n"+
+"        <div class=cui-action__actions>\n"+
+"            <svg ui-sref=organization.profile({orgId:division.stateParamsOrgId}) xmlns=http://www.w3.org/2000/svg class=\"cui-action__icon cui-action__icon--close\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"2 0 48 48\">\n"+
+"            <defs>\n"+
+"                <ellipse id=path-1 cx=20 cy=19.672 rx=20 ry=19.672 />\n"+
+"                <filter x=-50% y=-50% width=200% height=200% filterUnits=objectBoundingBox id=filter-2>\n"+
+"                    <feOffset dy=3 in=SourceAlpha result=shadowOffsetOuter1 />\n"+
+"                    <feGaussianBlur stdDeviation=2 in=shadowOffsetOuter1 result=shadowBlurOuter1 />\n"+
+"                    <feColorMatrix values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.27 0\" in=shadowBlurOuter1 />\n"+
+"                </filter>\n"+
+"            </defs>\n"+
+"            <g id=close-with-shadow fill=none fill-rule=evenodd>\n"+
+"                <g id=Oval-73 transform=\"translate(3 1)\">\n"+
+"                    <use fill=#000 filter=url(#filter-2) xlink:href=#path-1 />\n"+
+"                    <use fill=currentColor xlink:href=#path-1 />\n"+
+"                </g>\n"+
+"                <path d=\"M26.022 20.672l4.006-4.006c.788-.787.787-2.052.006-2.833l-.195-.195c-.788-.787-2.05-.778-2.834.006L23 17.65l-4.006-4.006c-.787-.788-2.052-.787-2.833-.006l-.194.195c-.788.787-.778 2.05.006 2.833l4.006 4.006-4.006 4.006c-.788.787-.787 2.053-.006 2.833l.195.196c.788.788 2.05.778 2.834-.006L23 23.695l4.006 4.005c.787.788 2.052.787 2.833.006l.194-.195c.788-.786.778-2.048-.006-2.832l-4.006-4.006z\" fill=#fff />\n"+
+"            </g>\n"+
+"          </svg>\n"+
+"        </div>\n"+
+"\n"+
+"      <div class=cui-users__profile>\n"+
+"        \n"+
+"        <div class=cui-users__profile-info ng-if=!division.selectOrgFromList>\n"+
+"\n"+
+"          <div class=cui-users__info-block>\n"+
+"              <div class=cui-users__info-block>\n"+
+"                <div class=cui-field-val>\n"+
+"                     <span class=cui-field-val__field>{{division.userSelectedOrg.originalObject.name}}</span>\n"+
+"                <span class=cui-field-val__val><nav class=cui-breadcrumb>\n"+
+"                <ul class=cui-breadcrumb__links>\n"+
+"                  <li class=cui-breadcrumb__link>\n"+
+"                    <a class=cui-link ng-click=\"division.selectOrgFromList=true\">\n"+
+"                      {{'change-org' | translate}}\n"+
+"                    </a>\n"+
+"                  </li>\n"+
+"                </ul>\n"+
+"              </nav></span></div>\n"+
+"\n"+
+"      <p class=cui-users__password-success style=color:red ng-if=division.sendInvitationError>{{'error-generic' | translate}}</p><br>   \n"+
+"  <div class=cui-users__info-block>\n"+
+"    \n"+
+"    <div class=cui-error ng-if=!division.userSelectedOrg>\n"+
+"        <div class=cui-error__message>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"      </div>\n"+
+"     <div auto-complete input-name=country pause=100 placeholder=\"{{'cui-invite-user-select' | translate}}\" selected-object=division.userSelectedOrg local-data=division.organizationList search-fields=name title-field=name input-class=cui-input match-class=highlight auto-match=true field-required=division.userSelectedOrg></div>\n"+
+"  </div>\n"+
+"  <div class=cui-users__info-block>\n"+
+"    <span class=cui-field-val__field>{{'cui-email'|translate}} {{'cui-subject'|translate}}* <input type=text name=emailSubject placeholder=\"{{'cui-division-sub'|translate}} {{division.userSelectedOrg.originalObject.name}}\" class=cui-input ng-disabled=true></span>\n"+
+"    </div>\n"+
+"    <div class=cui-users__info-block>\n"+
+"      <span class=cui-field-val__field>{{'cui-email'|translate}} {{'cui-address'|translate}}{{'cui-es'}}* \n"+
+"        <div class=cui-error ng-if=division.emailAddressError>\n"+
+"          <div class=cui-error__message>{{'cui-this-is-not-valid-email' | translate}}</div>\n"+
+"        </div>\n"+
+"    <textarea name=emailAddress ng-required=true class=cui-text-area style=\"min-width: 800px\" ng-model=division.emailAddress placeholder=\"{{'cui-email-recipt'|translate}}\"></textarea></span>   \n"+
+"   \n"+
+"    </div>\n"+
+"    \n"+
+"\n"+
+"    \n"+
+"          </div>\n"+
+"        </div>\n"+
+"        <div class=cui-applications__submit-options align=right>\n"+
+"                <a class=cui-link ng-click=\"base.goBack('invitation.inviteSelect')\">{{'cui-cancel' | translate}}</a>\n"+
+"                <button class=cui-button ng-class=\"{'cui-button--error' : !edit.$valid}\" ng-click=edit.$valid&&division.sendInvitation()>\n"+
+"                    <span ng-if=!division.sendInvitationError>{{'cui-send-invitation' | translate}}</span>\n"+
+"                    <span ng-if=\"division.sendInvitationError===true\">{{'cui-error-try-again' | translate}}</span>\n"+
+"                </button>\n"+
+"            </div>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=cui-users__profile-info ng-if=division.selectOrgFromList>\n"+
+"          <div class=cui-users__info-block>\n"+
+"            \n"+
+"            <div class=cui-tree cui-tree=division.organizationHierarchyRoot cui-tree-leaf-display=\"(object.name | cuiI18n)\" cui-tree-leaf-click-callback=division.goToOrgPrfile></div>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/invitation/invitation.html',
+"<div class=welcome-wrapper>\n"+
+"\n"+
+"    \n"+
+"    <div class=welcome-title>\n"+
+"        <h1>{{ 'cui-invite-verbiage' | translate }}:</h1>\n"+
+"    </div>\n"+
+"\n"+
+"    <div class=cui-card__container>\n"+
+"\n"+
+"         \n"+
+"        <div class=cui-card>\n"+
+"            <div class=cui-card__image-container>\n"+
+"                <div>\n"+
+"                    <?xml version=\"1.0\" encoding=\"utf-8\"?>\n"+
+"                    <!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n"+
+"                    <svg version=1.1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink x=0px y=0px width=48px height=48px viewBox=\"0 0 48 48\" enable-background=\"new 0 0 48 48\" xml:space=preserve>\n"+
+"                    <g id=user>\n"+
+"                        <path d=\"M23.667,29.482c-5.285,0-8.976-6.333-9.868-8.938c-0.044-0.027-0.092-0.056-0.138-0.085\n"+
+"                            c-0.349-0.216-0.579-0.359-0.733-0.633c-1.275-2.256-1.611-4.064-0.998-5.375c0.29-0.619,0.725-0.998,1.112-1.226\n"+
+"                            c0-0.978,0.074-2.818,0.547-4.605c0.02-0.072,1.916-6.761,10.079-6.761c8.163,0,10.059,6.689,10.078,6.756\n"+
+"                            c0.474,1.791,0.548,3.631,0.548,4.61c0.387,0.229,0.822,0.607,1.111,1.226c0.613,1.311,0.277,3.119-0.997,5.375\n"+
+"                            c-0.156,0.274-0.386,0.417-0.734,0.634c-0.046,0.029-0.094,0.057-0.138,0.085C32.643,23.148,28.95,29.482,23.667,29.482z\n"+
+"                             M14.573,18.672c0.043,0.027,0.093,0.057,0.143,0.088c0.436,0.271,0.781,0.485,0.907,0.921c0.476,1.653,3.695,7.8,8.044,7.8\n"+
+"                            c4.348,0,7.568-6.148,8.044-7.799c0.126-0.438,0.471-0.651,0.907-0.922c0.05-0.031,0.099-0.061,0.143-0.088\n"+
+"                            c1.155-2.107,0.977-3.042,0.843-3.351c-0.158-0.364-0.491-0.454-0.529-0.463c-0.468-0.113-0.819-0.552-0.793-1.033\n"+
+"                            c0.001-0.024,0.123-2.46-0.469-4.694c-0.058-0.207-1.55-5.272-8.145-5.272c-6.647,0-8.132,5.224-8.146,5.277\n"+
+"                            c-0.593,2.241-0.468,4.665-0.467,4.689c0.027,0.502-0.323,0.947-0.817,1.038c-0.014,0.004-0.347,0.094-0.505,0.458\n"+
+"                            C13.597,15.63,13.419,16.565,14.573,18.672z\"/>\n"+
+"                        <path d=\"M23.667,45.973c-11.963,0-20.625-1.835-20.71-1.854c-0.478-0.103-0.812-0.537-0.789-1.025\n"+
+"                            c0.455-9.559,6.409-12.526,10.848-13.926c3.438-1.085,5.237-2.84,5.255-2.858c0.392-0.388,1.026-0.386,1.414,0.007\n"+
+"                            c0.389,0.392,0.386,1.025-0.007,1.414c-0.086,0.086-2.166,2.115-6.06,3.344c-4.295,1.355-8.731,3.763-9.394,11.253\n"+
+"                            c2.425,0.446,9.841,1.645,19.443,1.645c9.614,0,17.02-1.198,19.443-1.644c-0.662-7.49-5.098-9.898-9.393-11.253\n"+
+"                            c-3.896-1.229-5.974-3.258-6.06-3.344c-0.393-0.389-0.396-1.022-0.007-1.414c0.388-0.393,1.019-0.396,1.412-0.009\n"+
+"                            c0.024,0.023,1.858,1.787,5.257,2.86c4.438,1.4,10.392,4.368,10.847,13.926c0.023,0.488-0.311,0.922-0.789,1.025\n"+
+"                            C44.291,44.138,35.63,45.973,23.667,45.973z\"/>\n"+
+"                    </g>\n"+
+"                    </svg>\n"+
+"                </div>\n"+
+"            </div>\n"+
+"            <div class=cui-card__content>\n"+
+"                <p class=cui-card__content-header>{{ 'cui-new-user' | translate }}</p>\n"+
+"                \n"+
+"                <button class=cui-card__button ui-sref=invitation.inviteUser>{{ 'select' | translate }}</button>\n"+
+"            </div>\n"+
+"            \n"+
+"        </div>\n"+
+"\n"+
+"        \n"+
+"        <div class=cui-card ng-if=true>\n"+
+"            <div class=cui-card__image-container>\n"+
+"                <div>\n"+
+"                    <?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n"+
+"<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n"+
+"<svg width=48px height=48px viewBox=\"0 0 48 48\" version=1.1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink xmlns:sketch=http://www.bohemiancoding.com/sketch/ns>\n"+
+"    \n"+
+"\n"+
+"    <g id=New-Division>\n"+
+"        <g id=division transform=\"translate(0.105138, 0.453626)\">\n"+
+"            <path d=\"M36.2486891,32.2207888 L36.2486891,25.6384794 C36.2486891,23.8239561 34.9364669,22.3473247 33.323974,22.3473247 L9.92625351,22.3473247 C8.31376058,22.3473247 7.00153843,23.8239561 7.00153843,25.6384794 L7.00153843,32.2207888 L5.05172838,32.2207888 L5.05172838,25.6384794 C5.05172838,22.6139082 7.23844035,20.1532216 9.92625351,20.1532216 L33.323974,20.1532216 C36.0117872,20.1532216 38.1984991,22.6139082 38.1984991,25.6384794 L38.1984991,32.2207888 L36.2486891,32.2207888 Z\" id=Fill-1></path>\n"+
+"            <path d=\"M20.6502087,12.4738607 L22.6000188,12.4738607 L22.6000188,32.2207888 L20.6502087,32.2207888 L20.6502087,12.4738607 L20.6502087,12.4738607 Z\" id=Fill-2></path>\n"+
+"            <path d=\"M25.5247338,13.5709123 L17.7254937,13.5709123 C16.1130008,13.5709123 14.8007786,12.0942809 14.8007786,10.2797576 L14.8007786,3.6974482 C14.8007786,1.88292492 16.1130008,0.406293523 17.7254937,0.406293523 L25.5247338,0.406293523 C27.1372267,0.406293523 28.4494489,1.88292492 28.4494489,3.6974482 L28.4494489,10.2797576 C28.4494489,12.0942809 27.1372267,13.5709123 25.5247338,13.5709123 L25.5247338,13.5709123 L25.5247338,13.5709123 Z M17.7254937,2.60039664 C17.1873461,2.60039664 16.7505886,3.0929728 16.7505886,3.6974482 L16.7505886,10.2797576 C16.7505886,10.884233 17.1873461,11.3768091 17.7254937,11.3768091 L25.5247338,11.3768091 C26.0628814,11.3768091 26.4996389,10.884233 26.4996389,10.2797576 L26.4996389,3.6974482 C26.4996389,3.0929728 26.0628814,2.60039664 25.5247338,2.60039664 L17.7254937,2.60039664 L17.7254937,2.60039664 L17.7254937,2.60039664 Z\" id=Fill-3></path>\n"+
+"            <path d=\"M24.5498288,43.1913044 L18.7003987,43.1913044 C17.0879058,43.1913044 15.7756836,41.714673 15.7756836,39.9001497 L15.7756836,34.4148919 C15.7756836,32.6003686 17.0879058,31.1237372 18.7003987,31.1237372 L24.5498288,31.1237372 C26.1623217,31.1237372 27.4745439,32.6003686 27.4745439,34.4148919 L27.4745439,39.9001497 C27.4745439,41.714673 26.1623217,43.1913044 24.5498288,43.1913044 L24.5498288,43.1913044 L24.5498288,43.1913044 Z M18.7003987,33.3178403 C18.1622511,33.3178403 17.7254937,33.8104165 17.7254937,34.4148919 L17.7254937,39.9001497 C17.7254937,40.5046251 18.1622511,40.9972013 18.7003987,40.9972013 L24.5498288,40.9972013 C25.0879764,40.9972013 25.5247338,40.5046251 25.5247338,39.9001497 L25.5247338,34.4148919 C25.5247338,33.8104165 25.0879764,33.3178403 24.5498288,33.3178403 L18.7003987,33.3178403 L18.7003987,33.3178403 L18.7003987,33.3178403 Z\" id=Fill-4></path>\n"+
+"            <path d=\"M40.1483092,43.1913044 L34.298879,43.1913044 C32.6863861,43.1913044 31.374164,41.714673 31.374164,39.9001497 L31.374164,34.4148919 C31.374164,32.6003686 32.6863861,31.1237372 34.298879,31.1237372 L40.1483092,31.1237372 C41.760802,31.1237372 43.0730243,32.6003686 43.0730243,34.4148919 L43.0730243,39.9001497 C43.0730243,41.714673 41.760802,43.1913044 40.1483092,43.1913044 L40.1483092,43.1913044 L40.1483092,43.1913044 Z M34.298879,33.3178403 C33.7607314,33.3178403 33.323974,33.8104165 33.323974,34.4148919 L33.323974,39.9001497 C33.323974,40.5046251 33.7607314,40.9972013 34.298879,40.9972013 L40.1483092,40.9972013 C40.6864567,40.9972013 41.1232142,40.5046251 41.1232142,39.9001497 L41.1232142,34.4148919 C41.1232142,33.8104165 40.6864567,33.3178403 40.1483092,33.3178403 L34.298879,33.3178403 L34.298879,33.3178403 L34.298879,33.3178403 Z\" id=Fill-5></path>\n"+
+"            <path d=\"M8.95134844,43.1913044 L3.10191834,43.1913044 C1.48942543,43.1913044 0.177203274,41.714673 0.177203274,39.9001497 L0.177203274,34.4148919 C0.177203274,32.6003686 1.48942543,31.1237372 3.10191834,31.1237372 L8.95134844,31.1237372 C10.5638414,31.1237372 11.8760635,32.6003686 11.8760635,34.4148919 L11.8760635,39.9001497 C11.8760635,41.714673 10.5638414,43.1913044 8.95134844,43.1913044 L8.95134844,43.1913044 L8.95134844,43.1913044 Z M3.10191834,33.3178403 C2.56377077,33.3178403 2.12701332,33.8104165 2.12701332,34.4148919 L2.12701332,39.9001497 C2.12701332,40.5046251 2.56377077,40.9972013 3.10191834,40.9972013 L8.95134844,40.9972013 C9.48949602,40.9972013 9.92625351,40.5046251 9.92625351,39.9001497 L9.92625351,34.4148919 C9.92625351,33.8104165 9.48949602,33.3178403 8.95134844,33.3178403 L3.10191834,33.3178403 L3.10191834,33.3178403 L3.10191834,33.3178403 Z\" id=Fill-6></path>\n"+
+"        </g>\n"+
+"    </g>\n"+
+"           \n"+
+"</svg>\n"+
+"                </div>\n"+
+"            </div>\n"+
+"            <div class=cui-card__content>\n"+
+"                <p class=cui-card__content-header id=newDivision-header>{{ 'cui-new-division' | translate }}</p>\n"+
+"               \n"+
+"               <button class=cui-card__button ui-sref=invitation.division>{{ 'select' | translate }}</button>\n"+
+"            </div>\n"+
+"            \n"+
+"        </div>\n"+
+"\n"+
+"        \n"+
+"        <div class=cui-card ng-if=true>\n"+
+"            <div class=cui-card__image-container>\n"+
+"                <div>\n"+
+"                    <?xml version=\"1.0\" encoding=\"utf-8\"?>\n"+
+"<svg version=1.1 xmlns:x=&ns_extend; xmlns:i=&ns_ai; xmlns:graph=&ns_graphs; xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink x=0px y=0px width=48px height=48px viewBox=\"0 0 48 48\" enable-background=\"new 0 0 48 48\" xml:space=preserve>\n"+
+"<g id=skyscraper>\n"+
+"    <g>\n"+
+"        <path d=\"M46.96,31.001C46.982,30.836,47,30.671,47,30.5c0-1.115-0.413-2.171-1.154-2.99\n"+
+"            C45.947,27.181,46,26.841,46,26.5c0-1.051-0.48-2.028-1.264-2.681C44.909,23.402,45,22.955,45,22.5c0-1.93-1.57-3.5-3.5-3.5\n"+
+"            c-0.171,0-0.335,0.027-0.5,0.051V5c0-0.459-0.313-0.858-0.758-0.97l-12-3c-0.375-0.096-0.778,0.04-1.023,0.345l-8,10\n"+
+"            C19.077,11.553,19,11.772,19,12v5.018c-0.011,0.334-0.013,0.659-0.018,0.987l-6.838-0.994c-0.034-0.005-0.069-0.001-0.103-0.003\n"+
+"            C12.026,17.008,12.014,17,12,17c-0.011,0-0.02,0.006-0.031,0.006c-0.119,0.003-0.234,0.025-0.343,0.069\n"+
+"            c-0.016,0.007-0.03,0.016-0.046,0.024c-0.089,0.042-0.171,0.098-0.246,0.166c-0.019,0.017-0.039,0.032-0.057,0.051\n"+
+"            c-0.01,0.011-0.023,0.018-0.033,0.029l-6,6.931C5.087,24.458,5,24.69,5,24.931V45H3c-0.553,0-1,0.447-1,1s0.447,1,1,1h43\n"+
+"            c0.553,0,1-0.447,1-1s-0.447-1-1-1h-4v-4.046C42.166,40.973,42.331,41,42.5,41c2.481,0,4.5-2.019,4.5-4.5\n"+
+"            c0-0.903-0.266-1.766-0.76-2.5c0.494-0.734,0.76-1.597,0.76-2.5C47,31.336,46.983,31.176,46.96,31.001z M11,42.334\n"+
+"            c-0.363-0.77-0.696-1.579-1-2.411V22c0-0.047-0.02-0.086-0.026-0.131L11,20.683V42.334z M13,19.156l5.984,0.87\n"+
+"            c0.005,0.238,0.009,0.478,0.016,0.712V45h-6V19.156z M21,33.042c1.924,6.222,4.737,10.156,6.258,11.958H21V33.042z\n"+
+"             M23.936,8.681L25,7.351v30.338c-0.359-0.74-0.714-1.542-1.058-2.403C23.97,35.194,24,35.101,24,35V9\n"+
+"            C24,8.887,23.97,8.782,23.936,8.681z M28,3.601V42.69c-0.319-0.43-0.669-0.93-1.038-1.501C26.975,41.125,27,41.067,27,41V5\n"+
+"            c0-0.042-0.019-0.078-0.024-0.119L28,3.601z M22,11.101v17.772c-0.529-2.448-0.896-5.186-1-8.223v-8.299L22,11.101z M8,24.148\n"+
+"            v8.413c-0.696-3.483-0.967-6.251-1-6.605v-0.653L8,24.148z M7,37.084c0.758,2.762,1.781,5.593,3.145,7.916H7V37.084z M40,45H30\n"+
+"            V3.531l9,2.25V20c0,0.017,0.009,0.03,0.009,0.047C38.387,20.679,38,21.545,38,22.5c0,0.179,0.014,0.356,0.041,0.53\n"+
+"            C36.327,23.255,35,24.726,35,26.5c0,0.675,0.19,1.318,0.547,1.874C35.187,29.028,35,29.751,35,30.5\n"+
+"            c0,0.616,0.126,1.218,0.37,1.777C34.5,33.115,34,34.266,34,35.5c0,2.481,2.019,4.5,4.5,4.5c0.354,0,0.704-0.042,1.047-0.124\n"+
+"            c0.142,0.125,0.299,0.228,0.453,0.333V45z M44.966,31.183C44.98,31.287,45,31.392,45,31.5c0,0.675-0.269,1.309-0.755,1.785\n"+
+"            c-0.192,0.188-0.301,0.446-0.301,0.715s0.108,0.526,0.301,0.715C44.731,35.191,45,35.825,45,36.5c0,1.379-1.121,2.5-2.5,2.5\n"+
+"            c-0.729,0-1.423-0.33-1.905-0.906c-0.194-0.232-0.478-0.358-0.767-0.358c-0.128,0-0.258,0.024-0.381,0.075\n"+
+"            C39.143,37.937,38.823,38,38.5,38c-1.379,0-2.5-1.121-2.5-2.5c0-0.863,0.444-1.654,1.189-2.117\n"+
+"            c0.234-0.146,0.398-0.384,0.452-0.655c0.055-0.271-0.007-0.554-0.169-0.778C37.164,31.519,37,31.018,37,30.5\n"+
+"            c0-0.709,0.308-1.239,0.565-1.559c0.328-0.406,0.288-0.996-0.092-1.354C37.168,27.298,37,26.912,37,26.5\n"+
+"            c0-0.827,0.673-1.5,1.5-1.5c0.472,0,0.909,0.223,1.198,0.611c0.188,0.253,0.485,0.402,0.802,0.402h0.001\n"+
+"            c0.316,0,0.613-0.15,0.802-0.404c0.027-0.036,0.057-0.069,0.086-0.103c0.221-0.247,0.306-0.588,0.225-0.909\n"+
+"            c-0.08-0.322-0.314-0.583-0.626-0.697C40.396,23.685,40,23.121,40,22.5c0-0.827,0.673-1.5,1.5-1.5s1.5,0.673,1.5,1.5\n"+
+"            c0,0.462-0.212,0.795-0.389,0.993c-0.222,0.248-0.306,0.588-0.225,0.909c0.08,0.322,0.314,0.583,0.626,0.697\n"+
+"            C43.604,25.315,44,25.879,44,26.5c0,0.258-0.071,0.51-0.213,0.75c-0.254,0.432-0.149,0.984,0.245,1.294\n"+
+"            C44.647,29.026,45,29.739,45,30.5c0,0.108-0.02,0.213-0.04,0.354C44.945,30.951,44.951,31.085,44.966,31.183z\"/>\n"+
+"        <path d=\"M40.255,34.033c-0.098-0.026-0.269-0.083-0.32-0.179c-0.072-0.134-0.031-0.403,0.008-0.52\n"+
+"            c0.184-0.516-0.082-1.084-0.597-1.273c-0.518-0.188-1.093,0.074-1.284,0.593c-0.043,0.116-0.402,1.161,0.098,2.121\n"+
+"            c0.213,0.409,0.661,0.948,1.586,1.191C39.831,35.989,39.916,36,40.001,36c0.442,0,0.848-0.297,0.966-0.745\n"+
+"            C41.107,34.721,40.789,34.174,40.255,34.033z\"/>\n"+
+"        <path d=\"M41.242,28.03c-0.535-0.138-1.125,0.175-1.26,0.712c-0.134,0.536,0.146,1.063,0.681,1.197\n"+
+"            c0.003,0.001,0.213,0.11,0.469,0.557C41.316,30.819,41.653,31,42.001,31c0.168,0,0.339-0.042,0.495-0.132\n"+
+"            c0.479-0.274,0.646-0.885,0.372-1.364C42.208,28.349,41.457,28.083,41.242,28.03z\"/>\n"+
+"    </g>\n"+
+"</g>\n"+
+"</svg>\n"+
+"                </div>\n"+
+"            </div>\n"+
+"            <div class=cui-card__content>\n"+
+"                <p class=cui-card__content-header>{{ 'cui-new-TLO' | translate }}</p>\n"+
+"                \n"+
+"                <button class=cui-card__button ui-sref=invitation.tlo>{{ 'select' | translate }}</button>\n"+
+"            </div>\n"+
+"            \n"+
+"        </div>\n"+
+"    </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/invitation/tlo/tlo.html',
+"  <div class=\"class-toggle cui-modal\" ng-if=tlo.success toggled-class=cui-modal--hide ng-click=toggleClass()>\n"+
+"    <div class=cui-modal__pane>\n"+
+"        <div class=cui-modal__icon>\n"+
+"            <cui-icon cui-svg-icon=cui:check-with-border class=cui-modal__icon></cui-icon>\n"+
+"        </div>\n"+
+"        <span class=cui-modal__primary-message>{{'cui-success' | translate}}</span>\n"+
+"        <span class=cui-modal__secondary-message>{{'cui-invite-tlo-success' | translate}}</span>\n"+
+"    </div>\n"+
+"</div>\n"+
+"<ng-form name=edit novalidate>\n"+
+"  <div class=cui-users__edit> \n"+
+"    <div class=cui-users__main-container>\n"+
+"      \n"+
+"      <div class=cui-loading__container ng-if=tlo.loader>\n"+
+"        <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"      </div>\n"+
+"   \n"+
+"      <span class=cui-field-val__field>{{'cui-invite-tlo'|translate}} </span>\n"+
+"      <div class=cui-action__actions>\n"+
+"          <svg ui-sref=organization.profile({orgId:tlo.stateParamsOrgId}) xmlns=http://www.w3.org/2000/svg class=\"cui-action__icon cui-action__icon--close\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"2 0 48 48\">\n"+
+"          <defs>\n"+
+"            <ellipse id=path-1 cx=20 cy=19.672 rx=20 ry=19.672 />\n"+
+"            <filter x=-50% y=-50% width=200% height=200% filterUnits=objectBoundingBox id=filter-2>\n"+
+"                <feOffset dy=3 in=SourceAlpha result=shadowOffsetOuter1 />\n"+
+"                <feGaussianBlur stdDeviation=2 in=shadowOffsetOuter1 result=shadowBlurOuter1 />\n"+
+"                <feColorMatrix values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.27 0\" in=shadowBlurOuter1 />\n"+
+"            </filter>\n"+
+"          </defs>\n"+
+"          <g id=close-with-shadow fill=none fill-rule=evenodd>\n"+
+"              <g id=Oval-73 transform=\"translate(3 1)\">\n"+
+"                  <use fill=#000 filter=url(#filter-2) xlink:href=#path-1 />\n"+
+"                  <use fill=currentColor xlink:href=#path-1 />\n"+
+"              </g>\n"+
+"              <path d=\"M26.022 20.672l4.006-4.006c.788-.787.787-2.052.006-2.833l-.195-.195c-.788-.787-2.05-.778-2.834.006L23 17.65l-4.006-4.006c-.787-.788-2.052-.787-2.833-.006l-.194.195c-.788.787-.778 2.05.006 2.833l4.006 4.006-4.006 4.006c-.788.787-.787 2.053-.006 2.833l.195.196c.788.788 2.05.778 2.834-.006L23 23.695l4.006 4.005c.787.788 2.052.787 2.833.006l.194-.195c.788-.786.778-2.048-.006-2.832l-4.006-4.006z\" fill=#fff />\n"+
+"          </g>\n"+
+"          </svg>\n"+
+"      </div>\n"+
+"\n"+
+"      <div class=cui-users__profile>\n"+
+"        \n"+
+"        <div class=cui-users__profile-info>\n"+
+"          <div class=cui-users__info-block>\n"+
+"            <div class=cui-users__info-block>\n"+
+"              \n"+
+"                     <p class=cui-users__password-success style=color:red ng-if=tlo.sendInvitationError>{{'error-generic' | translate}}</p><br>    \n"+
+"            <div class=cui-users__info-block>\n"+
+"                <span class=cui-field-val__field>{{'cui-email'|translate}} {{'cui-subject'|translate}}* <input type=text name=emailSubject ng-model=tlo.emailSubject class=cui-input ng-disabled=true placeholder=\"{{'cui-tlo-sub'|translate}}\"></span>\n"+
+"            </div>\n"+
+"            <div class=cui-users__info-block>\n"+
+"              \n"+
+"              <span class=cui-field-val__field>{{'cui-email'|translate}} {{'cui-address'|translate}}{{'cui-es'|translate}}* \n"+
+"                <div class=cui-error ng-if=tlo.emailAddressError>\n"+
+"                  <div class=cui-error__message>{{'cui-this-is-not-valid-email' | translate}}</div>\n"+
+"                </div>\n"+
+"                <textarea name=emailAddress ng-required=true class=cui-text-area style=\"min-width: 800px\" ng-model=tlo.emailAddress placeholder=\"{{'cui-email-recipt'|translate}}\"></textarea></span>   \n"+
+"            </div>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"        <div class=cui-applications__submit-options align=right>\n"+
+"          <a class=cui-link ng-click=\"base.goBack('invitation.inviteSelect')\">{{'cui-cancel' | translate}}</a>\n"+
+"          <button class=cui-button ng-class=\"{'cui-button--error' : !edit.$valid}\" ng-click=edit.$valid&&tlo.sendInvitation()>\n"+
+"              <span ng-if=!tlo.sendInvitationError>{{'cui-send-invitation' | translate}}</span>\n"+
+"              <span ng-if=\"tlo.sendInvitationError===true\">{{'cui-error-try-again' | translate}}</span>\n"+
+"          </button>\n"+
+"        </div>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/invitation/user/user.html',
+"  <div class=\"class-toggle cui-modal\" ng-if=user.success toggled-class=cui-modal--hide ng-click=toggleClass()>\n"+
+"    <div class=cui-modal__pane>\n"+
+"        <div class=cui-modal__icon>\n"+
+"            <cui-icon cui-svg-icon=cui:check-with-border class=cui-modal__icon></cui-icon>\n"+
+"        </div>\n"+
+"        <span class=cui-modal__primary-message>{{'cui-success' | translate}}</span>\n"+
+"        <span class=cui-modal__secondary-message>{{'cui-invite-user-success' | translate}}</span>\n"+
+"    </div>\n"+
+"</div>\n"+
+"<ng-form name=edit novalidate>\n"+
+"  <div class=cui-users__edit> \n"+
+"\n"+
+"    <div class=cui-users__main-container>\n"+
+"      \n"+
+"      <div class=cui-loading__container ng-if=user.loader>\n"+
+"        <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"      </div>\n"+
+"      \n"+
+"      <span class=cui-field-val__field>{{'cui-invite-user'|translate}}</span>\n"+
+"      <div class=cui-action__actions>\n"+
+"          <svg ui-sref=organization.profile({orgId:user.stateParamsOrgId}) xmlns=http://www.w3.org/2000/svg class=\"cui-action__icon cui-action__icon--close\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"2 0 48 48\">\n"+
+"          <defs>\n"+
+"              <ellipse id=path-1 cx=20 cy=19.672 rx=20 ry=19.672 />\n"+
+"              <filter x=-50% y=-50% width=200% height=200% filterUnits=objectBoundingBox id=filter-2>\n"+
+"                  <feOffset dy=3 in=SourceAlpha result=shadowOffsetOuter1 />\n"+
+"                  <feGaussianBlur stdDeviation=2 in=shadowOffsetOuter1 result=shadowBlurOuter1 />\n"+
+"                  <feColorMatrix values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.27 0\" in=shadowBlurOuter1 />\n"+
+"              </filter>\n"+
+"          </defs>\n"+
+"          <g id=close-with-shadow fill=none fill-rule=evenodd>\n"+
+"              <g id=Oval-73 transform=\"translate(3 1)\">\n"+
+"                  <use fill=#000 filter=url(#filter-2) xlink:href=#path-1 />\n"+
+"                  <use fill=currentColor xlink:href=#path-1 />\n"+
+"              </g>\n"+
+"              <path d=\"M26.022 20.672l4.006-4.006c.788-.787.787-2.052.006-2.833l-.195-.195c-.788-.787-2.05-.778-2.834.006L23 17.65l-4.006-4.006c-.787-.788-2.052-.787-2.833-.006l-.194.195c-.788.787-.778 2.05.006 2.833l4.006 4.006-4.006 4.006c-.788.787-.787 2.053-.006 2.833l.195.196c.788.788 2.05.778 2.834-.006L23 23.695l4.006 4.005c.787.788 2.052.787 2.833.006l.194-.195c.788-.786.778-2.048-.006-2.832l-4.006-4.006z\" fill=#fff />\n"+
+"          </g>\n"+
+"          </svg>\n"+
+"      </div>\n"+
+"      <div class=cui-users__profile>\n"+
+"        \n"+
+"        <div class=cui-users__profile-info ng-if=!user.selectOrgFromList>\n"+
+"              <div class=cui-field-val ng-if=user.userSelectedOrg.originalObject.name>\n"+
+"                  <span class=cui-field-val__field>{{user.userSelectedOrg.originalObject.name}}</span>\n"+
+"                  <span class=cui-field-val__val><nav class=cui-breadcrumb>\n"+
+"                      <ul class=cui-breadcrumb__links>\n"+
+"                        <li class=cui-breadcrumb__link>\n"+
+"                          <a class=cui-link ng-click=\"user.selectOrgFromList=true\">\n"+
+"                            {{'change-org' | translate}}\n"+
+"                          </a>\n"+
+"                        </li>\n"+
+"                      </ul>\n"+
+"                    </nav>\n"+
+"                  </span>\n"+
+"              </div>\n"+
+"              \n"+
+"              <p class=cui-users__password-success style=color:red ng-if=user.sendInvitationError>{{'error-generic' | translate}}</p>\n"+
+"              <div class=cui-users__info-block>\n"+
+"\n"+
+"                     <div class=cui-error ng-if=!user.userSelectedOrg>\n"+
+"                      <div class=cui-error__message>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"                    </div>\n"+
+"                    <div auto-complete input-name=country pause=100 placeholder=\"{{'cui-invite-user-select' | translate}}\" selected-object=user.userSelectedOrg local-data=user.organizationList search-fields=name title-field=name input-class=cui-input match-class=highlight auto-match=true field-required=user.userSelectedOrg></div>\n"+
+"              </div>\n"+
+"              <div class=cui-users__info-block>\n"+
+"                  <span class=cui-field-val__field>{{'cui-email'|translate}} {{'cui-subject'|translate}}* <input type=text name=emailSubject placeholder=\"{{'cui-invite-user-sub'|translate}} {{user.userSelectedOrg.originalObject.name}}\" class=cui-input ng-disabled=true></span>\n"+
+"              </div>\n"+
+"              <div class=cui-users__info-block>\n"+
+"                  <span class=cui-field-val__field>{{'cui-email'|translate}} {{'cui-address' |translate}}{{'cui-es'|translate}}* \n"+
+"                    <div class=cui-error ng-if=user.emailAddressError>\n"+
+"                      <div class=cui-error__message>{{'cui-this-is-not-valid-email' | translate}}</div>\n"+
+"                    </div>\n"+
+"                  \n"+
+"                <textarea name=emailAddress ng-required=true class=cui-text-area style=\"min-width: 800px\" ng-model=user.emailAddress placeholder=\"{{'cui-email-recipt'|translate}}\"></textarea></span>        \n"+
+"              </div>\n"+
+"          \n"+
+"          <div class=cui-applications__submit-options align=right>\n"+
+"          <a class=cui-link ng-click=\"base.goBack('invitation.inviteSelect')\">{{'cui-cancel' | translate}}</a>\n"+
+"          <button class=cui-button ng-class=\"{'cui-button--error' : !edit.$valid}\" ng-click=edit.$valid&&user.sendInvitation()>\n"+
+"              <span ng-if=!user.sendInvitationError>{{'cui-send-invitation' | translate}}</span>\n"+
+"              <span ng-if=\"user.sendInvitationError===true\">{{'cui-error-try-again' | translate}}</span>\n"+
+"          </button>\n"+
+"        </div>\n"+
+"        </div>\n"+
+"         \n"+
+"        <div class=cui-users__profile-info ng-if=user.selectOrgFromList>\n"+
+"          <div class=cui-users__info-block>\n"+
+"            \n"+
+"            <div class=cui-tree cui-tree=user.organizationHierarchyRoot cui-tree-leaf-display=\"(object.name | cuiI18n)\" cui-tree-leaf-click-callback=user.goToOrgPrfile></div>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/partials/breadcrumbs.html',
+"<nav class=cui-breadcrumb>\n"+
+"  <ul class=cui-breadcrumb__links>\n"+
+"    <li class=cui-breadcrumb__link>\n"+
+"      <a ui-sref=organization.profile({orgId:base.user.organization.id}) ui-sref-active-for=organization.profile>\n"+
+"        {{'cui-org-profile' | translate}}\n"+
+"      </a>\n"+
+"    </li>\n"+
+"    <li class=cui-breadcrumb__link ng-if=base.accessByAnyAdmin()>\n"+
+"      <a ui-sref=organization.hierarchy({orgId:base.user.organization.id}) ui-sref-active-for=organization.hierarchy>\n"+
+"        {{'cui-org-hierarchy' | translate}}\n"+
+"      </a>\n"+
+"    </li>\n"+
+"    <li class=cui-breadcrumb__link ng-if=base.accessByAnyAdmin()>\n"+
+"      <a ui-sref=organization.directory.userList({orgId:base.user.organization.id}) ui-sref-active-for=organization.directory>\n"+
+"        {{'directory' | translate}}\n"+
+"      </a>\n"+
+"    </li>\n"+
+"    <li class=cui-breadcrumb__link ng-if=base.accessByAnyAdmin()>\n"+
+"       \n"+
+"      <a ui-sref=organization.applications({orgId:base.user.organization.id}) ui-sref-active-for=organization.applications>\n"+
+"        {{'cui-applications' | translate}}\n"+
+"      </a>\n"+
+"    </li>\n"+
+"    \n"+
+"  </ul>\n"+
+"</nav>\n");
+
+
+
+$templateCache.put('app/modules/organization/partials/close-with-shadow.html',
+"<svg xmlns=http://www.w3.org/2000/svg class=\"cui-action__icon cui-action__icon--close\" ng-if=\"base.user.organization.id!==prevStateParams.orgId\" ng-click=base.goBack(prevState.name,prevState.params) preserveAspectRatio=\"xMidYMid meet\" viewBox=\"3 0 42 42\" href=\"#/organization/user-details?userID=%5BS-3RDWAVE-DEV01%5DS-3RDWAVE-DEV01_ADMIN\">\n"+
+"  <defs>\n"+
+"    <ellipse id=path-1 cx=20 cy=19.6721311 rx=20 ry=19.6721311></ellipse>\n"+
+"    <filter x=-50% y=-50% width=200% height=200% filterUnits=objectBoundingBox id=filter-2>\n"+
+"      <feOffset dx=0 dy=2 in=SourceAlpha result=shadowOffsetOuter1></feOffset>\n"+
+"      <feGaussianBlur stdDeviation=1.5 in=shadowOffsetOuter1 result=shadowBlurOuter1></feGaussianBlur>\n"+
+"      <feColorMatrix values=\"0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.15 0\" type=matrix in=shadowBlurOuter1></feColorMatrix>\n"+
+"    </filter>\n"+
+"  </defs>\n"+
+"  <use class=cui-icon__ref xmlns:xlink=http://www.w3.org/1999/xlink xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#close-with-shadow></use>\n"+
+"</svg>");
+
+
+
+$templateCache.put('app/modules/organization/partials/invite-actions.html',
+"<div class=cui-action__action-container id=invitation-button ng-click=\"orgDirectory.invitationClicked=!orgDirectory.invitationClicked\" off-click=\"orgDirectory.invitationClicked=false\">\n"+
+"  <svg xmlns=http://www.w3.org/2000/svg class=\"cui-action__icon cui-action__icon--invite\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 48 48\">\n"+
+"    <defs>\n"+
+"      <ellipse id=path-1 cx=20 cy=19.672 rx=20 ry=19.672 />\n"+
+"      <filter x=-50% y=-50% width=200% height=200% filterUnits=objectBoundingBox id=filter-2>\n"+
+"        <feOffset dy=3 in=SourceAlpha result=shadowOffsetOuter1 />\n"+
+"        <feGaussianBlur stdDeviation=2 in=shadowOffsetOuter1 result=shadowBlurOuter1 />\n"+
+"        <feColorMatrix values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.27 0\" in=shadowBlurOuter1 />\n"+
+"      </filter>\n"+
+"    </defs>\n"+
+"    <use xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#invite></use>\n"+
+"  </svg>\n"+
+"  \n"+
+"  <div class=\"cui-popover cui-popover--top cui-popover__sort-popover\" tether target=#invitation-button attachment=\"top middle\" target-attachment=\"bottom middle\" offset=\"-10px 0\" ng-if=orgDirectory.invitationClicked>\n"+
+"    <p>{{'invite-user' | translate}}</p>\n"+
+"    <p>{{'invite-division' | translate}}</p>\n"+
+"  </div>\n"+
+"</div>");
+
+
+
+$templateCache.put('app/modules/organization/partials/mobileNav.html',
+"<cui-mobile-nav show-if=base.orgMobileNav links=\"{\n"+
+"		'organization.profile':{stateParams:{orgId:orgId},label:('cui-org-profile' | translate)},\n"+
+"		'organization.hierarchy':{stateParams:{orgId:orgId},label:('cui-org-hierarchy' | translate)},\n"+
+"		'organization.directory.userList':{stateParams:{orgId:orgId},label:('directory' | translate)},\n"+
+"		'organization.applications':{stateParams:{orgId:orgId},label:('cui-applications' | translate)}\n"+
+"	}\" label=label|translate>\n"+
+"</cui-mobile-nav>");
+
+
+
+$templateCache.put('app/modules/organization/profile/organization-profile.html',
+"\n"+
+"<div class=code-info>The markup and javascript used to build this page can be found <a class=cui-link href=https://github.com/thirdwavellc/cui-idm-b2x/tree/master/app/modules/organization/profile target=blank>here</a>.</div>\n"+
+"\n"+
+"\n"+
+"<div class=\"cui-organization cui-organization-dir\">\n"+
+"  \n"+
+"  <div class=cui-action>\n"+
+"    <nav ng-include=\"'app/modules/organization/partials/breadcrumbs.html'\" onload=\"orgId=orgProfile.stateParamsOrgId\"></nav>\n"+
+"    <nav ng-if=\"!base.loader.for['orgProfile.init']\" ng-include=\"'app/modules/organization/partials/mobileNav.html'\" ng-init=\"orgName=orgProfile.organization.name\"></nav>\n"+
+"    \n"+
+"              <div class=cui-action__actions>\n"+
+"                <div class=cui-action__action-container ng-if=base.accessByAnyAdmin() ng-click=\"orgProfile.granted.sortClicked =! orgProfile.granted.sortClicked\" id=sort-buttons off-click=\"orgProfile.granted.sortClicked=false\">\n"+
+"               \n"+
+"              <svg version=1.1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink x=0px y=0px width=48px height=48px viewBox=\"0 0 48 48\" enable-background=\"new 0 0 48 48\" xml:space=preserve>\n"+
+"              <g id=mail-open>\n"+
+"                <path d=\"M43,47H5c-1.7,0-3-1.3-3-3V21.3c0-1.1,0.5-2.1,1.2-2.9l4-3.8L8.6,16l-4,3.8C4.2,20.2,4,20.7,4,21.3V44\n"+
+"                  c0,0.6,0.4,1,1,1h38c0.6,0,1-0.4,1-1V21.3c0-0.5-0.2-1.1-0.6-1.4l-4-3.8l1.4-1.4l4,3.8c0.8,0.8,1.2,1.8,1.2,2.9V44\n"+
+"                  C46,45.7,44.7,47,43,47z\"/>\n"+
+"                <path d=M30.3,7.4l-5-4.7c-0.8-0.7-2-0.7-2.8,0l-5,4.7L16.3,6l5-4.7c1.5-1.5,4-1.5,5.5,0l5,4.7L30.3,7.4z />\n"+
+"                <path d=\"M3.7,46.7l-1.4-1.4l13.4-13.4c0.6-0.6,1.3-0.9,2.1-0.9h13.3c0.8,0,1.6,0.3,2.2,1l12.4,13.4l-1.5,1.4\n"+
+"                  L31.9,33.3c-0.2-0.2-0.5-0.3-0.7-0.3H17.8c-0.3,0-0.5,0.1-0.7,0.3L3.7,46.7z\"/>\n"+
+"                \n"+
+"                  <rect x=1.3 y=27 transform=\"matrix(0.7926 0.6097 -0.6097 0.7926 19.042 1.427599e-002)\" width=16.4 height=2 />\n"+
+"                <rect x=38.5 y=20.6 transform=\"matrix(0.6726 0.74 -0.74 0.6726 33.6509 -20.0629)\" width=2 height=14.9 />\n"+
+"                <path d=M41,27h-2V9c0-0.6-0.4-1-1-1H10C9.4,8,9,8.4,9,9v18H7V9c0-1.7,1.3-3,3-3h28c1.7,0,3,1.3,3,3V27z />\n"+
+"                <path d=M20,15h-6c-0.6,0-1-0.4-1-1s0.4-1,1-1h6c0.6,0,1,0.4,1,1S20.6,15,20,15z />\n"+
+"                <path d=M34,19H14c-0.6,0-1-0.4-1-1s0.4-1,1-1h20c0.6,0,1,0.4,1,1S34.6,19,34,19z />\n"+
+"                <path d=M34,23H14c-0.6,0-1-0.4-1-1s0.4-1,1-1h20c0.6,0,1,0.4,1,1S34.6,23,34,23z />\n"+
+"              </g>\n"+
+"              </svg>\n"+
+"                \n"+
+"                <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=#sort-buttons pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-40px'}, 'any']\" attachment=\"top middle\" target-attachment=\"bottom middle\" ng-if=orgProfile.granted.sortClicked style=width:191px>\n"+
+"                  <div class=cui-popover__row>\n"+
+"                    <span ui-sref=invitation.inviteUser>{{'cui-new-user' | translate}}</span>\n"+
+"                  </div>\n"+
+"                  <div class=cui-popover__row>\n"+
+"                     <span ui-sref=invitation.division>{{'cui-new-division' | translate}}</span>\n"+
+"                  </div>\n"+
+"                  <div class=cui-popover__row>\n"+
+"                     <span ui-sref=invitation.tlo>{{'cui-new-TLO' | translate}}</span>\n"+
+"                  </div>\n"+
+"                </div>\n"+
+"              </div>\n"+
+"              </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-organization__main-container>\n"+
+"    \n"+
+"    <div class=cui-loading__container ng-if=\"base.loader.for['orgProfile.init']\">\n"+
+"        <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <p class=cui-users__password-success style=color:red ng-if=\"base.apiError.for['orgProfile.init']\">{{'error-generic' | translate}}</p>\n"+
+"\n"+
+"    \n"+
+"    <div ng-if=\"!base.loader.for['orgProfile.init'] && orgProfile.organization\">\n"+
+"      <h3 class=cui-organization__page-title>{{orgProfile.organization.name}}</h3>\n"+
+"      <h4 class=cui-field-val__field ng-if=orgProfile.securityAdmins>{{'cui-security-admin' | translate}}</h4>\n"+
+"\n"+
+"      <div class=cui-organization__row>\n"+
+"        \n"+
+"        <div class=cui-organization__info-block>\n"+
+"          <div class=cui-organization__admin-block-wrapper ng-if=orgProfile.securityAdmins>\n"+
+"            <div class=cui-organization__admin-block ng-repeat=\"admin in orgProfile.securityAdmins track by admin.id\">\n"+
+"              \n"+
+"              <div class=cui-field-val>\n"+
+"                <span class=cui-field-val__field>{{'cui-name' | translate}}: </span>\n"+
+"                <span class=cui-field-val__val>{{admin.name.given}} {{admin.name.surname}}</span>\n"+
+"              </div>\n"+
+"              \n"+
+"              <div class=cui-field-val>\n"+
+"                <span class=cui-field-val__field>{{'username' | translate}}: </span>\n"+
+"                <span class=cui-field-val__val>{{admin.username}}</span>\n"+
+"              </div>\n"+
+"              \n"+
+"              <div class=cui-field-val>\n"+
+"                <span class=cui-field-val__field>{{'title' | translate}}: </span>\n"+
+"                <span class=cui-field-val__val>{{admin.title}}</span>\n"+
+"              </div>\n"+
+"              \n"+
+"              <div class=cui-field-val>\n"+
+"                <span class=cui-field-val__field>{{'cui-phone' | translate}}: </span>\n"+
+"                <span class=cui-field-val__val>{{admin.phones[0].number}}</span>\n"+
+"              </div>\n"+
+"              \n"+
+"              <div class=cui-field-val>\n"+
+"                <span class=cui-field-val__field>{{'cui-email' | translate}}: </span>\n"+
+"                <span class=cui-field-val__val><a class=cui-link href=mailto:{{admin.email}}>{{admin.email}}</a></span>\n"+
+"              </div>\n"+
+"            </div>\n"+
+"          </div>\n"+
+"\n"+
+"          \n"+
+"          <div class=cui-organization__admin-block-wrapper>\n"+
+"            <div class=\"cui-field-val cui-field-val--stack cui-organization__admin-block cui-organization__admin-block__right\">\n"+
+"              <h4 class=cui-field-val__field>{{'cui-address' | translate}}: </h4>\n"+
+"              <span class=cui-field-val__val>{{orgProfile.organization.addresses[0].streets[0]}}</span>\n"+
+"              <span class=cui-field-val__val>{{orgProfile.organization.addresses[0].city}}</span>\n"+
+"              <span class=cui-field-val__val>{{orgProfile.organization.addresses[0].state}}, {{orgProfile.organization.addresses[0].postal}}</span>\n"+
+"              <span class=cui-field-val__val>{{orgProfile.organization.phones[0].number}}</span>\n"+
+"            </div>\n"+
+"\n"+
+"            \n"+
+"            <div class=\"cui-organization__admin-block cui-organization__admin-block__right\">\n"+
+"              \n"+
+"              <div class=cui-field-val ng-if=orgProfile.organization.url>\n"+
+"                <span class=cui-field-val__field>{{'url' | translate}}: </span>\n"+
+"                <span class=cui-field-val__val><a class=cui-link ng-href={{orgProfile.organization.url}}>{{orgProfile.organization.url}}</a></span>\n"+
+"              </div>\n"+
+"              <div class=cui-field-val ng-if=orgProfile.passwordPolicy>\n"+
+"                <span class=cui-field-val__field>{{'cui-password-policy' | translate}}: </span>\n"+
+"                <span class=cui-field-val__val>{{orgProfile.passwordPolicy.name}}</span>\n"+
+"              </div>\n"+
+"              <div class=cui-field-val ng-if=orgProfile.authenticationPolicy>\n"+
+"                <span class=cui-field-val__field>{{'cui-authentication-policy' | translate}}: </span>\n"+
+"                <span class=cui-field-val__val>{{orgProfile.authenticationPolicy.name}}</span>\n"+
+"              </div>\n"+
+"            </div>\n"+
+"            \n"+
+"            <div class=\"cui-organization__admin-block cui-organization__admin-block__right\" ng-if=orgProfile.organization.attributes>\n"+
+"              <h4 class=cui-field-val__field>{{'cui-more-information' | translate}}:</h4>\n"+
+"              <div class=cui-field-val ng-repeat=\" attribute in orgProfile.organization.attributes\">\n"+
+"                <span class=cui-field-val__field>{{attribute.name}}: </span>\n"+
+"                <span class=cui-field-val__val>{{attribute.value}}</span>\n"+
+"              </div>\n"+
+"            </div>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/newGrant/claims/claims.html',
+"<div class=\"class-toggle cui-modal\" ng-if=newGrantClaims.success toggled-class=cui-modal--hide ng-click=toggleClass()>\n"+
+"    <div class=cui-modal__pane>\n"+
+"        <div class=cui-modal__icon>\n"+
+"            <cui-icon cui-svg-icon=cui:check-with-border class=cui-modal__icon></cui-icon>\n"+
+"        </div>\n"+
+"        <span class=cui-modal__primary-message>{{'cui-success' | translate}}</span>\n"+
+"        <span class=cui-modal__secondary-message>{{'grants-assigned' | translate}}</span>\n"+
+"    </div>\n"+
+"</div>\n"+
+"<ng-form name=grantApp novalidate>\n"+
+"<div class=cui-org-claims>\n"+
+"<div class=cui-applications>\n"+
+"  <div class=cui-action>\n"+
+"    <div class=cui-action__title ng-hide=\"base.loader.for['newGrantClaims.user']\" ng-click=\"base.goBack('organization.directory.userDetails',newGrantClaims.prevState.params)\">\n"+
+"      &#60; {{newGrantClaims.user.name.given}} {{newGrantClaims.user.name.surname}} - {{'new-grant' | translate}}\n"+
+"    </div>\n"+
+"    <div class=cui-action__actions>\n"+
+"      <ng-include onload=\"prevState=newGrantClaims.prevState\" src=\"'app/modules/organization/partials/close-with-shadow.html'\"></ng-include>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"  <section class=\"cui-action cui-action--alt\">\n"+
+"    <h2 class=cui-action__title ng-click=\"base.goBack('organization.requests.newGrantSearch',newGrantClaims.prevState.params)\">\n"+
+"      &#60; {{'select-claims'|translate}}\n"+
+"    </h2>\n"+
+"    <div class=cui-action__actions>\n"+
+"      <div class=flex_row id=cui-applications__requested-apps ng-click=\"newGrantClaims.requestPopover=!newGrantClaims.requestPopover\" off-click=\"newGrantClaims.requestPopover=false\">\n"+
+"        <cui-icon cui-svg-icon=cui:folder id=cui-applications__requested-apps svg-class=\"cui-icon cui-icon--folder\" use-class=cui-icon__ref viewbox=\"0 0 40 33\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"        <sup class=cui-action__icon-counter ng-class=\"{'cui-action__icon-counter--active': newGrantClaims.numberOfRequests != 0}\">{{newGrantClaims.numberOfRequests}}</sup>\n"+
+"      </div>\n"+
+"        \n"+
+"        <div tether class=cui-action__popover target=#cui-applications__requested-apps attachment=\"top middle\" targetattachment=\"bottom left\" offset=\"-20px 50px\" ng-if=newGrantClaims.requestPopover constraints=\"[{to:'scrollParent',attachment:'together',pin:['right']}]\">\n"+
+"          <span class=cui-action__popover-title>{{'collected-items-for-request' | translate}}</span>\n"+
+"          <div class=cui-action__popover-section>\n"+
+"            <span ng-if=\"newGrantClaims.numberOfRequests === 0\">{{'no-selected-apps' | translate}}<br></span>\n"+
+"            <ul ng-if=\"newGrantClaims.numberOfRequests > 0\">\n"+
+"                <li ng-repeat=\"application in newGrantClaims.appsBeingRequestedforPopup\">{{application.name | cuiI18n}}</li>\n"+
+"                <li ng-repeat=\"package in newGrantClaims.packagesBeingRequested\">{{packages.name | cuiI18n}}</li>\n"+
+"            </ul>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"    </div>\n"+
+"  </section>\n"+
+"  <div class=cui-organization__main-container>\n"+
+"  <div>\n"+
+"    <div class=cui-org-claims__claim ng-repeat=\"(applicationId, application) in newGrantClaims.appsBeingRequested\" ng-init=\"index=$index\">\n"+
+"\n"+
+"      <div class=cui-media>\n"+
+"        \n"+
+"        <div class=cui-media__image-container>\n"+
+"          <div class=cui-media__image cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5 cui-avatar-names=application.name cui-avatar-cuii18n-filter cui-avatar=application.iconUrl>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"\n"+
+"        <div class=cui-media__body>\n"+
+"\n"+
+"          \n"+
+"          <h3 class=cui-media__title>{{application.name | cuiI18n}}</h3>\n"+
+"          <h3 ng-if=application.bundledApps class=\"cui-media__title cui-media__title-margin__top\">{{'bundled-applications' | translate}}</h3>\n"+
+"          <div ng-if=application.bundledApps ng-repeat=\"bundledApp in application.bundledApps\">\n"+
+"              <span>{{bundledApp.name|cuiI18n}}</span>\n"+
+"          </div> \n"+
+"          <div class=cui-applications__review-text-input>\n"+
+"            <h3 class=\"cui-media__title cui-media__title-margin__top\">{{'grant-reason' | translate}}</h3>\n"+
+"            <div class=cui-error ng-messages=\"grantApp['text_area'+application.id].$error\" ng-if=\"grantApp['text_area'+application.id].$dirty\">\n"+
+"              <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"            </div>\n"+
+"            <div class=cui-wizard__field-row>\n"+
+"              <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"                <textarea name=\"{{'text_area'+application.id}}\" class=cui-text-area ng-model=newGrantClaims.packageRequests[application.servicePackage.id].reason ng-required=true></textarea>\n"+
+"              </div>\n"+
+"            </div>\n"+
+"          </div>\n"+
+"          \n"+
+"  \n"+
+"  \n"+
+"\n"+
+"            \n"+
+"  \n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div class=cui-org-claims__row>\n"+
+"        \n"+
+"        \n"+
+"        <div ng-if=\"base.loader.for['newGrantClaims.claims' + index]\">\n"+
+"          \n"+
+"        </div>\n"+
+"        <div class=cui-org-claims__col ng-if=\"!base.loader.for['newGrantClaims.claims' + index]\" ng-repeat=\"claim in newGrantClaims['claims' + index]\">\n"+
+"          <h3 class=bold>{{claim.name | cuiI18n}}</h3>\n"+
+"          <ul class=cui-checkbox__group>\n"+
+"            <div class=cui-checkbox__group ng-repeat=\"claimValue in claim.claimValues\">\n"+
+"              <li class=cui-checkbox__container>\n"+
+"                <input class=cui-checkbox type=checkbox ng-model=\"newGrantClaims.packageRequests[\n"+
+"                application.servicePackage.id].claims[claim.claimId][claimValue.claimValueId]\" id=\"{{claimValue.name | cuiI18n}}\">\n"+
+"                <label class=cui-checkbox__label for=\"{{claimValue.name | cuiI18n}}\">{{claimValue.name | cuiI18n}}</label>\n"+
+"              </li>\n"+
+"            </div>\n"+
+"          </ul>\n"+
+"        </div>\n"+
+"\n"+
+"      </div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <button disable-animate class=cui-button ng-class=\"{'cui-button--error':!grantApp.$valid}\" ng-if=\"!base.loader.for['newGrantClaims.submit'] && !newGrantClaims.error\" ng-click=grantApp.$valid&&newGrantClaims.submit()>{{'submit-grant-update' | translate}}</button>\n"+
+"    <button disable-animate class=cui-button ng-if=\"base.loader.for['newGrantClaims.submit']\">\n"+
+"      <div ng-include=\"'app/common-templates/partials/loader-updating.html'\"></div>\n"+
+"    </button>\n"+
+"    <button disable-animate class=cui-button ng-class=\"{'cui-button--error':!grantApp.$valid}\" ng-if=\"!base.loader.for['newGrantClaims.submit'] && newGrantClaims.error\" ng-click=grantApp.$valid&&newGrantClaims.submit()>{{'cui-error-try-again' | translate}}</button>\n"+
+"\n"+
+"  </div> \n"+
+"  </div>\n"+
+"</div>\n"+
+"</div>\n"+
+"<ng-form>\n"+
+"\n"+
+"</ng-form></ng-form>");
+
+
+
+$templateCache.put('app/modules/organization/requests/newGrant/requests-newGrant.html',
+"<main class=cui-organization__new-request>\n"+
+"  <div class=cui-action ng-hide=\"base.loader.for['newGrant.user']\">\n"+
+"    <span class=\"cui-action__title cui-action__title--dark\" ng-click=\"base.goBack('organization.directory.userDetails',newGrant.prevState.params)\">&#60; {{newGrant.user.name.given}} {{newGrant.user.name.surname}} - {{'new-grant' | translate}}</span>\n"+
+"    \n"+
+"    <div class=cui-action__actions>\n"+
+"      <ng-include src=\"'app/modules/organization/partials/close-with-shadow.html'\" onload=\"prevState=newGrant.prevState\"></ng-include>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"  \n"+
+"  <div class=cui-applications__new-request>\n"+
+"      <section class=\"cui-action cui-action--alt\">\n"+
+"          <h2 class=cui-action__title>{{'select-applications' | translate}}</h2>\n"+
+"          <div class=cui-action__actions>\n"+
+"              <div class=flex_row id=cui-applications__requested-apps ng-click=\"newGrant.requestPopover=!newGrant.requestPopover\" off-click=\"newGrant.requestPopover=false\">\n"+
+"                <cui-icon cui-svg-icon=cui:folder id=cui-applications__requested-apps svg-class=\"cui-icon cui-icon--folder\" use-class=cui-icon__ref viewbox=\"0 0 40 33\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"                <sup class=cui-action__icon-counter ng-class=\"{'cui-action__icon-counter--active': newGrant.numberOfRequests != 0}\">{{newGrant.numberOfRequests}}</sup>\n"+
+"              </div>\n"+
+"                \n"+
+"                <div tether class=cui-action__popover target=#cui-applications__requested-apps attachment=\"top middle\" targetattachment=\"bottom left\" offset=\"-20px 50px\" ng-if=newGrant.requestPopover constraints=\"[{to:'scrollParent',attachment:'together',pin:['right']}]\">\n"+
+"                  <span class=cui-action__popover-title>{{'collected-items-for-request' | translate}}</span>\n"+
+"                  <div class=cui-action__popover-section>\n"+
+"                    <span ng-if=\"newGrant.numberOfRequests === 0\">{{'no-selected-apps' | translate}}<br></span>\n"+
+"                    <ul ng-if=\"newGrant.numberOfRequests > 0\">\n"+
+"                        <li ng-repeat=\"application in newGrant.appsBeingRequested\">{{application.name | cuiI18n}}</li>\n"+
+"                        <li ng-repeat=\"package in newGrant.packagesBeingRequested\">{{packages.name | cuiI18n}}</li>\n"+
+"                    </ul>\n"+
+"                  </div>\n"+
+"                  <span ng-if=\"newGrant.numberOfRequests > 0\" class=cui-action__popover-button ng-click=newGrant.goToClaimSelection()>{{'submit-request' | translate}}</span>\n"+
+"                </div>\n"+
+"          </div>\n"+
+"      </section>\n"+
+"      <section class=cui-applications__main-container>\n"+
+"        \n"+
+"          \n"+
+"          <div class=cui-applications__search-options>\n"+
+"              <div class=cui-input-button>\n"+
+"                  \n"+
+"                  <input type=text class=cui-input-button__input id=search-by-text ng-model=newGrant.search placeholder=\"{{'search-by-app-name' | translate}}\" on-enter=newGrant.searchCallback focus-if>\n"+
+"                  <button class=cui-input-button__button ng-click=newGrant.searchCallback(newGrant.search)>{{'go' | translate}}</button>\n"+
+"              </div>\n"+
+"              <div class=cui-applications__center-text>{{'or' | translate}}</div>\n"+
+"              <a class=cui-link ng-click=newGrant.searchCallback()>{{'show-all' | translate}}</a>\n"+
+"          </div>\n"+
+"          <section>\n"+
+"              <h3 class=cui-sr-only>{{'cui-browse-by-category' | translate}}</h3>\n"+
+"              <p class=cui-error ng-if=newGrant.categoryError>{{'error-generic'|translate}}</p>\n"+
+"              <div ng-repeat=\"category in newGrant.categories\" ng-if=\"!base.loader.for['newGrant.categories']\">\n"+
+"                  <section class=cui-applications__categories ng-click=\"newGrant.searchCallback({type:'category', value:category.name})\">\n"+
+"                      <h4 class=cui-applications__category>{{ category.name | cuiI18n }}</h4>\n"+
+"                      <cui-icon cui-svg-icon=cui:chevron18 svg-class=\"cui-icon cui-icon--light-grey\" use-class=\"\" viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"                  </section>\n"+
+"              </div>\n"+
+"          </section>\n"+
+"      </section>\n"+
+"  </div>\n"+
+"</main>");
+
+
+
+$templateCache.put('app/modules/organization/requests/newGrant/search/search.html',
+"<main class=cui-organization__new-request-search>\n"+
+"    <h2 class=cui-sr-only>{{'cui-new-grant-search-results' | translate}}</h2>\n"+
+"    <section class=cui-action>\n"+
+"        <h3 class=cui-sr-only>{{'cui-username-close'|translate}}</h3>\n"+
+"        <div class=cui-action__title ng-click=\"base.goBack('organization.directory.userDetails',newGrantSearch.prevState.params)\">\n"+
+"          <span ng-if=\"!base.loader.for['newGrantSearch.user']\">\n"+
+"            &#60; {{newGrantSearch.user.name.given}} {{newGrantSearch.user.name.surname}} - {{'new-grant' | translate}}\n"+
+"          </span>\n"+
+"        </div>\n"+
+"        <div class=cui-action__actions>\n"+
+"           <ng-include onload=\"prevState=newGrantSearch.prevState\" src=\"'app/modules/organization/partials/close-with-shadow.html'\"></ng-include>\n"+
+"        </div>\n"+
+"    </section>\n"+
+"    <section class=\"cui-action cui-action--alt\">\n"+
+"        <h3 class=cui-sr-only>{{'cui-back-navigation-requests'|translate}}</h3>\n"+
+"        <div class=cui-action__title ng-if=!newGrantSearch.search.category ng-click=\"base.goBack('organization.requests.newGrant',newGrantSearch.prevState.params)\">&#60; {{'categories' | translate}}</div>\n"+
+"        <span class=cui-action__title ng-if=newGrantSearch.search.category ng-click=\"base.goBack('organization.requests.newGrant',newGrantSearch.prevState.params)\">&#60; {{newGrantSearch.search.category}}</span>\n"+
+"        <div class=cui-action__actions>\n"+
+"            <div class=flex_row ng-click=\"newGrantSearch.requestPopover=!newGrantSearch.requestPopover\" off-click=\"newGrantSearch.requestPopover=false\" id=cui-applications__requested-apps>\n"+
+"                <cui-icon cui-svg-icon=cui:folder svg-class=cui-icon--folder use-class=cui-icon__ref ng-class=\"{'cui-action__icon--active': newGrantSearch.numberOfRequests != 0}\" viewbox=\"0 0 40 33\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"                <sup class=cui-action__icon-counter ng-class=\"{'cui-action__icon-counter--active': newGrantSearch.numberOfRequests != 0}\">{{newGrantSearch.numberOfRequests}}</sup>\n"+
+"            </div>\n"+
+"            <div tether class=cui-action__popover target=#cui-applications__requested-apps attachment=\"top middle\" targetattachment=\"bottom left\" offset=\"-20px 50px\" ng-if=newGrantSearch.requestPopover>\n"+
+"              <span class=cui-action__popover-title>{{'collected-items-for-request' | translate}}</span>\n"+
+"              <div class=cui-action__popover-section>\n"+
+"                <span ng-if=\"newGrantSearch.numberOfRequests === 0\">{{'no-selected-apps' | translate}}<br></span>\n"+
+"                <ul ng-if=\"newGrantSearch.numberOfRequests > 0\">\n"+
+"                    <li ng-repeat=\"application in newGrantSearch.appsBeingRequested\">{{application.name | cuiI18n}}</li>\n"+
+"                    <li ng-repeat=\"package in newGrantSearch.packagesBeingRequested\">{{package.name | cuiI18n}}</li>\n"+
+"                </ul>\n"+
+"              </div>\n"+
+"              <span ng-if=\"newGrantSearch.numberOfRequests > 0\" class=cui-action__popover-button ng-click=newGrantSearch.goToClaimSelection()>{{'submit-request' | translate}}</span>\n"+
+"            </div>\n"+
+"        </div>\n"+
+"    </section>\n"+
+"    <section class=cui-applications__main-container>\n"+
+"        <h3 class=cui-sr-only>Search Results</h3>\n"+
+"        <div class=cui-loading__container ng-if=\"base.loader.for['newGrantSearch.apps']\">\n"+
+"            <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"        </div>\n"+
+"\n"+
+"        \n"+
+"        <p class=cui-error ng-if=newGrantSearch.grantableAppsError>{{'error-generic'|translate}}</p>\n"+
+"        <p ng-if=\"!newGrantSearch.grantableAppsError&&newGrantSearch.applicationList.length===0\">{{'cui-no-details' |translate}}</p>\n"+
+"        <cui-expandable class=cui-expandable ng-repeat=\"application in newGrantSearch.applicationList track by application.id\" ng-if=\"!base.loader.for['newGrantSearch.apps']\" transition-speed=150>\n"+
+"            <cui-expandable-title class=\"cui-expandable__title cui-expandable__title--flex\">\n"+
+"                <div class=cui-exapandable__app-name ng-click=toggleExpand()>\n"+
+"                    <h4 class=cui-expandable__title-left>{{application.name | cuiI18n}}\n"+
+"                </h4></div>\n"+
+"                <div class=cui-expandable__title-end>\n"+
+"                    <span class=cui-checkbox__container>\n"+
+"                        <input class=cui-checkbox type=checkbox ng-model=newGrantSearch.applicationCheckbox[application.id]>\n"+
+"                        <label class=cui-checkbox__label ng-click=\"newGrantSearch.toggleRequest({ type:'application', payload:application });newGrantSearch.checkRelatedAndBundledApps('application',application)\"></label>\n"+
+"                    </span>\n"+
+"                </div>\n"+
+"                <svg cui-icon xmlns=http://www.w3.org/2000/svg class=\"cui-icon cui-icon--light-grey chevron\" ng-class=\"{'cui-hide__opacity': (!application.bundledApps || application.bundledApps.length===0) && (application.servicePackage.parent || (!application.relatedApps || application.relatedApps.length===0))}\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 216 146\">\n"+
+"                  <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/font-awesome/font-awesome-out.svg#chevron18></use>\n"+
+"                </svg>\n"+
+"            </cui-expandable-title>\n"+
+"            <cui-expandable-body class=cui-expandable__body>\n"+
+"                <div class=cui-expandable__body-pane ng-if=\"(application.bundledApps && application.bundledApps.length!==0) || (!application.servicePackage.parent && (application.relatedApps && application.relatedApps.length!==0))\">\n"+
+"                    <span class=cui-expandable__body-close ng-click=collapse()>\n"+
+"                        <svg xmlns=http://www.w3.org/2000/svg class=cui-icon preserveAspectRatio=\"xMidYMid meet\" viewBox=\"2 0 48 48\">\n"+
+"                          <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#close-no-fill></use>\n"+
+"                        </svg>\n"+
+"                    </span>\n"+
+"\n"+
+"                    <span ng-if=\"(!application.bundledApps || application.bundledApps.length===0) && (!application.relatedApps || application.relatedApps.length===0)\">{{'no-bundled-or-related' | translate}}</span>\n"+
+"                        <div class=cui-expandable__pane-col ng-if=\"application.bundledApps && application.bundledApps.length > 0\">\n"+
+"                            <h4 class=cui-expandable__pane-title>{{'bundled-applications' | translate}}</h4>\n"+
+"                            <div class=cui-expandable__pane-content>\n"+
+"                                <span class=cui-expandable__pane-content-item ng-repeat=\"bundledApp in application.bundledApps\">\n"+
+"                                    {{bundledApp.name | cuiI18n}}\n"+
+"                                </span>\n"+
+"                            </div>\n"+
+"                        </div>\n"+
+"                        <div class=cui-expandable__pane-col ng-if=\"application.relatedApps && application.relatedApps.length > 0\">\n"+
+"                            <h4 class=cui-expandable__pane-title>{{'related-applications' | translate}}</h4>\n"+
+"                            <div class=cui-expandable__pane-content>\n"+
+"                                <ul class=cui-expandable__pane-content-item ng-repeat=\"relatedApp in application.relatedApps\">\n"+
+"                                    <li class=\"cui-checkbox__container cui-checkbox__container--right\">\n"+
+"                                        <input class=cui-checkbox type=checkbox ng-model=newGrantSearch.applicationCheckbox[relatedApp.id]>\n"+
+"                                        <label class=cui-checkbox__label ng-click=\"newGrantSearch.toggleRequest({ type:'application', payload:relatedApp })\">{{relatedApp.name | cuiI18n}}</label>\n"+
+"                                    </li>\n"+
+"                                </ul>\n"+
+"                            </div>\n"+
+"                        </div>\n"+
+"                    </div>\n"+
+"                \n"+
+"            </cui-expandable-body>\n"+
+"        </cui-expandable>\n"+
+"    <div class=cui-paginate__container ng-if=\"!base.loader.for['newGrantSearch.apps']\">\n"+
+"        <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"        <results-per-page class=cui-paginate__select ng-model=newGrantSearch.search.pageSize></results-per-page>\n"+
+"        <paginate class=cui-paginate results-per-page=newGrantSearch.search.pageSize count=newGrantSearch.count on-page-change=newGrantSearch.updateSearch ng-model=newGrantSearch.search.page attach-rerender-to=newGrantSearch.reRenderPaginate></paginate>\n"+
+"    </div>\n"+
+"\n"+
+"    <div class=cui-organization__search-button>\n"+
+"        <button class=cui-button ng-class=\"{'cui-button--inverted' : newGrantSearch.numberOfRequests===0}\" ng-click=\"newGrantSearch.numberOfRequests != 0 && newGrantSearch.goToClaimSelection()\">{{'select-claims' | translate}}</button>\n"+
+"    </div>\n"+
+"\n"+
+"    </section>\n"+
+"</main>\n"+
+"\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/newOrgGrant/claims/claims.html',
+"<div class=\"class-toggle cui-modal\" ng-if=newOrgGrantClaims.success toggled-class=cui-modal--hide ng-click=toggleClass()>\n"+
+"    <div class=cui-modal__pane>\n"+
+"        <div class=cui-modal__icon>\n"+
+"            <cui-icon cui-svg-icon=cui:check-with-border class=cui-modal__icon></cui-icon>\n"+
+"        </div>\n"+
+"        <span class=cui-modal__primary-message>{{'cui-success' | translate}}</span>\n"+
+"        <span class=cui-modal__secondary-message>{{'grants-assigned' | translate}}</span>\n"+
+"    </div>\n"+
+"</div>\n"+
+"<div class=cui-org-claims>\n"+
+"<div class=cui-applications>\n"+
+"  <div class=cui-action ng-hide=\"base.loader.for['newOrgGrantClaims.org']\">\n"+
+"\n"+
+"    <span class=\"cui-action__title cui-action__title--dark\" ng-click=base.goBack(newOrgGrantClaims.prevState.name,newOrgGrantClaims.prevState.params)>&#60; {{newOrgGrantClaims.org.name}} - {{'new-grant' | translate}}</span>\n"+
+"    \n"+
+"    <div class=cui-action__actions>\n"+
+"      <ng-include src=\"'app/modules/organization/partials/close-with-shadow.html'\" onload=\"prevState=newOrgGrantClaims.prevState\"></ng-include>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"  <section class=\"cui-action cui-action--alt\">\n"+
+"    <h2 class=cui-action__title ng-click=\"base.goBack('organization.requests.newOrgGrantSearch',newOrgGrantClaims.prevState.params)\">\n"+
+"      &#60; {{'cui-review'|translate}}\n"+
+"    </h2>\n"+
+"    <div class=cui-action__actions>\n"+
+"      <div class=flex_row id=cui-applications__requested-apps ng-click=\"newOrgGrantClaims.requestPopover=!newOrgGrantClaims.requestPopover\" off-click=\"newOrgGrantClaims.requestPopover=false\">\n"+
+"        <cui-icon cui-svg-icon=cui:folder id=cui-applications__requested-apps svg-class=\"cui-icon cui-icon--folder\" use-class=cui-icon__ref viewbox=\"0 0 40 33\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"        <sup class=cui-action__icon-counter ng-class=\"{'cui-action__icon-counter--active': newOrgGrantClaims.numberOfRequests != 0}\">{{newOrgGrantClaims.numberOfRequests}}</sup>\n"+
+"      </div>\n"+
+"        \n"+
+"        <div tether class=cui-action__popover target=#cui-applications__requested-apps attachment=\"top middle\" targetattachment=\"bottom left\" offset=\"-20px 50px\" ng-if=newOrgGrantClaims.requestPopover constraints=\"[{to:'scrollParent',attachment:'together',pin:['right']}]\">\n"+
+"          <span class=cui-action__popover-title>{{'collected-items-for-request' | translate}}</span>\n"+
+"          <div class=cui-action__popover-section>\n"+
+"            <span ng-if=\"newOrgGrantClaims.numberOfRequests === 0\">{{'no-selected-apps' | translate}}<br></span>\n"+
+"            <ul ng-if=\"newOrgGrantClaims.numberOfRequests > 0\">\n"+
+"                <li ng-repeat=\"application in newOrgGrantClaims.appsBeingRequestedforPopup\">{{application.name | cuiI18n}}</li>\n"+
+"                <li ng-repeat=\"package in newOrgGrantClaims.packagesBeingRequested\">{{packages.name | cuiI18n}}</li>\n"+
+"            </ul>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"    </div>\n"+
+"  </section>\n"+
+"  <div class=cui-organization__main-container>\n"+
+"  <div>\n"+
+"    <div class=cui-org-claims__claim ng-repeat=\"(applicationId, application) in newOrgGrantClaims.appsBeingRequested\" ng-init=\"index=$index\">\n"+
+"\n"+
+"      <div class=cui-media>\n"+
+"        \n"+
+"        <div class=cui-media__image-container>\n"+
+"          <div class=cui-media__image cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5 cui-avatar-names=application.name cui-avatar-cuii18n-filter cui-avatar=application.iconUrl>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"\n"+
+"        <div class=cui-media__body>\n"+
+"\n"+
+"          \n"+
+"          <h3 class=cui-media__title>{{application.name | cuiI18n}}</h3>\n"+
+"          <h3 ng-if=application.bundledApps class=\"cui-media__title cui-media__title-margin__top\">{{'bundled-applications' | translate}}</h3>\n"+
+"          <div ng-if=application.bundledApps ng-repeat=\"bundledApp in application.bundledApps\">\n"+
+"              <span>{{bundledApp.name|cuiI18n}}</span>\n"+
+"          </div> \n"+
+"          <div class=cui-applications__review-text-input>\n"+
+"            <h3 class=\"cui-media__title cui-media__title-margin__top\">{{'grant-reason' | translate}}</h3>\n"+
+"            <div class=cui-wizard__field-row>\n"+
+"              \n"+
+"              <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"                <textarea name=\"{{'text_area'+application.id}}\" class=cui-text-area ng-model=newOrgGrantClaims.packageRequests[application.servicePackage.id].reason></textarea>\n"+
+"              </div>\n"+
+"            </div>\n"+
+"          </div>\n"+
+"\n"+
+"\n"+
+"\n"+
+"            \n"+
+"\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <button disable-animate class=cui-button ng-if=\"!base.loader.for['newOrgGrantClaims.submit'] && !newOrgGrantClaims.error\" ng-click=newOrgGrantClaims.submit()>{{'submit-grant-update' | translate}}</button>\n"+
+"    <button disable-animate class=cui-button ng-if=\"base.loader.for['newOrgGrantClaims.submit']\">\n"+
+"      <div ng-include=\"'app/common-templates/partials/loader-updating.html'\"></div>\n"+
+"    </button>\n"+
+"    <button disable-animate class=cui-button ng-if=\"!base.loader.for['newOrgGrantClaims.submit'] && newOrgGrantClaims.error\" ng-click=newOrgGrantClaims.submit()>{{'cui-error-try-again' | translate}}</button>\n"+
+"\n"+
+"  </div> \n"+
+"  </div>\n"+
+"</div>\n"+
+"</div>\n"+
+"\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/newOrgGrant/requests-newGrant.html',
+"<main class=cui-organization__new-request>\n"+
+"  <div class=cui-action ng-hide=\"base.loader.for['newOrgGrant.org']\">\n"+
+"\n"+
+"    <span class=\"cui-action__title cui-action__title--dark\" ng-click=base.goBack(newOrgGrant.prevState.name,newOrgGrant.prevState.params)>&#60; {{newOrgGrant.org.name}} - {{'new-grant' | translate}}</span>\n"+
+"    \n"+
+"    <div class=cui-action__actions>\n"+
+"      <ng-include src=\"'app/modules/organization/partials/close-with-shadow.html'\" onload=\"prevState=newOrgGrant.prevState\"></ng-include>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"  \n"+
+"  <div class=cui-applications__new-request>\n"+
+"      <section class=\"cui-action cui-action--alt\">\n"+
+"          <h2 class=cui-action__title>{{'select-applications' | translate}}</h2>\n"+
+"          <div class=cui-action__actions>\n"+
+"              <div class=flex_row id=cui-applications__requested-apps ng-click=\"newOrgGrant.requestPopover=!newOrgGrant.requestPopover\" off-click=\"newOrgGrant.requestPopover=false\">\n"+
+"                <cui-icon cui-svg-icon=cui:folder id=cui-applications__requested-apps svg-class=\"cui-icon cui-icon--folder\" use-class=cui-icon__ref viewbox=\"0 0 40 33\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"                <sup class=cui-action__icon-counter ng-class=\"{'cui-action__icon-counter--active': newOrgGrant.numberOfRequests != 0}\">{{newOrgGrant.numberOfRequests}}</sup>\n"+
+"              </div>\n"+
+"                \n"+
+"                <div tether class=cui-action__popover target=#cui-applications__requested-apps attachment=\"top middle\" targetattachment=\"bottom left\" offset=\"-20px 50px\" ng-if=newOrgGrant.requestPopover constraints=\"[{to:'scrollParent',attachment:'together',pin:['right']}]\">\n"+
+"                  <span class=cui-action__popover-title>{{'collected-items-for-request' | translate}}</span>\n"+
+"                  <div class=cui-action__popover-section>\n"+
+"                    <span ng-if=\"newOrgGrant.numberOfRequests === 0\">{{'no-selected-apps' | translate}}<br></span>\n"+
+"                    <ul ng-if=\"newOrgGrant.numberOfRequests > 0\">\n"+
+"                        <li ng-repeat=\"application in newOrgGrant.appsBeingRequested\">{{application.name | cuiI18n}}</li>\n"+
+"                        <li ng-repeat=\"package in newOrgGrant.packagesBeingRequested\">{{packages.name | cuiI18n}}</li>\n"+
+"                    </ul>\n"+
+"                  </div>\n"+
+"                  <span ng-if=\"newOrgGrant.numberOfRequests > 0\" class=cui-action__popover-button ng-click=newOrgGrant.goToClaimSelection()>{{'submit-request' | translate}}</span>\n"+
+"                </div>\n"+
+"          </div>\n"+
+"      </section>\n"+
+"      <section class=cui-applications__main-container>\n"+
+"        \n"+
+"          \n"+
+"          <div class=cui-applications__search-options>\n"+
+"              <div class=cui-input-button>\n"+
+"                  \n"+
+"                  <input type=text class=cui-input-button__input id=search-by-text ng-model=newOrgGrant.search placeholder=\"{{'search-by-app-name' | translate}}\" on-enter=newOrgGrant.searchCallback focus-if>\n"+
+"                  <button class=cui-input-button__button ng-click=newOrgGrant.searchCallback(newOrgGrant.search)>{{'go' | translate}}</button>\n"+
+"              </div>\n"+
+"              <div class=cui-applications__center-text>{{'or' | translate}}</div>\n"+
+"              <a class=cui-link ng-click=newOrgGrant.searchCallback()>{{'show-all' | translate}}</a>\n"+
+"          </div>\n"+
+"          <section>\n"+
+"              <h3 class=cui-sr-only>{{'cui-browse-by-category'|translate}}</h3>\n"+
+"              <p class=cui-error ng-if=newOrgGrant.categoryError>{{'error-generic'|translate}}</p>\n"+
+"              <div ng-repeat=\"category in newOrgGrant.categories\" ng-if=\"!base.loader.for['newOrgGrant.categories']\">\n"+
+"                  <section class=cui-applications__categories ng-click=\"newOrgGrant.searchCallback({type:'category', value:category.name})\">\n"+
+"                      <h4 class=cui-applications__category>{{ category.name | cuiI18n }}</h4>\n"+
+"                      <cui-icon cui-svg-icon=cui:chevron18 svg-class=\"cui-icon cui-icon--light-grey\" use-class=\"\" viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"                  </section>\n"+
+"              </div>\n"+
+"          </section>\n"+
+"      </section>\n"+
+"  </div>\n"+
+"</main>");
+
+
+
+$templateCache.put('app/modules/organization/requests/newOrgGrant/search/search.html',
+"<main class=cui-organization__new-request-search>\n"+
+"  <div class=cui-action ng-hide=\"base.loader.for['newOrgGrantSearch.org']\">\n"+
+"\n"+
+"    <span class=\"cui-action__title cui-action__title--dark\" ng-click=base.goBack(newOrgGrantSearch.prevState.name,newOrgGrantSearch.prevState.params)>&#60; {{newOrgGrantSearch.org.name}} - {{'new-grant' | translate}}</span>\n"+
+"    \n"+
+"    <div class=cui-action__actions>\n"+
+"      <ng-include src=\"'app/modules/organization/partials/close-with-shadow.html'\" onload=\"prevState=newOrgGrantSearch.prevState\"></ng-include>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"    <section class=\"cui-action cui-action--alt\">\n"+
+"        <h3 class=cui-sr-only>{{'cui-back-navigation-requests'|translate}}</h3>\n"+
+"        <div class=cui-action__title ng-if=!newOrgGrantSearch.search.category ng-click=\"base.goBack('organization.requests.newOrgGrant',newOrgGrantSearch.prevState.params)\">&#60; {{'categories' | translate}}</div>\n"+
+"        <span class=cui-action__title ng-if=newOrgGrantSearch.search.category ng-click=\"base.goBack('organization.requests.newOrgGrant',newOrgGrantSearch.prevState.params)\">&#60; {{newOrgGrantSearch.search.category}}</span>\n"+
+"        <div class=cui-action__actions>\n"+
+"            <div class=flex_row ng-click=\"newOrgGrantSearch.requestPopover=!newOrgGrantSearch.requestPopover\" off-click=\"newOrgGrantSearch.requestPopover=false\" id=cui-applications__requested-apps>\n"+
+"                <cui-icon cui-svg-icon=cui:folder svg-class=cui-icon--folder use-class=cui-icon__ref ng-class=\"{'cui-action__icon--active': newOrgGrantSearch.numberOfRequests != 0}\" viewbox=\"0 0 40 33\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"                <sup class=cui-action__icon-counter ng-class=\"{'cui-action__icon-counter--active': newOrgGrantSearch.numberOfRequests != 0}\">{{newOrgGrantSearch.numberOfRequests}}</sup>\n"+
+"            </div>\n"+
+"            <div tether class=cui-action__popover target=#cui-applications__requested-apps attachment=\"top middle\" targetattachment=\"bottom left\" offset=\"-20px 50px\" ng-if=newOrgGrantSearch.requestPopover>\n"+
+"              <span class=cui-action__popover-title>{{'collected-items-for-request' | translate}}</span>\n"+
+"              <div class=cui-action__popover-section>\n"+
+"                <span ng-if=\"newOrgGrantSearch.numberOfRequests === 0\">{{'no-selected-apps' | translate}}<br></span>\n"+
+"                <ul ng-if=\"newOrgGrantSearch.numberOfRequests > 0\">\n"+
+"                    <li ng-repeat=\"application in newOrgGrantSearch.appsBeingRequested\">{{application.name | cuiI18n}}</li>\n"+
+"                    <li ng-repeat=\"package in newOrgGrantSearch.packagesBeingRequested\">{{package.name | cuiI18n}}</li>\n"+
+"                </ul>\n"+
+"              </div>\n"+
+"              <span ng-if=\"newOrgGrantSearch.numberOfRequests > 0\" class=cui-action__popover-button ng-click=newOrgGrantSearch.goToClaimSelection()>{{'submit-request' | translate}}</span>\n"+
+"            </div>\n"+
+"        </div>\n"+
+"    </section>\n"+
+"    <section class=cui-applications__main-container>\n"+
+"        <h3 class=cui-sr-only>{{'cui-search-results'|translate}}</h3>\n"+
+"        <div class=cui-loading__container ng-if=\"base.loader.for['newOrgGrantSearch.apps']\">\n"+
+"            <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"        </div>\n"+
+"        \n"+
+"        <p class=cui-error ng-if=\"base.apiError.for['newOrgGrantSearch.apps']\">{{'error-generic'|translate}}</p>\n"+
+"        \n"+
+"        <p ng-if=\"!base.apiError.for['newOrgGrantSearch.apps'] && newOrgGrantSearch.viewList.length===0\">{{'cui-no-details'|translate}}</p>\n"+
+"        <cui-expandable class=cui-expandable ng-repeat=\"application in newOrgGrantSearch.viewList track by application.id\" ng-if=\"!base.loader.for['newOrgGrantSearch.apps']\" transition-speed=150>\n"+
+"            <cui-expandable-title class=\"cui-expandable__title cui-expandable__title--flex\">\n"+
+"                <div class=cui-exapandable__app-name ng-click=toggleExpand()>\n"+
+"                    <h4 class=cui-expandable__title-left>{{application.name | cuiI18n}}\n"+
+"                </h4></div>\n"+
+"                <div class=cui-expandable__title-end>\n"+
+"                    <span class=cui-checkbox__container>\n"+
+"                        <input class=cui-checkbox type=checkbox ng-model=newOrgGrantSearch.applicationCheckbox[application.id]>\n"+
+"                        <label class=cui-checkbox__label ng-click=\"newOrgGrantSearch.toggleRequest({ type:'application', payload:application });newOrgGrantSearch.checkRelatedAndBundledApps('application',application)\"></label>\n"+
+"                    </span>\n"+
+"                </div>\n"+
+"                <svg cui-icon xmlns=http://www.w3.org/2000/svg class=\"cui-icon cui-icon--light-grey chevron\" ng-class=\"{'cui-hide__opacity': (!application.bundledApps || application.bundledApps.length===0) && (application.servicePackage.parent || (!application.relatedApps || application.relatedApps.length===0))}\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 216 146\">\n"+
+"                  <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/font-awesome/font-awesome-out.svg#chevron18></use>\n"+
+"                </svg>\n"+
+"            </cui-expandable-title>\n"+
+"            <cui-expandable-body class=cui-expandable__body>\n"+
+"                <div class=cui-expandable__body-pane ng-if=\"(application.bundledApps && application.bundledApps.length!==0) || (!application.servicePackage.parent && (application.relatedApps && application.relatedApps.length!==0))\">\n"+
+"                    <span class=cui-expandable__body-close ng-click=collapse()>\n"+
+"                        <svg xmlns=http://www.w3.org/2000/svg class=cui-icon preserveAspectRatio=\"xMidYMid meet\" viewBox=\"2 0 48 48\">\n"+
+"                          <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#close-no-fill></use>\n"+
+"                        </svg>\n"+
+"                    </span>\n"+
+"\n"+
+"                    <span ng-if=\"(!application.bundledApps || application.bundledApps.length===0) && (!application.relatedApps || application.relatedApps.length===0)\">{{'no-bundled-or-related' | translate}}</span>\n"+
+"                        <div class=cui-expandable__pane-col ng-if=\"application.bundledApps && application.bundledApps.length > 0\">\n"+
+"                            <h4 class=cui-expandable__pane-title>{{'bundled-applications' | translate}}</h4>\n"+
+"                            <div class=cui-expandable__pane-content>\n"+
+"                                <span class=cui-expandable__pane-content-item ng-repeat=\"bundledApp in application.bundledApps\">\n"+
+"                                    {{bundledApp.name | cuiI18n}}\n"+
+"                                </span>\n"+
+"                            </div>\n"+
+"                        </div>\n"+
+"                        <div class=cui-expandable__pane-col ng-if=\"application.relatedApps && application.relatedApps.length > 0\">\n"+
+"                            <h4 class=cui-expandable__pane-title>{{'related-applications' | translate}}</h4>\n"+
+"                            <div class=cui-expandable__pane-content>\n"+
+"                                <ul class=cui-expandable__pane-content-item ng-repeat=\"relatedApp in application.relatedApps\">\n"+
+"                                    <li class=\"cui-checkbox__container cui-checkbox__container--right\">\n"+
+"                                        <input class=cui-checkbox type=checkbox ng-model=newOrgGrantSearch.applicationCheckbox[relatedApp.id]>\n"+
+"                                        <label class=cui-checkbox__label ng-click=\"newOrgGrantSearch.toggleRequest({ type:'application', payload:relatedApp })\">{{relatedApp.name | cuiI18n}}</label>\n"+
+"                                    </li>\n"+
+"                                </ul>\n"+
+"                            </div>\n"+
+"                        </div>\n"+
+"                    </div>\n"+
+"                \n"+
+"            </cui-expandable-body>\n"+
+"        </cui-expandable>\n"+
+"    <div class=cui-paginate__container ng-if=\"!base.loader.for['newOrgGrantSearch.apps'] && !base.apiError.for['newOrgGrantSearch.apps']\">\n"+
+"        <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"        <results-per-page class=cui-paginate__select ng-model=newOrgGrantSearch.search.pageSize></results-per-page>\n"+
+"        <paginate class=cui-paginate results-per-page=newOrgGrantSearch.search.pageSize count=newOrgGrantSearch.count on-page-change=newOrgGrantSearch.updateSearch ng-model=newOrgGrantSearch.search.page attach-rerender-to=newOrgGrantSearch.reRenderPaginate></paginate>\n"+
+"    </div>\n"+
+"\n"+
+"    <div class=cui-organization__search-button>\n"+
+"        <button class=cui-button ng-class=\"{'cui-button--inverted' : newOrgGrantSearch.numberOfRequests===0}\" ng-click=\"newOrgGrantSearch.numberOfRequests != 0 && newOrgGrantSearch.goToClaimSelection()\">{{'cui-review' | translate}}</button>\n"+
+"    </div>\n"+
+"\n"+
+"    </section>\n"+
+"</main>\n"+
+"\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/orgRequests/orgAppRequests/requests-AppRequests.html',
+"<main class=\"cui-organization cui-organization-req-org\">\n"+
+"  \n"+
+"  <h2 class=cui-sr-only>{{'org-req-apps-requests'}}</h2>\n"+
+"\n"+
+"  \n"+
+"  \n"+
+"\n"+
+"    \n"+
+"    <div class=cui-tabs__main-container>\n"+
+"      <ul class=cui-tabs__nav>\n"+
+"        <li class=cui-tabs__tab-container ui-sref=organization.requests.orgRegistrationRequests>\n"+
+"          <a class=\"cui-tabs__tab cui-tabs__tab\">{{'pending' | translate}} {{'cui-org'|translate}} {{'requests'| translate}}</a>\n"+
+"        </li>\n"+
+"        <li class=cui-tabs__tab-container ui-sref=organization.requests.orgAppRequests>\n"+
+"          <a class=\"cui-tabs__tab cui-tabs__tab--active\">{{'pending' | translate}} {{'application'|translate}} {{'requests'| translate}}</a>\n"+
+"        </li>\n"+
+"      </ul>\n"+
+"    </div>\n"+
+"\n"+
+"  \n"+
+"  <section class=cui-organization__main-container>\n"+
+"    <h3 class=cui-sr-only>{{'new-organization' | translate}}</h3>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-loading__container ng-if=\"base.loader.for['orgAppRequests.data']\">\n"+
+"      <div class=\"cui-loader cui-loader--content\" ng-include=\"'app/common-templates/partials/loader-content.html'\"></div>\n"+
+"    </div>\n"+
+"    \n"+
+"    <p class=cui-users__password-success style=\"margin:20px; text-align:center\" ng-if=\"orgAppRequests.data.length===0&&!base.apiError.for['orgAppRequests.data']\">{{'cui-no-details' | translate}}</p>\n"+
+"    <p class=cui-users__password-success style=\"color:red; margin:20px; text-align:center\" ng-if=\"base.apiError.for['orgAppRequests.data']\">{{'error-generic' | translate}}</p>\n"+
+"    <div ng-if=\"orgAppRequests.data.length!==0\">\n"+
+"      <cui-table-header headers=\"['cui-org', 'submitted', 'request', 'administrator']\" sorting=orgAppRequests.sortBy sorting-callbacks=orgAppRequests.sortingCallbacks>\n"+
+"      </cui-table-header>\n"+
+"      <cui-table-row ng-repeat=\"orgAppRequestsCtrl in orgAppRequests.data track by $index\" ng-click=orgAppRequests.goToDetails(orgAppRequestsCtrl)>\n"+
+"        <li class=\"cui-flex-table__tr cui-flex-table__tr--c\">\n"+
+"          <div class=cui-flex-table__avatar-col>\n"+
+"            <div class=cui-profile__user-avatar aria-hidden=true cui-avatar cui-avatar-names=\"[orgAppRequestsCtrl.personData.name.given, orgAppRequestsCtrl.personData.name.surname]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"          </div>\n"+
+"          <div class=cui-flex-table__mobile-stack>\n"+
+"             <div class=cui-flex-table__left>\n"+
+"              <span class=cui-flex-table__title>{{orgAppRequestsCtrl.personData.organization.name}}</span>\n"+
+"            </div>\n"+
+"\n"+
+"            <div class=cui-flex-table__middle>\n"+
+"              <span>{{orgAppRequestsCtrl.personData.creation|date}}</span>\n"+
+"            </div>\n"+
+"\n"+
+"            <div class=cui-flex-table__middle>\n"+
+"              <span>\n"+
+"              \n"+
+"              {{orgAppRequestsCtrl.packageData.name}}\n"+
+"              </span>\n"+
+"            </div>\n"+
+"\n"+
+"            <div class=cui-flex-table__right>{{orgAppRequestsCtrl.personData.name.prefix}} {{orgAppRequestsCtrl.personData.name.given}} {{orgAppRequestsCtrl.personData.name.middle}} {{orgAppRequestsCtrl.personData.name.surname}} {{orgAppRequestsCtrl.personData.name.suffix}}\n"+
+"              <span></span>\n"+
+"            </div>\n"+
+"          </div>\n"+
+"        </li>\n"+
+"      </cui-table-row>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-paginate__container>\n"+
+"      <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"      <results-per-page class=cui-paginate__select ng-model=orgAppRequests.search.pageSize></results-per-page>\n"+
+"      <paginate class=cui-paginate results-per-page=orgAppRequests.search.pageSize count=orgAppRequests.userCount on-page-change=orgAppRequests.updateSearchParams ng-model=orgAppRequests.search.page attach-rerender-to=orgAppRequests.reRenderPagination></paginate>\n"+
+"    </div>\n"+
+"  </section>\n"+
+"\n"+
+"</main>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/orgRequests/orgRegistrationRequests/requests-RegistrationRequests.html',
+"<main class=\"cui-organization cui-organization-req-org\">\n"+
+"  \n"+
+"  <h2 class=cui-sr-only>{{'org-req-users-requests'}}</h2>\n"+
+"\n"+
+"  \n"+
+"  \n"+
+"\n"+
+"    \n"+
+"    <div class=cui-tabs__main-container>\n"+
+"      <ul class=cui-tabs__nav>\n"+
+"        <li class=cui-tabs__tab-container ui-sref=organization.requests.orgRegistrationRequests>\n"+
+"          <a class=\"cui-tabs__tab cui-tabs__tab--active\">{{'pending' | translate}} {{'cui-org'|translate}} {{'requests'| translate}}</a>\n"+
+"        </li>\n"+
+"        <li class=cui-tabs__tab-container ui-sref=organization.requests.orgAppRequests>\n"+
+"          <a class=cui-tabs__tab>{{'pending' | translate}} {{'application'|translate}} {{'requests'| translate}}</a>\n"+
+"        </li>\n"+
+"      </ul>\n"+
+"    </div>\n"+
+"  \n"+
+"  <div class=cui-tabs__main-container>\n"+
+"    <div class=cui-applications__search-options>\n"+
+"      <div class=cui-input-button style=width:350px>\n"+
+"          <input type=text class=cui-input-button__input ng-model=orgRegistrationRequests.search.organizationName placeholder=\"{{'search-by-app-name'| translate}}\" on-enter=orgRegistrationRequests.searchCallback focus-if>\n"+
+"          <button class=cui-input-button__button ng-click=\"orgRegistrationRequests.updateSearch('organizationName',orgRegistrationRequests.search.organizationName)\">{{'go'| translate}}</button>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"  \n"+
+"  <section class=cui-organization__main-container>\n"+
+"    <h3 class=cui-sr-only>{{'new-organization' | translate}}</h3>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-loading__container ng-if=\"base.loader.for['orgRegistrationRequests.data']\">\n"+
+"      <div class=\"cui-loader cui-loader--content\" ng-include=\"'app/common-templates/partials/loader-content.html'\"></div>\n"+
+"    </div>\n"+
+"    \n"+
+"    <p class=cui-users__password-success style=\"margin:20px; text-align:center\" ng-if=\"orgRegistrationRequests.data.length===0&&!base.apiError.for['orgRegistrationRequests.data']\">{{'cui-no-details' | translate}}</p>\n"+
+"    <p class=cui-users__password-success style=\"color:red; margin:20px; text-align:center\" ng-if=\"base.apiError.for['orgRegistrationRequests.data']\">{{'error-generic' | translate}}</p>\n"+
+"    <div ng-if=\"orgRegistrationRequests.data.length!==0\">\n"+
+"      <cui-table-header headers=\"['cui-org', 'submitted', 'request', 'administrator']\" sorting=orgRegistrationRequests.sortBy sorting-callbacks=orgRegistrationRequests.sortingCallbacks>\n"+
+"        </cui-table-header>\n"+
+"      <cui-table-row ng-repeat=\"userRequest in orgRegistrationRequests.data track by $index\" ng-click=orgRegistrationRequests.goToDetails(userRequest)>\n"+
+"        <li class=\"cui-flex-table__tr cui-flex-table__tr--c\">\n"+
+"          <div class=cui-flex-table__avatar-col>\n"+
+"            <div class=cui-profile__user-avatar aria-hidden=true cui-avatar cui-avatar-names=\"[userRequest.personData.name.given, userRequest.personData.name.surname]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"          </div>\n"+
+"          <div class=cui-flex-table__mobile-stack>\n"+
+"             <div class=cui-flex-table__left>\n"+
+"              <span class=cui-flex-table__title>{{userRequest.personData.organization.name}}</span>\n"+
+"            </div>\n"+
+"\n"+
+"            <div class=cui-flex-table__middle>\n"+
+"              <span>{{userRequest.personData.creation|date}}</span>\n"+
+"            </div>\n"+
+"\n"+
+"            <div class=cui-flex-table__middle>\n"+
+"              <span>\n"+
+"              \n"+
+"              {{userRequest.packageData.name}}\n"+
+"              </span>\n"+
+"            </div>\n"+
+"\n"+
+"            <div class=cui-flex-table__right>\n"+
+"              <span>{{userRequest.personData.name.prefix}} {{userRequest.personData.name.given}} {{userRequest.personData.name.middle}} {{userRequest.personData.name.surname}} {{userRequest.personData.name.suffix}}</span>\n"+
+"            </div>\n"+
+"          </div>\n"+
+"        </li>\n"+
+"      </cui-table-row>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-paginate__container>\n"+
+"      <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"      <results-per-page class=cui-paginate__select ng-model=orgRegistrationRequests.search.pageSize></results-per-page>\n"+
+"      <paginate class=cui-paginate results-per-page=orgRegistrationRequests.search.pageSize count=orgRegistrationRequests.userCount on-page-change=orgRegistrationRequests.pageChange ng-model=orgRegistrationRequests.search.page attach-rerender-to=orgRegistrationRequests.reRenderPagination></paginate>\n"+
+"    </div>\n"+
+"  </section>\n"+
+"\n"+
+"</main>\n"+
+"\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/organizationAppRequests/requests-organization.html',
+"\n"+
+"<div class=code-info>The markup and javascript used to build this page can be found <a class=cui-link href=https://github.com/covisint/cui-idm-b2x/tree/master/app/modules/organization/requests/organizationAppRequests target=blank>here</a>.</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-organization--pending-requests>\n"+
+"  \n"+
+"  <div ng-include=\"'app/modules/organization/requests/organizationAppRequests/sections-requests/requests-header.html'\" ng-if=\"!base.loader.for['organizationAppRequest.init']\">\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <p class=cui-users__password-success style=\"color:red; margin:20px; text-align:center\" ng-if=\"base.apiError.for['organizationAppRequest.noRequest']\">{{'cui-error-person-request' | translate}}</p>\n"+
+"  \n"+
+"  \n"+
+"  <div class=cui-loading__container--user-details ng-if=\"base.loader.for['organizationAppRequest.init']\">\n"+
+"    <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"  </div>\n"+
+"  \n"+
+"  \n"+
+"  <div ng-include=\"'app/modules/organization/requests/organizationAppRequests/sections-requests/requests-body.html'\" ng-if=\"!base.loader.for['organizationAppRequest.init']\">\n"+
+"  </div>\n"+
+"\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/organizationAppRequests/requests-organizationReview.html',
+"\n"+
+"<div class=code-info>The markup and javascript used to build this page can be found <a class=cui-link href=https://github.com/covisint/cui-idm-b2x/tree/master/app/modules/organization/requests/organizationAppRequests target=blank>here</a>.</div>\n"+
+"\n"+
+"\n"+
+"\n"+
+"<div class=\"class-toggle cui-modal\" ng-if=organizationAppRequestReview.success toggled-class=cui-modal--hide ng-click=toggleClass()>\n"+
+"  <div class=cui-modal__pane>\n"+
+"    <div class=cui-modal__icon>\n"+
+"      <cui-icon cui-svg-icon=cui:check-with-border class=cui-modal__icon></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-modal__primary-message>{{'cui-success' | translate}}</span>\n"+
+"    <span class=cui-modal__secondary-message ng-if=\"organizationAppRequestReview.packageData.approval==='approved'\">{{'approvals-submitted' | translate}}</span>\n"+
+"    <span class=cui-modal__secondary-message ng-if=\"organizationAppRequestReview.packageData.approval==='denied'\">{{'rejection-submitted' | translate}}</span>\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<p class=cui-users__password-success style=\"color:red; margin:20px; text-align:center\" ng-if=\"base.apiError.for['organizationAppRequestReview.noRequest'] || base.apiError.for['organizationAppRequestReview.active']\">{{'request-approve-or-rejected' | translate}}</p>\n"+
+"\n"+
+"<div ng-include=\"'app/modules/organization/requests/organizationAppRequests/sections-review/review-header.html'\" ng-if=\"!base.loader.for['organizationAppRequestReview.init']\">\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-loading__container--user-details ng-if=\"base.loader.for['organizationAppRequestReview.init']\">\n"+
+"	<div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div ng-include=\"'app/modules/organization/requests/organizationAppRequests/sections-review/review-body.html'\" ng-if=\"!base.loader.for['organizationAppRequestReview.init']\">\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-organization__main-container>\n"+
+"  <p class=cui-error style=text-align:end ng-if=organizationAppRequestReview.error&&organizationAppRequestReview.errorMessage>{{organizationAppRequestReview.errorMessage|translate}}</p>\n"+
+"<div class=cui-organization__submit-row disable-animate>\n"+
+"  <span ui-sref=\"organization.requests.organizationAppRequest({userId:organizationAppRequestReview.personData.id, orgId:organizationAppRequestReview.personData.organization.id})\" style=margin:5px>{{'cui-cancel' | translate}}</span>\n"+
+"  <button class=cui-button ng-if=\"!base.loader.for['organizationAppRequestReview.submitting'] && !organizationAppRequestReview.error\" ng-click=organizationAppRequestReview.submit() style=margin:5px>{{'submit-approvals' | translate}}</button>\n"+
+"  <button class=cui-button ng-if=\"base.loader.for['organizationAppRequestReview.submitting']\">\n"+
+"    <div ng-include=\"'app/common-templates/partials/loader-updating.html'\"></div>\n"+
+"  </button>\n"+
+"  <button class=cui-button ng-if=\"!base.loader.for['organizationAppRequestReview.submitting'] && organizationAppRequestReview.error\" ng-click=organizationAppRequestReview.submit()>{{'cui-error-try-again' | translate}}</button>\n"+
+"</div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/organizationAppRequests/sections-requests/requests-body.html',
+"<ng-form name=pendingRequestsApproval>\n"+
+"  <div class=cui-organization__main-container>\n"+
+"\n"+
+"    \n"+
+"    \n"+
+"    <div>\n"+
+"      <div>\n"+
+"        <div class=\"cui-flex-table__header cui-flex-table__header--multi cui-flex-table__header--borderless\">\n"+
+"          <div class=cui-flex-table__th>\n"+
+"            <span class=cui-flex-table__heading>{{'requested-items' | translate}}</span>\n"+
+"          </div>\n"+
+"          <div class=cui-flex-table__th--radio>\n"+
+"            <span class=cui-flex-table__heading>{{'deny' | translate}}</span>\n"+
+"            <span class=cui-flex-table__heading>{{'approve' | translate}}</span>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div>\n"+
+"        <cui-expandable transition-speed=100>\n"+
+"          \n"+
+"          <cui-expandable-title>\n"+
+"            <div class=cui-flex-table__tr>\n"+
+"              <div class=cui-flex-table__mobile-stack>\n"+
+"                <div class=cui-flex-table__left>\n"+
+"                  <span class=cui-flex-table__title>{{organizationAppRequest.request.packageData.details.name | cuiI18n}}</span>\n"+
+"                </div>\n"+
+"              </div>\n"+
+"              <fieldset class=cui-flex-table__fieldset>\n"+
+"                <div class=\"cui-flex-table__right cui-flex-table__multi\">\n"+
+"                  <div class=\"cui-radio cui-radio--deny\">\n"+
+"                    <input class=\"cui-radio__input cui-radio--deny\" type=radio id=\"radio-choice-{{$index+'a'}}\" value=denied ng-model=organizationAppRequest.request.packageData.approval required>\n"+
+"                    <label class=cui-radio__label for=\"radio-choice-{{$index+'a'}}\">\n"+
+"                      <div class=cui-radio__outer-button ng-click=collapse()><div class=cui-radio__inner-button></div></div>\n"+
+"                    </label>\n"+
+"                  </div>\n"+
+"                  <div class=\"cui-radio cui-radio--approve\">\n"+
+"                    <input class=cui-radio__input type=radio id=radio-choice-{{$index}} value=approved ng-model=organizationAppRequest.request.packageData.approval required>\n"+
+"                    <label class=cui-radio__label for=radio-choice-{{$index}}>\n"+
+"                      <div class=cui-radio__outer-button ng-click=expand()><div class=cui-radio__inner-button></div></div>\n"+
+"                    </label>\n"+
+"                  </div>\n"+
+"                </div>\n"+
+"              </fieldset>\n"+
+"            </div>\n"+
+"          </cui-expandable-title>\n"+
+"          \n"+
+"          \n"+
+"          <cui-expandable-body class=\"cui-expandable__body cui-expandable__body--alt-bg\">\n"+
+"            \n"+
+"            <div ng-click=collapse()>\n"+
+"              <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-expandable__close use-class=\"\" viewbox=\"0 0 48 51\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"            </div>\n"+
+"            <div class=cui-expandable__body-row>\n"+
+"              \n"+
+"              <div class=cui-expandable__body-col>\n"+
+"                <div class=cui-expandable__body-header ng-if=\"organizationAppRequest.request.packageData.services.length>0\">{{'bundled-applications' | translate}}:</div>\n"+
+"                <div class=cui-expandable__links-container>\n"+
+"                  <p ng-if=\"organizationAppRequest.request.packageData.services.length===0\">{{'no-bundled-or-related' | translate}}.</p>\n"+
+"                  <div ng-if=\"organizationAppRequest.request.packageData.services.length>0\" ng-repeat=\"service in organizationAppRequest.request.packageData.services\">\n"+
+"                    <span class=cui-expandable__link>{{service.name | cuiI18n}}</span><br>\n"+
+"                  </div>\n"+
+"                </div>\n"+
+"              </div>\n"+
+"\n"+
+"              \n"+
+"              <div class=cui-expandable__body-col>\n"+
+"                <div class=cui-expandable__body-header>{{'claims' | translate}}:</div>\n"+
+"                <p ng-if=\"organizationAppRequest.request.packageData.claims.length===0\">{{'cui-package-no-claims' | translate}}.</p>\n"+
+"                <div ng-if=\"organizationAppRequest.request.packageData.claims.length>0\" ng-repeat=\"claim in organizationAppRequest.request.packageData.claims\">\n"+
+"                  <li class=\"cui-checkbox__container cui-checkbox__container--right\">\n"+
+"                    <input class=cui-checkbox type=checkbox id=option-{{$index}}-{{$parent.$parent.$index}} ng-model=claim.accepted>\n"+
+"                    <label class=cui-checkbox__label for=option-{{$index}}-{{$parent.$parent.$index}}>\n"+
+"                      {{claim.description | cuiI18n}}\n"+
+"                    </label>\n"+
+"                  </li>\n"+
+"                </div>\n"+
+"              </div>\n"+
+"            </div>\n"+
+"            </cui-expandable-body></cui-expandable></div>\n"+
+"\n"+
+"          \n"+
+"        \n"+
+"      </div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-organization__submit-row>\n"+
+"      <span ui-sref=organization.requests.orgAppRequests style=margin:5px>{{'cui-cancel' | translate}}</span>\n"+
+"      <button class=cui-button ng-disabled=pendingRequestsApproval.$invalid ng-class=\"{'cui-button--error':pendingRequestsApproval.$invalid}\" ng-click=organizationAppRequest.reviewApprovals() style=margin:10px>{{'review-approvals' | translate}}</button>\n"+
+"    </div>\n"+
+"\n"+
+"  \n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/organizationAppRequests/sections-requests/requests-header.html',
+"<div class=cui-organization__requests-person-header>\n"+
+"\n"+
+"  \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  <div class=cui-media--centered ng-if=organizationAppRequest.request.personData>\n"+
+"    \n"+
+"    <div class=cui-media__image-container>\n"+
+"      <div class=\"cui-profile__user-avatar cui-media__image\" cui-avatar cui-avatar-names=[organizationAppRequest.request.personData.organization.name] cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-media__body>\n"+
+"      \n"+
+"      <h3 class=cui-media__title>{{organizationAppRequest.request.personData.organization.name}}</h3>\n"+
+"      \n"+
+"      \n"+
+"      \n"+
+"      <div class=cui-media__content ng-if=organizationAppRequest.request.personData.organization><span class=cui-media__content--dark>{{'administrator' | translate}}:</span>  <a href=\"\" class=cui-media__link>{{organizationAppRequest.request.personData.name.given}} {{organizationAppRequest.request.personData.name.surname}}</a></div>\n"+
+"      \n"+
+"      <div class=cui-media__content><span class=cui-media__content--dark>{{'administrator' | translate}} {{'cui-email' | translate}}:</span> <a href=mailto:{{organizationAppRequest.request.personData.email}} class=cui-media__link> {{organizationAppRequest.request.personData.email}}</a></div>\n"+
+"      \n"+
+"      <div class=cui-media__content><span class=cui-media__content--dark>{{'request-date' | translate}}:</span> {{organizationAppRequest.request.personData.organization.creation | date:base.appConfig.dateFormat}}</div>\n"+
+"      \n"+
+"      <div class=cui-media__content>\n"+
+"        <span class=cui-media__content--dark>{{'status' | translate}}:</span><a href=\"\" class=cui-media__link>{{organizationAppRequest.request.personData.organization.status}}</a>\n"+
+"        <cui-icon cui-svg-icon=fa:unlock3 svg-class=cui-action__icon use-class=\"\" viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\" ng-if=\"organizationAppRequest.request.personData.organization.status==='active'\"></cui-icon>\n"+
+"        <cui-icon cui-svg-icon=fa:lock24 svg-class=cui-action__icon use-class=\"\" viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\" ng-if=\"organizationAppRequest.request.personData.organization.status==='locked'\"></cui-icon>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"  \n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/organizationAppRequests/sections-review/review-body.html',
+"<div class=cui-organization__main-container>\n"+
+"\n"+
+"	\n"+
+"	<div>\n"+
+"		<h3 class=cui-organization__approval-summary>{{'approval-summary' | translate}}</h3>\n"+
+"	</div>\n"+
+"	<h4 class=cui-organization__approved>{{'approved-items' | translate}}</h4>\n"+
+"	<div class=cui-organization__approved-row>\n"+
+"		<span ng-if=\"organizationAppRequestReview.packageData.approval==='approved'\">{{organizationAppRequestReview.packageData.details.name | cuiI18n}}</span>\n"+
+"		<span ng-if=\"organizationAppRequestReview.packageData.approval!=='approved'\">{{'no-items-approved' | translate}}.</span>\n"+
+"	</div>\n"+
+"		\n"+
+"	<h4 class=cui-organization__denied>{{'rejected-items' | translate}}</h4>\n"+
+"	<p ng-if=\"organizationAppRequestReview.packageData.approval==='approved'\">{{'no-items-rejected' | translate}}.</p>\n"+
+"	<div class=cui-organization__rejected-row ng-if=\"organizationAppRequestReview.packageData.approval!=='approved'\">\n"+
+"		<span ng-if=\"organizationAppRequestReview.packageData.approval==='denied'\">{{organizationAppRequestReview.packageData.details.name | cuiI18n}}</span>\n"+
+"		<textarea class=cui-text-area ng-model=organizationAppRequestReview.packageData.rejectReason placeholder=\"rejection reason (optional)\"></textarea>\n"+
+"	</div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/organizationAppRequests/sections-review/review-header.html',
+"<div class=cui-organization__requests-person-header>\n"+
+"  \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  \n"+
+"  \n"+
+"  \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  <div class=cui-media--centered>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-media__image-container>\n"+
+"      <div class=cui-profile__user-avatar cui-avatar cui-avatar-names=[organizationAppRequestReview.personData.organization.name] cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-media__body>\n"+
+"      \n"+
+"      <h3 class=cui-media__title>{{organizationAppRequestReview.personData.organization.name}} </h3>\n"+
+"      \n"+
+"      \n"+
+"      \n"+
+"      <div class=cui-media__content><span class=cui-media__content--dark>{{'administrator' | translate}}:</span>  <a href=\"\" class=cui-media__link>{{organizationAppRequestReview.personData.name.given}} {{organizationAppRequestReview.personData.name.surname}}</a></div>\n"+
+"      \n"+
+"      <div class=cui-media__content><span class=cui-media__content--dark>{{'administrator' | translate}} {{'cui-email' | translate}}:</span> <a href=mailto:{{organizationRequest.request.personData.email}} class=cui-media__link> {{organizationAppRequestReview.personData.email}}</a></div>\n"+
+"      \n"+
+"      <div class=cui-media__content><span class=cui-media__content--dark>{{'request-date' | translate}}:</span> {{organizationAppRequestReview.personData.organization.creation | date:base.appConfig.dateFormat}}</div>\n"+
+"      \n"+
+"      <div class=cui-media__content>\n"+
+"        <span class=cui-media__content--dark>{{'status' | translate}}:</span><a href=\"\" class=cui-media__link>{{organizationAppRequestReview.personData.organization.status}}</a>\n"+
+"        <cui-icon cui-svg-icon=fa:unlock3 svg-class=cui-action__icon use-class=\"\" viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\" ng-if=\"organizationAppRequestReview.personData.organization.status==='active'\"></cui-icon>\n"+
+"        <cui-icon cui-svg-icon=fa:lock24 svg-class=cui-action__icon use-class=\"\" viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\" ng-if=\"organizationAppRequestReview.personData.organization.status==='locked'\"></cui-icon>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/organizationRequest/requests-organization.html',
+"\n"+
+"<div class=code-info>The markup and javascript used to build this page can be found <a class=cui-link href=https://github.com/covisint/cui-idm-b2x/tree/master/app/modules/organization/requests/organizationRequest target=blank>here</a>.</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-organization--pending-requests>\n"+
+"  \n"+
+"  <div ng-include=\"'app/modules/organization/requests/organizationRequest/sections-requests/requests-header.html'\" ng-if=\"!base.loader.for['organizationRequest.init']\">\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <p class=cui-users__password-success style=\"color:red; margin:20px; text-align:center\" ng-if=\"base.apiError.for['organizationRequest.noRequest']\">{{'cui-error-person-request' | translate}}</p>\n"+
+"  \n"+
+"  \n"+
+"  <div class=cui-loading__container--user-details ng-if=\"base.loader.for['organizationRequest.init']\">\n"+
+"    <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"  </div>\n"+
+"  \n"+
+"  \n"+
+"  <div ng-include=\"'app/modules/organization/requests/organizationRequest/sections-requests/requests-body.html'\" ng-if=\"!base.loader.for['organizationRequest.init']\">\n"+
+"  </div>\n"+
+"\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/organizationRequest/requests-organizationReview.html',
+"\n"+
+"<div class=code-info>The markup and javascript used to build this page can be found <a class=cui-link href=https://github.com/covisint/cui-idm-b2x/tree/master/app/modules/organization/requests/organizationRequest target=blank>here</a>.</div>\n"+
+"\n"+
+"\n"+
+"\n"+
+"<div class=\"class-toggle cui-modal\" ng-if=organizationRequestReview.success toggled-class=cui-modal--hide ng-click=toggleClass()>\n"+
+"  <div class=cui-modal__pane>\n"+
+"    <div class=cui-modal__icon>\n"+
+"      <cui-icon cui-svg-icon=cui:check-with-border class=cui-modal__icon></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-modal__primary-message>{{'cui-success' | translate}}</span>\n"+
+"    <span class=cui-modal__secondary-message ng-if=\"organizationRequestReview.request.approval==='denied'\">{{'registration-request-rejected' | translate}}</span>\n"+
+"    <span class=cui-modal__secondary-message ng-if=\"organizationRequestReview.request.approval==='approved'\">{{'registration-request-approved' | translate}}</span>\n"+
+"    <span class=cui-modal__secondary-message ng-if=\"organizationRequestReview.approvedCount!==0\">{{organizationRequestReview.approvedCount}} {{'approvals-submitted' | translate}}</span>\n"+
+"    <span class=cui-modal__secondary-message ng-if=\"organizationRequestReview.deniedCount!==0\">{{organizationRequestReview.deniedCount}} {{'rejection-submitted' | translate}}</span>\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<p class=cui-users__password-success style=\"color:red; margin:20px; text-align:center\" ng-if=\"base.apiError.for['organizationRequestReview.noRequest'] || base.apiError.for['organizationRequestReview.active']\">{{'request-approve-or-rejected' | translate}}</p>\n"+
+"\n"+
+"<div ng-include=\"'app/modules/organization/requests/organizationRequest/sections-review/review-header.html'\" ng-if=\"!base.loader.for['organizationRequestReview.init']\">\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-loading__container--user-details ng-if=\"base.loader.for['organizationRequestReview.init']\">\n"+
+"	<div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div ng-include=\"'app/modules/organization/requests/organizationRequest/sections-review/review-body.html'\" ng-if=\"!base.loader.for['organizationRequestReview.init']\">\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-organization__main-container>\n"+
+"<div class=cui-organization__submit-row disable-animate>\n"+
+"  <span ui-sref=\"organization.requests.organizationRequest({userId:organizationRequestReview.personData.id, orgId:organizationRequestReview.personData.organization.id})\" style=margin:5px>{{'cui-cancel' | translate}}</span>\n"+
+"  <button class=cui-button ng-if=\"!base.loader.for['organizationRequestReview.submitting'] && !organizationRequestReview.error\" ng-click=organizationRequestReview.submit() style=margin:5px>{{'submit-approvals' | translate}}</button>\n"+
+"  <button class=cui-button ng-if=\"base.loader.for['organizationRequestReview.submitting']\">\n"+
+"    <div ng-include=\"'app/common-templates/partials/loader-updating.html'\"></div>\n"+
+"  </button>\n"+
+"  <button class=cui-button ng-if=\"!base.loader.for['organizationRequestReview.submitting'] && organizationRequestReview.error\" ng-click=organizationRequestReview.submit()>{{'cui-error-try-again' | translate}}</button>\n"+
+"</div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/organizationRequest/sections-requests/requests-body.html',
+"<ng-form name=pendingRequestsApproval>\n"+
+"  <div class=cui-organization__main-container>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-flex-table__header>\n"+
+"      <h3 class=cui-flex-table__heading>{{'registration-decision' | translate}}</h3>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-organization__registration-decision>\n"+
+"      <fieldset class=cui-flex-table__fieldset>\n"+
+"        <div class=\"cui-flex-table__right cui-flex-table__multi\">\n"+
+"          <div class=\"cui-radio cui-radio--deny\">\n"+
+"            <input class=\"cui-radio__input cui-radio--deny\" type=radio id=radio-choice-registration-deny value=denied ng-model=organizationRequest.request.request.approval required>\n"+
+"            <label class=cui-radio__label for=radio-choice-registration-deny>\n"+
+"              <span>{{'deny' | translate}}</span>\n"+
+"              <div class=cui-radio__outer-button><div class=cui-radio__inner-button></div></div>\n"+
+"            </label>\n"+
+"          </div>\n"+
+"          <div class=\"cui-radio cui-radio--approve\">\n"+
+"            <input class=cui-radio__input type=radio id=radio-choice-registration-approve value=approved ng-model=organizationRequest.request.request.approval required>\n"+
+"            <label class=cui-radio__label for=radio-choice-registration-approve>\n"+
+"              <span>{{'approve' | translate}}</span>\n"+
+"              <div class=cui-radio__outer-button><div class=cui-radio__inner-button></div></div>\n"+
+"            </label>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </fieldset>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    \n"+
+"    <div ng-if=\"organizationRequest.request.packages.length>0\">\n"+
+"      <div>\n"+
+"        <div class=\"cui-flex-table__header cui-flex-table__header--multi cui-flex-table__header--borderless\">\n"+
+"          <div class=cui-flex-table__th>\n"+
+"            <span class=cui-flex-table__heading>{{'requested-items' | translate}}</span>\n"+
+"          </div>\n"+
+"          <div class=cui-flex-table__th--radio>\n"+
+"            <span class=cui-flex-table__heading>{{'deny' | translate}}</span>\n"+
+"            <span class=cui-flex-table__heading>{{'approve' | translate}}</span>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div>\n"+
+"        <cui-expandable transition-speed=100 ng-repeat=\"package in organizationRequest.request.packages\">\n"+
+"          \n"+
+"          <cui-expandable-title>\n"+
+"            <div class=cui-flex-table__tr>\n"+
+"              <div class=cui-flex-table__mobile-stack>\n"+
+"                <div class=cui-flex-table__left>\n"+
+"                  <span class=cui-flex-table__title>{{package.details.name | cuiI18n}}</span>\n"+
+"                </div>\n"+
+"              </div>\n"+
+"              <fieldset class=cui-flex-table__fieldset>\n"+
+"                <div class=\"cui-flex-table__right cui-flex-table__multi\">\n"+
+"                  <div class=\"cui-radio cui-radio--deny\">\n"+
+"                    <input class=\"cui-radio__input cui-radio--deny\" type=radio id=\"radio-choice-{{$index+'a'}}\" value=denied ng-model=package.approval required>\n"+
+"                    <label class=cui-radio__label for=\"radio-choice-{{$index+'a'}}\">\n"+
+"                      <div class=cui-radio__outer-button ng-click=collapse()><div class=cui-radio__inner-button></div></div>\n"+
+"                    </label>\n"+
+"                  </div>\n"+
+"                  <div class=\"cui-radio cui-radio--approve\">\n"+
+"                    <input class=cui-radio__input type=radio id=radio-choice-{{$index}} value=approved ng-model=package.approval required>\n"+
+"                    <label class=cui-radio__label for=radio-choice-{{$index}}>\n"+
+"                      <div class=cui-radio__outer-button ng-click=expand()><div class=cui-radio__inner-button></div></div>\n"+
+"                    </label>\n"+
+"                  </div>\n"+
+"                </div>\n"+
+"              </fieldset>\n"+
+"            </div>\n"+
+"          </cui-expandable-title>\n"+
+"          \n"+
+"          \n"+
+"          <cui-expandable-body class=\"cui-expandable__body cui-expandable__body--alt-bg\">\n"+
+"            \n"+
+"            <div ng-click=collapse()>\n"+
+"              <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-expandable__close use-class=\"\" viewbox=\"0 0 48 51\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"            </div>\n"+
+"            <div class=cui-expandable__body-row>\n"+
+"              \n"+
+"              <div class=cui-expandable__body-col>\n"+
+"                <div class=cui-expandable__body-header ng-if=\"package.services.length>0\">{{'bundled-applications' | translate}}:</div>\n"+
+"                <div class=cui-expandable__links-container>\n"+
+"                  <p ng-if=\"package.services.length===0\">{{'no-bundled-or-related' | translate}}.</p>\n"+
+"                  <div ng-if=\"package.services.length>0\" ng-repeat=\"service in package.services\">\n"+
+"                    <span class=cui-expandable__link>{{service.name | cuiI18n}}</span><br>\n"+
+"                  </div>\n"+
+"                </div>\n"+
+"              </div>\n"+
+"\n"+
+"              \n"+
+"              <div class=cui-expandable__body-col>\n"+
+"                <div class=cui-expandable__body-header>{{'claims' | translate}}:</div>\n"+
+"                <p ng-if=\"package.claims.length===0\">{{'cui-package-no-claims' | translate}}.</p>\n"+
+"                <div ng-if=\"package.claims.length>0\" ng-repeat=\"claim in package.claims\">\n"+
+"                  <li class=\"cui-checkbox__container cui-checkbox__container--right\">\n"+
+"                    <input class=cui-checkbox type=checkbox id=option-{{$index}}-{{$parent.$parent.$index}} ng-model=claim.accepted>\n"+
+"                    <label class=cui-checkbox__label for=option-{{$index}}-{{$parent.$parent.$index}}>\n"+
+"                      {{claim.description | cuiI18n}}\n"+
+"                    </label>\n"+
+"                  </li>\n"+
+"                </div>\n"+
+"              </div>\n"+
+"            </div>\n"+
+"            </cui-expandable-body></cui-expandable></div>\n"+
+"\n"+
+"          \n"+
+"        \n"+
+"      </div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-organization__submit-row>\n"+
+"      <span ui-sref=organization.requests.orgRegistrationRequests style=margin:5px>{{'cui-cancel' | translate}}</span>\n"+
+"      <button class=cui-button ng-disabled=pendingRequestsApproval.$invalid ng-class=\"{'cui-button--error':pendingRequestsApproval.$invalid}\" ng-click=organizationRequest.reviewApprovals() style=margin:10px>{{'review-approvals' | translate}}</button>\n"+
+"    </div>\n"+
+"\n"+
+"  \n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/organizationRequest/sections-requests/requests-header.html',
+"<div class=cui-organization__requests-person-header>\n"+
+"\n"+
+"  \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  \n"+
+"  \n"+
+"  \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  <div class=cui-media--centered ng-if=organizationRequest.request.personData>\n"+
+"    \n"+
+"    <div class=cui-media__image-container>\n"+
+"      <div class=\"cui-profile__user-avatar cui-media__image\" cui-avatar cui-avatar-names=[organizationRequest.request.personData.organization.name] cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-media__body>\n"+
+"      \n"+
+"      <h3 class=cui-media__title>{{organizationRequest.request.personData.organization.name}}</h3>\n"+
+"      \n"+
+"      \n"+
+"      \n"+
+"      <div class=cui-media__content ng-if=organizationRequest.request.personData.organization><span class=cui-media__content--dark>{{'administrator' | translate}}:</span>  <a href=\"\" class=cui-media__link>{{organizationRequest.request.personData.name.given}} {{organizationRequest.request.personData.name.surname}}</a></div>\n"+
+"      \n"+
+"      <div class=cui-media__content><span class=cui-media__content--dark>{{'administrator' | translate}} {{'cui-email' | translate}}:</span> <a href=mailto:{{organizationRequest.request.personData.email}} class=cui-media__link> {{organizationRequest.request.personData.email}}</a></div>\n"+
+"      \n"+
+"      <div class=cui-media__content><span class=cui-media__content--dark>{{'request-date' | translate}}:</span> {{organizationRequest.request.personData.creation | date:base.appConfig.dateFormat}}</div>\n"+
+"      \n"+
+"      <div class=cui-media__content><span class=cui-media__content--dark>{{'status' | translate}}:</span>  <a href=\"\" class=cui-media__link>{{organizationRequest.request.personData.organization.status}}</a></div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <cui-expandable class=cui-expandable transition-speed=150 ng-if=\"organizationRequest.request.personData && organizationRequest.request.personData.organization\">\n"+
+"    <cui-expandable-title class=cui-expandable__title ng-click=toggleExpand()>\n"+
+"      <div class=cui-expandable__details-status>\n"+
+"        <span class=\"cui-link cui-expandable__details\">{{'view-details' | translate}}</span>\n"+
+"      </div>\n"+
+"    </cui-expandable-title>\n"+
+"    <cui-expandable-body class=\"cui-expandable__body cui-expandable__body--alt-bg\">\n"+
+"      <div class=cui-expandable__body-row>\n"+
+"        \n"+
+"        <div class=\"cui-expandable__body-col cui-expandable__body-col--small\" ng-if=organizationRequest.request.personData.organization>\n"+
+"          <div class=cui-field-val__field>{{'cui-address' | translate}}:</div>\n"+
+"          <span class=cui-field-val__val>{{organizationRequest.request.personData.organization.addresses[0].streets[0]}}</span>\n"+
+"          <span class=cui-field-val__val>{{organizationRequest.request.personData.organization.addresses[0].city}}</span>\n"+
+"          <span class=cui-field-val__val>{{organizationRequest.request.personData.organization.addresses[0].state}}, {{organizationRequest.request.personData.organization.addresses[0].postal}}</span>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=\"cui-expandable__body-col cui-expandable__body-col--small\" ng-if=organizationRequest.request.personData.organization.phones[0].number>\n"+
+"          <div class=cui-field-val__field>{{'cui-phone' | translate}}:</div>\n"+
+"          <span class=cui-field-val__val>{{organizationRequest.request.personData.organization.phones[0].number}}</span>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=\"cui-expandable__body-col cui-expandable__body-col--small\" ng-if=organizationRequest.request.personData>\n"+
+"          <div class=cui-field-val__field>{{'timezone-and-language' | translate}}:</div>\n"+
+"          <span class=cui-field-val__val>{{organizationRequest.request.personData.timezone}}</span>\n"+
+"          <span class=cui-field-val__val>{{organizationRequest.request.personData.language}}</span>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=\"cui-expandable__body-col cui-expandable__body-col--small\" ng-if=organizationRequest.request.justification>\n"+
+"          <div class=cui-field-val__field>{{'request-reason' | translate}}:</div>\n"+
+"          <span class=cui-field-val__val>{{organizationRequest.request.justification}}</span>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </cui-expandable-body>\n"+
+"  </cui-expandable>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/organizationRequest/sections-review/review-body.html',
+"<div class=cui-organization__main-container>\n"+
+"\n"+
+"	\n"+
+"	<div>\n"+
+"		<h3 class=cui-organization__approval-summary>{{'approval-summary' | translate}}</h3>\n"+
+"	</div>\n"+
+"\n"+
+"	<div ng-if=\"organizationRequestReview.request.approval==='approved'\">\n"+
+"		\n"+
+"		<div>\n"+
+"			<h4 class=cui-organization__approved>{{'approved-items' | translate}}</h4>\n"+
+"			<div class=cui-organization__approved-row>\n"+
+"				<ul>\n"+
+"					<li><span>{{'registration-request' | translate}} ({{organizationRequestReview.id}})</span><br></li>\n"+
+"					<li ng-if=organizationRequestReview.approvedCount ng-repeat=\"package in organizationRequestReview.packages track by package.id\">\n"+
+"						<span ng-if=\"package.approval==='approved'\">{{package.details.name | cuiI18n}}</span>\n"+
+"					</li>\n"+
+"				</ul>\n"+
+"			</div>\n"+
+"		</div>\n"+
+"		\n"+
+"		<div>\n"+
+"			<h4 class=cui-organization__denied>{{'rejected-items' | translate}}</h4>\n"+
+"			<p ng-if=\"organizationRequestReview.deniedCount===0\">{{'no-items-rejected' | translate}}.</p>\n"+
+"			<div class=cui-organization__rejected-row ng-if=organizationRequestReview.deniedCount ng-repeat=\"package in organizationRequestReview.packages track by package.id\">\n"+
+"				<span ng-if=\"package.approval==='denied'\">{{package.details.name | cuiI18n}}</span>\n"+
+"				<textarea class=cui-text-area ng-if=\"package.approval==='denied'\" ng-model=package.rejectReason placeholder=\"rejection reason (optional)\"></textarea>\n"+
+"			</div>\n"+
+"		</div>\n"+
+"	</div>\n"+
+"\n"+
+"	\n"+
+"	<div ng-if=\"organizationRequestReview.request.approval==='denied'\">\n"+
+"		\n"+
+"		<div>\n"+
+"			<h4 class=cui-organization__approved>{{'approved-items' | translate}}</h4>\n"+
+"			<div class=cui-organization__approved-row>\n"+
+"				<p>{{'no-items-approved' | translate}}.</p>\n"+
+"			</div>\n"+
+"		</div>\n"+
+"		\n"+
+"		<div>\n"+
+"			<h4 class=cui-organization__denied>{{'rejected-items' | translate}}</h4>\n"+
+"			<div class=cui-organization__rejected-row>\n"+
+"				<span>{{'registration-request' | translate}} ({{organizationRequestReview.id}})</span>\n"+
+"				<textarea class=cui-text-area ng-model=organizationRequestReview.request.rejectReason placeholder=\"rejection reason (optional)\"></textarea>\n"+
+"			</div>\n"+
+"		\n"+
+"		</div>\n"+
+"	</div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/organizationRequest/sections-review/review-header.html',
+"<div class=cui-organization__requests-person-header>\n"+
+"  \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  \n"+
+"  \n"+
+"  \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  <div class=cui-media--centered>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-media__image-container>\n"+
+"      <div class=cui-profile__user-avatar cui-avatar cui-avatar-names=[organizationRequestReview.personData.organization.name] cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-media__body>\n"+
+"      \n"+
+"      <h3 class=cui-media__title>{{organizationRequestReview.personData.organization.name}} </h3>\n"+
+"      \n"+
+"      \n"+
+"      \n"+
+"      <div class=cui-media__content><span class=cui-media__content--dark>{{'administrator' | translate}}:</span>  <a href=\"\" class=cui-media__link>{{organizationRequestReview.personData.name.given}} {{organizationRequestReview.personData.name.surname}}</a></div>\n"+
+"      \n"+
+"      <div class=cui-media__content><span class=cui-media__content--dark>{{'administrator' | translate}} {{'cui-email' | translate}}:</span> <a href=mailto:{{organizationRequest.request.personData.email}} class=cui-media__link> {{organizationRequestReview.personData.email}}</a></div>\n"+
+"      \n"+
+"      <div class=cui-media__content><span class=cui-media__content--dark>{{'request-date' | translate}}:</span> {{organizationRequestReview.personData.creation | date:base.appConfig.dateFormat}}</div>\n"+
+"      \n"+
+"      <div class=cui-media__content><span class=cui-media__content--dark>{{'status' | translate}}:</span>  <a href=\"\" class=cui-media__link>{{organizationRequestReview.personData.organization.status}}</a></div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <cui-expandable class=cui-expandable transition-speed=150>\n"+
+"    <cui-expandable-title class=cui-expandable__title ng-click=toggleExpand()>\n"+
+"      <div class=cui-expandable__details-status>\n"+
+"        <span class=\"cui-link cui-expandable__details\">{{'view-details' | translate}}</span>\n"+
+"        \n"+
+"      </div>\n"+
+"    </cui-expandable-title>\n"+
+"    <cui-expandable-body class=\"cui-expandable__body cui-expandable__body--alt-bg\">\n"+
+"      <div class=cui-expandable__body-row>\n"+
+"        \n"+
+"        <div class=\"cui-expandable__body-col cui-expandable__body-col--small\">\n"+
+"          <div class=cui-field-val__field>{{'cui-address' | translate}}:</div>\n"+
+"          <span class=cui-field-val__val>{{organizationRequestReview.personData.organization.addresses[0].streets[0]}}</span>\n"+
+"          <span class=cui-field-val__val>{{organizationRequestReview.personData.organization.addresses[0].city}}</span>\n"+
+"          <span class=cui-field-val__val>{{organizationRequestReview.personData.organization.addresses[0].state}}, {{organizationRequestReview.personData.organization.addresses[0].postal}}</span>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=\"cui-expandable__body-col cui-expandable__body-col--small\" ng-if=organizationRequestReview.personData.organization.phones[0].number>\n"+
+"          <div class=cui-field-val__field>{{'cui-phone' | translate}}:</div>\n"+
+"          <span class=cui-field-val__val>{{organizationRequestReview.personData.organization.phones[0].number}}</span>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=\"cui-expandable__body-col cui-expandable__body-col--small\">\n"+
+"          <div class=cui-field-val__field>{{'timezone-and-language' | translate}}:</div>\n"+
+"          <span class=cui-field-val__val>{{organizationRequestReview.personData.timezone}}</span>\n"+
+"          <span class=cui-field-val__val>{{organizationRequestReview.personData.language}}</span>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=\"cui-expandable__body-col cui-expandable__body-col--small\">\n"+
+"          <div class=cui-field-val__field>{{'request-reason' | translate}}:</div>\n"+
+"          <span class=cui-field-val__val>{{organizationRequestReview.justification}}</span>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </cui-expandable-body>\n"+
+"  </cui-expandable>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/pendingRequestsReview/requests-pendingRequests.html',
+"\n"+
+"<div class=code-info>The markup and javascript used to build this page can be found <a class=cui-link href=https://github.com/thirdwavellc/cui-idm-b2x/tree/master/app/modules/organization/requests/pendingRequestsReview target=blank>here</a>.</div>\n"+
+"\n"+
+"\n"+
+"\n"+
+"<div class=\"class-toggle cui-modal\" toggled-class=cui-modal--hide ng-if=pendingRequests.success ng-click=toggleClass()>\n"+
+"  <div class=cui-modal__pane>\n"+
+"    <div class=cui-modal__icon>\n"+
+"      <cui-icon cui-svg-icon=cui:check-with-border class=cui-modal__icon></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-modal__primary-message>{{'cui-success' | translate}}</span>\n"+
+"    <span class=cui-modal__secondary-message ng-if=\"pendingRequests.approvedCount!==0\">{{pendingRequests.approvedCount}} {{'approvals-submitted' | translate}}</span>\n"+
+"    <span class=cui-modal__secondary-message ng-if=\"pendingRequests.deniedCount!==0\">{{pendingRequests.deniedCount}} {{'rejection-submitted' | translate}}</span>\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-loading__container--user-details ng-if=\"base.loader.for['pendingRequests.init']\">\n"+
+"  <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div ng-include=\"'app/modules/organization/requests/pendingRequestsReview/sections-pendingRequests/pendingRequests-header.html'\" ng-if=\"!base.loader.for['pendingRequests.init']\"></div>\n"+
+"\n"+
+"\n"+
+"<div ng-include=\"'app/modules/organization/requests/pendingRequestsReview/sections-pendingRequests/pendingRequests-body.html'\" ng-if=\"!base.loader.for['pendingRequests.init']\"></div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/pendingRequestsReview/requests-pendingRequestsReview.html',
+"\n"+
+"<div class=code-info>The markup and javascript used to build this page can be found <a class=cui-link href=https://github.com/thirdwavellc/cui-idm-b2x/tree/master/app/modules/organization/requests/pendingRequestsReview target=blank>here</a>.</div>\n"+
+"\n"+
+"\n"+
+"\n"+
+"<div class=\"class-toggle cui-modal\" toggled-class=cui-modal--hide ng-if=pendingRequestsReview.success ng-click=toggleClass()>\n"+
+"  <div class=cui-modal__pane>\n"+
+"    <div class=cui-modal__icon>\n"+
+"      <cui-icon cui-svg-icon=cui:check-with-border class=cui-modal__icon></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-modal__primary-message>{{'cui-success' | translate}}</span>\n"+
+"    <span class=cui-modal__secondary-message ng-if=\"pendingRequestsReview.approvedCount!==0\">{{pendingRequestsReview.approvedCount}} {{'approvals-submitted' | translate}}</span>\n"+
+"    <span class=cui-modal__secondary-message ng-if=\"pendingRequestsReview.deniedCount!==0\">{{pendingRequestsReview.deniedCount}} {{'rejection-submitted' | translate}}</span>\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-loading__container--user-details ng-if=\"base.loader.for['pendingRequestsReview.init']\">\n"+
+"  <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div ng-include=\"'app/modules/organization/requests/pendingRequestsReview/sections-review/review-header.html'\" ng-if=\"!base.loader.for['pendingRequestsReview.init']\"></div>\n"+
+"\n"+
+"<div ng-include=\"'app/modules/organization/requests/pendingRequestsReview/sections-review/review-body.html'\" ng-if=\"!base.loader.for['pendingRequestsReview.init']\"></div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/pendingRequestsReview/sections-pendingRequests/pendingRequests-body.html',
+"<ng-form name=pendingRequestsApproval>\n"+
+"  <div class=cui-organization__main-container>\n"+
+"    \n"+
+"    <div>\n"+
+"\n"+
+"      <div>\n"+
+"        <div class=\"cui-flex-table__header cui-flex-table__header--borderless\">\n"+
+"          <div class=cui-flex-table__th>\n"+
+"            <span class=cui-flex-table__heading>{{'requested-items' | translate}}</span>\n"+
+"          </div>\n"+
+"          <div class=cui-flex-table__th--radio>\n"+
+"            <span class=cui-flex-table__heading>{{'deny' | translate}}</span>\n"+
+"            <span class=cui-flex-table__heading>{{'approve' | translate}}</span>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <cui-expandable ng-repeat=\"package in pendingRequests.packages\" transition-speed=150>\n"+
+"        <cui-expandable-title>\n"+
+"          <div class=cui-flex-table__tr>\n"+
+"            <div class=cui-flex-table__mobile-stack>\n"+
+"              <div class=cui-flex-table__left>\n"+
+"                <span class=cui-flex-table__title>{{package.details.name | cuiI18n}}</span>\n"+
+"              </div>\n"+
+"              <div class=cui-flex-table__middle>\n"+
+"                <span class=cui-flex-table__text>{{'requested' | translate}}: {{package.creation | date:base.appConfig.dateFormat}}</span>\n"+
+"              </div>\n"+
+"            </div>\n"+
+"            <fieldset class=cui-flex-table__fieldset>\n"+
+"              <div class=\"cui-flex-table__right cui-flex-table__multi\">\n"+
+"                <div class=\"cui-radio cui-radio--deny\">\n"+
+"                  <input class=\"cui-radio__input cui-radio--deny\" type=radio id=\"radio-choice-{{$index+'a'}}\" value=denied ng-model=package.approval required>\n"+
+"                  <label class=cui-radio__label for=\"radio-choice-{{$index+'a'}}\" ng-click=collapse()>\n"+
+"                    <div class=cui-radio__outer-button><div class=cui-radio__inner-button></div></div>\n"+
+"                  </label>\n"+
+"                </div>\n"+
+"                <div class=\"cui-radio cui-radio--approve\">\n"+
+"                  <input class=cui-radio__input type=radio id=radio-choice-{{$index}} value=approved ng-model=package.approval required>\n"+
+"                  <label class=cui-radio__label for=radio-choice-{{$index}} ng-click=expand()>\n"+
+"                    <div class=cui-radio__outer-button><div class=cui-radio__inner-button></div></div>\n"+
+"                  </label>\n"+
+"                </div>\n"+
+"              </div>\n"+
+"            </fieldset>\n"+
+"          </div>\n"+
+"        </cui-expandable-title>\n"+
+"\n"+
+"        \n"+
+"        <cui-expandable-body class=\"cui-expandable__body cui-expandable__body--alt-bg\">\n"+
+"\n"+
+"          \n"+
+"          <div ng-click=collapse()>\n"+
+"            <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-expandable__close use-class=\"\" viewbox=\"0 0 48 51\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"          </div>\n"+
+"\n"+
+"          <div class=cui-expandable__body-row>\n"+
+"            \n"+
+"            <div class=cui-expandable__body-col>\n"+
+"              <div class=cui-expandable__body-header ng-if=\"package.services.length>0\">{{'bundled-applications' | translate}}:</div>\n"+
+"              <div class=cui-expandable__links-container>\n"+
+"                <p ng-if=\"package.services.length===0\">{{'no-bundled-or-related' | translate}}.</p>\n"+
+"                <div ng-if=\"package.services.length>0\" ng-repeat=\"service in package.services\">\n"+
+"                  <span class=cui-expandable__link>{{service.name | cuiI18n}}</span><br>\n"+
+"                </div>\n"+
+"              </div>\n"+
+"            </div>\n"+
+"\n"+
+"            \n"+
+"            <div class=cui-expandable__body-col>\n"+
+"              <div class=cui-expandable__body-header>{{'claims' | translate}}:</div>\n"+
+"              <p ng-if=\"package.claims.length===0\">{{'cui-package-no-claims' | translate}}.</p>\n"+
+"              <div ng-if=\"package.claims.length>0\" ng-repeat=\"claim in package.claims\">\n"+
+"                <li class=\"cui-checkbox__container cui-checkbox__container--right\">\n"+
+"                  <input class=cui-checkbox type=checkbox id=option-{{$index}}-{{$parent.$parent.$index}} ng-model=claim.accepted>\n"+
+"                  <label class=cui-checkbox__label for=option-{{$index}}-{{$parent.$parent.$index}}>\n"+
+"                    {{claim.description | cuiI18n}}\n"+
+"                  </label>\n"+
+"                </li>\n"+
+"              </div>\n"+
+"            </div>\n"+
+"\n"+
+"          </div>\n"+
+"        </cui-expandable-body>\n"+
+"      </cui-expandable>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    \n"+
+"    <div class=cui-organization__submit-row disable-animate>\n"+
+"      <span ui-sref=organization.requests.usersAppRequests style=margin:5px>{{'cui-cancel' | translate}}</span>\n"+
+"      <button class=cui-button ng-if=!pendingRequests.submitting ng-disabled=pendingRequestsApproval.$invalid ng-class=\"{'cui-button--error':pendingRequestsApproval.$invalid}\" ng-click=pendingRequests.submit() style=margin:5px>{{'submit-approvals' | translate}}</button>\n"+
+"      <button class=cui-button ng-if=pendingRequests.submitting>\n"+
+"        <div ng-include=\"'app/common-templates/partials/loader-updating.html'\"></div>\n"+
+"      </button>\n"+
+"      <button class=cui-button ng-if=\"!pendingRequests.submitting && pendingRequests.error\" ng-click=pendingRequests.submit()>{{'cui-error-try-again' | translate}}</button>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/pendingRequestsReview/sections-pendingRequests/pendingRequests-header.html',
+"\n"+
+"<div class=cui-organization__request-review-header>\n"+
+"  \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  \n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-media--centered>\n"+
+"  \n"+
+"  <div class=cui-media__image-container>\n"+
+"    <div class=\"cui-profile__user-avatar cui-media__image\" cui-avatar cui-avatar-names=\"[pendingRequests.user.name.given, pendingRequests.user.name.surname]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-media__body>\n"+
+"    \n"+
+"    <h3 class=cui-media__title>{{pendingRequests.user.name.given}} {{pendingRequests.user.name.surname}}</h3>\n"+
+"    \n"+
+"    <p class=\"cui-media__content cui-media__content--dark\">{{'userID' | translate}}: {{pendingRequests.user.username}}</p>\n"+
+"    \n"+
+"    <p class=cui-media__content ng-if=\"pendingRequests.user.status==='active'\">{{'cui-registered' | translate}}: {{pendingRequests.user.creation | date:base.appConfig.dateFormat}}</p>\n"+
+"    \n"+
+"    <div class=cui-media__content>\n"+
+"      <span class=cui-media__content--dark>{{'status' | translate}}:</span><a href=\"\" class=cui-media__link>{{pendingRequests.user.status}}</a>\n"+
+"      <cui-icon cui-svg-icon=fa:unlock3 svg-class=cui-action__icon use-class=\"\" viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\" ng-if=\"pendingRequests.user.status==='active'\"></cui-icon>\n"+
+"      <cui-icon cui-svg-icon=fa:lock24 svg-class=cui-action__icon use-class=\"\" viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\" ng-if=\"pendingRequests.user.status==='locked'\"></cui-icon>\n"+
+"    </div>\n"+
+"    \n"+
+"    \n"+
+"    \n"+
+"    \n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/pendingRequestsReview/sections-review/review-body.html',
+"<div class=cui-organization__main-container>\n"+
+"	\n"+
+"	<h3 class=cui-organization__approval-summary>{{'approval-summary' | translate}}</h3>\n"+
+"\n"+
+"	\n"+
+"	<h4 class=cui-organization__approved>{{'approved-items' | translate}}</h4>\n"+
+"	<div class=cui-organization__approved-row>\n"+
+"		<p ng-if=\"pendingRequestsReview.approvedCount===0\">{{'no-items-approved' | translate}}.</p>\n"+
+"		<ul>\n"+
+"			<li ng-if=\"pendingRequestsReview.approvedCount>0\" ng-repeat=\"package in pendingRequestsReview.pendingRequests track by package.id\">\n"+
+"				<span ng-if=\"package.approval==='approved'\">{{package.details.name | cuiI18n}}</span>\n"+
+"				<br ng-if=\"package.approval==='approved'\">\n"+
+"			</li>\n"+
+"		</ul>\n"+
+"	</div>\n"+
+"\n"+
+"	\n"+
+"	<h4 class=cui-organization__denied>{{'rejected-items' | translate}}</h4>\n"+
+"	<div>\n"+
+"		<p ng-if=\"pendingRequestsReview.deniedCount===0\">{{'no-items-rejected' | translate}}.</p>\n"+
+"		<div class=cui-organization__rejected-row ng-if=\"pendingRequestsReview.deniedCount>0\" ng-repeat=\"package in pendingRequestsReview.pendingRequests track by package.id\">\n"+
+"			<span ng-if=\"package.approval==='denied'\">{{package.details.name | cuiI18n}}</span><br>\n"+
+"			<textarea class=cui-text-area ng-if=\"package.approval==='denied'\" ng-model=package.rejectReason placeholder=\"rejection reason (optional)\"></textarea>\n"+
+"		</div>\n"+
+"	</div>\n"+
+"	\n"+
+"	\n"+
+"	<div class=cui-organization__submit-row disable-animate>\n"+
+"		<span ui-sref=\"organization.directory.pendingRequests({userId:pendingRequests.user.id, orgId:pendingRequests.user.organization.id})\" style=margin:5px>{{'cui-cancel' | translate}}</span>\n"+
+"		<button class=cui-button ng-if=!pendingRequestsReview.submitting ng-click=pendingRequestsReview.submit() style=margin:5px>{{'submit-approvals' | translate}}</button>\n"+
+"		<button class=cui-button ng-if=pendingRequestsReview.submitting>\n"+
+"        <div ng-include=\"'app/common-templates/partials/loader-updating.html'\"></div>\n"+
+"      	</button>\n"+
+"      	<button class=cui-button ng-if=\"!pendingRequestsReview.submitting && pendingRequestsReview.error\" ng-click=pendingRequestsReview.submit()>{{'cui-error-try-again' | translate}}</button>\n"+
+"	</div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/pendingRequestsReview/sections-review/review-header.html',
+"\n"+
+"<div class=cui-organization__request-review-header>\n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  \n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-media--centered ng-if=!pendingRequestsReview.loading>\n"+
+"  \n"+
+"  <div class=cui-media__image-container>\n"+
+"    <div class=cui-profile__user-avatar cui-avatar cui-avatar-names=\"[pendingRequestsReview.user.name.given, pendingRequestsReview.user.name.given]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"  </div>\n"+
+"  \n"+
+"  \n"+
+"  <div class=cui-media__body>\n"+
+"    \n"+
+"    <h3 class=cui-media__title>{{pendingRequestsReview.user.name.given}} {{pendingRequestsReview.user.name.surname}}</h3>\n"+
+"    \n"+
+"    <p class=\"cui-media__content cui-media__content--dark\">{{'userID' | translate}}: {{pendingRequestsReview.user.username}}</p>\n"+
+"    \n"+
+"    <p class=cui-media__content>{{'cui-registered' | translate}}: {{pendingRequestsReview.user.creation | date:base.appConfig.dateFormat}}</p>\n"+
+"    \n"+
+"    <div class=cui-media__content>\n"+
+"      <span class=cui-media__content--dark>{{'status' | translate}}:</span><a href=\"\" class=cui-media__link>{{pendingRequestsReview.user.status}}</a>\n"+
+"      <cui-icon cui-svg-icon=fa:unlock3 svg-class=cui-action__icon use-class=\"\" viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\" ng-if=\"pendingRequestsReview.user.status==='active'\"></cui-icon>\n"+
+"      <cui-icon cui-svg-icon=fa:lock24 svg-class=cui-action__icon use-class=\"\" viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\" ng-if=\"pendingRequestsReview.user.status==='locked'\"></cui-icon>\n"+
+"    </div>\n"+
+"    \n"+
+"    \n"+
+"    \n"+
+"    \n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/personRequest/requests-person.html',
+"\n"+
+"<div class=code-info>The markup and javascript used to build this page can be found <a class=cui-link href=https://github.com/covisint/cui-idm-b2x/tree/master/app/modules/organization/requests/personRequest target=blank>here</a>.</div>\n"+
+"\n"+
+"\n"+
+"\n"+
+"<div class=\"class-toggle cui-modal\" ng-if=personRequest.success toggled-class=cui-modal--hide ng-click=toggleClass()>\n"+
+"  <div class=cui-modal__pane>\n"+
+"    <div class=cui-modal__icon>\n"+
+"      <cui-icon cui-svg-icon=cui:check-with-border class=cui-modal__icon></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-modal__primary-message>{{'cui-success' | translate}}</span>\n"+
+"    <span class=cui-modal__secondary-message ng-if=\"personRequest.request.request.approval==='denied'\">{{'registration-request-rejected' | translate}}</span>\n"+
+"    <span class=cui-modal__secondary-message ng-if=\"personRequest.request.request.approval==='approved'\">{{'registration-request-approved' | translate}}</span>\n"+
+"    <span class=cui-modal__secondary-message ng-if=\"personRequest.approvedCount!==0\">{{personRequest.approvedCount}} {{'approvals-submitted' | translate}}</span>\n"+
+"    <span class=cui-modal__secondary-message ng-if=\"personRequest.deniedCount!==0\">{{personRequest.deniedCount}} {{'rejection-submitted' | translate}}</span>\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n"+
+"<div class=cui-organization--pending-requests>\n"+
+"  \n"+
+"  <div ng-include=\"'app/modules/organization/requests/personRequest/sections-requests/requests-header.html'\" ng-if=\"!base.loader.for['personRequest.init']\">\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <p class=cui-users__password-success style=\"color:red; margin:20px; text-align:center\" ng-if=\"base.apiError.for['personRequest.noRequest']\">{{'cui-error-person-request' | translate}}</p>\n"+
+"  \n"+
+"  \n"+
+"  <div class=cui-loading__container--user-details ng-if=\"base.loader.for['personRequest.init']\">\n"+
+"    <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"  </div>\n"+
+"  \n"+
+"  \n"+
+"  <div ng-include=\"'app/modules/organization/requests/personRequest/sections-requests/requests-body.html'\" ng-if=\"!base.loader.for['personRequest.init']\">\n"+
+"  </div>\n"+
+"\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/personRequest/requests-personReview.html',
+"\n"+
+"<div class=code-info>The markup and javascript used to build this page can be found <a class=cui-link href=https://github.com/covisint/cui-idm-b2x/tree/master/app/modules/organization/requests/personRequest target=blank>here</a>.</div>\n"+
+"\n"+
+"\n"+
+"\n"+
+"<div class=\"class-toggle cui-modal\" ng-if=personRequestReview.success toggled-class=cui-modal--hide ng-click=toggleClass()>\n"+
+"  <div class=cui-modal__pane>\n"+
+"    <div class=cui-modal__icon>\n"+
+"      <cui-icon cui-svg-icon=cui:check-with-border class=cui-modal__icon></cui-icon>\n"+
+"    </div>\n"+
+"    <span class=cui-modal__primary-message>{{'cui-success' | translate}}</span>\n"+
+"    <span class=cui-modal__secondary-message ng-if=\"personRequestReview.request.approval==='denied'\">{{'registration-request-rejected' | translate}}</span>\n"+
+"    <span class=cui-modal__secondary-message ng-if=\"personRequestReview.request.approval==='approved'\">{{'registration-request-approved' | translate}}</span>\n"+
+"    <span class=cui-modal__secondary-message ng-if=\"personRequestReview.approvedCount!==0\">{{personRequestReview.approvedCount}} {{'approvals-submitted' | translate}}</span>\n"+
+"    <span class=cui-modal__secondary-message ng-if=\"personRequestReview.deniedCount!==0\">{{personRequestReview.deniedCount}} {{'rejection-submitted' | translate}}</span>\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div ng-include=\"'app/modules/organization/requests/personRequest/sections-review/review-header.html'\" ng-if=personRequestReview.personData>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-loading__container--user-details ng-if=\"base.loader.for['personRequestReview.init']\">\n"+
+"	<div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div ng-include=\"'app/modules/organization/requests/personRequest/sections-review/review-body.html'\" ng-if=\"!base.loader.for['personRequestReview.init']\">\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-organization__submit-row disable-animate>\n"+
+"  <span ui-sref=\"organization.requests.personRequest({userId:personRequestReview.person.id, orgId:personRequestReview.person.organization.id})\" style=margin:5px>{{'cui-cancel' | translate}}</span>\n"+
+"  <button class=cui-button ng-if=\"!base.loader.for['personRequestReview.submitting'] && !personRequestReview.error\" ng-click=personRequestReview.submit() style=margin:5px>{{'submit-approvals' | translate}}</button>\n"+
+"  <button class=cui-button ng-if=\"base.loader.for['personRequestReview.submitting']\">\n"+
+"    <div ng-include=\"'app/common-templates/partials/loader-updating.html'\"></div>\n"+
+"  </button>\n"+
+"  <button class=cui-button ng-if=\"!base.loader.for['personRequestReview.submitting'] && personRequestReview.error\" ng-click=personRequestReview.submit()>{{'cui-error-try-again' | translate}}</button>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/personRequest/sections-requests/requests-body.html',
+"<ng-form name=pendingRequestsApproval>\n"+
+"  <div class=cui-organization__main-container>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-flex-table__header>\n"+
+"      <h3 class=cui-flex-table__heading>{{'registration-decision' | translate}}</h3>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-organization__registration-decision>\n"+
+"      <fieldset class=cui-flex-table__fieldset>\n"+
+"        <div class=\"cui-flex-table__right cui-flex-table__multi\">\n"+
+"          <div class=\"cui-radio cui-radio--deny\">\n"+
+"            <input class=\"cui-radio__input cui-radio--deny\" type=radio id=radio-choice-registration-deny value=denied ng-model=personRequest.request.request.approval required>\n"+
+"            <label class=cui-radio__label for=radio-choice-registration-deny>\n"+
+"              <span>{{'deny' | translate}}</span>\n"+
+"              <div class=cui-radio__outer-button><div class=cui-radio__inner-button></div></div>\n"+
+"            </label>\n"+
+"          </div>\n"+
+"          <div class=\"cui-radio cui-radio--approve\">\n"+
+"            <input class=cui-radio__input type=radio id=radio-choice-registration-approve value=approved ng-model=personRequest.request.request.approval required>\n"+
+"            <label class=cui-radio__label for=radio-choice-registration-approve>\n"+
+"              <span>{{'approve' | translate}}</span>\n"+
+"              <div class=cui-radio__outer-button><div class=cui-radio__inner-button></div></div>\n"+
+"            </label>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </fieldset>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div ng-if=\"personRequest.packages.length>0 && personRequest.request.request.approval==='approved'\">\n"+
+"    \n"+
+"      <div>\n"+
+"        <div class=\"cui-flex-table__header cui-flex-table__header--multi cui-flex-table__header--borderless\">\n"+
+"          <div class=cui-flex-table__th>\n"+
+"            <span class=cui-flex-table__heading>{{'requested-items' | translate}}</span>\n"+
+"          </div>\n"+
+"          <div class=cui-flex-table__th--radio>\n"+
+"            <span class=cui-flex-table__heading>{{'deny' | translate}}</span>\n"+
+"            <span class=cui-flex-table__heading>{{'approve' | translate}}</span>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div>\n"+
+"        <cui-expandable transition-speed=100 ng-repeat=\"package in personRequest.packages\">\n"+
+"          \n"+
+"          <cui-expandable-title>\n"+
+"            <div class=cui-flex-table__tr>\n"+
+"              <div class=cui-flex-table__mobile-stack>\n"+
+"                <div class=cui-flex-table__left>\n"+
+"                  <span class=cui-flex-table__title>{{package.details.name | cuiI18n}}</span>\n"+
+"                </div>\n"+
+"              </div>\n"+
+"              <fieldset class=cui-flex-table__fieldset>\n"+
+"                <div class=\"cui-flex-table__right cui-flex-table__multi\">\n"+
+"                  <div class=\"cui-radio cui-radio--deny\">\n"+
+"                    <input class=\"cui-radio__input cui-radio--deny\" type=radio id=\"radio-choice-{{$index+'a'}}\" value=denied ng-model=package.approval required>\n"+
+"                    <label class=cui-radio__label for=\"radio-choice-{{$index+'a'}}\">\n"+
+"                      <div class=cui-radio__outer-button ng-click=collapse()><div class=cui-radio__inner-button></div></div>\n"+
+"                    </label>\n"+
+"                  </div>\n"+
+"                  <div class=\"cui-radio cui-radio--approve\">\n"+
+"                    <input class=cui-radio__input type=radio id=radio-choice-{{$index}} value=approved ng-model=package.approval required>\n"+
+"                    <label class=cui-radio__label for=radio-choice-{{$index}}>\n"+
+"                      <div class=cui-radio__outer-button ng-click=expand()><div class=cui-radio__inner-button></div></div>\n"+
+"                    </label>\n"+
+"                  </div>\n"+
+"                </div>\n"+
+"              </fieldset>\n"+
+"            </div>\n"+
+"          </cui-expandable-title>\n"+
+"          \n"+
+"          \n"+
+"          <cui-expandable-body class=\"cui-expandable__body cui-expandable__body--alt-bg\">\n"+
+"            \n"+
+"            <div ng-click=collapse()>\n"+
+"              <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-expandable__close use-class=\"\" viewbox=\"0 0 48 51\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"            </div>\n"+
+"            <div class=cui-expandable__body-row>\n"+
+"              \n"+
+"              <div class=cui-expandable__body-col>\n"+
+"                <div class=cui-expandable__body-header ng-if=\"package.services.length>0\">{{'bundled-applications' | translate}}:</div>\n"+
+"                <div class=cui-expandable__links-container>\n"+
+"                  <p ng-if=\"package.services.length===0\">{{'no-bundled-or-related' | translate}}.</p>\n"+
+"                  <div ng-if=\"package.services.length>0\" ng-repeat=\"service in package.services\">\n"+
+"                    <span class=cui-expandable__link>{{service.name | cuiI18n}}</span><br>\n"+
+"                  </div>\n"+
+"                </div>\n"+
+"              </div>\n"+
+"\n"+
+"              \n"+
+"              <div class=cui-expandable__body-col>\n"+
+"                <div class=cui-expandable__body-header>{{'claims' | translate}}:</div>\n"+
+"                <p ng-if=\"package.claims.length===0\">{{'cui-package-no-claims' | translate}}.</p>\n"+
+"                <div ng-if=\"package.claims.length>0\" ng-repeat=\"claim in package.claims\">\n"+
+"                  <li class=\"cui-checkbox__container cui-checkbox__container--right\">\n"+
+"                    <input class=cui-checkbox type=checkbox id=option-{{$index}}-{{$parent.$parent.$index}} ng-model=claim.accepted>\n"+
+"                    <label class=cui-checkbox__label for=option-{{$index}}-{{$parent.$parent.$index}}>\n"+
+"                      {{claim.description | cuiI18n}}\n"+
+"                    </label>\n"+
+"                  </li>\n"+
+"                </div>\n"+
+"              </div>\n"+
+"            </div>\n"+
+"            </cui-expandable-body></cui-expandable></div>\n"+
+"\n"+
+"          \n"+
+"        \n"+
+"      </div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    \n"+
+"    \n"+
+"    <div class=cui-organization__submit-row disable-animate>\n"+
+"      <span ui-sref=organization.requests.usersRegistrationRequests style=margin:5px>{{'cui-cancel' | translate}}</span>\n"+
+"      <button class=cui-button ng-disabled=pendingRequestsApproval.$invalid ng-class=\"{'cui-button--error':pendingRequestsApproval.$invalid}\" ng-if=\"!base.loader.for['personRequest.submitting'] && !personRequest.error\" ng-click=personRequest.submit() style=margin:5px>{{'submit-approvals' | translate}}</button>\n"+
+"      <button class=cui-button ng-if=\"base.loader.for['personRequest.submitting']\">\n"+
+"        <div ng-include=\"'app/common-templates/partials/loader-updating.html'\"></div>\n"+
+"      </button>\n"+
+"      <button class=cui-button ng-if=\"!base.loader.for['personRequest.submitting'] && personRequest.error\" ng-click=personRequest.submit()>{{'cui-error-try-again' | translate}}</button>\n"+
+"    </div>\n"+
+"\n"+
+"  \n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/personRequest/sections-requests/requests-header.html',
+"<div class=cui-organization__requests-person-header>\n"+
+"\n"+
+"  \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  <div class=cui-media--centered ng-if=personRequest.request.personData>\n"+
+"    \n"+
+"    <div class=cui-media__image-container>\n"+
+"      <div class=\"cui-profile__user-avatar cui-media__image\" cui-avatar cui-avatar-names=\"[personRequest.request.personData.name.given, personRequest.request.personData.name.surname]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-media__body>\n"+
+"      \n"+
+"      <h3 class=cui-media__title>{{personRequest.request.personData.name.given}} {{personRequest.request.personData.name.surname}}</h3>\n"+
+"      \n"+
+"      <span class=\"cui-media__content cui-media__content--dark\">{{'userID' | translate}}: {{personRequest.request.personData.username}}</span>\n"+
+"      \n"+
+"      <div class=cui-media__content><span class=cui-media__content--dark>{{'cui-email' | translate}}:</span> <a href=mailto:{{personRequest.request.personData.email}} class=cui-media__link> {{personRequest.request.personData.email}}</a></div>\n"+
+"      \n"+
+"      <div class=cui-media__content><span class=cui-media__content--dark>{{'request-date' | translate}}:</span> {{personRequest.request.personData.creation | date:base.appConfig.dateFormat}}</div>\n"+
+"      \n"+
+"      <div class=cui-media__content ng-if=personRequest.request.organization><span class=cui-media__content--dark>{{'cui-org' | translate}}:</span>  <a href=\"\" class=cui-media__link>{{personRequest.request.organization.name}}</a></div>\n"+
+"      \n"+
+"      <div class=cui-media__content><span class=cui-media__content--dark>{{'status' | translate}}:</span>  <a href=\"\" class=cui-media__link>{{personRequest.request.personData.status}}</a></div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <cui-expandable class=cui-expandable transition-speed=150 ng-if=\"personRequest.request.personData && personRequest.request.organization\">\n"+
+"    <cui-expandable-title class=cui-expandable__title ng-click=toggleExpand()>\n"+
+"      <div class=cui-expandable__details-status>\n"+
+"        <span class=\"cui-link cui-expandable__details\">{{'view-details' | translate}}</span>\n"+
+"       \n"+
+"      </div>\n"+
+"    </cui-expandable-title>\n"+
+"    <cui-expandable-body class=\"cui-expandable__body cui-expandable__body--alt-bg\">\n"+
+"      <div class=cui-expandable__body-row>\n"+
+"        \n"+
+"        <div class=\"cui-expandable__body-col cui-expandable__body-col--small\" ng-if=personRequest.request.personData>\n"+
+"          <div class=cui-field-val__field>{{'cui-address' | translate}}:</div>\n"+
+"          <span class=cui-field-val__val>{{personRequest.request.personData.addresses[0].streets[0]}}</span>\n"+
+"          <span class=cui-field-val__val>{{personRequest.request.personData.addresses[0].city}}</span>\n"+
+"          <span class=cui-field-val__val>{{personRequest.request.personData.addresses[0].state}}, {{personRequest.request.personData.addresses[0].postal}}</span>\n"+
+"          \n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=\"cui-expandable__body-col cui-expandable__body-col--small\">\n"+
+"          <div class=cui-field-val__field>{{'cui-phone' | translate}}:</div>\n"+
+"          <span class=cui-field-val__val>{{personRequest.request.personData.phones[0].number}}</span>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=\"cui-expandable__body-col cui-expandable__body-col--small\" ng-if=personRequest.request.personData>\n"+
+"          <div class=cui-field-val__field>{{'timezone-and-language' | translate}}:</div>\n"+
+"          <span class=cui-field-val__val>{{personRequest.request.personData.timezone}}</span>\n"+
+"          <span class=cui-field-val__val>{{personRequest.request.personData.language}}</span>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=\"cui-expandable__body-col cui-expandable__body-col--small\" ng-if=personRequest.request.request.justification>\n"+
+"          <div class=cui-field-val__field>{{'request' | translate}}:</div>\n"+
+"          <span class=cui-field-val__val>{{personRequest.request.request.justification}}</span>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </cui-expandable-body>\n"+
+"  </cui-expandable>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/personRequest/sections-review/review-body.html',
+"<div class=cui-organization__main-container>\n"+
+"\n"+
+"	\n"+
+"	<div>\n"+
+"		<h3 class=cui-organization__approval-summary>{{'approval-summary' | translate}}</h3>\n"+
+"	</div>\n"+
+"\n"+
+"	<div ng-if=\"personRequestReview.request.approval==='approved'\">\n"+
+"		\n"+
+"		<div>\n"+
+"			<h4 class=cui-organization__approved>{{'approved-items' | translate}}</h4>\n"+
+"			<div class=cui-organization__approved-row>\n"+
+"				<ul>\n"+
+"					<li><span>{{'registration-request' | translate}}</span><br></li>\n"+
+"					<li ng-if=personRequestReview.approvedCount personrequestreview.approvedcount><span><b>{{'cui-applications' | translate}}:</b></span><br></li>\n"+
+"					<li ng-if=personRequestReview.approvedCount ng-repeat=\"package in personRequestReview.packages track by package.id\">\n"+
+"						<span ng-if=\"package.approval==='approved'\">{{package.details.name | cuiI18n}}</span>\n"+
+"					</li>\n"+
+"				</ul>\n"+
+"			</div>\n"+
+"		</div>\n"+
+"		\n"+
+"		<div>\n"+
+"			<h4 class=cui-organization__denied>{{'rejected-items' | translate}}</h4>\n"+
+"			<p ng-if=\"personRequestReview.deniedCount===0\">{{'no-items-rejected' | translate}}.</p>\n"+
+"			<div class=cui-organization__rejected-row ng-if=personRequestReview.deniedCount ng-repeat=\"package in personRequestReview.packages track by package.id\">\n"+
+"				<span ng-if=\"package.approval==='denied'\">{{package.details.name | cuiI18n}}</span>\n"+
+"				<textarea class=cui-text-area ng-if=\"package.approval==='denied'\" ng-model=package.rejectReason placeholder=\"rejection reason (optional)\"></textarea>\n"+
+"			</div>\n"+
+"		</div>\n"+
+"	</div>\n"+
+"\n"+
+"	\n"+
+"	<div ng-if=\"personRequestReview.request.approval==='denied'\">\n"+
+"		\n"+
+"		<div>\n"+
+"			<h4 class=cui-organization__approved>{{'approved-items' | translate}}</h4>\n"+
+"			<div class=cui-organization__approved-row>\n"+
+"				<p>{{'no-items-approved' | translate}}.</p>\n"+
+"			</div>\n"+
+"		</div>\n"+
+"		\n"+
+"		<div>\n"+
+"			<h4 class=cui-organization__denied>{{'rejected-items' | translate}}</h4>\n"+
+"			<div class=cui-organization__rejected-row>\n"+
+"				<span>{{'registration-request' | translate}}</span>\n"+
+"				<textarea class=cui-text-area ng-model=personRequestReview.request.rejectReason placeholder=\"rejection reason (optional)\"></textarea>\n"+
+"			</div>\n"+
+"			<div class=cui-organization__rejected-row ng-if=\"personRequestReview.packages.length>0\" ng-repeat=\"package in personRequestReview.packages track by package.id\">\n"+
+"				<span>{{package.details.name | cuiI18n}}</span>\n"+
+"				<textarea class=cui-text-area ng-model=package.rejectReason placeholder=\"rejection reason (optional)\"></textarea>\n"+
+"			</div>\n"+
+"		</div>\n"+
+"	</div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/personRequest/sections-review/review-header.html',
+"<div class=cui-organization__requests-person-header>\n"+
+"  \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  \n"+
+"  \n"+
+"  \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  <div class=cui-media--centered>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-media__image-container>\n"+
+"      <div class=cui-profile__user-avatar cui-avatar cui-avatar-names=\"[personRequestReview.personData.name.given, personRequestReview.personData.name.surname]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-media__body>\n"+
+"      \n"+
+"      <h3 class=cui-media__title>{{personRequestReview.personData.name.given}} {{personRequestReview.personData.name.surname}}</h3>\n"+
+"      \n"+
+"      <p class=\"cui-media__content cui-media__content--dark\">{{'userID' | translate}}: {{personRequestReview.personData.username}}</p>\n"+
+"      \n"+
+"      <div class=cui-media__content><span class=cui-media__content--dark>{{'cui-email' | translate}}:</span> <a href=mailto:{{personRequestReview.personData.email}} class=cui-media__link> {{personRequestReview.personData.email}}</a></div>\n"+
+"      \n"+
+"      <div class=cui-media__content><span class=cui-media__content--dark>{{'request-date' | translate}}:</span> {{personRequestReview.personData.creation | date:base.appConfig.dateFormat}}</div>\n"+
+"      \n"+
+"      <div class=cui-media__content><span class=cui-media__content--dark>{{'cui-org' | translate}}:</span><a href=\"\" class=cui-media__link>{{personRequestReview.organization.name}}</a></div>\n"+
+"      \n"+
+"      <div class=cui-media__content><span class=cui-media__content--dark>{{'status' | translate}}:</span><a href=\"\" class=cui-media__link>{{personRequestReview.personData.status}}</a></div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <cui-expandable class=cui-expandable transition-speed=150>\n"+
+"    <cui-expandable-title class=cui-expandable__title ng-click=toggleExpand()>\n"+
+"      <div class=cui-expandable__details-status>\n"+
+"        <span class=\"cui-link cui-expandable__details\">{{'view-details' | translate}}</span>\n"+
+"\n"+
+"      </div>\n"+
+"    </cui-expandable-title>\n"+
+"    <cui-expandable-body class=\"cui-expandable__body cui-expandable__body--alt-bg\">\n"+
+"      <div class=cui-expandable__body-row>\n"+
+"        \n"+
+"        <div class=\"cui-expandable__body-col cui-expandable__body-col--small\">\n"+
+"          <div class=cui-field-val__field>{{'cui-address' | translate}}:</div>\n"+
+"          <span class=cui-field-val__val>{{personRequestReview.personData.addresses[0].streets[0]}}</span>\n"+
+"          <span class=cui-field-val__val>{{personRequestReview.personData.addresses[0].city}}</span>\n"+
+"          <span class=cui-field-val__val>{{personRequestReview.personData.addresses[0].state}}, {{personRequestReview.personData.addresses[0].postal}}</span>\n"+
+"          \n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=\"cui-expandable__body-col cui-expandable__body-col--small\">\n"+
+"          <div class=cui-field-val__field>{{'cui-phone' | translate}}:</div>\n"+
+"          <span class=cui-field-val__val>{{personRequestReview.personData.phones[0].number}}</span>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=\"cui-expandable__body-col cui-expandable__body-col--small\">\n"+
+"          <div class=cui-field-val__field>{{'timezone-and-language' | translate}}:</div>\n"+
+"          <span class=cui-field-val__val>{{personRequestReview.personData.timezone}}</span>\n"+
+"          <span class=cui-field-val__val>{{personRequestReview.personData.language}}</span>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=\"cui-expandable__body-col cui-expandable__body-col--small\">\n"+
+"          <div class=cui-field-val__field>{{'request' | translate}}:</div>\n"+
+"          <span class=cui-field-val__val>{{personRequestReview.request.justification}}</span>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </cui-expandable-body>\n"+
+"  </cui-expandable>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/usersRequests/usersAppRequests/requests-AppRequests.html',
+"<main class=\"cui-organization cui-organization-req-uers\">\n"+
+"  \n"+
+"  <h2 class=cui-sr-only>{{'org-req-apps-requests'}}</h2>\n"+
+"\n"+
+"  \n"+
+"  \n"+
+"\n"+
+"    \n"+
+"    <div class=cui-tabs__main-container>\n"+
+"      <ul class=cui-tabs__nav>\n"+
+"        <li class=cui-tabs__tab-container ui-sref=organization.requests.usersRegistrationRequests>\n"+
+"          <a class=\"cui-tabs__tab cui-tabs__tab\">{{'pending' | translate}} {{'user' | translate}} {{'requests' | translate}}</a>\n"+
+"        </li>\n"+
+"        <li class=cui-tabs__tab-container ui-sref=organization.requests.usersAppRequests>\n"+
+"          <a class=\"cui-tabs__tab cui-tabs__tab--active\">{{'pending' | translate}} {{'application' | translate}} {{'requests' | translate}}</a>\n"+
+"        </li>\n"+
+"      </ul>\n"+
+"    </div>\n"+
+"\n"+
+"  \n"+
+"  <section class=cui-organization__main-container>\n"+
+"    <h3 class=cui-sr-only>{{'users-requests' | translate}}</h3>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-loading__container ng-if=\"base.loader.for['usersAppRequests.data']\">\n"+
+"      <div class=\"cui-loader cui-loader--content\" ng-include=\"'app/common-templates/partials/loader-content.html'\"></div>\n"+
+"    </div>\n"+
+"\n"+
+"    <cui-table-header headers=\"['cui-name', 'submitted', 'application', 'division']\" sorting=usersAppRequests.sortBy sorting-callbacks=usersAppRequests.sortingCallbacks>\n"+
+"      </cui-table-header>\n"+
+"    <cui-table-row ng-repeat=\"userRequest in usersAppRequests.data track by $index\" ng-click=usersAppRequests.goToDetails(userRequest)>\n"+
+"      <li class=\"cui-flex-table__tr cui-flex-table__tr--c\">\n"+
+"        <div class=cui-flex-table__avatar-col>\n"+
+"          <div class=cui-profile__user-avatar aria-hidden=true cui-avatar cui-avatar-names=\"[userRequest.personData.name.given, userRequest.personData.name.surname]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"        </div>\n"+
+"        <div class=cui-flex-table__mobile-stack>\n"+
+"           <div class=cui-flex-table__left>\n"+
+"            <span class=cui-flex-table__title>{{userRequest.personData.name.prefix}} {{userRequest.personData.name.given}} {{userRequest.personData.name.middle}} {{userRequest.personData.name.surname}} {{userRequest.personData.name.suffix}}</span>\n"+
+"          </div>\n"+
+"\n"+
+"         \n"+
+"\n"+
+"          <div class=cui-flex-table__middle>\n"+
+"            <span>{{userRequest.personData.creation|date}}</span>\n"+
+"          </div>\n"+
+"\n"+
+"          <div class=cui-flex-table__middle>\n"+
+"            <span>\n"+
+"            \n"+
+"            {{userRequest.packageData.name}}\n"+
+"            </span>\n"+
+"          </div>\n"+
+"\n"+
+"          <div class=cui-flex-table__right>\n"+
+"            <span>{{userRequest.personData.organization.name}}</span>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </li>\n"+
+"    </cui-table-row>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-paginate__container>\n"+
+"      <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"      <results-per-page class=cui-paginate__select ng-model=usersAppRequests.search.pageSize></results-per-page>\n"+
+"      <paginate class=cui-paginate results-per-page=usersAppRequests.search.pageSize count=usersAppRequests.userCount on-page-change=usersAppRequests.updateSearchParams ng-model=usersAppRequests.search.page attach-rerender-to=usersAppRequests.reRenderPagination></paginate>\n"+
+"    </div>\n"+
+"  </section>\n"+
+"\n"+
+"</main>\n");
+
+
+
+$templateCache.put('app/modules/organization/requests/usersRequests/usersRegistrationRequests/requests-RegistrationRequests.html',
+"<main class=\"cui-organization cui-organization-req-uers\">\n"+
+"  \n"+
+"  <h2 class=cui-sr-only>{{'org-req-users-requests'}}</h2>\n"+
+"\n"+
+"  \n"+
+"  \n"+
+"\n"+
+"    \n"+
+"    <div class=cui-tabs__main-container>\n"+
+"      <ul class=cui-tabs__nav>\n"+
+"        <li class=cui-tabs__tab-container ui-sref=organization.requests.usersRegistrationRequests>\n"+
+"          <a class=\"cui-tabs__tab cui-tabs__tab--active\">{{'pending' | translate}} {{'user' | translate}} {{'requests' | translate}}</a>\n"+
+"        </li>\n"+
+"        <li class=cui-tabs__tab-container ui-sref=organization.requests.usersAppRequests>\n"+
+"          <a class=cui-tabs__tab>{{'pending' | translate}} {{'application' | translate}} {{'requests' | translate}}</a>\n"+
+"        </li>\n"+
+"      </ul>\n"+
+"    </div>\n"+
+"\n"+
+"  \n"+
+"  <section class=cui-organization__main-container>\n"+
+"    <h3 class=cui-sr-only>{{'users-requests' | translate}}</h3>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-loading__container ng-if=\"base.loader.for['usersRegistrationRequests.data']\">\n"+
+"      <div class=\"cui-loader cui-loader--content\" ng-include=\"'app/common-templates/partials/loader-content.html'\"></div>\n"+
+"    </div>\n"+
+"\n"+
+"    <div class=\"cui-action cui-action--alt\">\n"+
+"      <div class=\"cui-radio cui-radio--basic-ltr\">\n"+
+"          <input class=cui-radio__input type=radio name=radio-choice-basic-yes id=radio-choice-basic-yes ng-model=usersRegistrationRequests.searchBy value=person>\n"+
+"          <label class=cui-radio__label for=radio-choice-basic-yes><span></span>{{'people' | translate}}</label>\n"+
+"          <input class=cui-radio__input type=radio name=radio-choice-basic-yes id=radio-choice-basic-no ng-model=usersRegistrationRequests.searchBy value=org>\n"+
+"          <label class=cui-radio__label for=radio-choice-basic-no><span></span>{{'organizations' | translate}}</label>\n"+
+"      </div>&nbsp;\n"+
+"      <div class=\"cui-input-button cui-input-button--alt-bg\" style=width:350px>\n"+
+"          <input class=cui-input-button__input ng-model=usersRegistrationRequests.searchValue focus-if placeholder=\"{{'search' | translate}}\" on-enter=usersRegistrationRequests.updateSearchByName>\n"+
+"          <button class=cui-input-button__button ng-click=usersRegistrationRequests.updateSearchByName()>{{'search' | translate}}</button>\n"+
+"      </div>\n"+
+"</div>\n"+
+"\n"+
+"    <cui-table-header headers=\"['cui-name', 'submitted', 'application', 'division']\" sorting=usersRegistrationRequests.sortBy sorting-callbacks=usersRegistrationRequests.sortingCallbacks>\n"+
+"      </cui-table-header>\n"+
+"    <cui-table-row ng-repeat=\"userRequest in usersRegistrationRequests.data track by $index\" ng-click=usersRegistrationRequests.goToDetails(userRequest)>\n"+
+"      <li class=\"cui-flex-table__tr cui-flex-table__tr--c\">\n"+
+"        <div class=cui-flex-table__avatar-col>\n"+
+"          <div class=cui-profile__user-avatar aria-hidden=true cui-avatar cui-avatar-names=\"[userRequest.personData.name.given, userRequest.personData.name.surname]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"        </div>\n"+
+"        <div class=cui-flex-table__mobile-stack>\n"+
+"           <div class=cui-flex-table__left>\n"+
+"            <span class=cui-flex-table__title>{{userRequest.personData.name.prefix}} {{userRequest.personData.name.given}} {{userRequest.personData.name.middle}} {{userRequest.personData.name.surname}} {{userRequest.personData.name.suffix}}</span>\n"+
+"          </div>\n"+
+"\n"+
+"       \n"+
+"\n"+
+"          <div class=cui-flex-table__middle>\n"+
+"            <span>{{userRequest.personData.creation|date}}</span>\n"+
+"          </div>\n"+
+"\n"+
+"          <div class=cui-flex-table__middle>\n"+
+"            <span>\n"+
+"            \n"+
+"            {{userRequest.packageData.name}}\n"+
+"            </span>\n"+
+"          </div>\n"+
+"\n"+
+"          <div class=cui-flex-table__right>\n"+
+"            <span>{{userRequest.personData.organization.name}}</span>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </li>\n"+
+"    </cui-table-row>\n"+
+"    <div align=center ng-if=\"usersRegistrationRequests.data.length===0\">{{'cui-no-details'|translate}}</div>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-paginate__container>\n"+
+"      <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"      <results-per-page class=cui-paginate__select ng-model=usersRegistrationRequests.search.pageSize></results-per-page>\n"+
+"      <paginate class=cui-paginate results-per-page=usersRegistrationRequests.search.pageSize count=usersRegistrationRequests.userCount on-page-change=usersRegistrationRequests.updateSearchParams ng-model=usersRegistrationRequests.search.page attach-rerender-to=usersRegistrationRequests.reRenderPagination></paginate>\n"+
+"    </div>\n"+
+"  </section>\n"+
+"\n"+
+"</main>\n"+
+"\n");
+
+
+
+$templateCache.put('app/modules/organization/roles/organization-roles.html',
+"\n"+
+"<div class=code-info>Code for this page can be found <a class=cui-link href=https://github.com/thirdwavellc/cui-idm-b2x/tree/master/assets/app/organization/roles target=blank>here</a>.</div>\n"+
+"\n"+
+"\n"+
+"<div class=cui-organization>\n"+
+"  \n"+
+"  <div class=cui-action>\n"+
+"    <nav class=cui-breadcrumb ng-include=\"'app/modules/organization/partials/breadcrumbs.html'\"></nav>\n"+
+"    <div class=cui-action__actions ng-include=\"'app/modules/organization/partials/invite-actions.html'\"></div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-organization__main-container>\n"+
+"    \n"+
+"    <div class=cui-loading__container ng-if=orgRoles.loading>\n"+
+"      <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"    </div>\n"+
+"\n"+
+"    <p>Organization Roles Page</p>\n"+
+"\n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/registration/userInvited/complete-registration-popover.html',
+"\n"+
+"<div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=#org-link pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-40px'}, 'any']\" attachment=\"top middle\" target-attachment=\"bottom middle\" ng-if=userInvited.showOrgInfo>\n"+
+"      <p class=cui-popover__row>{{userInvited.organization.name}}<br>\n"+
+"      {{userInvited.organization.phones[0].number}}<br>\n"+
+"      {{userInvited.organization.addresses[0].streets[0]}}<br>\n"+
+"      {{userInvited.organization.addresses[0].city}}, {{userInvited.organization.addresses[0].state}} \n"+
+"      {{userInvited.organization.addresses[0].postal}}<br>\n"+
+"      {{userInvited.organization.addresses[0].country}}</p>\n"+
+"</div>");
+
+
+
+$templateCache.put('app/modules/registration/userInvited/userInvited-steps/userInvited-applications-popup.html',
+"      \n"+
+"      <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=#selection-popup pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-40px'}, 'any']\" attachment=\"top middle\" target-attachment=\"bottom middle\" ng-if=userInvited.selectionPopUp style=width:171px>\n"+
+"        <div class=cui-popover__row>\n"+
+"        	<div class=cui-badge ng-bind=userInvited.applications.numberOfSelected></div>\n"+
+"          	<span>{{'cui-selected-apps' | translate}}</span>\n"+
+"        </div>\n"+
+"        <div class=cui-popover__row>\n"+
+"        	\n"+
+"        	<div>\n"+
+"        		<div ng-repeat=\"application in userInvited.applications.processedSelected\">\n"+
+"	          		{{application.name}}\n"+
+"	          	</div>\n"+
+"        	</div>          \n"+
+"        </div>\n"+
+"        <div class=cui-popover__row>\n"+
+"        	<span class=cui-link>Got it!</span>\n"+
+"        </div>\n"+
+"      </div>");
+
+
+
+$templateCache.put('app/modules/registration/userInvited/userInvited-steps/userInvited-applications.html',
+"\n"+
+"<div ng-if=!userInvited.applications.list>\n"+
+"  {{'cui-org-no-applications'|translate}}.\n"+
+"  <div class=cui-wizard__controls style=margin-top:20px>\n"+
+"    <button class=cui-wizard__previous ng-if=!wizardFinished ng-click=previous()>&#60;&#60; {{'cui-previous' | translate}}</button>\n"+
+"    <button class=cui-wizard__next ng-if=!wizardFinished ng-click=next()>{{'cui-next' | translate}}</button>\n"+
+"    <button class=cui-wizard__next ng-if=wizardFinished ng-click=goToStep(4)>{{'cui-back-to-review' | translate}}</button>\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div ng-if=\"userInvited.applications.list && (!userInvited.applications.step || userInvited.applications.step===1)\" ng-init=\"userInvited.applications.step=1\">\n"+
+"  \n"+
+"  \n"+
+"  <div style=direction:rtl;margin-bottom:10px class=cui-link>\n"+
+"    <div class=cui-badge ng-bind=userInvited.applications.numberOfSelected ng-click=\"userInvited.selectionPopUp =! userInvited.selectionPopUp\" id=selection-popup off-click=\"userInvited.selectionPopUp=false\"></div>\n"+
+"    {{'cui-selections' | translate }}\n"+
+"    <div ng-include=\"'app/modules/registration/userInvited/userInvited-steps/userInvited-applications-popup.html'\"></div>\n"+
+"  </div>\n"+
+"  \n"+
+"  <div class=cui-loading__container--organization-list ng-if=userInvited.updatingApps>\n"+
+"    <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"  </div>\n"+
+"  <div ng-if=\"!userInvited.updatingApps \" ng-repeat=\"application in userInvited.applications.list | orderBy:'name' track by application.id\" style=margin-bottom:10px>\n"+
+"    <cui-expandable class=cui-expandable>\n"+
+"      <cui-expandable-title class=\"cui-expandable__title cui-expandable__title--flex\" ng-click=toggleExpand()>\n"+
+"        <div>\n"+
+"        <input id=application{{application.id}} type=checkbox ng-model=userInvited.applications.selected[application.id] ng-true-value=\"'{{application.id}},{{application.servicePackage.id}},{{application.name | cuiI18n}},{{application.servicePackage.personTacEnabled}}'\" ng-false-value=null ng-change=userInvited.applications.updateNumberOfSelected(userInvited.applications.selected[application.id]) style=margin-right:10px>\n"+
+"        <span ng-bind=\"application.name | cuiI18n\"></span>\n"+
+"        </div>\n"+
+"        <cui-icon cui-svg-icon=fa:chevron18 svg-class=\"cui-icon cui-icon--light-grey chevron\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"      </cui-expandable-title>\n"+
+"\n"+
+"      \n"+
+"    </cui-expandable>\n"+
+"  </div>\n"+
+"  \n"+
+"  <div class=cui-paginate__container>\n"+
+"    <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"    <results-per-page class=cui-paginate__select ng-model=userInvited.pageSize></results-per-page>\n"+
+"    <paginate class=cui-paginate results-per-page=userInvited.pageSize count=userInvited.appCount on-page-change=userInvited.pageChange ng-model=userInvited.page></paginate>\n"+
+"  </div>\n"+
+"  <div class=cui-wizard__controls style=\"margin:20px 0 10px\">{{'cui-application-select-info'|translate}}</div>\n"+
+"  <div class=cui-wizard__controls>\n"+
+"    <button class=cui-wizard__previous ng-if=!wizardFinished ng-click=previous()>&#60;&#60; {{'cui-previous' | translate}}</button>\n"+
+"    <button class=cui-wizard__next ng-click=\"userInvited.applications.process()===0? next() : userInvited.getAppicationTaC();userInvited.applications.step=2\">{{'cui-next' | translate}}</button>\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div ng-if=\"userInvited.applications.list && userInvited.applications.step===2\">\n"+
+"  <cui-icon cui-svg-icon=fa:chevron20 svg-class=\"cui-icon cui-icon--light-grey chevron chevron-left\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"  <span class=cursor__pointer ng-click=\"userInvited.applications.step=1\" translate> {{'cui-all-applications'}}</span>\n"+
+"  <div style=float:right class=cui-link>\n"+
+"    {{'cui-selections' | translate }}\n"+
+"    <div class=cui-badge ng-bind=userInvited.applications.numberOfSelected ng-click=\"userInvited.selectionPopUp =! userInvited.selectionPopUp\" id=selection-popup off-click=\"userInvited.selectionPopUp=false\"></div>\n"+
+"    <div ng-include=\"'app/modules/registration/userInvited/userInvited-steps/userInvited-applications-popup.html'\"></div>\n"+
+"  </div>\n"+
+"  <div style=\"margin:2em 0\">\n"+
+"    {{'cui-tos-applications'|translate}}\n"+
+"  </div>\n"+
+"  <ng-form name=selectApps class=application-review>\n"+
+"    <div class=\"application-review__name application-review__label\">\n"+
+"      <span translate>{{ 'cui-application-name' }}</span>\n"+
+"    </div>\n"+
+"    <div class=\"application-review__tos-link application-review__label\">\n"+
+"      <span translate>{{ 'cui-application-tos' }}</span>\n"+
+"    </div>\n"+
+"    <div class=\"application-review__tos-agreement application-review__label\">\n"+
+"      <span translate>{{ 'cui-application-tos-agreement' }}</span>\n"+
+"    </div>\n"+
+"    <div ng-repeat=\"application in userInvited.applications.processedSelected\" class=application-review__list>\n"+
+"        <div class=application-review__name ng-if=\"application.showTac=='true'\">\n"+
+"          <span>{{application.name}}</span>\n"+
+"        </div>\n"+
+"        <div class=application-review__tos-link ng-click=userInvited.showTac($index) ng-if=\"application.showTac=='true'\">\n"+
+"          <a class=cui-link translate>{{'cui-view-tos'}}</a>\n"+
+"        </div>\n"+
+"        <div class=application-review__tos-agreement ng-if=\"application.showTac=='true'\">\n"+
+"          <div class=cui-switch>\n"+
+"            <input class=cui-switch__input ng-model=userInvited.applications.processedSelected[$index].acceptedTos name=application{{$index}} id=application{{$index}} type=checkbox ng-required=true>\n"+
+"            <label class=cui-switch__label for=application{{$index}}>\n"+
+"              <div class=cui-switch__container>\n"+
+"                <span class=cui-switch__checked-message>Accept</span>\n"+
+"                <span class=cui-switch__unchecked-message>Don't Accept</span>\n"+
+"              </div>\n"+
+"            </label>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"    </div>\n"+
+"  </ng-form>\n"+
+"\n"+
+"  <div class=cui-wizard__step-error ng-if=\"!selectApps.$valid && userInvited.applications.formTouched\">{{ 'cui-package-tos' | translate }}</div>\n"+
+"  <div class=cui-wizard__controls>\n"+
+"    <button class=cui-wizard__previous ng-click=\"userInvited.applications.step=userInvited.applications.step-1\">&#60;&#60; {{'cui-all-applications' | translate}}</button>\n"+
+"    <button class=cui-wizard__next ng-if=!wizardFinished ng-click=\"userInvited.applications.formTouched=true;nextWithErrorChecking(selectApps)\" ng-class=\"{'cui-wizard__next--error' : !selectApps.$valid }\">{{'cui-next' | translate}}</button>\n"+
+"    <button class=cui-wizard__next ng-if=wizardFinished ng-click=\"selectApps.$valid && goToStep(4)\" ng-class=\"{'cui-wizard__next--error': !selectApps.$valid}\">{{'cui-back-to-review' | translate}}</button>\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div ng-if=\"userInvited.applications.list && userInvited.applications.step===3\">\n"+
+"  <cui-icon cui-svg-icon=fa:chevron20 svg-class=\"cui-icon cui-icon--light-grey chevron chevron-left\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"  <span class=cursor__pointer ng-click=\"userInvited.applications.step=2\" translate> {{'cui-printer-friendly-tac'}}</span>\n"+
+"  <div style=float:right class=cui-link>\n"+
+"    {{'cui-selections' | translate }}\n"+
+"    <div class=cui-badge ng-bind=userInvited.applications.numberOfSelected ng-click=\"userInvited.selectionPopUp =! userInvited.selectionPopUp\" id=selection-popup off-click=\"userInvited.selectionPopUp=false\"></div>\n"+
+"    <div ng-include=\"'app/modules/registration/userInvited/userInvited-steps/userInvited-applications-popup.html'\"></div>\n"+
+"  </div>\n"+
+"  <div class=tac_wrapper>\n"+
+"    {{userInvited.tacContent}}\n"+
+"  </div>\n"+
+"  <div class=cui-wizard__controls>\n"+
+"    <button class=cui-wizard__previous ng-click=\"userInvited.applications.step=userInvited.applications.step-1\" style=font-size:1em>&#60;&#60; {{'cui-all-applications' | translate}}</button>\n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/registration/userInvited/userInvited-steps/userInvited-login.html',
+"<ng-form name=userLogin novalidate>\n"+
+"\n"+
+"  \n"+
+"  \n"+
+"  <label for=userID>{{'username' | translate}}</label>\n"+
+"  <div class=cui-error ng-messages=userLogin.userID.$error ng-if=userLogin.userID.$dirty>\n"+
+"    <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"  </div>\n"+
+"  \n"+
+"  <div class=cui-error ng-if=\"userLogin.userID.$error.usernameTaken && userLogin.userID.$dirty\">\n"+
+"    <div class=cui-error__message>{{'cui-username-taken' | translate}}</div>\n"+
+"  </div>\n"+
+"  <input type=text name=userID class=cui-input ng-required=true ng-model=userInvited.userLogin.username custom-error=userInvited.customErrors.userName ng-class=\"{'cui-input--error' : userLogin.userID.$touched && userLogin.userID.$invalid}\">\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-wizard__field-row>\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <div class=cui-input__password-holder>\n"+
+"        <label>{{'cui-password' | translate}}</label>\n"+
+"        <div class=cui-error ng-messages=userLogin.password.$error ng-if=userLogin.password.$dirty>\n"+
+"          <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"        </div>\n"+
+"        <input id=test-input type=password name=password class=cui-input ng-required=true ng-model=userInvited.userLogin.password ng-class=\"{'cui-input--error': userLogin.password.$touched && userLogin.password.$invalid}\" password-validation=userInvited.passwordRules ng-model-options={allowInvalid:true} ng-change=\"userInvited.userLogin.hiddenPassword=base.generateHiddenPassword(userInvited.userLogin.password)\" ng-focus=\"usersWalkup.passwordPopover=true\" ng-blur=\"usersWalkup.passwordPopover=false\">\n"+
+"        \n"+
+"        <div cui-popover target=#test-input popover-positions=\"[{position:'right'},{position:'bottom'}]\" ng-if=usersWalkup.passwordPopover>\n"+
+"          <div password-popover ng-messages=userLogin.password.$error ng-messages-multiple class=cui-error__password>\n"+
+"            <div ng-messages-include=app/common-templates/password-validation.html></div>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{'cui-password-re' | translate}}</label>\n"+
+"      <div class=cui-error ng-if=\"userLogin.passwordRe.$dirty && userLogin.passwordRe.$error.match\">\n"+
+"        <div class=cui-error__message>{{'password-mismatch' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input type=password name=passwordRe class=cui-input ng-required=true ng-model=userInvited.userLogin.passwordRe match=userInvited.userLogin.password>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-wizard__field-row>\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{'cui-challenge-question' | translate}} 1</label>\n"+
+"      <cui-dropdown ng-model=userInvited.userLogin.question1 class=cui-dropdown return-value=object display-value=\"(object.question | cuiI18n)\" options=userInvited.userLogin.challengeQuestions1>\n"+
+"      </cui-dropdown>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{'cui-challenge-answer' | translate}} 1</label>\n"+
+"      <div class=cui-error ng-if=userLogin.answer1.$dirty>\n"+
+"        <div class=cui-error__message ng-if=userLogin.answer1.$error.required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"        <div ng-if=userInvited.answer1&&userLogin.answer1.$error.unique class=cui-error__message>{{'security-question-repeated' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input type=text name=answer1 class=cui-input ng-required=true ng-focus=\"userInvited.answer2=false;userInvited.answer1=true\" ng-model=userInvited.userLogin.challengeAnswer1 unique=userInvited.userLogin.challengeAnswer2>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-wizard__field-row>\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{'cui-challenge-question' | translate}} 2</label>\n"+
+"        <cui-dropdown ng-model=userInvited.userLogin.question2 class=cui-dropdown return-value=object display-value=\"(object.question | cuiI18n)\" options=userInvited.userLogin.challengeQuestions2></cui-dropdown>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{'cui-challenge-answer' | translate}} 2</label>\n"+
+"      <div class=cui-error ng-if=userLogin.answer2.$dirty>\n"+
+"        <div class=cui-error__message ng-if=userLogin.answer2.$error.required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"        <div ng-if=userInvited.answer2&&userLogin.answer2.$error.unique class=cui-error__message>{{'security-question-repeated' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input type=text name=answer2 class=cui-input ng-required=true ng-model=userInvited.userLogin.challengeAnswer2 unique=userInvited.userLogin.challengeAnswer1 ng-focus=\"userInvited.answer1=false;userInvited.answer2=true\">\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"</ng-form>\n"+
+"\n"+
+"<div class=cui-wizard__controls>\n"+
+"  <button type=button class=cui-wizard__previous ng-if=!wizardFinished ng-click=previous()>&#60;&#60; {{'cui-previous' | translate}}</button>\n"+
+"  <button type=button class=cui-wizard__next ng-if=!wizardFinished ng-click=nextWithErrorChecking(userLogin) ng-class=\"(userLogin.$invalid)? 'cui-wizard__next--error' : ''\">{{'cui-next' | translate}}</button>\n"+
+"  <button type=button class=cui-wizard__next ng-if=wizardFinished ng-click=\"userLogin.$valid && goToStep(4)\" ng-class=\"!userLogin.$valid? 'cui-wizard__next--error' : ''\">{{'cui-back-to-review' | translate}}</button>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/registration/userInvited/userInvited-steps/userInvited-review.html',
+"\n"+
+"<cui-expandable class=\"cui-expandable expanded\">\n"+
+"  \n"+
+"  <cui-expandable-title class=\"cui-expandable__title cui-expandable__title--flex\" ng-click=toggleExpand()>\n"+
+"    {{'cui-user-information' | translate}}\n"+
+"    <cui-icon cui-svg-icon=fa:chevron18 svg-class=\"cui-icon cui-icon--light-grey chevron\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"  </cui-expandable-title>\n"+
+"\n"+
+"  <cui-expandable-body disable-animate class=cui-expandable__body>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <div class=cui-error ng-messages=userInvited.inlineEdit.firstNameError>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-first-name model=userInvited.user.name.given on-edit=userInvited.inlineEdit.firstName hide-save-if=userInvited.inlineEdit.noSaveFirstName on-save=userInvited.inlineEdit.updateFirstNameError></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <div class=cui-error ng-messages=userInvited.inlineEdit.lastNameError>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-last-name model=userInvited.user.name.surname on-edit=userInvited.inlineEdit.lastName hide-save-if=userInvited.inlineEdit.noSaveLastName on-save=userInvited.inlineEdit.updateLastNameError></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <div class=cui-error ng-messages=userInvited.inlineEdit.emailError>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"      </div>\n"+
+"      <div ng-if=!userInvited.isEmailTaken class=cui-warning>{{'cui-error-email-exists' | translate}}</div>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-email model=userInvited.user.email on-edit=userInvited.inlineEdit.email on-save=userInvited.inlineEdit.updateEmailError hide-save-if=userInvited.inlineEdit.noSaveEmail></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <div class=cui-error ng-messages=userInvited.inlineEdit.countryError>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"      <inline-edit type=auto-complete wrapper-class=cui-expandable__review-item__inline-wrapper input-class=\"cui-expandable__review-input cui-expandable__review-input__autocomplete\" label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-country model=userInvited.userCountry display=userInvited.userCountry.title selected-object=userInvited.userCountry local-data=base.countries.list search-fields=name title-field=name on-edit=userInvited.inlineEdit.country on-save=userInvited.inlineEdit.updateCountryError hide-save-if=userInvited.inlineEdit.noSaveCountry field-required=userInvited.userCountry></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <div class=cui-error ng-messages=userInvited.inlineEdit.address1Error>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-address-1 model=userInvited.user.addresses[0].streets[0] on-edit=userInvited.inlineEdit.address1 hide-save-if=userInvited.inlineEdit.noSaveAddress1 on-save=userInvited.inlineEdit.updateAddress1Error></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-address-2 model=userInvited.user.addresses[0].streets[1]></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-city model=userInvited.user.addresses[0].city></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-state model=userInvited.user.addresses[0].state></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-postal model=userInvited.user.addresses[0].postal></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <div class=cui-error ng-messages=userInvited.inlineEdit.telephoneError>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-telephone model=userInvited.user.phones[0].number on-edit=userInvited.inlineEdit.telephone hide-save-if=userInvited.inlineEdit.noSaveTelephone on-save=userInvited.inlineEdit.updateTelephoneError></inline-edit>\n"+
+"    </div> \n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <inline-edit type=dropdown wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input__dropdown label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-language model=userInvited.user.language display=userInvited.user.language.name options-expression=\"language as language.name  for language in options\" options=userInvited.languages></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <inline-edit type=dropdown wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input__dropdown label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-timezone model=userInvited.user.timezone display=userInvited.user.timezone.name options-expression=\"timeZone as timeZone.name  for timeZone in options\" options=base.timezones></inline-edit>\n"+
+"    </div>\n"+
+"  </cui-expandable-body>\n"+
+"</cui-expandable>\n"+
+"\n"+
+"\n"+
+"<cui-expandable class=\"cui-expandable expanded\">\n"+
+"  \n"+
+"  <cui-expandable-title class=\"cui-expandable__title cui-expandable__title--flex\" ng-click=toggleExpand()>\n"+
+"      {{'cui-organization-information' | translate}}\n"+
+"      <cui-icon cui-svg-icon=fa:chevron18 svg-class=\"cui-icon cui-icon--light-grey chevron\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </cui-expandable-title>\n"+
+"\n"+
+"    <cui-expandable-body class=cui-expandable__body>\n"+
+"      \n"+
+"      <div class=cui-expandable__review-item><span class=cui-expandable__review-item__field>{{'cui-org' | translate}}</span> <span class=review-item__value>{{userInvited.organization.name}}</span></div>\n"+
+"  </cui-expandable-body>\n"+
+"</cui-expandable>\n"+
+"\n"+
+"\n"+
+"<cui-expandable class=\"cui-expandable expanded\">\n"+
+"  \n"+
+"  <cui-expandable-title class=\"cui-expandable__title cui-expandable__title--flex\" ng-click=toggleExpand()>\n"+
+"    {{'cui-sign-in-information' | translate}}\n"+
+"    <cui-icon cui-svg-icon=fa:chevron18 svg-class=\"cui-icon cui-icon--light-grey chevron\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"  </cui-expandable-title>\n"+
+"\n"+
+"  <cui-expandable-body disable-animate class=cui-expandable__body>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <div class=cui-error ng-messages=userInvited.inlineEdit.userIdError>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-user-id model=userInvited.userLogin.username on-edit=userInvited.inlineEdit.userId hide-save-if=userInvited.inlineEdit.noSaveUserId on-save=userInvited.inlineEdit.updateUserIdError></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-wrapper><span class=cui-expandable__review-item__field>{{'cui-password' | translate}}</span> <span class=review-item__value>{{userInvited.userLogin.hiddenPassword}}</span></div>\n"+
+"    \n"+
+"        <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <inline-edit type=dropdown wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input__dropdown label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-challenge-question model=userInvited.userLogin.question1 display=\"userInvited.userLogin.question1.question | cuiI18n\" options-expression=\"question as (question.question|cuiI18n) for question in options\" options=userInvited.userLogin.challengeQuestions1></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <div class=cui-error ng-messages=userInvited.inlineEdit.challengeAnswer1Error>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-challenge-answer model=userInvited.userLogin.challengeAnswer1 on-edit=userInvited.inlineEdit.challengeAnswer1 hide-save-if=userInvited.inlineEdit.noSaveChallengeAnswer1 on-save=userInvited.inlineEdit.updateChallengeAnswer1Error></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <inline-edit type=dropdown wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input__dropdown label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-challenge-question model=userInvited.userLogin.question2 display=\"userInvited.userLogin.question2.question | cuiI18n\" options-expression=\"question as (question.question|cuiI18n) for question in options\" options=userInvited.userLogin.challengeQuestions2></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <div class=cui-error ng-messages=userInvited.inlineEdit.challengeAnswer2Error>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-challenge-answer model=userInvited.userLogin.challengeAnswer2 on-edit=userInvited.inlineEdit.challengeAnswer2 hide-save-if=userInvited.inlineEdit.noSaveChallengeAnswer2 on-save=userInvited.inlineEdit.updateChallengeAnswer2Error></inline-edit>\n"+
+"    </div>\n"+
+"  </cui-expandable-body>\n"+
+"</cui-expandable>\n"+
+"\n"+
+"\n"+
+"<cui-expandable class=\"cui-expandable expanded\">\n"+
+"  \n"+
+"  <cui-expandable-title class=\"cui-expandable__title cui-expandable__title--flex\" ng-click=toggleExpand()>\n"+
+"    {{'cui-application-selection' | translate}}\n"+
+"    <cui-icon cui-svg-icon=fa:chevron18 svg-class=\"cui-icon cui-icon--light-grey chevron\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"  </cui-expandable-title>\n"+
+"\n"+
+"  <cui-expandable-body class=cui-expandable__body>\n"+
+"    <div class=cui-expandable__review-item ng-if=\"userInvited.applications.processedSelected.length===0 || !userInvited.applications.processedSelected.length\">\n"+
+"      <span class=cui-link ng-click=goToStep(3)>{{'no-applications-selected' | translate}}</span>\n"+
+"    </div>\n"+
+"    <div class=cui-expandable__review-item ng-repeat=\"application in userInvited.applications.processedSelected\">\n"+
+"      <input id=application{{application.id}} ng-checked=true type=checkbox ng-model=userInvited.check[application.id] ng-true-value=true ng-false-value=null ng-click=userInvited.applications.updateSelected(application,userInvited.check[application.id],application.id) style=margin-right:10px>\n"+
+"      <label for=application{{application.id}} ng-bind=application.name></label>\n"+
+"    </div>\n"+
+"    <div class=cui-expandable__review-item ng-if=\"userInvited.applications.processedSelected.length!==0 && userInvited.applications.processedSelected.length\">\n"+
+"      <span>{{'cui-need-different-app' | translate}}</span>\n"+
+"      <span>? {{'cui-go-back-to' | translate}}</span>\n"+
+"      <span class=cui-link ng-click=\"userInvited.applications.step=1;goToStep(3)\"> {{'cui-all-applications' | translate}}</span>\n"+
+"    </div>\n"+
+"  </cui-expandable-body>\n"+
+"</cui-expandable>\n"+
+"\n"+
+"<cui-expandable class=\"cui-expandable expanded\">\n"+
+"  <cui-expandable-title class=\"cui-expandable__title cui-expandable__title--flex\" ng-click=toggleExpand()>\n"+
+"    {{'request-reason' | translate}}\n"+
+"    <cui-icon cui-svg-icon=fa:chevron18 svg-class=\"cui-icon cui-icon--light-grey chevron\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"  </cui-expandable-title>\n"+
+"\n"+
+"  <cui-expandable-body class=cui-expandable__title>\n"+
+"    <div class=cui-applications__review-text-input>\n"+
+"        <input type=text class=cui-input ng-model=userInvited.reason>\n"+
+"    </div>\n"+
+"\n"+
+"  </cui-expandable-body>\n"+
+"</cui-expandable>\n"+
+"\n"+
+"\n"+
+"<div class=cui-wizard__controls>\n"+
+"  <div class=cui-error ng-if=userInvited.submitError><label>{{userInvited.errorMessage | translate}}</label></div>\n"+
+"  <cui-button disable-animate button-click=\"userInvitedRegForm.$valid && userInvited.submit()\" loading-if=userInvited.submitting loading-message=\"{{'cui-button-loading-text' | translate}}\" error-if=userInvited.submitError error-message=\"{{'cui-error-try-again' | translate}}\">\n"+
+"    <button class=cui-wizard__next ng-class=\"(!userInvitedRegForm.$valid)? 'cui-wizard__next--error' : userInvited.sucess? 'success' : usersInvite.success===false? 'fail' : ''\" style=position:relative>\n"+
+"      <span ng-if=\"!userInvited.submitting && !userInvited.submitError\">{{'cui-submit' | translate}}</span>\n"+
+"    </button>\n"+
+"  </cui-button>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/registration/userInvited/userInvited-steps/userInvited-userProfile.html',
+"<ng-form name=user novalidate>\n"+
+"\n"+
+"  \n"+
+"  <p>{{\"cui-all-fields-required\" | translate}}. {{\"cui-complete-registration\" | translate}}\n"+
+"    <a href=\"\" id=org-link class=\"cui-link--medium-light cui-link--no-decoration\" ng-click=\"userInvited.showOrgInfo = !userInvited.showOrgInfo\">{{userInvited.organization.name}}\n"+
+"      <div ng-include=\"'app/modules/registration/userInvited/complete-registration-popover.html'\"></div>\n"+
+"    </a>\n"+
+"  </p>\n"+
+"  \n"+
+"  <div class=cui-wizard__field-row>\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label for=user-name-given>{{'cui-first-name' | translate}}</label>\n"+
+"      <div class=cui-error ng-messages=user.firstName.$error ng-if=user.firstName.$dirty>\n"+
+"        <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input type=text name=firstName class=cui-input ng-required=true ng-model=userInvited.user.name.given>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label for=user-name-surname>{{'cui-last-name' | translate}}</label>\n"+
+"      <div class=cui-error ng-messages=user.lastName.$error ng-if=user.lastName.$dirty>\n"+
+"        <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input type=text ng-model=userInvited.user.name.surname name=lastName class=cui-input ng-required=true>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-wizard__field-row>\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{'cui-email' | translate}}</label>\n"+
+"      <div class=cui-error ng-messages=user.email.$error ng-if=user.email.$dirty>\n"+
+"        <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"      </div>\n"+
+"      \n"+
+"      <div class=cui-error ng-if=\"user.email.$error.email && user.email.$dirty\">\n"+
+"        <div class=cui-error__message>{{'cui-this-is-not-valid-email' | translate}}</div>\n"+
+"      </div>\n"+
+"      <div ng-if=!userInvited.isEmailTaken class=cui-warning>{{'cui-error-email-exists' | translate}}</div>\n"+
+"      <input type=text name=email class=cui-input custom-error=userInvited.customErrors.email ng-required=true ng-model=userInvited.user.email ng-blur=userInvited.checkDuplicateEmail(userInvited.user.email) ng-disabled=userInvited.invitationData.restrictEmail>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{'cui-email-re' | translate}}</label>\n"+
+"      <div class=cui-error ng-if=\"user.emailRe.$dirty && user.emailRe.$error.match\">\n"+
+"        <div class=cui-error__message>{{'email-mismatch' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input type=text ng-model=userInvited.emailRe name=emailRe class=cui-input ng-required=true match=userInvited.user.email ng-disabled=userInvited.invitationData.restrictEmail>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-wizard__field-row>\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label for=country>{{\"cui-country\" | translate}}</label>\n"+
+"      <div class=cui-error ng-messages=user.country.$error ng-if=user.country.$dirty>\n"+
+"        <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"      </div>\n"+
+"      <div auto-complete input-name=country pause=100 selected-object=userInvited.userCountry local-data=base.countries.list search-fields=name title-field=name input-class=cui-input match-class=highlight auto-match=true field-required=userInvited.userCountry></div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{\"cui-street-address\" | translate}}</label>\n"+
+"      <div class=cui-error ng-messages=user.address1.$error ng-if=user.address1.$dirty>\n"+
+"        <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input type=text ng-model=userInvited.user.addresses[0].streets[0] class=cui-input name=address1 ng-required=true>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-wizard__field-row>\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{\"cui-address\" | translate}} 2</label>\n"+
+"      <div class=cui-error ng-messages=user.address2.$error ng-if=user.address2.$dirty>\n"+
+"        <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input type=text ng-model=userInvited.user.addresses[0].streets[1] class=cui-input name=address2 placeholder=\"{{'cui-address-example' | translate}}\" ng-required=true>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{\"cui-city\" | translate}}</label>\n"+
+"      <div class=cui-error ng-messages=user.city.$error ng-if=user.city.$dirty>\n"+
+"        <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input type=text ng-model=userInvited.user.addresses[0].city class=cui-input name=city ng-required=true>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-wizard__field-row>\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{\"cui-state\" | translate}}</label>\n"+
+"      <div class=cui-error ng-messages=user.state.$error ng-if=user.state.$dirty>\n"+
+"        <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input type=text ng-model=userInvited.user.addresses[0].state class=cui-input name=state ng-required=true>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label for=postal-code>{{\"cui-postal\" | translate}}</label>\n"+
+"      <div class=cui-error ng-messages=user.postal.$error ng-if=user.postal.$dirty>\n"+
+"        <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input type=text ng-model=userInvited.user.addresses[0].postal class=cui-input name=postal ng-required=true>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-wizard__field-row>\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{\"cui-telephone\" | translate}}</label>\n"+
+"      <div class=cui-error ng-messages=user.telephone.$error ng-if=user.telephone.$dirty>\n"+
+"        <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input type=text ng-model=userInvited.user.phones[0].number class=cui-input name=telephone ng-required=true>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"        <label>{{'cui-language' | translate}}</label>\n"+
+"        <cui-dropdown ng-model=userInvited.user.language class=cui-dropdown return-value=object display-value=object.name options=userInvited.languages></cui-dropdown>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"    \n"+
+"  <div class=cui-wizard__field-row>\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"        <label for=timezone>{{'cui-timezone' | translate}}</label>\n"+
+"        <cui-dropdown ng-model=userInvited.user.timezone class=cui-dropdown return-value=object display-value=object.name options=base.timezones></cui-dropdown>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-tos-container>\n"+
+"    <input type=checkbox name=TOS id=TOS ng-model=usersRegister.tos ng-required=true class=cui-checkbox>\n"+
+"    <label ng-click=\"usersRegister.tos=!usersRegister.tos\" class=cui-checkbox__label> {{'cui-agree-covisint' | translate}}\n"+
+"      <a href=\"\" class=\"cui-link cui-padding--h-5\">{{'terms-of-service' | translate}}</a> {{'cui-and' | translate}}\n"+
+"      <a href=\"\" class=\"cui-link cui-padding--h-5\">{{'privacy-policy' | translate}}</a>\n"+
+"    </label>\n"+
+"    <span class=cui-wizard__step-error ng-if=\"user.TOS.$dirty && user.TOS.$error.required\"><br><br> {{'cui-tos-agree' | translate}} </span>\n"+
+"  </div>\n"+
+"\n"+
+"  <div class=\"cui-wizard__controls cui-wizard__controls--clear\">\n"+
+"    <button type=button class=cui-wizard__next ng-if=!wizardFinished ng-click=userInvited.selectOrganization();nextWithErrorChecking(user) ng-class=\"(user.$invalid)? 'cui-wizard__next--error' : ''\">{{'cui-next' | translate}}</button>\n"+
+"    <button type=button class=cui-wizard__next ng-if=wizardFinished ng-click=\"user.$valid && goToStep(4)\" ng-class=\"(user.$invalid)? 'cui-wizard__next--error' : ''\">{{'cui-back-to-review' | translate}}</button>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/registration/userInvited/userInvited.html',
+"\n"+
+"<div class=code-info>The markup and javascript used to create this page can be found <a class=cui-link href=https://github.com/covisint/cui-idm-b2x/tree/master/app/modules/registration/userInvited target=blank>here</a>.</div>\n"+
+"\n"+
+"\n"+
+"\n"+
+"<div class=cui-loading__container--organization-list ng-if=userInvited.initializing>\n"+
+"  <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"</div>\n"+
+"<p style=color:red align=center ng-if=\"base.apiError.for['RegistrationFactory.inValidInvite']\">{{ 'cui-invalid-invitation'| translate}}</p>\n"+
+"<div class=cui-form--mobile-steps ng-if=\"!userInvited.initializing && !base.apiError.for['RegistrationFactory.inValidInvite']\">\n"+
+"  <div class=cui-form__title>{{'create-account' | translate}}</div>\n"+
+"  <div class=cui-form__body>\n"+
+"    <cui-wizard bar mobile-stack=700 class=cui-wizard step=1 minimum-padding=100 clickable-indicators dirty-validation>\n"+
+"      <indicator-container class=\"indicator-container indicator-container--icons\"></indicator-container>\n"+
+"\n"+
+"      <ng-form name=userInvitedRegForm novalidate>\n"+
+"        <step step-title=\"{{'cui-user-profile' | translate}}\" icon=cui:user>\n"+
+"          <div ng-include=\"'app/modules/registration/userInvited/userInvited-steps/userInvited-userProfile.html'\"></div>\n"+
+"        </step>\n"+
+"\n"+
+"        <step step-title=\"{{'cui-login' | translate}}\" icon=cui:login>\n"+
+"          <div ng-include=\"'app/modules/registration/userInvited/userInvited-steps/userInvited-login.html'\"></div>\n"+
+"        </step>\n"+
+"\n"+
+"        <step step-title=\"{{'cui-applications' | translate}}\" icon=cui:applications>\n"+
+"          <div ng-include=\"'app/modules/registration/userInvited/userInvited-steps/userInvited-applications.html'\"></div>\n"+
+"        </step>\n"+
+"\n"+
+"        <step step-title=\"{{'cui-review' | translate}}\" icon=cui:review>\n"+
+"          <div ng-include=\"'app/modules/registration/userInvited/userInvited-steps/userInvited-review.html'\"></div>\n"+
+"        </step>\n"+
+"      </ng-form>\n"+
+"    </cui-wizard>\n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/registration/userWalkup/userWalkup-steps/userWalkup-applications-popup.html',
+"      \n"+
+"      <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=#selection-popup pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-40px'}, 'any']\" attachment=\"top middle\" target-attachment=\"bottom middle\" ng-if=userWalkup.selectionPopUp style=width:171px>\n"+
+"        <div class=cui-popover__row>\n"+
+"        	<div class=cui-badge ng-bind=userWalkup.applications.numberOfSelected></div>\n"+
+"          	<span>{{'cui-selected-apps' | translate}}</span>\n"+
+"        </div>\n"+
+"        <div class=cui-popover__row>\n"+
+"        	\n"+
+"        	<div>\n"+
+"        		<div ng-repeat=\"application in userWalkup.applications.processedSelected\">\n"+
+"	          		{{application.name}}\n"+
+"	          	</div>\n"+
+"        	</div>          \n"+
+"        </div>\n"+
+"        <div class=cui-popover__row>\n"+
+"        	<span class=cui-link>Got it!</span>\n"+
+"        </div>\n"+
+"      </div>");
+
+
+
+$templateCache.put('app/modules/registration/userWalkup/userWalkup-steps/userWalkup-applications.html',
+"\n"+
+"<div ng-if=!userWalkup.applications.list>\n"+
+"  {{'cui-org-no-applications'|translate}}.\n"+
+"  <div class=cui-wizard__controls style=margin-top:20px>\n"+
+"    <button class=cui-wizard__previous ng-if=!wizardFinished ng-click=previous()>&#60;&#60; {{'cui-previous' | translate}}</button>\n"+
+"    <button class=cui-wizard__next ng-if=!wizardFinished ng-click=next()>{{'cui-next' | translate}}</button>\n"+
+"    <button class=cui-wizard__next ng-if=wizardFinished ng-click=goToStep(5)>{{'cui-back-to-review' | translate}}</button>\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div ng-if=\"userWalkup.applications.list && (!userWalkup.applications.step || userWalkup.applications.step===1)\" ng-init=\"userWalkup.applications.step=1\">\n"+
+"  \n"+
+"  \n"+
+"  <div style=direction:rtl;margin-bottom:10px class=cui-link>\n"+
+"    <div class=cui-badge ng-bind=userWalkup.applications.numberOfSelected ng-click=\"userWalkup.selectionPopUp =! userWalkup.selectionPopUp\" id=selection-popup off-click=\"userWalkup.selectionPopUp=false\"></div>\n"+
+"    {{'cui-selections' | translate }}\n"+
+"    <div ng-include=\"'app/modules/registration/userWalkup/userWalkup-steps/userWalkup-applications-popup.html'\"></div>\n"+
+"  </div>\n"+
+"  \n"+
+"  <div class=cui-loading__container--organization-list ng-if=userWalkup.updatingApps>\n"+
+"    <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"  </div>\n"+
+"  <div ng-if=!userWalkup.updatingApps ng-repeat=\"application in userWalkup.applications.list | orderBy:'name' track by application.id\" style=margin-bottom:10px>\n"+
+"    <cui-expandable class=cui-expandable>\n"+
+"      <cui-expandable-title class=\"cui-expandable__title cui-expandable__title--flex\" ng-click=toggleExpand()>\n"+
+"        <div>\n"+
+"        <input id=application{{application.id}} type=checkbox ng-model=userWalkup.applications.selected[application.id] ng-true-value=\"'{{application.id}},{{application.servicePackage.id}},{{application.name | cuiI18n}},{{application.servicePackage.personTacEnabled}}'\" ng-false-value=null ng-change=userWalkup.applications.updateNumberOfSelected(userWalkup.applications.selected[application.id],application) style=margin-right:10px>\n"+
+"        <span ng-bind=\"application.name | cuiI18n\"></span>\n"+
+"        </div>\n"+
+"        <cui-icon cui-svg-icon=fa:chevron18 svg-class=\"cui-icon cui-icon--light-grey chevron\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"      </cui-expandable-title>\n"+
+"\n"+
+"      \n"+
+"    </cui-expandable>\n"+
+"  </div>\n"+
+"  \n"+
+"  <div class=cui-paginate__container>\n"+
+"    <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"    <results-per-page class=cui-paginate__select ng-model=userWalkup.appPaginationSize></results-per-page>\n"+
+"    <paginate class=cui-paginate results-per-page=userWalkup.appPaginationSize count=userWalkup.appCount on-page-change=userWalkup.appPaginationPageHandler ng-model=userWalkup.appPaginationCurrentPage attach-rerender-to=userWalkup.appReRenderPaginate></paginate>\n"+
+"  </div>\n"+
+"  <div class=cui-wizard__controls style=\"margin:20px 0 10px\">{{'cui-application-select-info'|translate}}</div>\n"+
+"  <div class=cui-wizard__controls>\n"+
+"    <button class=cui-wizard__previous ng-if=!wizardFinished ng-click=previous()>&#60;&#60; {{'cui-previous' | translate}}</button>\n"+
+"    <button class=cui-wizard__next ng-click=\"userWalkup.applications.process()===0? next() : userWalkup.getAppicationTaC();userWalkup.applications.step=2\">{{'cui-next' | translate}}</button>\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div ng-if=\"userWalkup.applications.list && userWalkup.applications.step===2\">\n"+
+"  <cui-icon cui-svg-icon=fa:chevron20 svg-class=\"cui-icon cui-icon--light-grey chevron chevron-left\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"  <span class=cursor__pointer ng-click=\"userWalkup.applications.step=1\" translate> {{'cui-all-applications'}}</span>\n"+
+"  <div style=float:right class=cui-link>\n"+
+"    {{'cui-selections' | translate }}\n"+
+"    <div class=cui-badge ng-bind=userWalkup.applications.numberOfSelected ng-click=\"userWalkup.selectionPopUp =! userWalkup.selectionPopUp\" id=selection-popup off-click=\"userWalkup.selectionPopUp=false\"></div>\n"+
+"    <div ng-include=\"'app/modules/registration/userWalkup/userWalkup-steps/userWalkup-applications-popup.html'\"></div>\n"+
+"  </div>\n"+
+"  <div style=\"margin:2em 0\">\n"+
+"    {{'cui-tos-applications'|translate}}\n"+
+"  </div>\n"+
+"  <ng-form name=selectApps class=application-review>\n"+
+"    <div class=\"application-review__name application-review__label\">\n"+
+"      <span translate>{{ 'cui-application-name' }}</span>\n"+
+"    </div>\n"+
+"    <div class=\"application-review__tos-link application-review__label\">\n"+
+"      <span translate>{{ 'cui-application-tos' }}</span>\n"+
+"    </div>\n"+
+"    <div class=\"application-review__tos-agreement application-review__label\">\n"+
+"      <span translate>{{ 'cui-application-tos-agreement' }}</span>\n"+
+"    </div>\n"+
+"    <div ng-repeat=\"application in userWalkup.applications.processedSelected\" class=application-review__list>\n"+
+"        <div class=application-review__name ng-if=\"application.showTac=='true'\">\n"+
+"          <span>{{application.name}}</span>\n"+
+"        </div>\n"+
+"        <div class=application-review__tos-link ng-click=userWalkup.showTac($index) ng-if=\"application.showTac=='true'\">\n"+
+"          <a class=cui-link translate>{{'cui-view-tos'}}</a>\n"+
+"        </div>\n"+
+"        <div class=application-review__tos-agreement ng-if=\"application.showTac=='true'\">\n"+
+"          <div class=cui-switch>\n"+
+"            <input class=cui-switch__input ng-model=userWalkup.applications.processedSelected[$index].acceptedTos name=application{{$index}} id=application{{$index}} type=checkbox ng-required=true>\n"+
+"            <label class=cui-switch__label for=application{{$index}}>\n"+
+"              <div class=cui-switch__container>\n"+
+"                <span class=cui-switch__checked-message>Accept</span>\n"+
+"                <span class=cui-switch__unchecked-message>Don't Accept</span>\n"+
+"              </div>\n"+
+"            </label>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"    </div>\n"+
+"  </ng-form>\n"+
+"\n"+
+"  <div class=cui-wizard__step-error ng-if=\"!selectApps.$valid && userWalkup.applications.formTouched\">{{ 'cui-package-tos' | translate }}</div>\n"+
+"  <div class=cui-wizard__controls>\n"+
+"    <button class=cui-wizard__previous ng-click=\"userWalkup.applications.step=userWalkup.applications.step-1\">&#60;&#60; {{'cui-all-applications' | translate}}</button>\n"+
+"    <button class=cui-wizard__next ng-if=!wizardFinished ng-click=\"userWalkup.applications.formTouched=true;nextWithErrorChecking(selectApps)\" ng-class=\"{'cui-wizard__next--error' : !selectApps.$valid }\">{{'cui-next' | translate}}</button>\n"+
+"    <button class=cui-wizard__next ng-if=wizardFinished ng-click=\"selectApps.$valid && goToStep(5)\" ng-class=\"{'cui-wizard__next--error': !selectApps.$valid}\">{{'cui-back-to-review' | translate}}</button>\n"+
+"  </div>\n"+
+"</div>\n"+
+"\n"+
+"\n"+
+"<div ng-if=\"userWalkup.applications.list && userWalkup.applications.step===3\">\n"+
+"  <cui-icon cui-svg-icon=fa:chevron20 svg-class=\"cui-icon cui-icon--light-grey chevron chevron-left\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"  <span class=cursor__pointer ng-click=\"userWalkup.applications.step=2\" translate> {{'cui-printer-friendly-tac'}}</span>\n"+
+"  <div style=float:right class=cui-link>\n"+
+"    {{'cui-selections' | translate }}\n"+
+"    <div class=cui-badge ng-bind=userWalkup.applications.numberOfSelected ng-click=\"userWalkup.selectionPopUp =! userWalkup.selectionPopUp\" id=selection-popup off-click=\"userWalkup.selectionPopUp=false\"></div>\n"+
+"    <div ng-include=\"'app/modules/registration/userWalkup/userWalkup-steps/userWalkup-applications-popup.html'\"></div>\n"+
+"  </div>\n"+
+"  <div class=tac_wrapper>\n"+
+"    {{userWalkup.tacContent}}\n"+
+"  </div>\n"+
+"  <div class=cui-wizard__controls>\n"+
+"    <button class=cui-wizard__previous ng-click=\"userWalkup.applications.step=userWalkup.applications.step-1\" style=font-size:1em>&#60;&#60; {{'cui-all-applications' | translate}}</button>\n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/registration/userWalkup/userWalkup-steps/userWalkup-login.html',
+"<ng-form name=userLogin novalidate>\n"+
+"\n"+
+"  \n"+
+"  \n"+
+"  <label for=userID>{{'username' | translate}}</label>\n"+
+"  <div class=cui-error ng-messages=userLogin.userID.$error ng-if=userLogin.userID.$dirty>\n"+
+"    <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"  </div>\n"+
+"  \n"+
+"  <div class=cui-error ng-if=\"userLogin.userID.$error.usernameTaken && userLogin.userID.$dirty\">\n"+
+"    <div class=cui-error__message>{{'cui-username-taken' | translate}}</div>\n"+
+"  </div>\n"+
+"  <input type=text name=userID class=cui-input ng-required=true ng-model=userWalkup.userLogin.username custom-error=userWalkup.customErrors.userName ng-class=\"{'cui-input--error' : userLogin.userID.$touched && userLogin.userID.$invalid}\">\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-wizard__field-row>\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <div class=cui-input__password-holder>\n"+
+"        <label>{{'cui-password' | translate}}</label>\n"+
+"        <div class=cui-error ng-messages=userLogin.password.$error ng-if=userLogin.password.$dirty>\n"+
+"          <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"        </div>\n"+
+"        <input id=test-input type=password name=password class=cui-input ng-required=true ng-model=userWalkup.userLogin.password ng-class=\"{'cui-input--error': userLogin.password.$touched && userLogin.password.$invalid}\" password-validation=userWalkup.passwordRules ng-model-options={allowInvalid:true} ng-change=\"userWalkup.userLogin.hiddenPassword=base.generateHiddenPassword(userWalkup.userLogin.password)\" ng-focus=\"usersWalkup.passwordPopover=true\" ng-blur=\"usersWalkup.passwordPopover=false\">\n"+
+"        \n"+
+"        <div cui-popover target=#test-input popover-positions=\"[{position:'right'},{position:'bottom'}]\" ng-if=usersWalkup.passwordPopover>\n"+
+"          <div password-popover ng-messages=userLogin.password.$error ng-messages-multiple class=cui-error__password>\n"+
+"            <div ng-messages-include=app/common-templates/password-validation.html></div>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{'cui-password-re' | translate}}</label>\n"+
+"      <div class=cui-error ng-if=\"userLogin.passwordRe.$dirty && userLogin.passwordRe.$error.match\">\n"+
+"        <div class=cui-error__message>{{'password-mismatch' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input type=password name=passwordRe class=cui-input ng-required=true ng-model=userWalkup.userLogin.passwordRe match=userWalkup.userLogin.password>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-wizard__field-row>\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{'cui-challenge-question' | translate}} 1</label>\n"+
+"      <cui-dropdown ng-model=userWalkup.userLogin.question1 class=cui-dropdown return-value=object display-value=\"(object.question | cuiI18n)\" options=userWalkup.userLogin.challengeQuestions1>\n"+
+"      </cui-dropdown>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{'cui-challenge-answer' | translate}} 1</label>\n"+
+"      <div class=cui-error ng-if=userLogin.answer1.$dirty>\n"+
+"        <div class=cui-error__message ng-if=userLogin.answer1.$error.required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"        <div ng-if=userWalkup.answer1&&userLogin.answer1.$error.unique class=cui-error__message>{{'security-question-repeated' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input type=text name=answer1 class=cui-input ng-required=true ng-focus=\"userWalkup.answer2=false;userWalkup.answer1=true\" ng-model=userWalkup.userLogin.challengeAnswer1 unique=userWalkup.userLogin.challengeAnswer2>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-wizard__field-row>\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{'cui-challenge-question' | translate}} 2</label>\n"+
+"        <cui-dropdown ng-model=userWalkup.userLogin.question2 class=cui-dropdown return-value=object display-value=\"(object.question | cuiI18n)\" options=userWalkup.userLogin.challengeQuestions2></cui-dropdown>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{'cui-challenge-answer' | translate}} 2</label>\n"+
+"      <div class=cui-error ng-if=userLogin.answer2.$dirty>\n"+
+"        <div class=cui-error__message ng-if=userLogin.answer2.$error.required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"        <div ng-if=userWalkup.answer2&&userLogin.answer2.$error.unique class=cui-error__message>{{'security-question-repeated' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input type=text name=answer2 class=cui-input ng-required=true ng-model=userWalkup.userLogin.challengeAnswer2 unique=userWalkup.userLogin.challengeAnswer1 ng-focus=\"userWalkup.answer1=false;userWalkup.answer2=true\">\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"</ng-form>\n"+
+"\n"+
+"<div class=cui-wizard__controls>\n"+
+"  <button type=button class=cui-wizard__previous ng-if=!wizardFinished ng-click=previous()>&#60;&#60; {{'cui-previous' | translate}}</button>\n"+
+"  <button type=button class=cui-wizard__next ng-if=!wizardFinished ng-click=nextWithErrorChecking(userLogin) ng-class=\"(userLogin.$invalid)? 'cui-wizard__next--error' : ''\">{{'cui-next' | translate}}</button>\n"+
+"  <button type=button class=cui-wizard__next ng-if=wizardFinished ng-click=\"userLogin.$valid && goToStep(5)\" ng-class=\"!userLogin.$valid? 'cui-wizard__next--error' : ''\">{{'cui-back-to-review' | translate}}</button>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/registration/userWalkup/userWalkup-steps/userWalkup-organization.html',
+"<ng-form name=organizationSelect novalidate>\n"+
+"<h6 class=h6>{{'cui-all-organizations' | translate}}</h6>\n"+
+"  <div class=cui-wizard__field-row>\n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <div class=cui-div__with-icon-input>\n"+
+"        <cui-icon cui-svg-icon=cui:search svg-class=\"cui-icon cui-icon--light-grey cui-icon__with-input\" use-class=cui-icon__ref viewbox=\"0 0 48 48\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"        <input type=text ng-model=userWalkup.orgFilterByname ng-model-options={debounce:2000} placeholder=\"{{'cui-filter-org-name' | translate}}\" class=cui-input__with-icon>\n"+
+"      </div>\n"+
+"      \n"+
+"    </div>\n"+
+"  </div>\n"+
+"  \n"+
+"  <div class=cui-loading__container--organization-list ng-if=userWalkup.updatingOrgs>\n"+
+"    <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"  </div>\n"+
+"  <p ng-if=\"userWalkup.organizationList.length===0&&!userWalkup.updatingOrgs\">{{'cui-no-orgs-for-name'|translate}}</p>\n"+
+"  <cui-expandable ng-if=!userWalkup.updatingOrgs class=cui-expandable ng-repeat=\"organization in userWalkup.organizationList | orderBy:'name' track by organization.id\">\n"+
+"    <cui-expandable-title class=\"cui-expandable__title cui-expandable__title--flex cui-expandable__title--alt-layout\" ng-click=toggleExpand()>\n"+
+"      {{organization.name}}\n"+
+"      <cui-icon cui-svg-icon=fa:chevron18 svg-class=\"cui-icon cui-icon--light-grey chevron\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </cui-expandable-title>\n"+
+"\n"+
+"    <cui-expandable-body class=cui-expandable__body>\n"+
+"      <span class=cui-field-val__val>{{organization.addresses[0].streets[0]}}</span>\n"+
+"      <span class=cui-field-val__val>{{organization.addresses[0].city}}</span>\n"+
+"      <span class=cui-field-val__val>{{organization.addresses[0].state}}</span>\n"+
+"      <span class=cui-field-val__val>{{organization.addresses[0].postal}}</span><br>\n"+
+"      <span class=cui-field-val__val>{{organization.url}}</span><br>\n"+
+"      <span class=cui-field-val__val>{{organization.phones[0].number}}</span>\n"+
+"\n"+
+"      <div class=cui-wizard__controls>\n"+
+"        <button type=button class=cui-wizard__next ng-click=userWalkup.selectOrganization(organization);next()>{{'cui-select-org' | translate}}</button>\n"+
+"      </div>\n"+
+"    </cui-expandable-body>\n"+
+"  </cui-expandable>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-paginate__container ng-if=!base.loader.for.userWalkup.initializing>\n"+
+"    <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"    <results-per-page class=cui-paginate__select ng-model=userWalkup.orgPaginationSize></results-per-page>\n"+
+"    <paginate class=cui-paginate results-per-page=userWalkup.orgPaginationSize count=userWalkup.organizationCount on-page-change=userWalkup.orgPaginationPageHandler ng-model=userWalkup.orgPaginationCurrentPage attach-rerender-to=userWalkup.orgReRenderPaginate></paginate>\n"+
+"  </div>\n"+
+"</ng-form>\n"+
+"\n"+
+"<div class=cui-wizard__controls>\n"+
+"  <button type=button class=cui-wizard__previous ng-click=previous() style=margin-right:0>&#60;&#60; {{'cui-previous' | translate}}</button>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/registration/userWalkup/userWalkup-steps/userWalkup-review.html',
+"\n"+
+"<cui-expandable class=\"cui-expandable expanded\">\n"+
+"  \n"+
+"  <cui-expandable-title class=\"cui-expandable__title cui-expandable__title--flex\" ng-click=toggleExpand()>\n"+
+"    {{'cui-user-information' | translate}}\n"+
+"    <cui-icon cui-svg-icon=fa:chevron18 svg-class=\"cui-icon cui-icon--light-grey chevron\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"  </cui-expandable-title>\n"+
+"\n"+
+"  <cui-expandable-body disable-animate class=cui-expandable__body>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <div class=cui-error ng-messages=userWalkup.inlineEdit.firstNameError>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-first-name model=userWalkup.user.name.given on-edit=userWalkup.inlineEdit.firstName hide-save-if=userWalkup.inlineEdit.noSaveFirstName on-save=userWalkup.inlineEdit.updateFirstNameError></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <div class=cui-error ng-messages=userWalkup.inlineEdit.lastNameError>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-last-name model=userWalkup.user.name.surname on-edit=userWalkup.inlineEdit.lastName hide-save-if=userWalkup.inlineEdit.noSaveLastName on-save=userWalkup.inlineEdit.updateLastNameError></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <div class=cui-error ng-messages=userWalkup.inlineEdit.emailError>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"      </div>\n"+
+"      <div ng-if=!userWalkup.isEmailTaken class=cui-warning>{{'cui-error-email-exists' | translate}}</div>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-email model=userWalkup.user.email on-edit=userWalkup.inlineEdit.email on-save=userWalkup.inlineEdit.updateEmailError hide-save-if=userWalkup.inlineEdit.noSaveEmail></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <div class=cui-error ng-messages=userWalkup.inlineEdit.countryError>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"      <inline-edit type=auto-complete wrapper-class=cui-expandable__review-item__inline-wrapper input-class=\"cui-expandable__review-input cui-expandable__review-input__autocomplete\" label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-country model=userWalkup.userCountry display=userWalkup.userCountry.title selected-object=userWalkup.userCountry local-data=base.countries.list search-fields=name title-field=name on-edit=userWalkup.inlineEdit.country on-save=userWalkup.inlineEdit.updateCountryError hide-save-if=userWalkup.inlineEdit.noSaveCountry field-required=userWalkup.userCountry></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <div class=cui-error ng-messages=userWalkup.inlineEdit.address1Error>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-address-1 model=userWalkup.user.addresses[0].streets[0] on-edit=userWalkup.inlineEdit.address1 hide-save-if=userWalkup.inlineEdit.noSaveAddress1 on-save=userWalkup.inlineEdit.updateAddress1Error></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-address-2 model=userWalkup.user.addresses[0].streets[1]></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-city model=userWalkup.user.addresses[0].city></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-state model=userWalkup.user.addresses[0].state></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-postal model=userWalkup.user.addresses[0].postal></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <div class=cui-error ng-messages=userWalkup.inlineEdit.telephoneError>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-telephone model=userWalkup.user.phones[0].number on-edit=userWalkup.inlineEdit.telephone hide-save-if=userWalkup.inlineEdit.noSaveTelephone on-save=userWalkup.inlineEdit.updateTelephoneError></inline-edit>\n"+
+"    </div> \n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <inline-edit type=dropdown wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input__dropdown label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-language model=userWalkup.user.language display=userWalkup.user.language.name options-expression=\"language as language.name  for language in options\" options=userWalkup.languages></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <inline-edit type=dropdown wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input__dropdown label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-timezone model=userWalkup.user.timezone display=userWalkup.user.timezone.name options-expression=\"timeZone as timeZone.name  for timeZone in options\" options=base.timezones></inline-edit>\n"+
+"    </div>\n"+
+"  </cui-expandable-body>\n"+
+"</cui-expandable>\n"+
+"\n"+
+"\n"+
+"<cui-expandable class=\"cui-expandable expanded\">\n"+
+"  \n"+
+"  <cui-expandable-title class=\"cui-expandable__title cui-expandable__title--flex\" ng-click=toggleExpand()>\n"+
+"      {{'cui-organization-information' | translate}}\n"+
+"      <cui-icon cui-svg-icon=fa:chevron18 svg-class=\"cui-icon cui-icon--light-grey chevron\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"    </cui-expandable-title>\n"+
+"\n"+
+"    <cui-expandable-body class=cui-expandable__body>\n"+
+"      \n"+
+"      <div class=cui-expandable__review-item><span class=cui-expandable__review-item__field>{{'cui-org' | translate}}</span> <span class=review-item__value>{{userWalkup.organization.name}}</span></div>\n"+
+"  </cui-expandable-body>\n"+
+"</cui-expandable>\n"+
+"\n"+
+"\n"+
+"<cui-expandable class=\"cui-expandable expanded\">\n"+
+"  \n"+
+"  <cui-expandable-title class=\"cui-expandable__title cui-expandable__title--flex\" ng-click=toggleExpand()>\n"+
+"    {{'cui-sign-in-information' | translate}}\n"+
+"    <cui-icon cui-svg-icon=fa:chevron18 svg-class=\"cui-icon cui-icon--light-grey chevron\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"  </cui-expandable-title>\n"+
+"\n"+
+"  <cui-expandable-body disable-animate class=cui-expandable__body>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <div class=cui-error ng-messages=userWalkup.inlineEdit.userIdError>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-user-id model=userWalkup.userLogin.username on-edit=userWalkup.inlineEdit.userId hide-save-if=userWalkup.inlineEdit.noSaveUserId on-save=userWalkup.inlineEdit.updateUserIdError></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-wrapper><span class=cui-expandable__review-item__field>{{'cui-password' | translate}}</span> <span class=review-item__value>{{userWalkup.userLogin.hiddenPassword}}</span></div>\n"+
+"    \n"+
+"        <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <inline-edit type=dropdown wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input__dropdown label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-challenge-question model=userWalkup.userLogin.question1 display=\"userWalkup.userLogin.question1.question | cuiI18n\" options-expression=\"question as (question.question|cuiI18n) for question in options\" options=userWalkup.userLogin.challengeQuestions1></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <div class=cui-error ng-messages=userWalkup.inlineEdit.challengeAnswer1Error>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-challenge-answer model=userWalkup.userLogin.challengeAnswer1 on-edit=userWalkup.inlineEdit.challengeAnswer1 hide-save-if=userWalkup.inlineEdit.noSaveChallengeAnswer1 on-save=userWalkup.inlineEdit.updateChallengeAnswer1Error></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <inline-edit type=dropdown wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input__dropdown label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-challenge-question model=userWalkup.userLogin.question2 display=\"userWalkup.userLogin.question2.question | cuiI18n\" options-expression=\"question as (question.question|cuiI18n) for question in options\" options=userWalkup.userLogin.challengeQuestions2></inline-edit>\n"+
+"    </div>\n"+
+"    \n"+
+"    <div class=cui-expandable__review-item__inline-edit>\n"+
+"      <div class=cui-error ng-messages=userWalkup.inlineEdit.challengeAnswer2Error>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"      <inline-edit wrapper-class=cui-expandable__review-item__inline-wrapper input-class=cui-expandable__review-input label-class=cui-expandable__review-item__field value-class=dummy class=cui-users__field label=cui-challenge-answer model=userWalkup.userLogin.challengeAnswer2 on-edit=userWalkup.inlineEdit.challengeAnswer2 hide-save-if=userWalkup.inlineEdit.noSaveChallengeAnswer2 on-save=userWalkup.inlineEdit.updateChallengeAnswer2Error></inline-edit>\n"+
+"    </div>\n"+
+"  </cui-expandable-body>\n"+
+"</cui-expandable>\n"+
+"\n"+
+"\n"+
+"<cui-expandable class=\"cui-expandable expanded\">\n"+
+"  \n"+
+"  <cui-expandable-title class=\"cui-expandable__title cui-expandable__title--flex\" ng-click=toggleExpand()>\n"+
+"    {{'cui-application-selection' | translate}}\n"+
+"    <cui-icon cui-svg-icon=fa:chevron18 svg-class=\"cui-icon cui-icon--light-grey chevron\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"  </cui-expandable-title>\n"+
+"\n"+
+"  <cui-expandable-body class=cui-expandable__body>\n"+
+"    <div class=cui-expandable__review-item ng-if=\"userWalkup.applications.processedSelected.length===0 || !userWalkup.applications.processedSelected.length\">\n"+
+"      <span class=cui-link ng-click=goToStep(4)>{{'no-applications-selected' | translate}}</span>\n"+
+"    </div>\n"+
+"    <div class=cui-expandable__review-item ng-repeat=\"application in userWalkup.applications.processedSelected\">\n"+
+"      <input id=application{{application.id}} type=checkbox ng-model=userWalkup.applications.selected[application.id] ng-true-value=\"'{{application.id}},{{application.packageId}},{{application.name}},{{application.showTac}}'\" ng-false-value=null ng-click=userWalkup.applications.updateSelected(application,userWalkup.applications.selected[application.id],application.id) style=margin-right:10px>\n"+
+"      <label for=application{{application.id}} ng-bind=application.name></label>\n"+
+"    </div>\n"+
+"    <div class=cui-expandable__review-item ng-if=\"userWalkup.applications.processedSelected.length!==0 && userWalkup.applications.processedSelected.length\">\n"+
+"      <span>{{'cui-need-different-app' | translate}}</span>\n"+
+"      <span>? {{'cui-go-back-to' | translate}}</span>\n"+
+"      <span class=cui-link ng-click=\"userWalkup.applications.step=1;goToStep(4)\"> {{'cui-all-applications' | translate}}</span>\n"+
+"    </div>\n"+
+"  </cui-expandable-body>\n"+
+"</cui-expandable>\n"+
+"\n"+
+"<cui-expandable class=\"cui-expandable expanded\">\n"+
+"  <cui-expandable-title class=\"cui-expandable__title cui-expandable__title--flex\" ng-click=toggleExpand()>\n"+
+"    {{'request-reason' | translate}}\n"+
+"    <cui-icon cui-svg-icon=fa:chevron18 svg-class=\"cui-icon cui-icon--light-grey chevron\" use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"  </cui-expandable-title>\n"+
+"\n"+
+"  <cui-expandable-body class=cui-expandable__title>\n"+
+"    <div class=cui-applications__review-text-input>\n"+
+"        <input type=text class=cui-input ng-model=userWalkup.reason>\n"+
+"    </div>\n"+
+"\n"+
+"  </cui-expandable-body>\n"+
+"</cui-expandable>\n"+
+"\n"+
+"\n"+
+"<div class=cui-wizard__controls>\n"+
+"  <div class=cui-error ng-if=userWalkup.submitError><label>{{userWalkup.errorMessage | translate}}</label></div>\n"+
+"  <cui-button disable-animate button-click=\"userWalkupRegForm.$valid && userWalkup.submit()\" loading-if=userWalkup.submitting loading-message=\"{{'cui-button-loading-text' | translate}}\" error-if=userWalkup.submitError error-message=\"{{'cui-error-try-again' | translate}}\">\n"+
+"    <button class=cui-wizard__next ng-class=\"(!userWalkupRegForm.$valid)? 'cui-wizard__next--error' : userWalkup.sucess? 'success' : usersInvite.success===false? 'fail' : ''\" style=position:relative>\n"+
+"      <span ng-if=\"!userWalkup.submitting && !userWalkup.submitError\">{{'cui-submit' | translate}}</span>\n"+
+"    </button>\n"+
+"  </cui-button>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/registration/userWalkup/userWalkup-steps/userWalkup-userProfile.html',
+"<ng-form name=user novalidate>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-wizard__field-row>\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label for=user-name-given>{{'cui-first-name' | translate}}</label>\n"+
+"      <div class=cui-error ng-messages=user.firstName.$error ng-if=user.firstName.$dirty>\n"+
+"        <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input type=text name=firstName class=cui-input ng-required=true ng-model=userWalkup.user.name.given>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label for=user-name-surname>{{'cui-last-name' | translate}}</label>\n"+
+"      <div class=cui-error ng-messages=user.lastName.$error ng-if=user.lastName.$dirty>\n"+
+"        <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input type=text ng-model=userWalkup.user.name.surname name=lastName class=cui-input ng-required=true>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-wizard__field-row>\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{'cui-email' | translate}}</label>\n"+
+"      <div class=cui-error ng-messages=user.email.$error ng-if=user.email.$dirty>\n"+
+"        <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"      </div>\n"+
+"      \n"+
+"      <div class=cui-error ng-if=\"user.email.$error.email && user.email.$dirty\">\n"+
+"        <div class=cui-error__message>{{'cui-this-is-not-valid-email' | translate}}</div>\n"+
+"      </div>\n"+
+"      <div ng-if=!userWalkup.isEmailTaken class=cui-warning>{{'cui-error-email-exists' | translate}}</div>\n"+
+"      <input type=text name=email class=cui-input custom-error=userWalkup.customErrors.email ng-required=true ng-model=userWalkup.user.email ng-blur=userWalkup.checkDuplicateEmail(userWalkup.user.email)>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{'cui-email-re' | translate}}</label>\n"+
+"      <div class=cui-error ng-if=\"user.emailRe.$dirty && user.emailRe.$error.match\">\n"+
+"        <div class=cui-error__message>{{'email-mismatch' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input type=text ng-model=userWalkup.emailRe name=emailRe class=cui-input ng-required=true match=userWalkup.user.email>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"\n"+
+"  \n"+
+"  <div class=cui-wizard__field-row>\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label for=country>{{\"cui-country\" | translate}}</label>\n"+
+"      <div class=cui-error ng-messages=user.country.$error ng-if=user.country.$dirty>\n"+
+"        <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"      </div>\n"+
+"      <div auto-complete input-name=country pause=100 selected-object=userWalkup.userCountry local-data=base.countries.list search-fields=name title-field=name input-class=cui-input match-class=highlight auto-match=true field-required=userWalkup.userCountry></div>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>{{\"cui-telephone\" | translate}}</label>\n"+
+"      <div class=cui-error ng-messages=user.telephone.$error ng-if=user.telephone.$dirty>\n"+
+"        <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"      </div>\n"+
+"      <input type=text ng-model=userWalkup.user.phones[0].number class=cui-input name=telephone ng-required=true>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"    \n"+
+"  <div class=cui-wizard__field-row>\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>Medical Licence</label>\n"+
+"      <input type=text ng-model=userWalkup.extended.medicalLicence class=cui-input name=address2>\n"+
+"    </div>\n"+
+"\n"+
+"    \n"+
+"    <div class=\"cui-wizard__field-container cui-wizard__field-container--half\">\n"+
+"      <label>Study List</label>\n"+
+"      <input type=text ng-model=userWalkup.user.addresses[0].city class=cui-input name=city>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"  <div class=\"cui-wizard__controls cui-wizard__controls--clear\">\n"+
+"    <button type=button class=cui-wizard__next ng-if=!wizardFinished ng-click=nextWithErrorChecking(user) ng-class=\"(user.$invalid)? 'cui-wizard__next--error' : ''\">{{'cui-next' | translate}}</button>\n"+
+"    <button type=button class=cui-wizard__next ng-if=wizardFinished ng-click=\"user.$valid && goToStep(5)\" ng-class=\"(user.$invalid)? 'cui-wizard__next--error' : ''\">{{'cui-back-to-review' | translate}}</button>\n"+
+"  </div>\n"+
+"</ng-form>\n"+
+"\n"+
+"    \n"+
+"\n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  \n"+
+"    \n"+
+"    \n"+
+"\n"+
+"    \n"+
+"    \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  \n"+
+"    \n"+
+"    \n"+
+"\n"+
+"    \n"+
+"    \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"  \n"+
+"    \n"+
+"    \n"+
+"    \n"+
+"  \n"+
+"    \n"+
+"  \n"+
+"    \n"+
+"    \n"+
+"  \n"+
+"\n"+
+"  \n"+
+"\n");
+
+
+
+$templateCache.put('app/modules/registration/userWalkup/userWalkup.html',
+"\n"+
+"<div class=code-info>The markup and javascript used to create this page can be found <a class=cui-link href=https://github.com/covisint/cui-idm-b2x/tree/master/app/modules/registration/userWalkup target=blank>here</a>.</div>\n"+
+"\n"+
+"\n"+
+"\n"+
+"<div class=cui-loading__container--organization-list ng-if=userWalkup.initializing>\n"+
+"  <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"</div>\n"+
+"\n"+
+"<div class=cui-form--mobile-steps ng-if=!userWalkup.initializing>\n"+
+"  <div class=cui-form__title>{{'create-account' | translate}}</div>\n"+
+"  <div class=cui-form__body>\n"+
+"    <cui-wizard bar mobile-stack=700 class=cui-wizard step=1 minimum-padding=100 clickable-indicators dirty-validation>\n"+
+"      <indicator-container class=\"indicator-container indicator-container--icons\"></indicator-container>\n"+
+"\n"+
+"      <ng-form name=userWalkupRegForm novalidate>\n"+
+"        <step step-title=\"{{'cui-user-profile' | translate}}\" icon=cui:user>\n"+
+"          <div ng-include=\"'app/modules/registration/userWalkup/userWalkup-steps/userWalkup-userProfile.html'\"></div>\n"+
+"        </step>\n"+
+"\n"+
+"        <step step-title=\"{{'cui-org' | translate}}\" icon=cui:skyscraper>\n"+
+"          <div ng-include=\"'app/modules/registration/userWalkup/userWalkup-steps/userWalkup-organization.html'\"></div>\n"+
+"        </step>\n"+
+"\n"+
+"        <step step-title=\"{{'cui-login' | translate}}\" icon=cui:login>\n"+
+"          <div ng-include=\"'app/modules/registration/userWalkup/userWalkup-steps/userWalkup-login.html'\"></div>\n"+
+"        </step>\n"+
+"\n"+
+"        <step step-title=\"{{'cui-applications' | translate}}\" icon=cui:applications>\n"+
+"          <div ng-include=\"'app/modules/registration/userWalkup/userWalkup-steps/userWalkup-applications.html'\"></div>\n"+
+"        </step>\n"+
+"\n"+
+"        <step step-title=\"{{'cui-review' | translate}}\" icon=cui:review>\n"+
+"          <div ng-include=\"'app/modules/registration/userWalkup/userWalkup-steps/userWalkup-review.html'\"></div>\n"+
+"        </step>\n"+
+"      </ng-form>\n"+
+"    </cui-wizard>\n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/user/appHistory/app-grantHistory.html',
+"\n"+
+"<div class=code-info>Code for this page can be found <a class=cui-link href=https://github.com/Covisint/cui-idm-b2x/tree/master/app/modules/user/history target=blank>here</a> and the layout styles <a href=https://github.com/Covisint/cui-idm-b2x/tree/master/app/scss/3-views/user class=cui-link target=blank>here</a></div>\n"+
+"\n"+
+"<div class=cui-users__appHistory-container>\n"+
+"    \n"+
+"    \n"+
+"    <div class=cui-users__main-container>\n"+
+"\n"+
+"		\n"+
+"		\n"+
+"\n"+
+"      	\n"+
+"		<p class=cui-users__password-success style=color:red ng-if=\"base.apiError.for['appGrantHistory.initHistory']\"><b>{{'error-generic'|translate}}</b></p>\n"+
+"        \n"+
+"        <div class=cui-users__profile-media ng-if=!appGrantHistory.loading>\n"+
+"            <div class=cui-media>\n"+
+"                <div class=cui-media__image-container>\n"+
+"                    \n"+
+"                    <div class=cui-media__image cui-avatar cui-avatar-email=appGrantHistory.user.email cui-avatar-names=\"[appGrantHistory.user.name.given, appGrantHistory.user.name.surname]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"                </div>\n"+
+"                <div class=cui-media__body>\n"+
+"                    \n"+
+"                    <h3 class=cui-media__title>{{appGrantHistory.user.name.given}} {{appGrantHistory.user.name.surname}}</h3>\n"+
+"                    \n"+
+"                    <p class=cui-media__content--small ng-if=appGrantHistory.registeredDate>{{'cui-registered' | translate}}: {{appGrantHistory.registeredDate | date:base.appConfig.dateFormat}}</p>\n"+
+"                    <p class=cui-media__content--small>{{'cui-user-id' | translate}}: {{appGrantHistory.user.username}}</p>\n"+
+"                    <p class=cui-media__content--small ng-if=appGrantHistory.user.lastLoginDate>{{'cui-last-login' | translate}}: {{appGrantHistory.user.lastLoginDate | date:base.appConfig.dateFormat}}</p>\n"+
+"                </div>\n"+
+"            </div>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div style=\"margin:auto;  width:400px\">\n"+
+"            <nav class=cui-breadcrumb>\n"+
+"                <ul class=cui-breadcrumb__links>\n"+
+"                    <li class=user_profile_image style=\"padding: 8px; margin-right:10px\" ng-init=\"profilesrc='app/modules/user/user_icon/profile.png'\" ng-mouseover=\"profilesrc='app/modules/user/user_icon/profile_current.png'\" ng-mouseout=\"profilesrc='app/modules/user/user_icon/profile.png'\"><a ui-sref=user.profile><img ng-src={{profilesrc}} width=46px height=44px></a>\n"+
+"                        </li>\n"+
+"                        <li class=user_roles_image style=\"padding: 8px; margin-right:10px\" ng-init=\"rolesrc='app/modules/user/user_icon/roles.png'\" ng-mouseover=\"rolesrc='app/modules/user/user_icon/roles_mouseover.png'\" ng-mouseout=\"rolesrc='app/modules/user/user_icon/roles.png'\"><a ui-sref=user.roles><img ng-src={{rolesrc}} width=34px height=45px></a>\n"+
+"                        </li>\n"+
+"                        <li class=user_apps_image style=\"padding: 8px; margin-right:10px\"><a ui-sref=user.appRequestHistory><img src=app/modules/user/user_icon/app_mouseover.png width=29px height=45px></a>\n"+
+"                        </li>\n"+
+"                        <li class=user_history_image style=\"padding: 8px\" ng-init=\"historysrc='app/modules/user/user_icon/history.png'\" ng-mouseover=\"historysrc='app/modules/user/user_icon/history_mouseover.png'\" ng-mouseout=\"historysrc='app/modules/user/user_icon/history.png'\"><a ui-sref=user.history><img ng-src={{historysrc}} width=49px height=44px></a>\n"+
+"                </li></ul>\n"+
+"            </nav>\n"+
+"        </div>\n"+
+"        <hr>\n"+
+"        <main class=\"cui-organization cui-organization-req-uers\">\n"+
+"		\n"+
+"		\n"+
+"		<div class=cui-tabs__main-container>\n"+
+"		      <ul class=cui-tabs__nav>\n"+
+"		        <li class=cui-tabs__tab-container ui-sref=user.appRequestHistory>\n"+
+"		          <a class=\"cui-tabs__tab cui-tabs__tab\">{{'cui-application-requested-history' | translate}}</a>\n"+
+"		        </li>\n"+
+"		        <li class=cui-tabs__tab-container ui-sref=user.appGrantHistory>\n"+
+"		          <a class=\"cui-tabs__tab cui-tabs__tab--active\">{{'cui-application-granted-history' | translate}}</a>\n"+
+"		        </li>\n"+
+"		      </ul>\n"+
+"			</div>\n"+
+"		    	<div class=cui-action>\n"+
+"		    		    <div class=\"cui-action cui-action--alt\">\n"+
+"					      <div class=\"cui-radio cui-radio--basic-ltr\">\n"+
+"					          <input class=cui-radio__input type=radio name=radio-choice-basic-yes id=radio-choice-basic-yes ng-model=appGrantHistory.searchBy value=name>\n"+
+"					          <label class=cui-radio__label for=radio-choice-basic-yes><span></span>{{'cui-name' | translate}}</label>\n"+
+"					          <input class=cui-radio__input type=radio name=radio-choice-basic-yes id=radio-choice-basic-no ng-model=appGrantHistory.searchBy value=action>\n"+
+"					          <label class=cui-radio__label for=radio-choice-basic-no><span></span>{{'action' | translate}}</label>\n"+
+"					      </div>&nbsp;\n"+
+"					      <div class=\"cui-input-button cui-input-button--alt-bg\" style=width:350px>\n"+
+"					          <input class=cui-input-button__input ng-model=appGrantHistory.searchValue focus-if placeholder=\"{{'search' | translate}}\" on-enter=\"appGrantHistory.updateSearch('search',appGrantHistory.searchValue)\">\n"+
+"					          <button class=cui-input-button__button ng-click=\"appGrantHistory.updateSearch('search',appGrantHistory.searchValue)\">{{'search' | translate}}</button>\n"+
+"					      </div>\n"+
+"					</div>\n"+
+"		      		<div class=cui-action__actions>\n"+
+"					    \n"+
+"					    <div class=cui-action__action-container ng-click=\"appGrantHistory.granted.sortClicked =! appGrantHistory.granted.sortClicked\" id=sort-buttons off-click=\"appGrantHistory.granted.sortClicked=false\">\n"+
+"					      <cui-icon cui-svg-icon=fa:sort14 svg-class=cui-action__icon use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"					      <span class=cui-action__action-label>{{'sort' | translate}}</span>\n"+
+"					      \n"+
+"					      <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=#sort-buttons pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-40px'}, 'any']\" attachment=\"top middle\" target-attachment=\"bottom middle\" ng-if=appGrantHistory.granted.sortClicked style=width:171px>\n"+
+"					        \n"+
+"					        <div class=cui-popover__row>\n"+
+"					          <span ng-click=\"appGrantHistory.updateSearch('eventdate','')\">{{'cui-by-decision-date' | translate}}</span>\n"+
+"					        </div>\n"+
+"					        <div class=cui-popover__row>\n"+
+"					           <span ng-click=\"appGrantHistory.updateSearch('eventType','')\">{{'action' | translate}}</span>\n"+
+"					        </div>\n"+
+"					        <div class=cui-popover__row>\n"+
+"					           <span ng-click=\"appGrantHistory.updateSearch('actorId','')\">{{'evaluator' | translate}}</span>\n"+
+"					        </div>\n"+
+"					      </div>\n"+
+"					    </div>\n"+
+"\n"+
+"					    \n"+
+"					    <div class=cui-action__action-container ng-click=\"appGrantHistory.granted.refineClicked =! appGrantHistory.granted.refineClicked\" id=refine-buttons off-click=\"appGrantHistory.granted.refineClicked=false\">\n"+
+"					      <cui-icon cui-svg-icon=fa:filter10 svg-class=cui-action__icon use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"					      <span class=cui-action__action-label>{{'refine' | translate}}</span>\n"+
+"					      \n"+
+"					      <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=#refine-buttons pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-70px'}, 'any']\" ng-if=appGrantHistory.granted.refineClicked style=width:214px>\n"+
+"					        <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"					          <span ng-click=\"appGrantHistory.updateSearch('status')\">{{'all' | translate}}</span>\n"+
+"					          <span>({{appGrantHistory.popupCount}})</span>\n"+
+"					        </div>\n"+
+"					        <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"					          <span ng-click=\"appGrantHistory.updateSearch('status','active')\">{{'active' | translate}}</span>\n"+
+"					          <span>({{appGrantHistory.activeCount}})</span>\n"+
+"					        </div>\n"+
+"					        <div class=\"cui-popover__row cui-popover--row__flex\">\n"+
+"					          <span ng-click=\"appGrantHistory.updateSearch('status','suspended')\">{{'suspended' | translate}}</span>\n"+
+"					          <span>({{appGrantHistory.suspendedCount}})</span>\n"+
+"					        </div>\n"+
+"					      </div>\n"+
+"					    </div>\n"+
+"					  </div>\n"+
+"		      	</div>\n"+
+"		\n"+
+"		<section class=cui-organization__main-container>\n"+
+"		<h3 class=cui-sr-only>{{'users-requests' | translate}}</h3>\n"+
+"\n"+
+"		\n"+
+"		<div class=cui-loading__container ng-if=\"base.loader.for['appGrantHistory.initHistory']\">\n"+
+"		  <div class=\"cui-loader cui-loader--content\" ng-include=\"'app/common-templates/partials/loader-content.html'\"></div>\n"+
+"		</div>\n"+
+"\n"+
+"		<cui-table-header headers=\"['cui-name', 'status', 'action', 'cui-by-decision-date', 'evaluator']\" sorting=appGrantHistory.sortBy sorting-callbacks=appGrantHistory.sortingCallbacks>\n"+
+"		  </cui-table-header>\n"+
+"		  \n"+
+"		  <div class=cui-media__content ng-if=\"appGrantHistory.grantedHistory.length===0\">{{'cui-no-details'|translate}}</div>\n"+
+"		<cui-table-row ng-repeat=\"application in appGrantHistory.grantedHistory track by $index\">\n"+
+"		  <li class=\"cui-flex-table__tr cui-flex-table__tr--c\">\n"+
+"		    <div class=cui-flex-table__avatar-col>\n"+
+"		      <div class=cui-profile__user-avatar aria-hidden=true cui-avatar cui-avatar-names=application.name cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5 cui-avatar-cuii18n-filter cui-avatar=application.iconUrl></div>\n"+
+"		    </div>\n"+
+"		    <div class=cui-flex-table__mobile-stack>\n"+
+"		       <div class=cui-flex-table__left>\n"+
+"		        <span class=cui-flex-table__title>{{application.name | cuiI18n|capitalize}}</span>\n"+
+"		      </div>\n"+
+"\n"+
+"		      <div class=cui-flex-table__middle>\n"+
+"		        <span>{{application.status}}</span>\n"+
+"		      </div>\n"+
+"\n"+
+"		      <div class=cui-flex-table__middle>\n"+
+"		        <span class=cui-media__content>{{ application.eventType }}</span>\n"+
+"		      </div>\n"+
+"\n"+
+"		      <div class=cui-flex-table__middle>\n"+
+"		        <span>{{application.eventDate}}</span>\n"+
+"		      </div>\n"+
+"		      <div class=cui-flex-table__right>\n"+
+"		         <span class=cui-media__content> {{application.actor.given}} {{application.actor.surname}}</span>\n"+
+"		      </div>\n"+
+"		    </div>\n"+
+"		  </li>\n"+
+"		</cui-table-row>\n"+
+"\n"+
+"		\n"+
+"		<div class=cui-paginate__container ng-if=\"!base.loader.for['appGrantHistory.initHistory']\">\n"+
+"		  <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"		  <results-per-page class=cui-paginate__select ng-model=appGrantHistory.search.pageSize></results-per-page>\n"+
+"		  <paginate class=cui-paginate results-per-page=appGrantHistory.search.pageSize count=appGrantHistory.count on-page-change=appGrantHistory.pageGrantedChange ng-model=appGrantHistory.search.page attach-rerender-to=appGrantHistory.reRenderPaginate></paginate>\n"+
+"		</div>\n"+
+"		</section>\n"+
+"\n"+
+"		</main>\n"+
+"    </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/user/appHistory/app-requestHistory.html',
+"\n"+
+"<div class=code-info>Code for this page can be found <a class=cui-link href=https://github.com/Covisint/cui-idm-b2x/tree/master/app/modules/user/history target=blank>here</a> and the layout styles <a href=https://github.com/Covisint/cui-idm-b2x/tree/master/app/scss/3-views/user class=cui-link target=blank>here</a></div>\n"+
+"\n"+
+" \n"+
+"<div class=cui-users__appHistory-container>\n"+
+"    <div class=cui-users__main-container>\n"+
+"\n"+
+"		\n"+
+"		\n"+
+"\n"+
+"      	\n"+
+"		<p class=cui-users__password-success style=color:red ng-if=\"base.apiError.for['appRequestHistory.initHistory']\"><b>{{'error-generic'|translate}}</b></p>\n"+
+"        \n"+
+"        <div class=cui-users__profile-media ng-if=!appRequestHistory.loading>\n"+
+"            <div class=cui-media>\n"+
+"                <div class=cui-media__image-container>\n"+
+"                    \n"+
+"                    <div class=cui-media__image cui-avatar cui-avatar-email=appRequestHistory.user.email cui-avatar-names=\"[appRequestHistory.user.name.given, appRequestHistory.user.name.surname]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"                </div>\n"+
+"                <div class=cui-media__body>\n"+
+"                    \n"+
+"                    <h3 class=cui-media__title>{{appRequestHistory.user.name.given}} {{appRequestHistory.user.name.surname}}</h3>\n"+
+"                    \n"+
+"                    <p class=cui-media__content--small ng-if=appRequestHistory.registeredDate>{{'cui-registered' | translate}}: {{appRequestHistory.registeredDate | date:base.appConfig.dateFormat}}</p>\n"+
+"                    <p class=cui-media__content--small>{{'cui-user-id' | translate}}: {{appRequestHistory.user.username}}</p>\n"+
+"                    <p class=cui-media__content--small ng-if=appRequestHistory.user.lastLoginDate>{{'cui-last-login' | translate}}: {{appRequestHistory.user.lastLoginDate | date:base.appConfig.dateFormat}}</p>\n"+
+"                </div>\n"+
+"            </div>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div style=\"margin:auto;  width:400px\">\n"+
+"            <nav class=cui-breadcrumb>\n"+
+"                <ul class=cui-breadcrumb__links>\n"+
+"                    <li class=user_profile_image style=\"padding: 8px; margin-right:10px\" ng-init=\"profilesrc='app/modules/user/user_icon/profile.png'\" ng-mouseover=\"profilesrc='app/modules/user/user_icon/profile_current.png'\" ng-mouseout=\"profilesrc='app/modules/user/user_icon/profile.png'\"><a ui-sref=user.profile><img ng-src={{profilesrc}} width=46px height=44px></a>\n"+
+"                        </li>\n"+
+"                        <li class=user_roles_image style=\"padding: 8px; margin-right:10px\" ng-init=\"rolesrc='app/modules/user/user_icon/roles.png'\" ng-mouseover=\"rolesrc='app/modules/user/user_icon/roles_mouseover.png'\" ng-mouseout=\"rolesrc='app/modules/user/user_icon/roles.png'\"><a ui-sref=user.roles><img ng-src={{rolesrc}} width=34px height=45px></a>\n"+
+"                        </li>\n"+
+"                        <li class=user_apps_image style=\"padding: 8px; margin-right:10px\"><a ui-sref=user.appRequestHistory><img src=app/modules/user/user_icon/app_mouseover.png width=29px height=45px></a>\n"+
+"                        </li>\n"+
+"                        <li class=user_history_image style=\"padding: 8px\" ng-init=\"historysrc='app/modules/user/user_icon/history.png'\" ng-mouseover=\"historysrc='app/modules/user/user_icon/history_mouseover.png'\" ng-mouseout=\"historysrc='app/modules/user/user_icon/history.png'\"><a ui-sref=user.history><img ng-src={{historysrc}} width=49px height=44px></a>\n"+
+"                </li></ul>\n"+
+"            </nav>\n"+
+"        </div>\n"+
+"        <hr>\n"+
+"        <main class=\"cui-organization cui-organization-req-uers\">\n"+
+"  \n"+
+"  <h2 class=cui-sr-only>{{'org-req-apps-requests'}}</h2>\n"+
+"\n"+
+"  \n"+
+"  \n"+
+"\n"+
+"    \n"+
+"    <div class=cui-tabs__main-container>\n"+
+"	      <ul class=cui-tabs__nav>\n"+
+"	        <li class=cui-tabs__tab-container ui-sref=user.appRequestHistory>\n"+
+"	          <a class=\"cui-tabs__tab cui-tabs__tab--active\">{{'cui-application-requested-history' | translate}}</a>\n"+
+"	        </li>\n"+
+"	        <li class=cui-tabs__tab-container ui-sref=user.appGrantHistory>\n"+
+"	          <a class=\"cui-tabs__tab cui-tabs__tab\">{{'cui-application-granted-history' | translate}}</a>\n"+
+"	        </li>\n"+
+"	      </ul>\n"+
+"    	</div>\n"+
+"    	<div class=cui-action>\n"+
+"  		  <div class=cui-action__actions>\n"+
+"		    \n"+
+"		    <div class=cui-action__action-container ng-click=\"appRequestHistory.requestsortClicked =! appRequestHistory.requestsortClicked\" id=sort-button off-click=\"appRequestHistory.requestsortClicked=false\">\n"+
+"		      <cui-icon cui-svg-icon=fa:sort14 svg-class=cui-action__icon use-class=cui-icon__ref viewbox=\"0 0 216 146\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"		      <span class=cui-action__action-label>{{'sort' | translate}}</span>\n"+
+"		      \n"+
+"		      <div cui-popover class=\"cui-popover cui-popover--menu cui-popover--positionless\" target=#sort-button pointer-height=13 pointer-width=10 popover-positions=\"[{position:'bottom',contentOffset:'-40px'}, 'any']\" attachment=\"top middle\" target-attachment=\"bottom middle\" ng-if=appRequestHistory.requestsortClicked style=width:171px>\n"+
+"		        \n"+
+"		        <div class=cui-popover__row>\n"+
+"		          <span ng-click=\"appRequestHistory.updateSearch('requesteddate','','requested')\">{{'cui-by-request-date' | translate}}</span>\n"+
+"		        </div>\n"+
+"		         <div class=cui-popover__row>\n"+
+"		          <span ng-click=\"appRequestHistory.updateSearch('decisiondate','','requested')\">{{'cui-by-decision-date' | translate}}</span>\n"+
+"		        </div>\n"+
+"		      </div>\n"+
+"		    </div>\n"+
+"\n"+
+"		    \n"+
+"		    \n"+
+"		      \n"+
+"		     \n"+
+"		  </div>\n"+
+"  </div>\n"+
+"  \n"+
+"  <section class=cui-organization__main-container>\n"+
+"    <h3 class=cui-sr-only>{{'users-requests' | translate}}</h3>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-loading__container ng-if=\"base.loader.for['appRequestHistory.initHistory']\">\n"+
+"      <div class=\"cui-loader cui-loader--content\" ng-include=\"'app/common-templates/partials/loader-content.html'\"></div>\n"+
+"    </div>\n"+
+"\n"+
+"    <cui-table-header headers=\"['cui-name', 'cui-by-request-date', 'approved', 'cui-by-decision-date', 'evaluator']\" sorting=appRequestHistory.sortBy sorting-callbacks=appRequestHistory.sortingCallbacks>\n"+
+"      </cui-table-header>\n"+
+"      <div class=cui-media__content ng-if=\"appRequestHistory.requestedHistory.length===0\">{{'cui-no-details'|translate}}</div>\n"+
+"    <cui-table-row ng-repeat=\"application in appRequestHistory.requestedHistory track by $index\">\n"+
+"      <li class=\"cui-flex-table__tr cui-flex-table__tr--c\">\n"+
+"        <div class=cui-flex-table__avatar-col>\n"+
+"          <div class=cui-profile__user-avatar aria-hidden=true cui-avatar cui-avatar-names=application.name cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5 cui-avatar-cuii18n-filter cui-avatar=application.iconUrl></div>\n"+
+"        </div>\n"+
+"        <div class=cui-flex-table__mobile-stack>\n"+
+"           <div class=cui-flex-table__left>\n"+
+"            <span class=cui-flex-table__title>{{application.name | cuiI18n|capitalize}}</span>\n"+
+"          </div>\n"+
+"\n"+
+"          <div class=cui-flex-table__middle>\n"+
+"            <span>{{application.requestedDate}}</span>\n"+
+"          </div>\n"+
+"\n"+
+"          <div class=cui-flex-table__middle>\n"+
+"            <span class=cui-media__content ng-if=\"application.isApproved==true\"> {{ 'yes'|translate }}</span>\n"+
+"			<span class=cui-media__content ng-if=\"application.isApproved==false\"> {{'cui-no'|translate  }}</span>\n"+
+"          </div>\n"+
+"\n"+
+"          <div class=cui-flex-table__middle>\n"+
+"            <span>{{application.evaluationDate}}</span>\n"+
+"          </div>\n"+
+"          <div class=cui-flex-table__right>\n"+
+"             <span class=cui-media__content> {{application.evaluator.given}} {{application.evaluator.surname}}</span>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"      </li>\n"+
+"    </cui-table-row>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-paginate__container ng-if=\"!base.loader.for['appRequestHistory.initHistory']\">\n"+
+"      <span class=cui-paginate__results-label>{{'cui-num-results-page' | translate}}</span>\n"+
+"      <results-per-page class=cui-paginate__select ng-model=appRequestHistory.search.pageSize></results-per-page>\n"+
+"      <paginate class=cui-paginate results-per-page=appRequestHistory.search.pageSize count=appRequestHistory.count on-page-change=appRequestHistory.pageChange ng-model=appRequestHistory.search.page attach-rerender-to=appRequestHistory.reRenderPaginate></paginate>\n"+
+"    </div>\n"+
+"  </section>\n"+
+"\n"+
+"</main>\n"+
+"    </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/user/history/user-history.html',
+"\n"+
+"<div class=code-info>Code for this page can be found <a class=cui-link href=https://github.com/Covisint/cui-idm-b2x/tree/master/app/modules/user/history target=blank>here</a> and the layout styles <a href=https://github.com/Covisint/cui-idm-b2x/tree/master/app/scss/3-views/user class=cui-link target=blank>here</a></div>\n"+
+"\n"+
+"<div class=cui-users__history-container>\n"+
+"    \n"+
+"    \n"+
+"    <div class=cui-users__main-container>\n"+
+"        \n"+
+"        <div class=cui-loading__container ng-if=\"base.loader.for['userHistory.initHistory']\">\n"+
+"            <div class=cui-loading--center>\n"+
+"                <div class=cui-loading></div>\n"+
+"            </div>\n"+
+"        </div>\n"+
+"        \n"+
+"        <p class=cui-users__password-success style=color:red ng-if=\"base.apiError.for['userHistoryFactory.initStatusHistory']\">{{'cui-userstatus-history-error' | translate}} {{'cui-try-again'|translate}}</p>\n"+
+"        <p class=cui-users__password-success style=color:red ng-if=\"base.apiError.for['userHistoryFactory.initPasswordChangeHistory']\">{{'cui-password-change-log-error' | translate}} {{'cui-try-again'|translate}}</p>\n"+
+"        \n"+
+"        <div class=cui-users__profile-media ng-if=!userHistory.loading>\n"+
+"            <div class=cui-media>\n"+
+"                <div class=cui-media__image-container>\n"+
+"                    \n"+
+"                    <div class=cui-media__image cui-avatar cui-avatar-email=userHistory.user.email cui-avatar-names=\"[userHistory.user.name.given, userHistory.user.name.surname]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"                </div>\n"+
+"                <div class=cui-media__body>\n"+
+"                    \n"+
+"                    <h3 class=cui-media__title>{{userHistory.user.name.given}} {{userHistory.user.name.surname}}</h3>\n"+
+"                    \n"+
+"                    <p class=cui-media__content--small ng-if=userHistory.registeredDate>{{'cui-registered' | translate}}: {{userHistory.registeredDate | date:base.appConfig.dateFormat}}</p>\n"+
+"                    <p class=cui-media__content--small>{{'cui-user-id' | translate}}: {{userHistory.user.username}}</p>\n"+
+"                    <p class=cui-media__content--small ng-if=userHistory.user.lastLoginDate>{{'cui-last-login' | translate}}: {{userHistory.user.lastLoginDate | date:base.appConfig.dateFormat}}</p>\n"+
+"                </div>\n"+
+"            </div>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div style=\"margin:auto;  width:400px\">\n"+
+"            <nav class=cui-breadcrumb>\n"+
+"                <ul class=cui-breadcrumb__links>\n"+
+"                    <li class=user_profile_image style=\"padding: 8px; margin-right:10px\" ng-init=\"profilesrc='app/modules/user/user_icon/profile.png'\" ng-mouseover=\"profilesrc='app/modules/user/user_icon/profile_current.png'\" ng-mouseout=\"profilesrc='app/modules/user/user_icon/profile.png'\"><a ui-sref=user.profile><img src={{profilesrc}} width=46px height=44px></a>\n"+
+"                        </li>\n"+
+"                        <li class=user_roles_image style=\"padding: 8px; margin-right:11px\" ng-init=\"rolesrc='app/modules/user/user_icon/roles.png'\" ng-mouseover=\"rolesrc='app/modules/user/user_icon/roles_mouseover.png'\" ng-mouseout=\"rolesrc='app/modules/user/user_icon/roles.png'\"><a ui-sref=user.roles><img ng-src={{rolesrc}} width=34px height=45px></a>\n"+
+"                        </li>\n"+
+"                        <li class=user_apps_image style=\"padding: 8px; margin-right:10px\" ng-init=\"appsrc='app/modules/user/user_icon/app.png'\" ng-mouseover=\"appsrc='app/modules/user/user_icon/app_mouseover.png'\" ng-mouseout=\"appsrc='app/modules/user/user_icon/app.png'\"><a ui-sref=user.appRequestHistory><img ng-src={{appsrc}} width=29px height=45px></a>\n"+
+"                        </li>\n"+
+"                        <li class=user_history_image style=\"padding: 8px\"><a ui-sref=user.history><img src=app/modules/user/user_icon/history_mouseover.png width=49px height=44px></a>\n"+
+"                        </li>\n"+
+"                </ul>\n"+
+"            </nav>\n"+
+"        </div>\n"+
+"        <hr>\n"+
+"        \n"+
+"        <div class=\"cui-users__profile cui-users__history\">\n"+
+"            \n"+
+"            <div class=cui-users__profile-info>\n"+
+"                <div class=cui-action>\n"+
+"                    <div class=cui-action__title>{{'cui-status-history'|translate}}</div>\n"+
+"                </div>\n"+
+"                <div class=cui-users__info-block>\n"+
+"                    <div class=cui-users__last-login>{{'cui-last-login' | translate}}: {{userHistory.lastLogin | date:base.appConfig.dateFormat}}</div>\n"+
+"                </div>\n"+
+"                <div class=cui-users__info-block>\n"+
+"                    <div ng-repeat=\"status in userHistory.statusHistory\">\n"+
+"                        <span class=cui-field-val__field>{{status.status|lowercase}}</span>\n"+
+"                        <span class=cui-field-val__val>: {{status.lastUpdatedDate}}</span>\n"+
+"                    </div>\n"+
+"                </div>\n"+
+"            </div>\n"+
+"            \n"+
+"            <div class=cui-users__profile-info>\n"+
+"                <div class=cui-action>\n"+
+"                    <div class=cui-action__title>{{'cui-password-change-log'|translate}}</div>\n"+
+"                </div>\n"+
+"                \n"+
+"                <p class=cui-users__password-success style=color:#4a4a4a ng-if=\"userHistory.passwordChangeHistory==0\">{{'cui-no-details' | translate}}</p>\n"+
+"                <table class=cui-table-alt ng-if=\"userHistory.passwordChangeHistory&&userHistory.passwordChangeHistory.length!=0\">\n"+
+"                    <thead>\n"+
+"                        <th>{{'cui-date'|translate}}</th>\n"+
+"                        <th>{{'cui-event-type'|translate}}</th>\n"+
+"                        <th>{{'cui-action-by'|translate}}</th>\n"+
+"                        <th>{{'cui-notes'|translate}}</th>\n"+
+"                    </thead>\n"+
+"                    <tbody>\n"+
+"                        <tr ng-repeat=\"pwdChangeHistory in userHistory.passwordChangeHistory\">\n"+
+"                            <td>{{pwdChangeHistory.creation|date:base.appConfig.dateFormat}}</td>\n"+
+"                            <td>{{pwdChangeHistory.eventType|lowercase}}</td>\n"+
+"                            <td><span ng-if=pwdChangeHistory.passwordUpdatedUserId>{{userHistory.userName.given}} {{userHistory.userName.surname}}</span></td>\n"+
+"                            <td>{{pwdChangeHistory.reason}}</td>\n"+
+"                        </tr>\n"+
+"                    </tbody>\n"+
+"                </table>\n"+
+"            </div>\n"+
+"        </div>\n"+
+"    </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/user/profile/sections/address.html',
+"<ng-form name=address>\n"+
+"  <div class=cui-users__field>\n"+
+"    <div class=cui-users__address-container class-toggle toggled-class=show-address>\n"+
+"      <div class=cui-users__field>\n"+
+"        <span class=cui-field-val__field>{{'cui-address' | translate}}</span>\n"+
+"        <span disable-animate class=cui-link href=\"\" ng-if=!toggled ng-click=userProfile.toggleAllOff();toggleOn()>{{'cui-edit' | translate}}</span>\n"+
+"        \n"+
+"        <div disable-animate ng-if=toggled ng-click=toggleOff()>\n"+
+"          <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-action__icon viewbox=\"0 0 48 53\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=!toggled>\n"+
+"        <div class=cui-field-val__val ng-if=\"userProfile.user.addresses[0].streets[0].length>0\">{{userProfile.user.addresses[0].streets[0]}} </div>\n"+
+"        <div class=cui-field-val__val ng-if=\"userProfile.user.addresses[0].streets[1].length>0\">{{userProfile.user.addresses[0].streets[1]}}</div>\n"+
+"        <div class=cui-field-val__val>{{userProfile.user.addresses[0].city}}</div>\n"+
+"        <div class=cui-field-val__val>{{userProfile.user.addresses[0].state}}<span ng-if=\"userProfile.user.addresses[0].state && userProfile.user.addresses[0].postal\">, </span>{{userProfile.user.addresses[0].postal}}</div>\n"+
+"        <div class=cui-field-val__val>{{base.countries.getCountryByCode(userProfile.user.addresses[0].country).name}}</div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=toggled ng-init=\"userProfile.pushToggleOff({'name':'address','function':toggleOff})\">\n"+
+"        \n"+
+"        <label for=\"{{'cui-street-address' | translate}}\">{{'cui-street-address' | translate}}</label>\n"+
+"        <div class=cui-error ng-messages=address.streetAddress.$error>\n"+
+"            <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"          </div>\n"+
+"        <input type=text name=streetAddress class=cui-input ng-model=userProfile.tempUser.addresses[0].streets[0] ng-required=true>\n"+
+"        \n"+
+"        <label for=\"{{'cui-address-2' | translate}}\">{{'cui-address-2' | translate}}</label>\n"+
+"        <input type=text name=\"{{'cui-address-2' | translate}}\" ng-model=userProfile.tempUser.addresses[0].streets[1] class=cui-input>\n"+
+"        \n"+
+"        <label for=\"{{'cui-city' | translate}}\">{{'cui-city' | translate}}</label>\n"+
+"        <input type=text name=\"{{'cui-city' | translate}}\" class=cui-input ng-model=userProfile.tempUser.addresses[0].city>\n"+
+"        \n"+
+"        <div class=cui-form__field-row>\n"+
+"          <div class=\"cui-form__field-container cui-form__field-container--half\">\n"+
+"            <label for=\"{{'cui-state' | translate}}\">{{'cui-state' | translate}}</label>\n"+
+"            <input type=text name=\"{{'cui-state' | translate}}\" class=cui-input ng-model=userProfile.tempUser.addresses[0].state>\n"+
+"          </div>\n"+
+"          \n"+
+"          <div class=\"cui-form__field-container cui-form__field-container--half\">\n"+
+"            <label for=\"{{'cui-zip' | translate}}\">{{'cui-zip' | translate}}</label>\n"+
+"            <input type=text name=\"{{'cui-zip' | translate}}\" class=cui-input ng-model=userProfile.tempUser.addresses[0].postal>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=cui-wizard__field-container>\n"+
+"          <label for=country>{{\"cui-country\" | translate}}</label>\n"+
+"          <div class=\"cui-error ng-active\" ng-messages=address.country.$error ng-if=address.country.$dirty>\n"+
+"            <div class=cui-error__message ng-message=required>{{'cui-this-field-is-required' | translate}}</div>\n"+
+"          </div>\n"+
+"          <div auto-complete input-name=country pause=100 selected-object=userProfile.userCountry initial-value=base.countries.getCountryByCode(userProfile.tempUser.addresses[0].country) local-data=base.countries.list search-fields=name title-field=name input-class=cui-input match-class=highlight auto-match=true field-required=userProfile.userCountry></div>\n"+
+"        </div>\n"+
+"\n"+
+"        \n"+
+"        <div class=cui-users__address-submit>\n"+
+"          <a class=\"cui-link cui-form__cancel\" href=\"\" ng-click=\"userProfile.resetTempObject(userProfile.user, userProfile.tempUser); toggleOff()\">{{'cui-cancel' | translate}}</a>\n"+
+"\n"+
+"          <cui-button loading-if=userProfile.address.submitting loading-message=\"{{'cui-button-loading-text' | translate}}\" button-click=\"address.$valid && userProfile.updatePerson('address', toggleOff)\">\n"+
+"            <button class=cui-button ng-class=\"{ 'cui-button--error': !address.$valid }\">\n"+
+"              <span ng-if=\"!userProfile.address || !userProfile.address.submitting\">{{'cui-update' | translate}}</span>\n"+
+"            </button>\n"+
+"          </cui-button>\n"+
+"        </div>\n"+
+"\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/user/profile/sections/basic-info.html',
+"<ng-form name=basicInfo>\n"+
+"  <div class=cui-users__field>\n"+
+"    <div class=cui-users__address-container class-toggle toggled-class=show-address>\n"+
+"      <div class=cui-users__field>\n"+
+"        <span class=cui-field-val__field>{{'basic-info' | translate}}</span>\n"+
+"        <span disable-animate class=cui-link href=\"\" ng-if=!toggled ng-click=userProfile.toggleAllOff();toggleOn()>{{'cui-edit' | translate}}</span>\n"+
+"        \n"+
+"        <div disable-animate ng-if=toggled ng-click=toggleOff()>\n"+
+"          <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-action__icon viewbox=\"0 0 48 53\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      <div ng-if=!toggled>\n"+
+"        <span class=cui-field-val__field>{{'cui-name' | translate}}:</span>\n"+
+"        <span class=cui-field-val__val>{{userProfile.user.name.given}} {{userProfile.user.name.surname}}</span><br>\n"+
+"        <span class=cui-field-val__field>{{'cui-email' | translate}}:</span>\n"+
+"        <span class=cui-field-val__val>{{userProfile.user.email}} </span>\n"+
+"      </div>\n"+
+"\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=toggled ng-init=\"userProfile.pushToggleOff({'name':'basicInfo','function':toggleOff})\">\n"+
+"\n"+
+"        \n"+
+"        <label for=firstName>{{'cui-first-name' | translate}}</label>\n"+
+"        <div class=cui-error ng-messages=basicInfo.firstName.$error>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"        <input type=text name=firstName class=cui-input ng-model=userProfile.tempUser.name.given ng-required=true focus-if=toggled>\n"+
+"\n"+
+"        \n"+
+"        <label for=lastName>{{'cui-last-name' | translate}}</label>\n"+
+"        <div class=cui-error ng-messages=basicInfo.lastName.$error>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"        <input type=text name=lastName class=cui-input ng-model=userProfile.tempUser.name.surname ng-required=true>\n"+
+"\n"+
+"        \n"+
+"        <label for=email>{{'cui-email' | translate}}</label>\n"+
+"        <div class=cui-error ng-messages=basicInfo.email.$error>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"        <input type=email name=email class=cui-input ng-model=userProfile.tempUser.email ng-required=true>\n"+
+"\n"+
+"        \n"+
+"        <div class=cui-users__address-submit>\n"+
+"          <a class=\"cui-link cui-form__cancel\" href=\"\" ng-click=toggleOff()>{{'cui-cancel' | translate}}</a>\n"+
+"          <cui-button loading-if=userProfile.basicInfo.submitting loading-message=\"{{'cui-button-loading-text' | translate}}\" button-click=\"basicInfo.$valid && userProfile.updatePerson('basicInfo', toggleOff)\">\n"+
+"            <button class=cui-button ng-class=\"{ 'cui-button--error': !basicInfo.$valid }\">\n"+
+"              <span ng-if=\"!userProfile.basicInfo || !userProfile.basicInfo.submitting\">{{'cui-update' | translate}}</span>\n"+
+"            </button>\n"+
+"          </cui-button>\n"+
+"        </div>\n"+
+"\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/user/profile/sections/challenge-questions.html',
+"<ng-form name=challengeQuestions>\n"+
+"  <div class=cui-users__field>\n"+
+"    <div class=cui-users__address-container class-toggle toggled-class=show-address>\n"+
+"      <div class=cui-checkbox__container>\n"+
+"          <input type=checkbox name=option-1 id=option-1 class=cui-checkbox ng-model=userProfile.maskAnswers ng-click=userProfile.updateUIMasking();>\n"+
+"          <label for=option-1 class=cui-checkbox__label>{{'cui-mask-answers'|translate}}</label>\n"+
+"      </div>\n"+
+"      <div class=cui-users__field>\n"+
+"        <span class=cui-field-val__field>{{'challenge-questions' | translate}}</span>\n"+
+"        <span disable-animate class=cui-link href=\"\" ng-if=!toggled ng-click=userProfile.toggleAllOff();toggleOn()>{{'cui-edit' | translate}}</span>\n"+
+"        \n"+
+"        <div disable-animate ng-if=toggled ng-click=toggleOff()>\n"+
+"          <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-action__icon viewbox=\"0 0 48 53\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=!toggled>\n"+
+"        <div ng-repeat=\"question in userProfile.challengeQuestionsTexts\">\n"+
+"          <span class=cui-field-val__field>{{$index+1}}:</span>\n"+
+"          <span class=cui-field-val__val>{{question}}</span>\n"+
+"          <br>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=toggled ng-init=\"userProfile.pushToggleOff({'name':'challengeQuestions','function':toggleOff})\">\n"+
+"        <div ng-repeat=\"question in userProfile.tempUserSecurityQuestions.questions\">\n"+
+"          <b>{{'cui-challenge-question' | translate}} {{$index+1}}</b>\n"+
+"          <cui-dropdown ng-model=question.question.id class=cui-dropdown return-value=object.id display-value=\"(object.question | cuiI18n)\" options=\"userProfile['allChallengeQuestions' + $index]\"></cui-dropdown>\n"+
+"          {{'cui-answer' | translate}}\n"+
+"          <div class=cui-error ng-messages=\"challengeQuestions['answer' + $index].$error\">\n"+
+"            <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"          </div>\n"+
+"          <input type={{userProfile.inputType}} ng-model=question.answer class=cui-input ng-class=\"{'cui-input--error':!challengeQuestions['answer'+$index].$valid}\" name=answer{{$index}} ng-change=userProfile.checkIfRepeatedSecurityAnswer(userProfile.tempUserSecurityQuestions.questions,challengeQuestions) ng-required=true>\n"+
+"          <br><br>\n"+
+"        </div>\n"+
+"\n"+
+"        \n"+
+"        <div class=cui-users__address-submit>\n"+
+"          <a class=\"cui-link cui-form__cancel\" href=\"\" ng-click=toggleOff()>{{'cui-cancel' | translate}}</a>\n"+
+"          <cui-button loading-if=userProfile.challengeQuestions.submitting loading-message=\"{{'cui-button-loading-text' | translate}}\" button-click=\"userProfile.saveChallengeQuestions('challengeQuestions', toggleOff)\">\n"+
+"            <button class=cui-button ng-class=\"{'cui-button--error':!challengeQuestions.$valid}\">\n"+
+"              <span ng-if=\"( !userProfile.challengeQuestions || !userProfile.challengeQuestions.submitting ) && !userProfile.challengeQuestions.error\">{{'cui-update' | translate}}</span>\n"+
+"            </button>\n"+
+"          </cui-button>\n"+
+"        </div>\n"+
+"\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/user/profile/sections/header.html',
+"<div class=cui-users__profile-media ng-if=!userProfile.loading>\n"+
+"  <div class=cui-media>\n"+
+"    <div class=cui-media__image-container>\n"+
+"      \n"+
+"      <div class=cui-media__image cui-avatar cui-avatar-email=userProfile.user.email cui-avatar-names=\"[userProfile.user.name.given, userProfile.user.name.surname]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"    </div>\n"+
+"    <div class=cui-media__body>\n"+
+"      \n"+
+"      <h3 class=cui-media__title>{{userProfile.user.name.given}} {{userProfile.user.name.surname}}</h3>\n"+
+"      \n"+
+"      <p class=cui-media__content--small ng-if=userProfile.registeredDate>{{'cui-registered' | translate}}: {{userProfile.registeredDate | date:base.appConfig.dateFormat}}</p>\n"+
+"      <p class=cui-media__content--small>{{'cui-user-id' | translate}}: {{userProfile.user.username}}</p>\n"+
+"      <p class=cui-media__content--small ng-if=userProfile.user.lastLoginDate>{{'cui-last-login' | translate}}: {{userProfile.user.lastLoginDate | date:base.appConfig.dateFormat}}</p>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</div>\n");
+
+
+
+$templateCache.put('app/modules/user/profile/sections/password.html',
+"<ng-form name=password>\n"+
+"  <div class=cui-users__field>\n"+
+"    <div class=cui-users__address-container class-toggle toggled-class=show-address>\n"+
+"      <div class=cui-users__field>\n"+
+"        <div>\n"+
+"        <span class=cui-field-val__field ng-if=!toggled>{{'cui-password' | translate}}:</span>\n"+
+"        <span class=cui-field-val__field ng-if=toggled>{{'cui-password' | translate}}</span>\n"+
+"        <span class=\"cui-field-val__val cui-star-password\" ng-if=!toggled>**********</span><br>\n"+
+"        </div>\n"+
+"        <span disable-animate class=cui-link href=\"\" ng-if=!toggled ng-click=userProfile.toggleAllOff();toggleOn()>{{'cui-edit' | translate}}</span>\n"+
+"        \n"+
+"        <div disable-animate ng-if=toggled ng-click=toggleOff()>\n"+
+"          <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-action__icon viewbox=\"0 0 48 53\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=toggled ng-init=\"userProfile.pushToggleOff({'name':'password','function':toggleOff})\">\n"+
+"\n"+
+"        \n"+
+"        <label for=currentPassword>{{'current-password' | translate}}</label>\n"+
+"        <div class=cui-error ng-messages=password.currentPassword.$error ng-if=password.currentPassword.$touched>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"        <input type=password name=currentPassword class=cui-input ng-model=userProfile.userPasswordAccount.currentPassword ng-required=true focus-if=toggled>\n"+
+"\n"+
+"        \n"+
+"        <div class=cui-input__password-holder>\n"+
+"          <label for=newPassword>{{'cui-enter-new-password' | translate}} </label>\n"+
+"          <input class=cui-input name=newPassword type=password ng-model=userProfile.userPasswordAccount.password ng-required=true ng-class=\"{'cui-input--error': password.newPassword.$touched && password.newPassword.$invalid}\" password-validation=userProfile.passwordRules ng-change=\"userProfile.validatePassword(userProfile.userPasswordAccount.password, password, 'newPassword')\" ng-focus=\"userProfile.passwordPopover=true\" ng-blur=\"userProfile.passwordPopover=false\">\n"+
+"          \n"+
+"          <div password-popover ng-messages=password.newPassword.$error ng-messages-multiple ng-if=\"userProfile.passwordPopover && password.newPassword.$invalid\" class=cui-error__password>\n"+
+"            \n"+
+"            <div ng-messages-include=app/common-templates/password-validation-history/password-validation-top.html></div>\n"+
+"            \n"+
+"            <div class=cui-error__message ng-if=!userProfile.validNewPasswordDisallowed>\n"+
+"              <br>\n"+
+"              <span translate=disallowed-password-rule></span>\n"+
+"            </div><br>\n"+
+"            \n"+
+"            <div class=cui-error__message>\n"+
+"              <div class=cui-error__status ng-class=\"{'cui-error__status--pass': userProfile.validNewPasswordHistory && userProfile.userPasswordAccount.length>0}\"></div>\n"+
+"              <span translate=cui-password-history-rule translate-value-number-of-passwords={{userProfile.numberOfPasswords}}></span>\n"+
+"            </div><br>\n"+
+"            \n"+
+"            <div ng-messages-include=app/common-templates/password-validation-history/password-validation-bottom.html></div>\n"+
+"          </div>\n"+
+"        </div>\n"+
+"\n"+
+"        \n"+
+"        <label for=newPasswordRe>{{'cui-re-enter-new-password' | translate}} {{userProfile.userPasswordAccount.length}}{{userProfile.validNewPasswordHistory}}asd{{userProfile.validNewPasswordDisallowed}}</label>\n"+
+"        <div class=cui-error ng-if=\"password.newPasswordRe.$touched && password.newPasswordRe.$error.match\">\n"+
+"          <div class=cui-error__message>{{'password-mismatch' | translate}}</div>\n"+
+"        </div>\n"+
+"        <input class=cui-input type=password ng-model=userProfile.passwordRe name=newPasswordRe match=userProfile.userPasswordAccount.password>\n"+
+"        <div class=cui-error style=\"text-align: right\" ng-if=userProfile.lifetimeError>\n"+
+"          <div class=cui-error__message>{{'cannot-change-password'| translate}}</div>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=cui-users__address-submit>\n"+
+"          <a class=\"cui-link cui-form__cancel\" href=\"\" ng-mousedown=userProfile.resetPasswordFields();toggleOff()>{{'cui-cancel' | translate}}</a>\n"+
+"          \n"+
+"          <button class=cui-button ng-click=\"password.$valid && userProfile.updatePassword('password',toggleOff);\" ng-class=\"{'cui-button--error':!password.$valid}\">\n"+
+"            <span ng-if=\"(!userProfile.password || !userProfile.password.submitting) && !userProfile.password.error\">{{'cui-update' | translate}}</span>\n"+
+"            <span ng-if=userProfile.password.submitting>{{'cui-button-loading-text'|translate}}</span>\n"+
+"            <span ng-if=userProfile.password.error>{{'cui-error-try-again'| translate}}</span>\n"+
+"          </button>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/user/profile/sections/phone-fax.html',
+"<ng-form name=phoneFax>\n"+
+"  <div class=cui-users__field>\n"+
+"    <div class=cui-users__address-container class-toggle toggled-class=show-address>\n"+
+"      <div class=cui-users__field>\n"+
+"        <span class=cui-field-val__field>{{'cui-phone-fax' | translate}}</span>\n"+
+"        <span disable-animate class=cui-link href=\"\" ng-if=!toggled ng-click=userProfile.toggleAllOff();toggleOn()>{{'cui-edit' | translate}}</span>\n"+
+"        \n"+
+"        <div disable-animate ng-if=toggled ng-click=toggleOff()>\n"+
+"          <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-action__icon viewbox=\"0 0 48 53\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=!toggled ng-repeat=\"phone in userProfile.user.phones\">\n"+
+"        <span class=cui-field-val__field ng-if=\"$index==0\">{{\"cui-phone-office\" | translate}}:</span>\n"+
+"        <span class=cui-field-val__field ng-if=\"$index==1\">{{\"cui-phone-mobile\" | translate}}:</span>\n"+
+"        <span class=cui-field-val__field ng-if=\"$index==2\">{{\"cui-phone-fax\" | translate}}:</span>\n"+
+"        <span class=cui-field-val__val>{{phone.number}}</span>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=toggled>\n"+
+"        \n"+
+"\n"+
+"        <label><b>*{{\"cui-phone-office\" | translate}}</b></label>\n"+
+"        <div class=cui-error ng-messages=phoneFax.telephone.$error>\n"+
+"          <div ng-messages-include=app/common-templates/messages.html></div>\n"+
+"        </div>\n"+
+"        <input type=text ng-model=userProfile.tempUser.phones[0].number class=cui-input name=telephone autocomplete=off ng-required=true>\n"+
+"\n"+
+"        \n"+
+"        <label>{{\"cui-phone-mobile\" | translate}}</label>\n"+
+"        <input type=text ng-model=userProfile.tempUser.phones[1].number class=cui-input name=mobphone autocomplete=off>\n"+
+"\n"+
+"        \n"+
+"        <label for=user-fax>{{'cui-phone-fax'| translate}}</label>\n"+
+"        <input type=text name=faxNumber class=cui-input ng-model=userProfile.tempUser.phones[2].number autocomplete=off>\n"+
+"\n"+
+"        \n"+
+"        <div class=cui-users__address-submit>\n"+
+"          <a class=\"cui-link cui-form__cancel\" href=\"\" ng-click=toggleOff()>{{'cui-cancel' | translate}}</a>\n"+
+"          <cui-button loading-if=userProfile.phoneFax.submitting loading-message=\"{{'cui-button-loading-text' | translate}}\" button-click=\"phoneFax.$valid && userProfile.updatePerson('phoneFax', toggleOff)\">\n"+
+"            <button class=cui-button ng-class=\"{ 'cui-button--error': !phoneFax.$valid }\">\n"+
+"              <span ng-if=\"!userProfile.phoneFax || !userProfile.phoneFax.submitting\">{{'cui-update' | translate}}</span>\n"+
+"            </button>\n"+
+"          </cui-button>\n"+
+"        </div>\n"+
+"\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/user/profile/sections/timezone-language.html',
+"<ng-form name=timezoneLanguage>\n"+
+"  <div class=cui-users__field>\n"+
+"    <div class=cui-users__address-container class-toggle toggled-class=show-address>\n"+
+"      <div class=cui-users__field>\n"+
+"        <span class=cui-field-val__field>{{'timezone-and-language' | translate}}</span>\n"+
+"        <span disable-animate class=cui-link href=\"\" ng-if=!toggled ng-click=userProfile.toggleAllOff();toggleOn()>{{'cui-edit' | translate}}</span>\n"+
+"        \n"+
+"        <div disable-animate ng-if=toggled ng-click=toggleOff()>\n"+
+"          <cui-icon cui-svg-icon=cui:close-no-fill svg-class=cui-action__icon viewbox=\"0 0 48 53\" preserveaspectratio=\"xMidYMid meet\"></cui-icon>\n"+
+"        </div>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=!toggled disable-animate>\n"+
+"        <span class=cui-field-val__field>{{'cui-timezone' | translate}}:</span>\n"+
+"        <span class=cui-field-val__val>{{userProfile.timezoneById(userProfile.user.timezone)}}</span><br>\n"+
+"        <span class=cui-field-val__field>{{'cui-language' | translate}}:</span>\n"+
+"        <span class=cui-field-val__val>{{base.languages[userProfile.user.language]}}</span>\n"+
+"      </div>\n"+
+"\n"+
+"      \n"+
+"      <div ng-if=toggled ng-init=\"userProfile.pushToggleOff({'name':'timezoneLangauge','function':toggleOff})\" disable-animate>\n"+
+"        \n"+
+"        <label for=timezone>{{'cui-timezone' | translate}}</label>\n"+
+"        <cui-dropdown ng-model=userProfile.tempUser.timezone class=cui-dropdown return-value=object.id display-value=object.name options=base.timezones></cui-dropdown>\n"+
+"        \n"+
+"        <label for=language>{{'cui-language' | translate}}</label>\n"+
+"        <cui-dropdown ng-model=userProfile.tempUser.language class=cui-dropdown return-value=key display-value=value options=base.languages></cui-dropdown>\n"+
+"\n"+
+"        \n"+
+"        <div class=cui-users__address-submit>\n"+
+"          <a class=\"cui-link cui-form__cancel\" href=\"\" ng-click=toggleOff()>{{'cui-cancel' | translate}}</a>\n"+
+"\n"+
+"          <cui-button loading-if=userProfile.timezoneLanguage.submitting loading-message=\"{{'cui-button-loading-text' | translate}}\" button-click=\"userProfile.updatePerson('timezoneLanguage', toggleOff)\">\n"+
+"            <button class=cui-button>\n"+
+"              <span ng-if=\"( !userProfile.challengeQuestions || !userProfile.challengeQuestions.submitting ) && !userProfile.challengeQuestions.error\">{{'cui-update' | translate}}</span>\n"+
+"            </button>\n"+
+"          </cui-button>\n"+
+"        </div>\n"+
+"\n"+
+"      </div>\n"+
+"    </div>\n"+
+"  </div>\n"+
+"</ng-form>\n");
+
+
+
+$templateCache.put('app/modules/user/profile/user-profile.html',
+"\n"+
+"<div class=code-info>Code for this page can be found <a class=cui-link href=https://github.com/Covisint/cui-idm-b2x/tree/master/app/modules/user/profile target=blank>here</a> and the layout styles <a href=https://github.com/Covisint/cui-idm-b2x/tree/master/app/scss/3-views/user class=cui-link target=blank>here</a></div>\n"+
+"\n"+
+"<ng-form name=edit novalidate>\n"+
+"    <div class=cui-users__edit>\n"+
+"        \n"+
+"        \n"+
+"        <div class=cui-users__main-container>\n"+
+"            \n"+
+"            <div class=cui-loading__container ng-if=\"base.loader.for['userProfile.initProfile']\">\n"+
+"                <div class=cui-loading--center>\n"+
+"                    <div class=cui-loading></div>\n"+
+"                </div>\n"+
+"            </div>\n"+
+"            \n"+
+"            <p class=cui-users__password-success style=color:red ng-if=\"base.apiError.for['userProfileFactory.initUser']\">{{'cui-userProfile-user-error' | translate}}</p>\n"+
+"            <p class=cui-users__password-success style=color:red ng-if=\"base.apiError.for['userProfileFactory.initSecurityQuestions']\">{{'cui-userProfile-security-error' | translate}}</p>\n"+
+"            <p class=cui-users__password-success style=color:red ng-if=\"base.apiError.for['userProfileFactory.initPasswordPolicy']\">{{'cui-userProfile-password-error' | translate}}</p>\n"+
+"            \n"+
+"            <div ng-include=\"'app/modules/user/profile/sections/header.html'\" ng-if=userProfile.user></div>\n"+
+"            <div style=\"margin:auto;  width:400px\">\n"+
+"                <nav class=cui-breadcrumb>\n"+
+"                    <ul class=cui-breadcrumb__links>\n"+
+"                        <li class=user_profile_image style=\"padding: 8px; margin-right:10px\"><a ui-sref=user.profile><img src=app/modules/user/user_icon/profile_current.png width=46px height=44px></a>\n"+
+"                        </li>\n"+
+"                        <li class=user_roles_image style=\"padding: 8px; margin-right: 11px\" ng-init=\"rolesrc='app/modules/user/user_icon/roles.png'\" ng-mouseover=\"rolesrc='app/modules/user/user_icon/roles_mouseover.png'\" ng-mouseout=\"rolesrc='app/modules/user/user_icon/roles.png'\"><a ui-sref=user.roles><img ng-src={{rolesrc}} width=34px height=45px></a>\n"+
+"                        </li>\n"+
+"                        <li class=user_apps_image style=\"padding: 8px; margin-right: 10px\" ng-init=\"appsrc='app/modules/user/user_icon/app.png'\" ng-mouseover=\"appsrc='app/modules/user/user_icon/app_mouseover.png'\" ng-mouseout=\"appsrc='app/modules/user/user_icon/app.png'\"><a ui-sref=user.appRequestHistory><img ng-src={{appsrc}} width=29px height=45px></a>\n"+
+"                        </li>\n"+
+"                        <li class=user_history_image style=\"padding: 8px\" ng-init=\"historysrc='app/modules/user/user_icon/history.png'\" ng-mouseover=\"historysrc='app/modules/user/user_icon/history_mouseover.png'\" ng-mouseout=\"historysrc='app/modules/user/user_icon/history.png'\"><a ui-sref=user.history><img ng-src={{historysrc}} width=49px height=44px></a>\n"+
+"                        </li>\n"+
+"                    </ul>\n"+
+"                </nav>\n"+
+"            </div>\n"+
+"\n"+
+"            <hr>\n"+
+"            <div class=cui-users__profile>\n"+
+"                \n"+
+"                <div class=cui-users__profile-info>\n"+
+"                    <div class=cui-users__info-block>\n"+
+"                        \n"+
+"                        <div ng-include=\"'app/modules/user/profile/sections/basic-info.html'\" ng-if=userProfile.user></div>\n"+
+"                    </div>\n"+
+"                    <div class=cui-users__info-block>\n"+
+"                        <div ng-if=userProfile.passwordUpdateSuccess class=cui-users__password-success>{{'cui-pwd-reset-success' | translate}}</div>\n"+
+"                        \n"+
+"                        <div ng-include=\"'app/modules/user/profile/sections/password.html'\" ng-if=userProfile.passwordRules></div>\n"+
+"                    </div>\n"+
+"                    <div class=cui-users__info-block>\n"+
+"                        \n"+
+"                        <div ng-include=\"'app/modules/user/profile/sections/challenge-questions.html'\" ng-if=\"userProfile.userSecurityQuestions && userProfile.allSecurityQuestions\"></div>\n"+
+"                    </div>\n"+
+"                    <div class=cui-users__info-block>\n"+
+"                        \n"+
+"                        <div ng-include=\"'app/modules/user/profile/sections/timezone-language.html'\" ng-if=userProfile.user></div>\n"+
+"                    </div>\n"+
+"                </div>\n"+
+"                \n"+
+"                <div class=cui-users__profile-info>\n"+
+"                    <div class=cui-users__info-block>\n"+
+"                        \n"+
+"                        <div ng-include=\"'app/modules/user/profile/sections/address.html'\" ng-if=userProfile.user></div>\n"+
+"                    </div>\n"+
+"                    <div class=cui-users__info-block>\n"+
+"                        \n"+
+"                        <div ng-include=\"'app/modules/user/profile/sections/phone-fax.html'\" ng-if=userProfile.user></div>\n"+
+"                    </div>\n"+
+"                </div>\n"+
+"            </div>\n"+
+"        </div>\n"+
+"    </div>\n"+
+"</ng-form>");
+
+
+
+$templateCache.put('app/modules/user/roles/user-roles.html',
+"\n"+
+"<div class=code-info>Code for this page can be found <a class=cui-link href=https://github.com/Covisint/cui-idm-b2x/tree/master/app/modules/user/history target=blank>here</a> and the layout styles <a href=https://github.com/Covisint/cui-idm-b2x/tree/master/app/scss/3-views/user class=cui-link target=blank>here</a></div>\n"+
+"<div class=\"class-toggle cui-modal\" ng-if=userRoles.success toggled-class=cui-modal--hide ng-click=toggleClass()>\n"+
+"    <div class=cui-modal__pane>\n"+
+"        <div class=cui-modal__icon>\n"+
+"            <cui-icon cui-svg-icon=cui:check-with-border class=cui-modal__icon></cui-icon>\n"+
+"        </div>\n"+
+"        <span class=cui-modal__primary-message>{{'cui-success' | translate}}</span>\n"+
+"        <span class=cui-modal__secondary-message>{{'your-assign-role-success' | translate}}</span>\n"+
+"    </div>\n"+
+"</div>\n"+
+"\n"+
+"<div class=cui-users__appHistory-container>\n"+
+"    \n"+
+"    <div class=cui-users__main-container>\n"+
+"\n"+
+"    \n"+
+"    <div class=cui-loading__container ng-if=\"base.loader.for['userRoles.initHistory']\">\n"+
+"      <div class=cui-loading--center><div class=cui-loading></div></div>\n"+
+"    </div>\n"+
+"\n"+
+"        \n"+
+"    <p class=cui-users__password-success style=color:red ng-if=\"base.apiError.for['userRoles.initHistory']\"><b>{{'error-generic'|translate}}</b></p>\n"+
+"        \n"+
+"        <div class=cui-users__profile-media ng-if=!userRoles.loading>\n"+
+"            <div class=cui-media>\n"+
+"                <div class=cui-media__image-container>\n"+
+"                    \n"+
+"                    <div class=cui-media__image cui-avatar cui-avatar-email=userRoles.user.email cui-avatar-names=\"[userRoles.user.name.given, userRoles.user.name.surname]\" cui-avatar-color-class-prefix=cui-avatar__color cui-avatar-color-count=5></div>\n"+
+"                </div>\n"+
+"                <div class=cui-media__body>\n"+
+"                    \n"+
+"                    <h3 class=cui-media__title>{{userRoles.user.name.given}} {{userRoles.user.name.surname}}</h3>\n"+
+"                    \n"+
+"                    <p class=cui-media__content--small ng-if=userRoles.registeredDate>{{'cui-registered' | translate}}: {{userRoles.registeredDate | date:base.appConfig.dateFormat}}</p>\n"+
+"                    <p class=cui-media__content--small>{{'cui-user-id' | translate}}: {{userRoles.user.username}}</p>\n"+
+"                    <p class=cui-media__content--small ng-if=userRoles.user.lastLoginDate>{{'cui-last-login' | translate}}: {{userRoles.user.lastLoginDate | date:base.appConfig.dateFormat}}</p>\n"+
+"                </div>\n"+
+"            </div>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div style=\"margin:auto;  width:400px\">\n"+
+"            <nav class=cui-breadcrumb>\n"+
+"                <ul class=cui-breadcrumb__links>\n"+
+"                    <li class=user_profile_image style=\"padding: 8px; margin-right:10px\" ng-init=\"profilesrc='app/modules/user/user_icon/profile.png'\" ng-mouseover=\"profilesrc='app/modules/user/user_icon/profile_current.png'\" ng-mouseout=\"profilesrc='app/modules/user/user_icon/profile.png'\"><a ui-sref=user.profile><img ng-src={{profilesrc}} width=46px height=44px></a>\n"+
+"                        </li>\n"+
+"                        <li class=user_roles_image style=\"padding: 8px; margin-right:10px\"><a ui-sref=user.roles><img ng-src=app/modules/user/user_icon/roles_mouseover.png width=34px height=45px></a>\n"+
+"                        </li>\n"+
+"                        <li class=user_apps_image style=\"padding: 8px; margin-right:10px\" ng-init=\"appsrc='app/modules/user/user_icon/app.png'\" ng-mouseover=\"appsrc='app/modules/user/user_icon/app_mouseover.png'\" ng-mouseout=\"appsrc='app/modules/user/user_icon/app.png'\"><a ui-sref=user.appRequestHistory><img ng-src={{appsrc}} width=29px height=45px></a>\n"+
+"                        </li>\n"+
+"                        <li class=user_history_image style=\"padding: 8px\" ng-init=\"historysrc='app/modules/user/user_icon/history.png'\" ng-mouseover=\"historysrc='app/modules/user/user_icon/history_mouseover.png'\" ng-mouseout=\"historysrc='app/modules/user/user_icon/history.png'\"><a ui-sref=user.history><img ng-src={{historysrc}} width=49px height=44px></a>\n"+
+"                </li></ul>\n"+
+"            </nav>\n"+
+"        </div>\n"+
+"        <hr>\n"+
+"    <div class=\"cui-users__profile cui-users__history\" ng-if=\"!base.loader.for['userRoles.initHistory']&&!base.apiError.for['userRoles.initHistory']\">\n"+
+"        \n"+
+"        <div class=cui-users__profile-info>\n"+
+"          <div class=cui-action>\n"+
+"              <div class=cui-action__title>{{'cui-assigned-roles'|translate}}</div>\n"+
+"          </div>\n"+
+"          <p class=cui-users__password-success style=color:red ng-if=userRoles.getRolesDetailsError><b>{{'error-generic'|translate}}</b></p>\n"+
+"            <div class=cui-users__info-block>\n"+
+"                <div class=cui-media__content ng-if=\"userRoles.rolesDetails.length===0\">{{'cui-no-details'|translate}}</div>\n"+
+"              <div class=\"cui-media cui-media--border cui-media--tr\" ng-repeat=\"roles in userRoles.rolesDetails\">\n"+
+"                <div class=cui-media__body>\n"+
+"                  <span class=cui-media__content>{{roles.name}}</span>\n"+
+"                </div>\n"+
+"              </div>\n"+
+"        </div>\n"+
+"        </div>\n"+
+"        \n"+
+"        <div class=cui-users__profile-info ng-if=base.accessByAnyAdmin()>\n"+
+"            <div class=cui-action>\n"+
+"                <div class=cui-action__title>{{'cui-available-roles'|translate}}</div>\n"+
+"            </div>\n"+
+"            \n"+
+"            <div class=cui-media__content ng-if=\"userRoles.rolesGrantable.length===0&&!userRoles.grantedHistoryError\">{{'cui-no-details'|translate}}</div>\n"+
+"            <p class=cui-users__password-success style=color:red ng-if=userRoles.grantedHistoryError><b>{{'error-generic'|translate}}</b></p>\n"+
+"        <cui-expandable class=cui-expandable ng-repeat=\"roles in userRoles.rolesGrantable\" ng-class=\"application.expanded?'expanded':''\" transition-speed=150 style=\"border-bottom:1px solid #ddd\">\n"+
+"            <cui-expandable-title class=\"cui-expandable__title cui-expandable__title--flex\">\n"+
+"               \n"+
+"                <span class=cui-checkbox__container>\n"+
+"                    <input class=cui-checkbox type=checkbox id=\"{{'checkbox-'+roles.roleId}}\" ng-model=userRoles.appCheckbox[roles.roleId]>\n"+
+"                    <label for=\"{{'checkbox-'+roles.roleId}}\" class=cui-checkbox__label ng-click=userRoles.checkrequest(roles.roleId)></label>\n"+
+"                </span>\n"+
+"                \n"+
+"                <div class=cui-applications__expandable-info ng-click=toggleExpand()>\n"+
+"                    <h3 class=cui-expandable__title-left>{{roles.name}}</h3>\n"+
+"                </div>\n"+
+"                <svg cui-icon xmlns=http://www.w3.org/2000/svg class=\"cui-icon cui-icon--light-grey chevron\" ng-class=cui-hide__opacity preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 216 146\" ng-click=toggleExpand()>\n"+
+"                  <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/font-awesome/font-awesome-out.svg#chevron18></use>\n"+
+"                </svg>\n"+
+"            </cui-expandable-title>\n"+
+"            <cui-expandable-body class=cui-expandable__body>\n"+
+"                <div class=cui-expandable__body-pane>\n"+
+"                    <span class=cui-expandable__body-close ng-click=collapse()>\n"+
+"                        <svg xmlns=http://www.w3.org/2000/svg class=cui-icon preserveAspectRatio=\"xMidYMid meet\" viewBox=\"2 0 48 48\">\n"+
+"                          <use class=cui-icon__ref xlink:href=node_modules/@covisint/cui-icons/dist/icons/icons-out.svg#close-no-fill></use>\n"+
+"                        </svg>\n"+
+"                    </span>\n"+
+"                    <div class=cui-expandable__pane-col ng-if=\"roles.privileges && roles.privileges.length > 0\">\n"+
+"                        <h4 class=cui-expandable__pane-title>{{'privileges' | translate}}:</h4>\n"+
+"                        <span ng-if=\"(!roles.privileges || roles.privileges.length===0)\">{{'cui-no-details' | translate}}</span>\n"+
+"                        <div class=cui-expandable__pane-content>\n"+
+"                            <span class=cui-expandable__pane-content-item ng-repeat=\"privileges in roles.privileges\">\n"+
+"                                {{privileges.privilegeName}}\n"+
+"                            </span>\n"+
+"                        </div>\n"+
+"                    </div>\n"+
+"                </div>\n"+
+"            </cui-expandable-body>\n"+
+"        </cui-expandable>\n"+
+"            <div class=cui-applications__submit-options ng-if=\"userRoles.rolesGrantable.length>0&&!userRoles.grantedHistoryError\">\n"+
+"                <button class=cui-button ng-class=\"{'cui-button--error' : !userRoles.appCheckboxValid }\" ng-click=userRoles.appCheckboxValid&&userRoles.assignRoles()>\n"+
+"                    <span ng-if=!userRoles.rolessubmitError>{{'submit-request' | translate}}</span>\n"+
+"                    <span ng-if=\"userRoles.rolessubmitError===true\">{{'cui-error-try-again' | translate}}</span>\n"+
+"                </button>\n"+
+"            </div>\n"+
+"        </div>\n"+
+"    </div>\n"+
+"    </div>\n"+
+"</div>\n");
+
 
 }]);
 

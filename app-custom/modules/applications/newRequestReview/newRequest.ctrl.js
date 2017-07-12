@@ -1,14 +1,25 @@
 angular.module('applications')
-.controller('newAppRequestCtrl',['API','$scope','$state','AppRequests','localStorageService',
-function(API,$scope,$state,AppRequests,localStorage) {
+.controller('newAppRequestCtrl',['API','$scope','$state','AppRequests','localStorageService','Loader','$pagination','APIHelpers','$stateParams',
+function(API,$scope,$state,AppRequests,localStorage,Loader, $pagination,APIHelpers,$stateParams) {
 
     let newAppRequest = this;
+
+    newAppRequest.step="selectCategory"
+    newAppRequest.searchParams= Object.assign({}, $stateParams)
+    newAppRequest.searchParams.pageSize= newAppRequest.searchParams.pageSize||$pagination.getUserValue() || $pagination.getPaginationOptions()[0]
 
     // HELPER FUNCTIONS START ------------------------------------------------------------------------
 
     // HELPER FUNCTIONS END ---------------------------------------------------------------------------
 
     // ON LOAD START ----------------------------------------------------------------------------------------
+
+    // QIMS Customization Start
+    if(_.find(API.user.roles, (role) => { return role==="QI Employee Birthright"})){
+        newAppRequest.step="selectUser"
+        newAppRequest.requestBy="yourself"
+    }
+
 
     if(Object.keys(AppRequests.get()).length===0 && localStorage.get('appsBeingRequested')) {
         AppRequests.set(localStorage.get('appsBeingRequested'));
@@ -39,6 +50,45 @@ function(API,$scope,$state,AppRequests,localStorage) {
         $state.go('applications.search', {name: searchWord});
     };
 
+    newAppRequest.updateSearchParams = (page) => {
+        newAppRequest.searchParams.page=page
+        API.cui.getPersons({qs: APIHelpers.getQs(newAppRequest.searchParams)})
+        .then(res => {
+            newAppRequest.userList=res
+            Loader.offFor('newAppRequest.userList')
+            $scope.$digest()
+        })
+        .fail( err => {
+            console.log('There was an error fetching persons'+ err)
+
+        }) 
+    }
+
+    newAppRequest.userClick= (user) => {
+        newAppRequest.step="selectCategory"
+        newAppRequest.searchParams.userId=user.id
+        $state.transitionTo('applications.newRequest', newAppRequest.searchParams, {notify:false})
+    }
     // ON CLICK FUNCTIONS END -------------------------------------------------------------------------
 
+    // WATCHERS---------------------------------------------
+
+    $scope.$watch("newAppRequest.requestBy", (newValue) => {
+        if (newValue&&newValue==='others') {
+            if (!newAppRequest.userList) {
+                Loader.onFor('newAppRequest.userList')
+                API.cui.countPersons()
+                .then(count => {
+                    newAppRequest.userCount=count
+                    newAppRequest.updateSearchParams(1)
+                })
+                .fail( err => {
+                    console.log('There was an error fetching persons'+ err)
+                })
+            }
+            else{
+                Loader.offFor('newAppRequest.userList')
+            }
+        }
+    }, true)
 }]);

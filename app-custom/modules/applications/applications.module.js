@@ -27,7 +27,7 @@ angular.module('applications',[])
             access:loginRequired
         })
         .state('applications.newRequest', {
-            url: '/request',
+            url: '/request?userId',
             templateUrl: templateBase + 'newRequestReview/newRequest.html',
             controller: returnCtrlAs('newAppRequest'),
             access:loginRequired

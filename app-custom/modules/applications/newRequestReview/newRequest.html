@@ -28,6 +28,67 @@
             </svg>
         </div>
     </div>
+    <div ng-if="newAppRequest.step==='selectUser'">
+        <div class="cui-action cui-action--alt" disable-animate>
+          <div class="cui-radio cui-radio--basic-ltr">
+              <input class="cui-radio__input" type="radio" name="radio-choice-basic-yes" id="radio-choice-basic-yes" ng-model="newAppRequest.requestBy" value="yourself">
+              <label class="cui-radio__label" for="radio-choice-basic-yes"><span></span>Request for yourself</label>
+              <input class="cui-radio__input" type="radio" name="radio-choice-basic-yes" id="radio-choice-basic-no" ng-model="newAppRequest.requestBy" value="others">
+              <label class="cui-radio__label" for="radio-choice-basic-no"><span></span>Request for others</label>
+          </div>&nbsp;
+          <button class="cui-button" style="max-width:150px" ng-if="newAppRequest.requestBy==='yourself'" ng-click="newAppRequest.userClick(base.user)">{{'cui-next'|translate|capitalize}}</button>
+          <!-- <div class="cui-input-button cui-input-button--alt-bg" style="width:350px">
+              <input class="cui-input-button__input" ng-model="usersRegistrationRequests.searchValue" focus-if placeholder="{{'search' | translate}}" on-enter="usersRegistrationRequests.updateSearchByName"/>
+              <button class="cui-input-button__button" ng-click="usersRegistrationRequests.updateSearchByName()">{{'search' | translate}}</button>
+          </div> -->
+        </div>
+          <!-- Profile Content -->
+        <section class="cui-organization__main-container" ng-if="newAppRequest.requestBy==='others'">
+            <!-- User List Loading -->
+            <div class="cui-loading__container" ng-if="base.loader.for['newAppRequest.userList']">
+              <div class="cui-loader cui-loader--content" ng-include="'app/common-templates/partials/loader-content.html'"></div>
+            </div>
+
+            <cui-table-header 
+              headers="['cui-name', 'username', 'status']" 
+              sorting="newAppRequest.sortBy"
+              sorting-callbacks="newAppRequest.sortingCallbacks">
+            </cui-table-header>
+
+            <cui-table-row ng-repeat="user in newAppRequest.userList track by user.id" ng-click="newAppRequest.userClick(user)">
+              <li class="cui-flex-table__tr cui-flex-table__tr--c">
+                <!-- Avatar -->
+                <div class="cui-flex-table__avatar-col">
+                  <div class="cui-profile__user-avatar" aria-hidden="true" 
+                    cui-avatar cui-avatar-names="[user.name.given, user.name.surname]" 
+                    cui-avatar-color-class-prefix="cui-avatar__color" 
+                    cui-avatar-color-count="5"
+                  ></div>
+                </div>
+                <div class="cui-flex-table__mobile-stack">
+                  <!-- Name -->
+                  <div class="cui-flex-table__left"><span class="cui-flex-table__title">{{user.name.given}} {{user.name.surname}}</span></div>
+                  <!-- Username -->
+                  <div class="cui-flex-table__middle"><span class="cui-mobile-only">{{'username' | translate | lowercase}}: &nbsp;</span>{{user.username}}</div>
+                  <!-- Status -->
+                  <div class="cui-flex-table__right">
+                    <span class="cui-mobile-only">{{'apps' | translate}} ({{user.appCount}}) &nbsp;</span>
+                    <span ng-class="'cui-status--'+user.status">{{user.status}}</span>
+                  </div>
+                </div>
+              </li>
+            </cui-table-row>
+
+            <!-- Pagination Controls -->
+            <div class="cui-paginate__container" ng-if="!base.loader.for['newAppRequest.userList']">
+              <span class="cui-paginate__results-label">{{'cui-num-results-page' | translate}}</span>
+              <results-per-page class="cui-paginate__select" ng-model="newAppRequest.searchParams.pageSize"></results-per-page>
+              <paginate class="cui-paginate" results-per-page="newAppRequest.searchParams.pageSize" count="newAppRequest.userCount" on-page-change="newAppRequest.updateSearchParams" ng-model="newAppRequest.searchParams.page" attach-rerender-to="newAppRequest.reRenderPagination"></paginate>
+            </div>
+
+        </section>
+    </div>
+    <div ng-if="newAppRequest.step==='selectCategory'">
     <div class="cui-action cui-action--alt">
         <h3 class="cui-action__title">{{'select-applications'| translate}}</h3>
         <div class="cui-action__actions">
@@ -79,4 +140,5 @@
             </div>
         </div>
     </div>
+    <div>
 </div>
