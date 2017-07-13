@@ -141,6 +141,40 @@ angular.module('applications')
             }
         }
     }
+    applicationReview.checkValidDomain = function(email) {
+        var EMAIL_REGEXP = /^[a-z0-9!#$%&*?_.-]+@[a-z0-9!#$%&*?_.-][a-z0-9!#$%&*?_.-]+[.][a-z0-9!#$%&*?_.-][a-z0-9!#$%&*?_.-]+/i;
+        if (email&&EMAIL_REGEXP.test(applicationReview.extendedData.email)) {
+            let domain=email.slice(
+                applicationReview.extendedData.email.indexOf('@')+1,
+                applicationReview.extendedData.email.length
+            )
+            API.cui.lookupDomain({domain:domain})
+            .then( res => {
+                applicationReview.validDomain=true
+                $scope.$digest()
+            })
+            .fail(err =>{
+                console.log('Invalid mail' + err)
+                applicationReview.validDomain=false
+                $scope.$digest()
+            })
+        }
+    }
+
+    applicationReview.checkValidProtocol = function(protocol){
+        if (protocol) {
+            API.cui.lookupProtocol({protocol:protocol})
+            .then( res => {
+                applicationReview.validProtocol=true
+                $scope.$digest()
+            })
+            .fail(err =>{
+                console.log('Invalid mail' + err)
+                applicationReview.validProtocol=false
+                $scope.$digest()
+            })
+        }
+    }
     // ON CLICK END -----------------------------------------------------------------------------------
 
 }]);

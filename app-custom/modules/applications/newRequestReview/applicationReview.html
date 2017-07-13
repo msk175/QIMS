@@ -64,11 +64,13 @@
               <div class="cui-error" ng-messages="reviewRequest.email.$error" ng-if="reviewRequest.email.$dirty">
                 <div class="cui-error__message" ng-message="required">{{'cui-this-field-is-required' | translate}}</div>
               </div>
+              <!-- domain error -->
+              <div class="cui-error" ng-if="!reviewRequest.email.$error.email&& !reviewRequest.email.$error.required&&applicationReview.validDomain===false">This is not a valid domain</div>
               <!-- email regex validation -->
                 <div class="cui-error" ng-if="reviewRequest.email.$error.email && reviewRequest.email.$dirty">
                     <div class="cui-error__message">{{'cui-this-is-not-valid-email' | translate}}</div>
                 </div>
-              <input type="text" name="email" class="cui-input" ng-required="true" custom-error="applicationReview.customError.email" ng-model="applicationReview.extendedData.email"/>
+              <input type="text" name="email" class="cui-input" ng-required="true" custom-error="applicationReview.customError.email" ng-model="applicationReview.extendedData.email" ng-blur="applicationReview.checkValidDomain(applicationReview.extendedData.email)"/>
             </div>
         </div>
 
@@ -79,7 +81,9 @@
               <div class="cui-error" ng-messages="reviewRequest.protocol.$error" ng-if="reviewRequest.protocol.$dirty">
                 <div class="cui-error__message" ng-message="required">{{'cui-this-field-is-required' | translate}}</div>
               </div>
-              <input type="text" ng-model="applicationReview.extendedData.protocol" name="protocol" class="cui-input" ng-required="true"/>
+              <!-- domain error -->
+              <div class="cui-error" ng-if="!reviewRequest.protocol.$error.required&&applicationReview.validProtocol===false">This is not a valid protocol</div>
+              <input type="text" ng-model="applicationReview.extendedData.protocol" name="protocol" class="cui-input" ng-required="true" ng-blur=" applicationReview.checkValidProtocol(applicationReview.extendedData.protocol)"/>
             </div>
         </div>
         <div>
@@ -124,7 +128,7 @@
             </div>
             <div class="cui-applications__submit-options">
                 <a class="cui-link" ng-click="base.goBack('applications.search')">{{'cui-cancel' | translate}}</a>
-                <button class="cui-button" ng-class="{'cui-button--error' : !reviewRequest.$valid}" ng-click="applicationReview.requestReasonRequired=true;reviewRequest.$valid&&applicationReview.submit()">
+                <button class="cui-button" ng-class="{'cui-button--error' : !reviewRequest.$valid&&applicationReview.validDomain}" ng-click="applicationReview.requestReasonRequired=true;reviewRequest.$valid&&applicationReview.validDomain&&applicationReview.submit()">
                     <span ng-if="!applicationReview.error">{{'submit-request' | translate}}</span>
                     <span ng-if="applicationReview.error===true">{{'cui-error-try-again' | translate}}</span>
                 </button>
