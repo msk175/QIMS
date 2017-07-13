@@ -919,5 +919,19 @@
     "accepts": "application/vnd.com.covisint.platform.password.v1+json",
     "contentType":" application/vnd.com.covisint.platform.password.v1+json",
     "call": "/authn/v4/passwords/tasks/unlock"
+  },
+  {
+    "cmd":"lookupDomain",
+    "cmdType": "secured",
+    "type":"GET",
+    "accepts": "text/plain",
+    "call": "/kv/v1/kv/{domain}"
+  },
+    {
+    "cmd":"lookupProtocol",
+    "cmdType": "secured",
+    "type":"GET",
+    "accepts": "text/plain",
+    "call": "/kv/v1/kv/{protocol}"
   }
 ]
