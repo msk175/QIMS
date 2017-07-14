@@ -87,13 +87,13 @@
       <input type="text" ng-model="userWalkup.extended.studyList" class="cui-input" ng-required="false" name="studyList"/>
     </div>
   </div>
-
+  <div class="cui-form__title" style="
+    padding-left: -0px;">{{'Applications' | translate}}</div>
   <div ng-repeat="application in userWalkup.publicRegApps track by application.id" style="margin-bottom:10px">
     <!-- <cui-expandable class="cui-expandable">
       <cui-expandable-title class="cui-expandable__title cui-expandable__title--flex" ng-click="toggleExpand()">
         <div> -->
-        <input id="application{{application.id}}" type="checkbox" ng-model="userWalkup.applications.selected[application.id]" ng-true-value="'{{application.id}},{{application.servicePackage.id}},{{application.name | cuiI18n}},{{application.servicePackage.personTacEnabled}}'" ng-false-value="null" ng-change="userWalkup.applications.updateNumberOfSelected(userWalkup.applications.selected[application.id],application)" style="margin-right:10px"/>
-        <span ng-bind="application.name | cuiI18n"></span>
+        <b><span ng-bind="application.name | cuiI18n"></span></b>
         </div>
       <!-- </cui-expandable-title> -->
 

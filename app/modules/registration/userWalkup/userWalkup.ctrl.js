@@ -264,14 +264,14 @@ userWalkup.initializing = false
                 'X-Random-Shit':'123123123'
              },
              data: {
-                "firstName":userWalkup.user.name.given,
-                "lastName":userWalkup.user.name.surname,
-                "email":userWalkup.user.email,
-                "country":userWalkup.userCountry,
-                "cellPhone":userWalkup.user.phones[0].number,
-                "medicalLicenseNo":userWalkup.extended.medicalLicence,
-                "studyList":userWalkup.extended.studyList,
-                "servicePackage":userWalkup.applications.selected[application.id]
+                "firstName":if(userWalkup.user.name.given){userWalkup.user.name.given}else{""},
+                "lastName":if(userWalkup.user.name.surname){userWalkup.user.name.surname}else{""},
+                "email":if(userWalkup.user.email){userWalkup.user.email}else{""},
+                "country":if(userWalkup.userCountry){userWalkup.userCountry}else{""},
+                "cellPhone":if(userWalkup.user.phones[0].number){userWalkup.user.phones[0].number}else{""},
+                "medicalLicenseNo":if(userWalkup.extended.medicalLicence){userWalkup.extended.medicalLicence}else{""},
+                "studyList":if(userWalkup.extended.studyList){userWalkup.extended.studyList}else{""},
+                "servicePackage":"PQ-QIMS-DEMO2757657584"
             }
             }).then(function successCallback(response) {
                 $state.go('misc.success')
