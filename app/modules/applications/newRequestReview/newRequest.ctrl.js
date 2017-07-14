@@ -3,7 +3,6 @@ angular.module('applications')
 function(API,$scope,$state,AppRequests,localStorage,Loader, $pagination,APIHelpers,$stateParams) {
 
     let newAppRequest = this;
-
     newAppRequest.step="selectCategory"
     newAppRequest.searchParams= Object.assign({}, $stateParams)
     newAppRequest.searchParams.pageSize= newAppRequest.searchParams.pageSize||$pagination.getUserValue() || $pagination.getPaginationOptions()[0]
@@ -47,27 +46,34 @@ function(API,$scope,$state,AppRequests,localStorage,Loader, $pagination,APIHelpe
     // ON CLICK FUNCTIONS START -----------------------------------------------------------------------
 
     newAppRequest.searchCallback = function(searchWord) {
-        $state.go('applications.search', {name: searchWord});
+        $state.go('applications.search', {name: searchWord , userId:newAppRequest.userId});
     };
 
     newAppRequest.updateSearchParams = (page) => {
+        Loader.onFor('newAppRequest.userList')
         newAppRequest.searchParams.page=page
         API.cui.getPersons({qs: APIHelpers.getQs(newAppRequest.searchParams)})
         .then(res => {
+            _.remove(res,{id:API.user.id})
             newAppRequest.userList=res
             Loader.offFor('newAppRequest.userList')
             $scope.$digest()
         })
         .fail( err => {
             console.log('There was an error fetching persons'+ err)
-
+            Loader.offFor('newAppRequest.userList')
         }) 
     }
 
     newAppRequest.userClick= (user) => {
         newAppRequest.step="selectCategory"
         newAppRequest.searchParams.userId=user.id
+        newAppRequest.userId=user.id
         $state.transitionTo('applications.newRequest', newAppRequest.searchParams, {notify:false})
+    }
+
+    newAppRequest.updateSearchByEmailCallback = () => {
+        newAppRequest.updateSearchParams(1)
     }
     // ON CLICK FUNCTIONS END -------------------------------------------------------------------------
 
@@ -76,7 +82,7 @@ function(API,$scope,$state,AppRequests,localStorage,Loader, $pagination,APIHelpe
     $scope.$watch("newAppRequest.requestBy", (newValue) => {
         if (newValue&&newValue==='others') {
             if (!newAppRequest.userList) {
-                Loader.onFor('newAppRequest.userList')
+                // Loader.onFor('newAppRequest.userList')
                 API.cui.countPersons()
                 .then(count => {
                     newAppRequest.userCount=count

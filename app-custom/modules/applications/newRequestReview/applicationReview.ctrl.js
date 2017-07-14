@@ -1,8 +1,8 @@
 angular.module('applications')
-.controller('applicationReviewCtrl',['$scope','API','AppRequests','$timeout','$state','$q','localStorageService',function($scope,API,AppRequests,$timeout,$state,$q,localStorage) {
+.controller('applicationReviewCtrl',['$scope','API','AppRequests','$timeout','$state','$q','localStorageService','$stateParams',function($scope,API,AppRequests,$timeout,$state,$q,localStorage,$stateParams) {
 
     let applicationReview=this;
-
+    applicationReview.userId= $stateParams.userId
     if(Object.keys(AppRequests.get()).length===0 && localStorage.get('appsBeingRequested')) {
         AppRequests.set(localStorage.get('appsBeingRequested'));
     }
@@ -93,7 +93,7 @@ angular.module('applications')
         if (!requestsValid()) {
             return;
         }
-        const appRequests=AppRequests.getPackageRequests(API.getUser(),applicationRequestArray);
+        const appRequests=AppRequests.getPackageRequests(applicationReview.userId,applicationRequestArray);
 
         let requestsPromises=[];
 

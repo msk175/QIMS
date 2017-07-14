@@ -1,7 +1,7 @@
 angular.module('applications')
 .controller('applicationSearchCtrl',['API','$scope','$stateParams','$state','AppRequests','localStorageService','$q','$pagination', function (API,$scope,$stateParams,$state,AppRequests,localStorage,$q,$pagination) {
     let applicationSearch = this;
-
+    applicationSearch.userId=$stateParams.userId
     if(Object.keys(AppRequests.get()).length===0 && localStorage.get('appsBeingRequested')) { // If there's nothing in app memory and there's something in local storage
         AppRequests.set(localStorage.get('appsBeingRequested'));
     }
@@ -35,7 +35,7 @@ angular.module('applications')
                         qs.push(['service.id',realtedApp.id])
                     }
                     if (index===app.relatedApps.length-1&&qs.length!==0) {
-                        apiPromises.push(API.cui.getPersonRequestableApps({personId:API.getUser(),qs:qs}))
+                        apiPromises.push(API.cui.getPersonRequestableApps({personId:applicationSearch.userId,qs:qs}))
                         qs=[]
                     }
                 })
@@ -60,6 +60,12 @@ angular.module('applications')
                 deferred.reject(err)
         })
         return deferred.promise
+    }
+
+    const updateViewListForUSUsers = () => {
+        if (applicationSearch.person.addresses[0].country!=='US') {
+            _.remove(applicationSearch.viewList,{id:'2757598184'})
+        }
     }
 
     // HELPER FUNCTIONS END --------------------------------------------------------------------------
@@ -101,8 +107,7 @@ angular.module('applications')
         query.push(['page',String(applicationSearch.search.page)]);
 
         let opts = {
-            personId: API.getUser(),
-            useCuid:true,
+            personId: applicationSearch.userId,
             qs: query
         };
 
@@ -114,11 +119,16 @@ angular.module('applications')
              applicationSearch.count = res[1];
              updateViewList(res[0])
              .then(() =>{
+                updateViewListForUSUsers()
                 applicationSearch.doneReloading = applicationSearch.doneLoading = true;
              })
         });
     };
-    onLoad(false);
+    API.cui.getPerson({personId:applicationSearch.userId})
+    .then(res => {
+        applicationSearch.person=res
+        onLoad(false)
+    })
 
     // ON LOAD END ------------------------------------------------------------------------------------
 
@@ -170,18 +180,18 @@ angular.module('applications')
             }
         })
         if (qs.length!==0) {
-            API.cui.getPersonRequestableApps({personId:API.getUser(),qs:qs})
+            API.cui.getPersonRequestableApps({personId:applicationSearch.userId,qs:qs})
             .then(res => {
                 res.forEach(app =>{
                     applicationSearch.packageRequests[app.id] = app
                 })
                 AppRequests.set(applicationSearch.packageRequests);
-                $state.go('applications.reviewRequest');
+                $state.go('applications.reviewRequest',{userId:applicationSearch.userId});
             })
         }
         else{
             AppRequests.set(applicationSearch.packageRequests);
-            $state.go('applications.reviewRequest');
+            $state.go('applications.reviewRequest',{userId:applicationSearch.userId});
         }
     };
 

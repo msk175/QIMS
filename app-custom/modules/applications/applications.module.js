@@ -33,13 +33,13 @@ angular.module('applications',[])
             access:loginRequired
         })
         .state('applications.search', {
-            url: '/search?name&category&page&pageSize',
+            url: '/search?name&category&page&pageSize?userId',
             templateUrl: templateBase + 'search/applicationSearch.html',
             controller: returnCtrlAs('applicationSearch'),
             access:loginRequired
         })
         .state('applications.reviewRequest', {
-            url: '/review',
+            url: '/review?userId',
             templateUrl: templateBase + 'newRequestReview/applicationReview.html',
             controller: returnCtrlAs('applicationReview'),
             access:loginRequired

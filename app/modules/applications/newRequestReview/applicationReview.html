@@ -13,7 +13,7 @@
 </div>
 <div class="cui-applications__review">
     <div class="cui-action">
-        <div class="cui-action__title" ng-click="base.goBack('applications.search')">&#60; {{'new-request' | translate}}</div>
+        <div class="cui-action__title" ng-click="base.goBack('applications.search',{userId:applicationReview.userId})">&#60; {{'new-request' | translate}}</div>
         <div class="cui-action__actions">
 
             <!-- close icon -->
@@ -127,7 +127,7 @@
                 </div>
             </div>
             <div class="cui-applications__submit-options">
-                <a class="cui-link" ng-click="base.goBack('applications.search')">{{'cui-cancel' | translate}}</a>
+                <a class="cui-link" ng-click="base.goBack('applications.search',{userId:applicationReview.userId})">{{'cui-cancel' | translate}}</a>
                 <button class="cui-button" ng-class="{'cui-button--error' : !reviewRequest.$valid&&applicationReview.validDomain}" ng-click="applicationReview.requestReasonRequired=true;reviewRequest.$valid&&applicationReview.validDomain&&applicationReview.submit()">
                     <span ng-if="!applicationReview.error">{{'submit-request' | translate}}</span>
                     <span ng-if="applicationReview.error===true">{{'cui-error-try-again' | translate}}</span>
