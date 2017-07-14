@@ -1,5 +1,5 @@
 angular.module('registration')
-.controller('userWalkupCtrl', function(APIError, localStorageService, Registration, $scope, $state,$q,LocaleService, $window,Base,$pagination,$filter) {
+.controller('userWalkupCtrl', function(APIError, localStorageService, Registration, $scope, $state,$q,LocaleService, $window,Base,$pagination,$filter,API,$http) {
 
     const userWalkup = this
 
@@ -58,7 +58,7 @@ angular.module('registration')
         userWalkup.languages[index].name=language;
     })
     userWalkup.user.language=_.find(userWalkup.languages,{id:userWalkup.browserPreference})
-    Registration.initWalkupRegistration(userWalkup.orgPaginationSize)
+    /*Registration.initWalkupRegistration(userWalkup.orgPaginationSize)
     .then(res => {
         const questions = res.securityQuestions
 
@@ -82,7 +82,8 @@ angular.module('registration')
     })
     .catch(error => {
         $state.go('misc.loadError')
-    })
+    })*/
+userWalkup.initializing = false
 
     /* --------------------------------------------- ON LOAD END ---------------------------------------------- */
 
@@ -227,6 +228,75 @@ angular.module('registration')
         })
     }
 
+    userWalkup.submitPublic = () => {
+        userWalkup.submitting = true
+        userWalkup.submitError = false
+        userWalkup.captchaEntryError=false
+        let string = userWalkup.captchaOnload.split(' ').join('')
+
+        if (string == userWalkup.captchaEntry) {
+            $http({
+              method: 'POST',
+              url: 'http://kv-1-qa.run.covisintrnd.com/kv/my_key',
+              headers: {
+               'Content-Type': 'text/plain',
+               'Accept':'text/plain',
+               'x-realm':'Q-QIMS-DEMO',
+               'x-requestor': '[Q-QIMS-DEMO]Q-QIMS-DEMO_ADMIN',
+               'x-requestor-app': 'jAZJnDfFXRDYen6HqADmIpTLcTEmt36z',
+               'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
+                'X-Random-Shit':'123123123'
+             },
+             data: {
+                "firstName":"Srini",
+                "lastName":"Madala",
+                "email":"srinivas.madala@covisint.com",
+                "country":"USA",
+                "cellPhone":"248-483-2222",
+                "medicalLicenseNo":"12345",
+                "studyList":"TESTFINANCE01"
+            }
+            }).then(function successCallback(response) {
+                $state.go('misc.success')
+              }, function errorCallback(response) {
+                userWalkup.submitError = true
+                userWalkup.submitting = false
+                if (response.responseJSON) {
+                userWalkup.errorMessage = response.responseJSON.apiMessage
+            }
+            else {
+                userWalkup.errorMessage = 'Error submitting registration request'
+            }
+              });
+        }
+        else {
+            userWalkup.captchaEntryError=true
+            userWalkup.submitting = false
+            $scope.$apply();
+        }
+
+
+
+        /*API.cui.createRegPublic({key:userWalkup.user.email,data:data})
+        .then(() => {
+            userWalkup.success = true
+            userWalkup.submitting = false
+            $state.go('misc.success')
+        })
+        .fail(error => {
+            userWalkup.submitError = true
+            userWalkup.submitting = false
+            if (error.responseJSON) {
+                userWalkup.errorMessage = error.responseJSON.apiMessage
+            }
+            else {
+                userWalkup.errorMessage = 'Error submitting registration request'
+            }
+        })*/
+    }
+
     userWalkup.selectOrganization = (organization) => {
         userWalkup.organization = organization
         userWalkup.applications.numberOfSelected = 0 // Restart applications count
@@ -294,11 +364,11 @@ angular.module('registration')
 
     /* -------------------------------------------- WATCHERS START -------------------------------------------- */
 
-    $scope.$watch('userWalkup.user', (a) => {
+    /*$scope.$watch('userWalkup.user', (a) => {
         if (a && Object.keys(a).length !== 0) {
             localStorageService.set('userWalkup.user', a);
         }
-    }, true)
+    }, true)*/
 
     $scope.$watch('userWalkup.orgFilterByname', (a) => {
         if (a!==undefined) {
@@ -318,7 +388,7 @@ angular.module('registration')
               
     })
 
-    userWalkup.checkDuplicateEmail = (value) => {
+ /*   userWalkup.checkDuplicateEmail = (value) => {
         if (value &&value!=="") {
             $q.all([Registration.isEmailTaken(value).promise])
             .then(res => {
@@ -330,7 +400,7 @@ angular.module('registration')
         }        
     }
     
-    userWalkup.checkDuplicateEmail(userWalkup.user.email)
+    userWalkup.checkDuplicateEmail(userWalkup.user.email)*/
     userWalkup.customErrors = {
         userName: {
             usernameTaken: Registration.isUsernameTaken
@@ -391,9 +461,9 @@ angular.module('registration')
                     email:!EMAIL_REGXP.test(value)
                 }
                 //emailTaken:
-                if (!userWalkup.inlineEdit.emailError.required && !userWalkup.inlineEdit.emailError.email) {
+                /*if (!userWalkup.inlineEdit.emailError.required && !userWalkup.inlineEdit.emailError.email) {
                     userWalkup.checkDuplicateEmail(value)
-                }
+                }*/
                   
             }
             userWalkup.inlineEdit.noSaveEmail=value==="" || !value || !EMAIL_REGXP.test(value)
@@ -516,4 +586,47 @@ angular.module('registration')
 
     /* --------------------------------------------- WATCHERS END --------------------------------------------- */
 
+    var alpha = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
+    var i;
+    for (i = 0; i < 6; i++) {
+        var a = alpha[Math.floor(Math.random() * alpha.length)];
+        var b = alpha[Math.floor(Math.random() * alpha.length)];
+        var c = alpha[Math.floor(Math.random() * alpha.length)];
+        var d = alpha[Math.floor(Math.random() * alpha.length)];
+        var e = alpha[Math.floor(Math.random() * alpha.length)];
+        var f = alpha[Math.floor(Math.random() * alpha.length)];
+        var g = alpha[Math.floor(Math.random() * alpha.length)];
+    }
+    var code = a + ' ' + b + ' ' + ' ' + c + ' ' + d + ' ' + e + ' ' + f + ' ' + g;
+    userWalkup.captchaOnload = code
+
+    userWalkup.reload=()=>{
+        var alpha = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
+    var i;
+    for (i = 0; i < 6; i++) {
+        var a = alpha[Math.floor(Math.random() * alpha.length)];
+        var b = alpha[Math.floor(Math.random() * alpha.length)];
+        var c = alpha[Math.floor(Math.random() * alpha.length)];
+        var d = alpha[Math.floor(Math.random() * alpha.length)];
+        var e = alpha[Math.floor(Math.random() * alpha.length)];
+        var f = alpha[Math.floor(Math.random() * alpha.length)];
+        var g = alpha[Math.floor(Math.random() * alpha.length)];
+    }
+    var code = a + ' ' + b + ' ' + ' ' + c + ' ' + d + ' ' + e + ' ' + f + ' ' + g;
+    userWalkup.captchaOnload = code
+    }
+
+function ValidCaptcha() {
+    var string1 = removeSpaces(document.getElementById('mainCaptcha').value);
+    var string2 = removeSpaces(document.getElementById('txtInput').value);
+    if (string1 == string2) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+function removeSpaces(string) {
+    return string.split(' ').join('');
+}
 })

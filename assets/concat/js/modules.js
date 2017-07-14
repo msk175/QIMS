@@ -1263,7 +1263,7 @@ angular.module('registration')
 })
 
 angular.module('registration')
-.controller('userWalkupCtrl', function(APIError, localStorageService, Registration, $scope, $state,$q,LocaleService, $window,Base,$pagination,$filter) {
+.controller('userWalkupCtrl', function(APIError, localStorageService, Registration, $scope, $state,$q,LocaleService, $window,Base,$pagination,$filter,API,$http) {
 
     const userWalkup = this
 
@@ -1322,7 +1322,7 @@ angular.module('registration')
         userWalkup.languages[index].name=language;
     })
     userWalkup.user.language=_.find(userWalkup.languages,{id:userWalkup.browserPreference})
-    Registration.initWalkupRegistration(userWalkup.orgPaginationSize)
+    /*Registration.initWalkupRegistration(userWalkup.orgPaginationSize)
     .then(res => {
         const questions = res.securityQuestions
 
@@ -1346,7 +1346,8 @@ angular.module('registration')
     })
     .catch(error => {
         $state.go('misc.loadError')
-    })
+    })*/
+userWalkup.initializing = false
 
     /* --------------------------------------------- ON LOAD END ---------------------------------------------- */
 
@@ -1491,6 +1492,75 @@ angular.module('registration')
         })
     }
 
+    userWalkup.submitPublic = () => {
+        userWalkup.submitting = true
+        userWalkup.submitError = false
+        userWalkup.captchaEntryError=false
+        let string = userWalkup.captchaOnload.split(' ').join('')
+
+        if (string == userWalkup.captchaEntry) {
+            $http({
+              method: 'POST',
+              url: 'http://kv-1-qa.run.covisintrnd.com/kv/my_key',
+              headers: {
+               'Content-Type': 'text/plain',
+               'Accept':'text/plain',
+               'x-realm':'Q-QIMS-DEMO',
+               'x-requestor': '[Q-QIMS-DEMO]Q-QIMS-DEMO_ADMIN',
+               'x-requestor-app': 'jAZJnDfFXRDYen6HqADmIpTLcTEmt36z',
+               'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
+                'X-Random-Shit':'123123123'
+             },
+             data: {
+                "firstName":"Srini",
+                "lastName":"Madala",
+                "email":"srinivas.madala@covisint.com",
+                "country":"USA",
+                "cellPhone":"248-483-2222",
+                "medicalLicenseNo":"12345",
+                "studyList":"TESTFINANCE01"
+            }
+            }).then(function successCallback(response) {
+                $state.go('misc.success')
+              }, function errorCallback(response) {
+                userWalkup.submitError = true
+                userWalkup.submitting = false
+                if (response.responseJSON) {
+                userWalkup.errorMessage = response.responseJSON.apiMessage
+            }
+            else {
+                userWalkup.errorMessage = 'Error submitting registration request'
+            }
+              });
+        }
+        else {
+            userWalkup.captchaEntryError=true
+            userWalkup.submitting = false
+            $scope.$apply();
+        }
+
+
+
+        /*API.cui.createRegPublic({key:userWalkup.user.email,data:data})
+        .then(() => {
+            userWalkup.success = true
+            userWalkup.submitting = false
+            $state.go('misc.success')
+        })
+        .fail(error => {
+            userWalkup.submitError = true
+            userWalkup.submitting = false
+            if (error.responseJSON) {
+                userWalkup.errorMessage = error.responseJSON.apiMessage
+            }
+            else {
+                userWalkup.errorMessage = 'Error submitting registration request'
+            }
+        })*/
+    }
+
     userWalkup.selectOrganization = (organization) => {
         userWalkup.organization = organization
         userWalkup.applications.numberOfSelected = 0 // Restart applications count
@@ -1558,11 +1628,11 @@ angular.module('registration')
 
     /* -------------------------------------------- WATCHERS START -------------------------------------------- */
 
-    $scope.$watch('userWalkup.user', (a) => {
+    /*$scope.$watch('userWalkup.user', (a) => {
         if (a && Object.keys(a).length !== 0) {
             localStorageService.set('userWalkup.user', a);
         }
-    }, true)
+    }, true)*/
 
     $scope.$watch('userWalkup.orgFilterByname', (a) => {
         if (a!==undefined) {
@@ -1582,7 +1652,7 @@ angular.module('registration')
               
     })
 
-    userWalkup.checkDuplicateEmail = (value) => {
+ /*   userWalkup.checkDuplicateEmail = (value) => {
         if (value &&value!=="") {
             $q.all([Registration.isEmailTaken(value).promise])
             .then(res => {
@@ -1594,7 +1664,7 @@ angular.module('registration')
         }        
     }
     
-    userWalkup.checkDuplicateEmail(userWalkup.user.email)
+    userWalkup.checkDuplicateEmail(userWalkup.user.email)*/
     userWalkup.customErrors = {
         userName: {
             usernameTaken: Registration.isUsernameTaken
@@ -1655,9 +1725,9 @@ angular.module('registration')
                     email:!EMAIL_REGXP.test(value)
                 }
                 //emailTaken:
-                if (!userWalkup.inlineEdit.emailError.required && !userWalkup.inlineEdit.emailError.email) {
+                /*if (!userWalkup.inlineEdit.emailError.required && !userWalkup.inlineEdit.emailError.email) {
                     userWalkup.checkDuplicateEmail(value)
-                }
+                }*/
                   
             }
             userWalkup.inlineEdit.noSaveEmail=value==="" || !value || !EMAIL_REGXP.test(value)
@@ -1780,6 +1850,49 @@ angular.module('registration')
 
     /* --------------------------------------------- WATCHERS END --------------------------------------------- */
 
+    var alpha = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
+    var i;
+    for (i = 0; i < 6; i++) {
+        var a = alpha[Math.floor(Math.random() * alpha.length)];
+        var b = alpha[Math.floor(Math.random() * alpha.length)];
+        var c = alpha[Math.floor(Math.random() * alpha.length)];
+        var d = alpha[Math.floor(Math.random() * alpha.length)];
+        var e = alpha[Math.floor(Math.random() * alpha.length)];
+        var f = alpha[Math.floor(Math.random() * alpha.length)];
+        var g = alpha[Math.floor(Math.random() * alpha.length)];
+    }
+    var code = a + ' ' + b + ' ' + ' ' + c + ' ' + d + ' ' + e + ' ' + f + ' ' + g;
+    userWalkup.captchaOnload = code
+
+    userWalkup.reload=()=>{
+        var alpha = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
+    var i;
+    for (i = 0; i < 6; i++) {
+        var a = alpha[Math.floor(Math.random() * alpha.length)];
+        var b = alpha[Math.floor(Math.random() * alpha.length)];
+        var c = alpha[Math.floor(Math.random() * alpha.length)];
+        var d = alpha[Math.floor(Math.random() * alpha.length)];
+        var e = alpha[Math.floor(Math.random() * alpha.length)];
+        var f = alpha[Math.floor(Math.random() * alpha.length)];
+        var g = alpha[Math.floor(Math.random() * alpha.length)];
+    }
+    var code = a + ' ' + b + ' ' + ' ' + c + ' ' + d + ' ' + e + ' ' + f + ' ' + g;
+    userWalkup.captchaOnload = code
+    }
+
+function ValidCaptcha() {
+    var string1 = removeSpaces(document.getElementById('mainCaptcha').value);
+    var string2 = removeSpaces(document.getElementById('txtInput').value);
+    if (string1 == string2) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+function removeSpaces(string) {
+    return string.split(' ').join('');
+}
 })
 
 angular.module('organization', [])
@@ -11552,19 +11665,19 @@ angular.module('applications',[])
             access:loginRequired
         })
         .state('applications.newRequest', {
-            url: '/request',
+            url: '/request?userId',
             templateUrl: templateBase + 'newRequestReview/newRequest.html',
             controller: returnCtrlAs('newAppRequest'),
             access:loginRequired
         })
         .state('applications.search', {
-            url: '/search?name&category&page&pageSize',
+            url: '/search?name&category&page&pageSize?userId',
             templateUrl: templateBase + 'search/applicationSearch.html',
             controller: returnCtrlAs('applicationSearch'),
             access:loginRequired
         })
         .state('applications.reviewRequest', {
-            url: '/review',
+            url: '/review?userId',
             templateUrl: templateBase + 'newRequestReview/applicationReview.html',
             controller: returnCtrlAs('applicationReview'),
             access:loginRequired
@@ -12122,10 +12235,10 @@ angular.module('applications')
 })
 
 angular.module('applications')
-.controller('applicationReviewCtrl',['$scope','API','AppRequests','$timeout','$state','$q','localStorageService',function($scope,API,AppRequests,$timeout,$state,$q,localStorage) {
+.controller('applicationReviewCtrl',['$scope','API','AppRequests','$timeout','$state','$q','localStorageService','$stateParams',function($scope,API,AppRequests,$timeout,$state,$q,localStorage,$stateParams) {
 
     let applicationReview=this;
-
+    applicationReview.userId= $stateParams.userId
     if(Object.keys(AppRequests.get()).length===0 && localStorage.get('appsBeingRequested')) {
         AppRequests.set(localStorage.get('appsBeingRequested'));
     }
@@ -12216,7 +12329,7 @@ angular.module('applications')
         if (!requestsValid()) {
             return;
         }
-        const appRequests=AppRequests.getPackageRequests(API.getUser(),applicationRequestArray);
+        const appRequests=AppRequests.getPackageRequests(applicationReview.userId,applicationRequestArray);
 
         let requestsPromises=[];
 
@@ -12264,20 +12377,64 @@ angular.module('applications')
             }
         }
     }
+    applicationReview.checkValidDomain = function(email) {
+        var EMAIL_REGEXP = /^[a-z0-9!#$%&*?_.-]+@[a-z0-9!#$%&*?_.-][a-z0-9!#$%&*?_.-]+[.][a-z0-9!#$%&*?_.-][a-z0-9!#$%&*?_.-]+/i;
+        if (email&&EMAIL_REGEXP.test(applicationReview.extendedData.email)) {
+            let domain=email.slice(
+                applicationReview.extendedData.email.indexOf('@')+1,
+                applicationReview.extendedData.email.length
+            )
+            API.cui.lookupDomain({domain:domain})
+            .then( res => {
+                applicationReview.validDomain=true
+                $scope.$digest()
+            })
+            .fail(err =>{
+                console.log('Invalid mail' + err)
+                applicationReview.validDomain=false
+                $scope.$digest()
+            })
+        }
+    }
+
+    applicationReview.checkValidProtocol = function(protocol){
+        if (protocol) {
+            API.cui.lookupProtocol({protocol:protocol})
+            .then( res => {
+                applicationReview.validProtocol=true
+                $scope.$digest()
+            })
+            .fail(err =>{
+                console.log('Invalid mail' + err)
+                applicationReview.validProtocol=false
+                $scope.$digest()
+            })
+        }
+    }
     // ON CLICK END -----------------------------------------------------------------------------------
 
 }]);
 angular.module('applications')
-.controller('newAppRequestCtrl',['API','$scope','$state','AppRequests','localStorageService',
-function(API,$scope,$state,AppRequests,localStorage) {
+.controller('newAppRequestCtrl',['API','$scope','$state','AppRequests','localStorageService','Loader','$pagination','APIHelpers','$stateParams',
+function(API,$scope,$state,AppRequests,localStorage,Loader, $pagination,APIHelpers,$stateParams) {
 
     let newAppRequest = this;
+    newAppRequest.step="selectCategory"
+    newAppRequest.searchParams= Object.assign({}, $stateParams)
+    newAppRequest.searchParams.pageSize= newAppRequest.searchParams.pageSize||$pagination.getUserValue() || $pagination.getPaginationOptions()[0]
 
     // HELPER FUNCTIONS START ------------------------------------------------------------------------
 
     // HELPER FUNCTIONS END ---------------------------------------------------------------------------
 
     // ON LOAD START ----------------------------------------------------------------------------------------
+
+    // QIMS Customization Start
+    if(_.find(API.user.roles, (role) => { return role==="QI Employee Birthright"})){
+        newAppRequest.step="selectUser"
+        newAppRequest.requestBy="yourself"
+    }
+
 
     if(Object.keys(AppRequests.get()).length===0 && localStorage.get('appsBeingRequested')) {
         AppRequests.set(localStorage.get('appsBeingRequested'));
@@ -12305,11 +12462,57 @@ function(API,$scope,$state,AppRequests,localStorage) {
     // ON CLICK FUNCTIONS START -----------------------------------------------------------------------
 
     newAppRequest.searchCallback = function(searchWord) {
-        $state.go('applications.search', {name: searchWord});
+        $state.go('applications.search', {name: searchWord , userId:newAppRequest.userId});
     };
 
+    newAppRequest.updateSearchParams = (page) => {
+        Loader.onFor('newAppRequest.userList')
+        newAppRequest.searchParams.page=page
+        API.cui.getPersons({qs: APIHelpers.getQs(newAppRequest.searchParams)})
+        .then(res => {
+            _.remove(res,{id:API.user.id})
+            newAppRequest.userList=res
+            Loader.offFor('newAppRequest.userList')
+            $scope.$digest()
+        })
+        .fail( err => {
+            console.log('There was an error fetching persons'+ err)
+            Loader.offFor('newAppRequest.userList')
+        }) 
+    }
+
+    newAppRequest.userClick= (user) => {
+        newAppRequest.step="selectCategory"
+        newAppRequest.searchParams.userId=user.id
+        newAppRequest.userId=user.id
+        $state.transitionTo('applications.newRequest', newAppRequest.searchParams, {notify:false})
+    }
+
+    newAppRequest.updateSearchByEmailCallback = () => {
+        newAppRequest.updateSearchParams(1)
+    }
     // ON CLICK FUNCTIONS END -------------------------------------------------------------------------
 
+    // WATCHERS---------------------------------------------
+
+    $scope.$watch("newAppRequest.requestBy", (newValue) => {
+        if (newValue&&newValue==='others') {
+            if (!newAppRequest.userList) {
+                // Loader.onFor('newAppRequest.userList')
+                API.cui.countPersons()
+                .then(count => {
+                    newAppRequest.userCount=count
+                    newAppRequest.updateSearchParams(1)
+                })
+                .fail( err => {
+                    console.log('There was an error fetching persons'+ err)
+                })
+            }
+            else{
+                Loader.offFor('newAppRequest.userList')
+            }
+        }
+    }, true)
 }]);
 
 angular.module('applications')
@@ -12445,7 +12648,7 @@ angular.module('applications')
 angular.module('applications')
 .controller('applicationSearchCtrl',['API','$scope','$stateParams','$state','AppRequests','localStorageService','$q','$pagination', function (API,$scope,$stateParams,$state,AppRequests,localStorage,$q,$pagination) {
     let applicationSearch = this;
-
+    applicationSearch.userId=$stateParams.userId
     if(Object.keys(AppRequests.get()).length===0 && localStorage.get('appsBeingRequested')) { // If there's nothing in app memory and there's something in local storage
         AppRequests.set(localStorage.get('appsBeingRequested'));
     }
@@ -12479,7 +12682,7 @@ angular.module('applications')
                         qs.push(['service.id',realtedApp.id])
                     }
                     if (index===app.relatedApps.length-1&&qs.length!==0) {
-                        apiPromises.push(API.cui.getPersonRequestableApps({personId:API.getUser(),qs:qs}))
+                        apiPromises.push(API.cui.getPersonRequestableApps({personId:applicationSearch.userId,qs:qs}))
                         qs=[]
                     }
                 })
@@ -12504,6 +12707,12 @@ angular.module('applications')
                 deferred.reject(err)
         })
         return deferred.promise
+    }
+
+    const updateViewListForUSUsers = () => {
+        if (applicationSearch.person.addresses[0].country!=='US') {
+            _.remove(applicationSearch.viewList,{id:'2757598184'})
+        }
     }
 
     // HELPER FUNCTIONS END --------------------------------------------------------------------------
@@ -12545,8 +12754,7 @@ angular.module('applications')
         query.push(['page',String(applicationSearch.search.page)]);
 
         let opts = {
-            personId: API.getUser(),
-            useCuid:true,
+            personId: applicationSearch.userId,
             qs: query
         };
 
@@ -12558,11 +12766,16 @@ angular.module('applications')
              applicationSearch.count = res[1];
              updateViewList(res[0])
              .then(() =>{
+                updateViewListForUSUsers()
                 applicationSearch.doneReloading = applicationSearch.doneLoading = true;
              })
         });
     };
-    onLoad(false);
+    API.cui.getPerson({personId:applicationSearch.userId})
+    .then(res => {
+        applicationSearch.person=res
+        onLoad(false)
+    })
 
     // ON LOAD END ------------------------------------------------------------------------------------
 
@@ -12614,18 +12827,18 @@ angular.module('applications')
             }
         })
         if (qs.length!==0) {
-            API.cui.getPersonRequestableApps({personId:API.getUser(),qs:qs})
+            API.cui.getPersonRequestableApps({personId:applicationSearch.userId,qs:qs})
             .then(res => {
                 res.forEach(app =>{
                     applicationSearch.packageRequests[app.id] = app
                 })
                 AppRequests.set(applicationSearch.packageRequests);
-                $state.go('applications.reviewRequest');
+                $state.go('applications.reviewRequest',{userId:applicationSearch.userId});
             })
         }
         else{
             AppRequests.set(applicationSearch.packageRequests);
-            $state.go('applications.reviewRequest');
+            $state.go('applications.reviewRequest',{userId:applicationSearch.userId});
         }
     };
 
