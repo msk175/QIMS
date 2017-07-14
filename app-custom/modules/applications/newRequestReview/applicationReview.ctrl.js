@@ -25,6 +25,9 @@ angular.module('applications')
 
     // ON LOAD START ---------------------------------------------------------------------------------
 
+    if(applicationReview.userId===API.user.id){
+        applicationReview.validDomain=true
+    }
     applicationReview.appRequests=[];
 
     for(let i=0; i < appsBeingRequested.length; i += 2){

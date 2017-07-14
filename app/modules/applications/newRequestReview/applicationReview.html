@@ -56,7 +56,7 @@
         </div>
         <!-- email and protocol -->
         <!-- First row -->
-          <div class="cui-wizard__field-row">
+          <div class="cui-wizard__field-row" ng-if="applicationReview.userId!==base.user.id">
             <!-- Email -->
             <div class="cui-wizard__field-container cui-wizard__field-container--half">
               <label>{{'cui-email' | translate}}</label>
