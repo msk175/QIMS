@@ -933,5 +933,12 @@
     "type":"GET",
     "accepts": "text/plain",
     "call": "/kv/v1/kv/{protocol}"
+  },
+  {
+    "cmd":"createRegPublic",
+    "cmdType": "unsecured",
+    "type":"POST",
+    "accepts": "text/plain",
+    "call": "/kv/v1/kv/{key}"
   }
 ]

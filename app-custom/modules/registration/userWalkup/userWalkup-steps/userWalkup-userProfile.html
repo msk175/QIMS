@@ -33,8 +33,8 @@
       <div class="cui-error" ng-if="user.email.$error.email && user.email.$dirty">
         <div class="cui-error__message">{{'cui-this-is-not-valid-email' | translate}}</div>
       </div>
-      <div ng-if="!userWalkup.isEmailTaken" class="cui-warning">{{'cui-error-email-exists' | translate}}</div>
-      <input type="text" name="email" class="cui-input" custom-error="userWalkup.customErrors.email" ng-required="true" ng-model="userWalkup.user.email" ng-blur="userWalkup.checkDuplicateEmail(userWalkup.user.email)"/>
+     <!--  <div ng-if="!userWalkup.isEmailTaken" class="cui-warning">{{'cui-error-email-exists' | translate}}</div> -->
+      <input type="text" name="email" class="cui-input" custom-error="userWalkup.customErrors.email" ng-required="true" ng-model="userWalkup.user.email"/>
     </div>
 
     <!-- Re-enter Email -->
@@ -72,19 +72,52 @@
     <!-- Address 2 -->
     <div class="cui-wizard__field-container cui-wizard__field-container--half">
       <label >Medical Licence</label>
-      <input type="text" ng-model="userWalkup.extended.medicalLicence" class="cui-input" name="address2">
+        <div class="cui-error" ng-messages="user.medical.$error" ng-if="user.medical.$dirty">
+        <div class="cui-error__message" ng-message="required">{{'cui-this-field-is-required' | translate}}</div>
+      </div>
+      <input type="text" ng-model="userWalkup.extended.medicalLicence" class="cui-input" ng-required="true" name="medical">
     </div>
 
     <!-- City -->
     <div class="cui-wizard__field-container cui-wizard__field-container--half">
       <label>Study List</label>
-      <input type="text" ng-model="userWalkup.user.addresses[0].city" class="cui-input" name="city"/>
+        <div class="cui-error" ng-messages="user.studyList.$error" ng-if="user.studyList.$dirty">
+        <div class="cui-error__message" ng-message="required">{{'cui-this-field-is-required' | translate}}</div>
+      </div>
+      <input type="text" ng-model="userWalkup.extended.studyList" class="cui-input" ng-required="true" name="studyList"/>
     </div>
   </div>
-  <div class="cui-wizard__controls cui-wizard__controls--clear">
-    <button type="button" class="cui-wizard__next" ng-if="!wizardFinished" ng-click="nextWithErrorChecking(user)" ng-class="(user.$invalid)? 'cui-wizard__next--error' : ''">{{'cui-next' | translate}}</button>
-    <button type="button" class="cui-wizard__next" ng-if="wizardFinished" ng-click="user.$valid && goToStep(5)" ng-class="(user.$invalid)? 'cui-wizard__next--error' : ''">{{'cui-back-to-review' | translate}}</button>
+
+  <div align="right" style="padding: 10px 850px 0px 40px;">
+    <button type="button" class="cui-wizard__next" ng-class="cui-wizard__next--error">{{userWalkup.captchaOnload}}</button>
+    <input type="button" id="refresh" value="Refresh" ng-click="userWalkup.reload()" /><br />
+    <div class="cui-error" ng-messages="user.captcha.$error" ng-if="user.captcha.$dirty">
+        <div class="cui-error__message" ng-message="required"><b>{{'cui-this-field-is-required' | translate}}</b></div>
+      </div>
+      <div class="cui-error" ng-if="userWalkup.captchaEntryError&&userWalkup.captchaEntry">
+        <div class="cui-error__message"><b>Invalid Captcha.</b></div>
+      </div>
+    <input type="text" ng-model="userWalkup.captchaEntry" class="cui-input" ng-required="true" name="captcha" style="width:240px;"/>
   </div>
+<!--   <div class="cui-wizard__controls cui-wizard__controls--clear">
+    <button type="button" class="cui-wizard__next" ng-click="user.$valid && userWalkup.submitPublic()" ng-class="(user.$invalid)? 'cui-wizard__next--error' : ''">{{'cui-submit' | translate}}</button>
+   <!--  <button type="button" class="cui-wizard__next" ng-if="wizardFinished" ng-click="user.$valid && goToStep(5)" ng-class="(user.$invalid)? 'cui-wizard__next--error' : ''">{{'cui-back-to-review' | translate}}</button> -->
+  </div> -->
+  <!-- Submit Controls -->
+<div class="cui-wizard__controls">
+  <div class="cui-error" ng-if="userWalkup.submitError"><label>{{userWalkup.errorMessage | translate}}</label></div>
+  <cui-button disable-animate
+    button-click="user.$valid && userWalkup.submitPublic()"
+    loading-if="userWalkup.submitting"
+    loading-message="{{'cui-button-loading-text' | translate}}"
+    error-if="userWalkup.submitError"
+    error-message="{{'cui-error-try-again' | translate}}"
+  >
+    <button class="cui-wizard__next" ng-class="(!user.$valid)? 'cui-wizard__next--error' : userWalkup.sucess? 'success' : usersInvite.success===false? 'fail' : ''" style="position:relative">
+      <span ng-if="!userWalkup.submitting && !userWalkup.submitError">{{'cui-submit' | translate}}</span>
+    </button>
+  </cui-button>
+</div>
 </ng-form>
 
     <!-- Address 1 -->
