@@ -20,6 +20,7 @@ function(API,$scope,$state,AppRequests,localStorage,Loader, $pagination,APIHelpe
     }
     else{
         newAppRequest.searchParams.userId=API.user.id
+        newAppRequest.userId=API.user.id
         $state.transitionTo('applications.newRequest', newAppRequest.searchParams, {notify:false})
     }
 
