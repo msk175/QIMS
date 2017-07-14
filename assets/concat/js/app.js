@@ -1521,6 +1521,20 @@ userWalkup.errorMessage='Error submitting registration request';
 });
 };
 
+API.cui.initiateNonce().
+then(function(res){
+API.cui.getPublicPkgs({qs:['claimId','public']}).
+then(function(res){
+console.log(res);
+userWalkup.publicRegApps=res;
+$scope.$digest();
+}).
+fail(function(err){
+console.log(err);
+});
+});
+
+
 userWalkup.submitPublic=function(){
 userWalkup.submitting=true;
 userWalkup.submitError=false;
@@ -1530,7 +1544,7 @@ var string=userWalkup.captchaOnload.split(' ').join('');
 if(string==userWalkup.captchaEntry){
 $http({
 method:'POST',
-url:'http://kv-1-qa.run.covisintrnd.com/kv/my_key',
+url:'https://kv-1-qa.idm.qa.covapp.io/kv/my_key',
 headers:{
 'Content-Type':'text/plain',
 'Accept':'text/plain',
@@ -1543,13 +1557,14 @@ headers:{
 'X-Random-Shit':'123123123'},
 
 data:{
-"firstName":"Srini",
-"lastName":"Madala",
-"email":"srinivas.madala@covisint.com",
-"country":"USA",
-"cellPhone":"248-483-2222",
-"medicalLicenseNo":"12345",
-"studyList":"TESTFINANCE01"}}).
+"firstName":userWalkup.user.name.given,
+"lastName":userWalkup.user.name.surname,
+"email":userWalkup.user.email,
+"country":userWalkup.userCountry,
+"cellPhone":userWalkup.user.phones[0].number,
+"medicalLicenseNo":userWalkup.extended.medicalLicence,
+"studyList":userWalkup.extended.studyList,
+"servicePackage":userWalkup.applications.selected[application.id]}}).
 
 then(function successCallback(response){
 $state.go('misc.success');
@@ -1567,7 +1582,7 @@ userWalkup.errorMessage='Error submitting registration request';
 {
 userWalkup.captchaEntryError=true;
 userWalkup.submitting=false;
-$scope.$apply();
+$scope.$digest();
 }
 
 
@@ -12290,6 +12305,9 @@ $state.go('applications.search');
 
 // ON LOAD START ---------------------------------------------------------------------------------
 
+if(applicationReview.userId===API.user.id){
+applicationReview.validDomain=true;
+}
 applicationReview.appRequests=[];
 
 for(var i=0;i<appsBeingRequested.length;i+=2){
@@ -12462,6 +12480,11 @@ newAppRequest.searchParams.pageSize=newAppRequest.searchParams.pageSize||$pagina
 if(_.find(API.user.roles,function(role){return role==="QI Employee Birthright";})){
 newAppRequest.step="selectUser";
 newAppRequest.requestBy="yourself";
+}else
+{
+newAppRequest.searchParams.userId=API.user.id;
+newAppRequest.userId=API.user.id;
+$state.transitionTo('applications.newRequest',newAppRequest.searchParams,{notify:false});
 }
 
 

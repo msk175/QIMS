@@ -940,5 +940,12 @@
     "type":"POST",
     "accepts": "text/plain",
     "call": "/kv/v1/kv/{key}"
+  },
+  {
+    "cmd":"getPublicPkgs",
+    "cmdType": "nonce",
+    "type":"GET",
+    "accepts": "application/vnd.com.covisint.platform.package.v1+json",
+    "call": "/registration/v1/registrations/packages"
   }
 ]
