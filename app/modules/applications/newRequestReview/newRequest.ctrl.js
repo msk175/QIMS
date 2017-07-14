@@ -18,6 +18,10 @@ function(API,$scope,$state,AppRequests,localStorage,Loader, $pagination,APIHelpe
         newAppRequest.step="selectUser"
         newAppRequest.requestBy="yourself"
     }
+    else{
+        newAppRequest.searchParams.userId=API.user.id
+        $state.transitionTo('applications.newRequest', newAppRequest.searchParams, {notify:false})
+    }
 
 
     if(Object.keys(AppRequests.get()).length===0 && localStorage.get('appsBeingRequested')) {
